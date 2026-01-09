@@ -165,7 +165,7 @@ export function RadarChart({
             const dimension = QUIZ_DIMENSIONS[dim]
 
             // Adjust text anchor based on position
-            let textAnchor = 'middle'
+            let textAnchor: 'start' | 'middle' | 'end' = 'middle'
             if (x < center - 10) textAnchor = 'end'
             else if (x > center + 10) textAnchor = 'start'
 
