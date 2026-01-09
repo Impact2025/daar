@@ -54,6 +54,7 @@ async function getRelatedArticles(articleId: string, categoryId: string | null) 
       slug: true,
       excerpt: true,
       featuredImage: true,
+      headerStyle: true,
       publishedAt: true,
       readingTime: true,
       viewCount: true,
@@ -86,6 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       metaTitle: true,
       metaDescription: true,
       featuredImage: true,
+      headerStyle: true,
       publishedAt: true,
       author: {
         select: { name: true },

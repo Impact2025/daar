@@ -44,6 +44,7 @@ async function getArticles(query?: string, page: number = 1) {
         slug: true,
         excerpt: true,
         featuredImage: true,
+        headerStyle: true,
         publishedAt: true,
         readingTime: true,
         viewCount: true,

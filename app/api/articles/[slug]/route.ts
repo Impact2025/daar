@@ -18,6 +18,7 @@ const updateSchema = z.object({
   categoryId: z.string().optional().or(z.null()),
   tagIds: z.array(z.string()).optional(),
   status: z.enum(['DRAFT', 'REVIEW', 'PUBLISHED', 'ARCHIVED']).optional(),
+  publishedAt: z.string().datetime().optional().or(z.null()),
 })
 
 interface RouteParams {
@@ -138,8 +139,11 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       }
     }
 
-    // Handle status change to PUBLISHED
-    if (validated.status === 'PUBLISHED' && existingArticle.status !== 'PUBLISHED') {
+    // Handle publishedAt
+    if (validated.publishedAt !== undefined) {
+      updateData.publishedAt = validated.publishedAt ? new Date(validated.publishedAt) : null
+    } else if (validated.status === 'PUBLISHED' && existingArticle.status !== 'PUBLISHED' && !existingArticle.publishedAt) {
+      // Auto-set publishedAt when first publishing
       updateData.publishedAt = new Date()
     }
 

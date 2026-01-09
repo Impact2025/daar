@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Save, Eye, Sparkles, Loader2, Wand2 } from 'lucide-react'
+import { ArrowLeft, Save, Eye, Sparkles, Loader2, Wand2, Calendar } from 'lucide-react'
 import { Button, Input, Card, CardContent, CardHeader } from '@/components/ui'
 import { WYSIWYGEditor } from '@/components/admin/WYSIWYGEditor'
 import { FeaturedImagePicker, HeaderStyle } from '@/components/admin/FeaturedImagePicker'
@@ -32,6 +32,7 @@ export default function EditArticlePage() {
   const [featuredImage, setFeaturedImage] = useState('')
   const [headerStyle, setHeaderStyle] = useState<HeaderStyle>('image')
   const [status, setStatus] = useState<'DRAFT' | 'PUBLISHED'>('DRAFT')
+  const [publishedAt, setPublishedAt] = useState('')
 
   // Load article data
   useEffect(() => {
@@ -55,6 +56,11 @@ export default function EditArticlePage() {
         setFeaturedImage(article.featuredImage || '')
         setHeaderStyle((article.headerStyle as HeaderStyle) || 'image')
         setStatus(article.status === 'PUBLISHED' ? 'PUBLISHED' : 'DRAFT')
+        // Format date for datetime-local input
+        if (article.publishedAt) {
+          const date = new Date(article.publishedAt)
+          setPublishedAt(date.toISOString().slice(0, 16))
+        }
       } catch (err) {
         setError('Er ging iets mis bij het laden van het artikel')
       } finally {
@@ -169,6 +175,7 @@ export default function EditArticlePage() {
           featuredImage: featuredImage || null,
           headerStyle,
           status: publishStatus,
+          publishedAt: publishedAt ? new Date(publishedAt).toISOString() : null,
         }),
       })
 
@@ -288,12 +295,12 @@ export default function EditArticlePage() {
 
         {/* Sidebar */}
         <div className="space-y-6">
-          {/* Status */}
+          {/* Status & Publicatie */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Status</h3>
+              <h3 className="font-semibold text-navy">Status & Publicatie</h3>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
                 <span
                   className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -304,6 +311,24 @@ export default function EditArticlePage() {
                 >
                   {status === 'PUBLISHED' ? 'Gepubliceerd' : 'Concept'}
                 </span>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-navy mb-1">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="w-4 h-4" />
+                    Publicatiedatum
+                  </span>
+                </label>
+                <input
+                  type="datetime-local"
+                  value={publishedAt}
+                  onChange={(e) => setPublishedAt(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent text-sm"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Wordt automatisch ingesteld bij eerste publicatie
+                </p>
               </div>
             </CardContent>
           </Card>

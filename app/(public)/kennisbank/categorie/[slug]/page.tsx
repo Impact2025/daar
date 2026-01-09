@@ -50,6 +50,7 @@ async function getArticles(categoryId: string, query?: string, page: number = 1)
         slug: true,
         excerpt: true,
         featuredImage: true,
+        headerStyle: true,
         publishedAt: true,
         readingTime: true,
         viewCount: true,
