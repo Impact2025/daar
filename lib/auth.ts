@@ -23,37 +23,42 @@ export const authConfig: NextAuthConfig = {
           credentials.email === 'admin@daar.nl' &&
           credentials.password === 'daar2024!'
         ) {
-          // Check of user bestaat, zo niet aanmaken
-          let user = await prisma.user.findUnique({
-            where: { email: 'admin@daar.nl' },
-          })
-
-          if (!user) {
-            user = await prisma.user.create({
-              data: {
-                email: 'admin@daar.nl',
-                name: 'DAAR Admin',
-                role: 'ADMIN',
-              },
+          try {
+            // Check of user bestaat, zo niet aanmaken
+            let user = await prisma.user.findUnique({
+              where: { email: 'admin@daar.nl' },
             })
 
-            // Maak ook een author aan
-            await prisma.author.create({
-              data: {
-                name: 'Team DAAR',
-                email: 'admin@daar.nl',
-                bio: 'Het team achter DAAR: Vincent, Saviem en Thijs. Samen bouwen wij aan een platform waar vrijwilligerswerk de waardering krijgt die het verdient.',
-                role: 'Founders',
-                userId: user.id,
-              },
-            })
-          }
+            if (!user) {
+              user = await prisma.user.create({
+                data: {
+                  email: 'admin@daar.nl',
+                  name: 'DAAR Admin',
+                  role: 'ADMIN',
+                },
+              })
 
-          return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            role: user.role,
+              // Maak ook een author aan
+              await prisma.author.create({
+                data: {
+                  name: 'Team DAAR',
+                  email: 'admin@daar.nl',
+                  bio: 'Het team achter DAAR: Vincent, Saviem en Thijs. Samen bouwen wij aan een platform waar vrijwilligerswerk de waardering krijgt die het verdient.',
+                  role: 'Founders',
+                  userId: user.id,
+                },
+              })
+            }
+
+            return {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              role: user.role,
+            }
+          } catch (error) {
+            console.error('[Auth] Database error:', error)
+            return null
           }
         }
 
