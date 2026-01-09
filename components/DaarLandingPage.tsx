@@ -40,10 +40,11 @@ const DaarLandingPage = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-6 items-center">
-              <NavButton text="Producten" onClick={() => scrollToSection('producten')} />
+              <NavLink href="/platform" text="Platform" />
               <NavLink href="/kennisbank" text="Kennisbank" />
               <NavLink href="/quiz" text="VrijwilligersCheck" />
-              <NavButton text="Over ons" onClick={() => scrollToSection('over-ons')} />
+              <NavLink href="/over-ons" text="Over ons" />
+              <NavLink href="/contact" text="Contact" />
 
               <div className="flex items-center space-x-3 ml-4">
                 <Link
@@ -74,10 +75,11 @@ const DaarLandingPage = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl rounded-b-2xl">
             <div className="flex flex-col p-4 space-y-2">
-              <MobileNavButton text="Producten" onClick={() => scrollToSection('producten')} />
+              <MobileNavLink href="/platform" text="Platform" onClick={() => setIsMenuOpen(false)} />
               <MobileNavLink href="/kennisbank" text="Kennisbank" onClick={() => setIsMenuOpen(false)} />
               <MobileNavLink href="/quiz" text="VrijwilligersCheck" onClick={() => setIsMenuOpen(false)} />
-              <MobileNavButton text="Over ons" onClick={() => scrollToSection('over-ons')} />
+              <MobileNavLink href="/over-ons" text="Over ons" onClick={() => setIsMenuOpen(false)} />
+              <MobileNavLink href="/contact" text="Contact" onClick={() => setIsMenuOpen(false)} />
               <Link
                 href="/afspraak"
                 className="bg-brandGreen text-white font-bold w-full py-3 mt-4 rounded-xl text-center"
