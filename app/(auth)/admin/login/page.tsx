@@ -57,7 +57,7 @@ export default function LoginPage() {
               label="E-mailadres"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@daar.nl"
+              placeholder="je@email.nl"
               required
             />
 
@@ -95,11 +95,6 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Demo credentials */}
-        <div className="mt-4 p-4 bg-white/50 rounded-lg text-center text-sm text-gray-600">
-          <p className="font-medium">Demo inloggegevens:</p>
-          <p>admin@daar.nl / daar2024!</p>
-        </div>
       </div>
     </div>
   )
