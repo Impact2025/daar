@@ -87,7 +87,7 @@ export function BookingWidget({
 
     async function loadAvailability() {
       try {
-        const res = await fetch(`/api/bookings/availability?bookingTypeId=${selectedType.id}`)
+        const res = await fetch(`/api/bookings/availability?bookingTypeId=${selectedType?.id}`)
         const data = await res.json()
         if (data.success) {
           setAvailableDates(data.data.availableDates)
@@ -106,7 +106,7 @@ export function BookingWidget({
     async function loadSlots() {
       try {
         const res = await fetch(
-          `/api/bookings/availability?bookingTypeId=${selectedType.id}&date=${selectedDate}`
+          `/api/bookings/availability?bookingTypeId=${selectedType?.id}&date=${selectedDate}`
         )
         const data = await res.json()
         if (data.success) {
@@ -130,7 +130,7 @@ export function BookingWidget({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          bookingTypeId: selectedType.id,
+          bookingTypeId: selectedType?.id,
           startTime: selectedSlot,
           name: formData.name,
           email: formData.email,
