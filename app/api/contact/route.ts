@@ -192,7 +192,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create or find lead in database
-    let lead = await prisma.lead.findUnique({
+    let lead = await prisma.lead.findFirst({
       where: { email: body.email },
     })
 
