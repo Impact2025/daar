@@ -1,0 +1,96 @@
+# KOPIEER DEZE PROMPT NAAR CLAUDE CODE:
+
+Maak een React quiz component "VrijwilligersQuiz.jsx" voor daar.nl.
+
+## Specificaties:
+
+**Huisstijl:**
+- Primair groen: #10B981
+- Achtergrond: #F8FAFC (licht)
+- Tekst: #0F172A
+- Cards: wit met border-radius 20px en subtiele shadow
+- Font: Inter of system sans-serif
+
+**Functionaliteit:**
+- 7 meerkeuzevragen over vrijwilligersmanagement
+- Animated progress bar
+- Score 0-100 ("Geluksscore")
+- 4 uitkomstprofielen met emoji, beschrijving, tip en aanbevolen modules
+- Circulaire score visualisatie (SVG)
+- Deel-buttons (kopieer + LinkedIn)
+- Opnieuw doen knop
+- Smooth hover animaties
+
+**De 7 vragen (score 0-4 per vraag):**
+
+1. "Hoeveel vrijwilligers heeft jouw organisatie?"
+   - 1-25 (score 1) 👤
+   - 26-100 (score 2) 👥
+   - 101-500 (score 3) 👨‍👩‍👧‍👦
+   - 500+ (score 4) 🏟️
+
+2. "Hoe houd je vrijwilligersgegevens bij?"
+   - Excel/Sheets (score 1) 📊
+   - Papier (score 0) 📋
+   - Mix systemen (score 2) 🔀
+   - Dedicated software (score 4) 💻
+
+3. "Hoe lang duurt onboarding?"
+   - >1 maand (score 0) 🐌
+   - 2-4 weken (score 2) 📅
+   - 1-2 weken (score 3) ⚡
+   - <1 week (score 4) 🚀
+
+4. "Hoe vaak communiceer je met vrijwilligers?"
+   - Alleen als nodig (score 1) 📭
+   - Maandelijks (score 2) 📬
+   - Wekelijks (score 3) 📮
+   - Vaker (score 4) 💬
+
+5. "Meet je tevredenheid?"
+   - Nee (score 0) 🤷
+   - Informeel (score 2) 💭
+   - Jaarlijks (score 3) 📝
+   - Structureel (score 4) 📈
+
+6. "Hoeveel stoppen binnen eerste jaar?"
+   - >50% (score 0) 📉
+   - 30-50% (score 1) 😟
+   - 10-30% (score 3) 😊
+   - <10% (score 4) 🌟
+
+7. "Kun je impact aantonen?"
+   - Nee (score 0) ❓
+   - Alleen uren (score 2) ⏱️
+   - Basis-rapportages (score 3) 📊
+   - Ja, concreet (score 4) 🎯
+
+**4 Uitkomsten:**
+
+1. **Vrijwilligerskampioen 🏆** (80%+, groen #10B981)
+   - "Wow! Jullie vrijwilligersbeleid is uitstekend."
+   - Tip: Geluksmomenten voor stakeholders
+   - Modules: Impact Dashboard, Geluksmomenten
+
+2. **Goed op weg 💪** (60-80%, blauw #3B82F6)
+   - "Solide basis, ruimte voor groei in meten en communicatie."
+   - Tip: Tevredenheidsmeting verbetert retentie 40%
+   - Modules: VrijwilligersCheck, Communicatie, Smart Matching
+
+3. **Werk aan de winkel 🔧** (40-60%, oranje #F59E0B)
+   - "Je vrijwilligers verdienen meer aandacht."
+   - Tip: Centraal dossier bespaart 8 uur/week
+   - Modules: Centraal Dossier, VrijwilligersCheck, Communicatie
+
+4. **Tijd voor verandering 🚀** (<40%, rood #EF4444)
+   - "Hier liggen grote kansen voor verbetering."
+   - Tip: 50% minder uitval na 3 maanden DAAR
+   - Modules: Centraal Dossier, Smart Matching, VrijwilligersCheck, Communicatie
+
+**Output:**
+- Standalone React component met useState hooks
+- Inline CSS styling (geen aparte files)
+- Mobile responsive
+- export default function VrijwilligersQuiz()
+
+Plaats in: src/components/VrijwilligersQuiz.jsx
