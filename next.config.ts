@@ -9,11 +9,13 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
-  },
-  // Enable experimental features if needed for Vercel
-  experimental: {
-    // Add any experimental features here
   },
 };
 
