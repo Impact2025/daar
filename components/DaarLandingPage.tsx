@@ -10,6 +10,12 @@ import { LatestArticles } from '@/components/home/LatestArticles';
 const DaarLandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const heroImages = [
+    '/Creatieve middag in de kunstklas-min.png',
+    '/Gezelligheid in het Nederlandse landschap-min.png'
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +23,13 @@ const DaarLandingPage = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 5000); // Wissel elke 5 seconden
+    return () => clearInterval(interval);
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -471,17 +484,32 @@ const DaarLandingPage = () => {
                      Wij maken vrijwilligerswerk slimmer, leuker en duurzamer. De partner voor organisaties die vooruit willen.
                   </p>
                </div>
-               <FooterColumn title="Product" links={['Modules', 'Prijzen', 'Voor Gemeenten', 'Security & AVG']} />
-               <FooterColumn title="Over Daar" links={['Onze Missie', 'Team', 'Blog', 'Vacatures']} />
+               <FooterColumn
+                 title="Product"
+                 links={[
+                   { label: 'Modules', href: '/platform' },
+                   { label: 'Vrijwilligers Check', href: '/vrijwilligerscheck' },
+                   { label: 'Quiz', href: '/quiz' },
+                   { label: 'Afspraak maken', href: '/afspraak' }
+                 ]}
+               />
+               <FooterColumn
+                 title="Over Daar"
+                 links={[
+                   { label: 'Onze Missie', href: '/over-ons' },
+                   { label: 'Kennisbank', href: '/kennisbank' },
+                   { label: 'Contact', href: '/contact' }
+                 ]}
+               />
                <div>
                   <h4 className="font-bold text-lg mb-6 text-white tracking-tight">Contact</h4>
                   <ul className="space-y-4 text-gray-400">
-                     <li><a href="#" className="hover:text-brandGreen transition-colors">Support</a></li>
-                     <li><a href="#" className="hover:text-brandGreen transition-colors">Live Chat</a></li>
-                     <li><a href="#" className="hover:text-brandGreen transition-colors">info@daar.nl</a></li>
+                     <li><Link href="/contact" className="hover:text-brandGreen transition-colors">Support</Link></li>
+                     <li><Link href="/afspraak" className="hover:text-brandGreen transition-colors">Afspraak plannen</Link></li>
+                     <li><a href="mailto:info@daar.nl" className="hover:text-brandGreen transition-colors">info@daar.nl</a></li>
                      <li className="flex space-x-4 pt-2">
-                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandGreen transition-colors cursor-pointer text-xs">Li</div>
-                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandGreen transition-colors cursor-pointer text-xs">X</div>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandGreen transition-colors cursor-pointer text-xs">Li</a>
+                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandGreen transition-colors cursor-pointer text-xs">X</a>
                      </li>
                   </ul>
                </div>
@@ -489,9 +517,9 @@ const DaarLandingPage = () => {
             <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500">
                <p>&copy; 2025 Daar B.V.</p>
                <div className="flex space-x-6 mt-4 md:mt-0">
-                  <a href="#" className="hover:text-white">Privacy</a>
-                  <a href="#" className="hover:text-white">Voorwaarden</a>
-                  <a href="#" className="hover:text-white">Cookies</a>
+                  <Link href="/privacy" className="hover:text-white">Privacy</Link>
+                  <Link href="/voorwaarden" className="hover:text-white">Voorwaarden</Link>
+                  <Link href="/cookies" className="hover:text-white">Cookies</Link>
                </div>
             </div>
          </div>
@@ -643,9 +671,14 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ label, value, icon, color, bg
   );
 };
 
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
 interface FooterColumnProps {
   title: string;
-  links: string[];
+  links: FooterLink[];
 }
 
 const FooterColumn: React.FC<FooterColumnProps> = ({ title, links }) => (
@@ -654,7 +687,7 @@ const FooterColumn: React.FC<FooterColumnProps> = ({ title, links }) => (
     <ul className="space-y-4 text-gray-400">
       {links.map((link, index) => (
         <li key={index}>
-          <a href="#" className="hover:text-brandGreen transition-colors">{link}</a>
+          <Link href={link.href} className="hover:text-brandGreen transition-colors">{link.label}</Link>
         </li>
       ))}
     </ul>
