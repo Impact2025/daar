@@ -227,8 +227,8 @@ const DaarLandingPage = () => {
                <StatsCard
                  icon={<Heart size={24} fill="#3BA273" fillOpacity={0.2} />}
                  iconColor="text-brandGreen"
-                 title="Geluksmomenten"
-                 description="Meet het welzijn van je mensen. Want gelukkige vrijwilligers blijven."
+                 title="De Geluksformule"
+                 description="Onze unieke methodiek meet welbevinden op basis van jarenlange expertise."
                />
             </div>
          </div>
@@ -242,8 +242,8 @@ const DaarLandingPage = () => {
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
                Daar is nieuw, maar onze expertise is dat niet. Met een team van drie specialisten
-               bundelen we jarenlange ervaring in de vrijwilligerssector en de zorg.
-               Wij weten wat er speelt, omdat we er zelf hebben gestaan.
+               bundelen we jarenlange ervaring in de vrijwilligerssector en de zorg—kennis die we
+               vertaald hebben in onze bewezen Geluksformule. Wij weten wat er speelt, omdat we er zelf hebben gestaan.
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
@@ -273,7 +273,7 @@ const DaarLandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card
                title="Vrijwilligers Check"
-               desc="Signaleer overbelasting vroegtijdig met onze slimme welzijnsmonitor en stoplicht-systeem."
+               desc="Gebaseerd op onze bewezen Geluksformule. Signaleer overbelasting vroegtijdig met ons slimme stoplicht-systeem."
                icon={<Smile size={28} />}
                accent="green"
             />
@@ -340,9 +340,10 @@ const DaarLandingPage = () => {
                      Meet wat er écht toe doet.
                   </h2>
                   <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                     De meeste tools stoppen bij urenregistratie. Daar gaat verder.
+                     De meeste tools stoppen bij urenregistratie. Daar gaat verder met onze unieke
+                     <span className="font-semibold text-brandGreen"> Geluksformule</span>.
                      Wij visualiseren de 'zachte' kant van vrijwilligerswerk: de glimlach,
-                     de voldoening en de sociale verbinding.
+                     de voldoening en de sociale verbinding—en vertalen dit naar meetbare waarde.
                   </p>
 
                   <div className="space-y-4">
@@ -397,7 +398,7 @@ const DaarLandingPage = () => {
 
                   <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                      Doe de VrijwilligersCheck en ontdek in 2 minuten hoe je scoort op 5 cruciale
-                     dimensies. Inclusief benchmark vergelijking en concrete ROI-berekeningen.
+                     dimensies. Gebaseerd op onze unieke Geluksformule—ontwikkeld uit jarenlange praktijkervaring.
                   </p>
 
                   <div className="space-y-3 mb-8">
