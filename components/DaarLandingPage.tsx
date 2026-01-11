@@ -162,13 +162,20 @@ const DaarLandingPage = () => {
             {/* Right Visual */}
             <div className="lg:col-span-6 relative">
                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform lg:rotate-2 hover:rotate-0 transition-all duration-500">
-                  <Image
-                    src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                    alt="Vrijwilligers samen"
-                    width={1200}
-                    height={800}
-                    className="w-full h-auto"
-                  />
+                  <div className="relative w-full aspect-[3/2]">
+                    {heroImages.map((image, index) => (
+                      <Image
+                        key={image}
+                        src={image}
+                        alt={index === 0 ? "Creatieve middag in de kunstklas" : "Gezelligheid in het Nederlandse landschap"}
+                        width={1200}
+                        height={800}
+                        className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                          index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      />
+                    ))}
+                  </div>
 
                   {/* Speech Bubble Overlay 1 */}
                   <div className="absolute top-8 left-8 bg-white/95 backdrop-blur p-4 rounded-2xl rounded-bl-none shadow-lg max-w-[200px] animate-bounce-slow">
