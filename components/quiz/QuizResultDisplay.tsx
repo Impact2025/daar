@@ -159,7 +159,7 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
             </div>
 
             <p className="text-xs text-gray-400 mt-4">
-              Gebaseerd op industriebenchmarks voor organisaties met {volunteerCount}+ vrijwilligers
+              Schatting gebaseerd op sectoronderzoek en praktijkervaring
             </p>
           </CardContent>
         </Card>

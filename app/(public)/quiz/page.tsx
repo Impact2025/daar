@@ -47,9 +47,9 @@ export default function QuizPage() {
                   <BarChart3 className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">Benchmark vergelijking</h3>
+                  <h3 className="font-medium text-navy">Expertanalyse</h3>
                   <p className="text-gray-600 text-sm">
-                    Zie hoe je scoort t.o.v. vergelijkbare organisaties
+                    Krijg inzicht in je sterke en zwakke punten
                   </p>
                 </div>
               </div>
@@ -91,17 +91,17 @@ export default function QuizPage() {
               </div>
             </div>
 
-            {/* Stats */}
+            {/* Expertise */}
             <div className="bg-white rounded-xl p-6 border border-gray-200">
-              <p className="text-sm text-gray-500 mb-4">Gebaseerd op data van</p>
+              <p className="text-sm text-gray-500 mb-4">Ontwikkeld door experts</p>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <p className="text-2xl font-bold text-navy">500+</p>
-                  <p className="text-xs text-gray-500">Organisaties</p>
+                  <p className="text-2xl font-bold text-navy">3</p>
+                  <p className="text-xs text-gray-500">Specialisten</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-navy">50K+</p>
-                  <p className="text-xs text-gray-500">Vrijwilligers</p>
+                  <p className="text-2xl font-bold text-navy">15+</p>
+                  <p className="text-xs text-gray-500">Jaar ervaring</p>
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-navy">5</p>

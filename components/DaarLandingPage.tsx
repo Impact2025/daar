@@ -17,6 +17,11 @@ const DaarLandingPage = () => {
     '/Gezelligheid in het Nederlandse landschap-min.png'
   ];
 
+  const heroQuotes = [
+    'Je denkt dat je komt om te geven, maar stiekem krijg je er net zoveel energie voor terug.',
+    'Samen op pad. Voor hen een uitje, voor mij mijn wekelijkse portie geluk.'
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -177,25 +182,18 @@ const DaarLandingPage = () => {
                     ))}
                   </div>
 
-                  {/* Speech Bubble Overlay 1 */}
-                  <div className="absolute top-8 left-8 bg-white/95 backdrop-blur p-4 rounded-2xl rounded-bl-none shadow-lg max-w-[200px] animate-bounce-slow">
-                     <div className="flex items-center mb-1">
-                        <Smile className="text-brandGreen w-5 h-5 mr-2" />
-                        <span className="font-bold text-navy text-sm tracking-tight">Nieuwe match!</span>
-                     </div>
-                     <p className="text-xs text-gray-500">Sarah heeft zich aangemeld voor de sponsorloop.</p>
-                  </div>
+                  {/* Quote Overlay - wisselt met foto */}
+                  {heroQuotes.map((quote, index) => (
+                    <div
+                      key={index}
+                      className={`absolute bottom-6 right-6 bg-white/95 backdrop-blur p-4 rounded-2xl rounded-br-none shadow-lg max-w-[260px] transition-opacity duration-1000 ${
+                        index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      <p className="text-sm text-navy italic leading-relaxed">"{quote}"</p>
+                    </div>
+                  ))}
 
-                  {/* Speech Bubble Overlay 2 */}
-                  <div className="absolute bottom-8 right-8 bg-navy text-white p-4 rounded-2xl rounded-tr-none shadow-lg max-w-[220px]">
-                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-gray-300 tracking-wide">TEVREDENHEID</span>
-                        <span className="text-brandGreen font-bold">8.9/10</span>
-                     </div>
-                     <div className="w-full bg-gray-700 rounded-full h-1.5">
-                        <div className="bg-brandGreen h-1.5 rounded-full" style={{width: '89%'}}></div>
-                     </div>
-                  </div>
                </div>
 
                {/* Decorative Graphic Elements */}
@@ -236,17 +234,30 @@ const DaarLandingPage = () => {
          </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="py-12 bg-offWhite">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-sm text-gray-500 mb-8 tracking-tight">Vertrouwd door 500+ vrijwilligersorganisaties in Nederland</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-               {/* Placeholder logos - replace with real client logos */}
-               <div className="h-8 px-4 bg-gray-300 rounded flex items-center justify-center text-gray-500 text-sm font-medium">Gemeente Amsterdam</div>
-               <div className="h-8 px-4 bg-gray-300 rounded flex items-center justify-center text-gray-500 text-sm font-medium">Rode Kruis</div>
-               <div className="h-8 px-4 bg-gray-300 rounded flex items-center justify-center text-gray-500 text-sm font-medium">Humanitas</div>
-               <div className="h-8 px-4 bg-gray-300 rounded flex items-center justify-center text-gray-500 text-sm font-medium">Scouting NL</div>
-               <div className="h-8 px-4 bg-gray-300 rounded flex items-center justify-center text-gray-500 text-sm font-medium">NOV</div>
+      {/* Expertise Statement */}
+      <section className="py-16 bg-offWhite">
+         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4 tracking-tight">
+               Gebouwd vanuit de praktijk, voor de praktijk.
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+               Daar is nieuw, maar onze expertise is dat niet. Met een team van drie specialisten
+               bundelen we jarenlange ervaring in de vrijwilligerssector en de zorg.
+               Wij weten wat er speelt, omdat we er zelf hebben gestaan.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+               <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
+                  <Users size={18} className="text-brandGreen" />
+                  <span className="font-medium text-navy">3 experts met gedeelde passie</span>
+               </div>
+               <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
+                  <Heart size={18} className="text-brandGreen" />
+                  <span className="font-medium text-navy">Ervaring in zorg & vrijwilligerswerk</span>
+               </div>
+               <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
+                  <BarChart2 size={18} className="text-brandGreen" />
+                  <span className="font-medium text-navy">Slimme, praktische oplossingen</span>
+               </div>
             </div>
          </div>
       </section>
@@ -400,7 +411,7 @@ const DaarLandingPage = () => {
                         <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
                            <Check size={16} className="text-brandGreen" />
                         </div>
-                        <span className="text-navy font-medium">Vergelijk met 500+ organisaties</span>
+                        <span className="text-navy font-medium">Gebaseerd op jarenlange praktijkervaring</span>
                      </div>
                      <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">

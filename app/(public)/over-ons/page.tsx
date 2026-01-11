@@ -375,21 +375,30 @@ export default function OverOnsPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Team Expertise Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: '500+', label: 'Organisaties geholpen' },
-              { value: '50.000+', label: 'Vrijwilligers bereikt' },
-              { value: '1M+', label: 'Geluksmomenten gemeten' },
-              { value: '98%', label: 'Klanttevredenheid' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-navy mb-2">{stat.value}</p>
-                <p className="text-gray-600">{stat.label}</p>
-              </div>
-            ))}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4">
+            Een vliegende start met jarenlange bagage
+          </h2>
+          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            Hoewel DAAR pas net begint, brengen wij samen decennia aan ervaring mee.
+            Wij hebben gezien wat wel en niet werkt in vrijwilligersmanagement.
+            Die kennis zetten we nu in om het platform te bouwen dat we zelf altijd hebben gemist.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-lightGreen rounded-2xl p-6">
+              <p className="text-3xl font-bold text-brandGreen mb-2">3</p>
+              <p className="text-navy font-medium">Experts met gedeelde passie</p>
+            </div>
+            <div className="bg-blue-50 rounded-2xl p-6">
+              <p className="text-3xl font-bold text-navy mb-2">15+</p>
+              <p className="text-navy font-medium">Jaar ervaring in de sector</p>
+            </div>
+            <div className="bg-lightGreen rounded-2xl p-6">
+              <p className="text-3xl font-bold text-brandGreen mb-2">1</p>
+              <p className="text-navy font-medium">Missie: vrijwilligers op 1</p>
+            </div>
           </div>
         </div>
       </section>
