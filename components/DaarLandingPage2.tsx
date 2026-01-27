@@ -207,23 +207,17 @@ const DaarLandingPage2 = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatsCard2
-              icon={<Shield size={28} />}
               bgColorHex="#5BA3BD"
-              iconColorHex="#FFFFFF"
               title="Veilig Dossier"
               description="AVG-proof en centraal. Al je documenten op één veilige plek."
             />
             <StatsCard2
-              icon={<TrendingUp size={28} />}
               bgColorHex="#D4A84B"
-              iconColorHex="#FFFFFF"
               title="Meetbare Impact"
               description="Harde cijfers voor stakeholders. Koppel inzet direct aan SDG's."
             />
             <StatsCard2
-              icon={<Heart size={28} />}
               bgColorHex="#4BA99B"
-              iconColorHex="#FFFFFF"
               title="De Geluksformule"
               description="Onze unieke methodiek meet welbevinden op basis van jarenlange expertise."
             />
@@ -591,25 +585,17 @@ const FeatureItem2: React.FC<FeatureItem2Props> = ({ text, color }) => {
 };
 
 interface StatsCard2Props {
-  icon: React.ReactNode;
   bgColorHex: string;
-  iconColorHex: string;
   title: string;
   description: string;
 }
 
-const StatsCard2: React.FC<StatsCard2Props> = ({ icon, bgColorHex, iconColorHex, title, description }) => (
+const StatsCard2: React.FC<StatsCard2Props> = ({ bgColorHex, title, description }) => (
   <div
     className="p-8 rounded-3xl hover:shadow-lg transition-all group"
     style={{ backgroundColor: bgColorHex }}
   >
-    <div
-      className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm mb-5 group-hover:scale-110 transition-transform"
-      style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#FFFFFF' }}
-    >
-      {icon}
-    </div>
-    <h3 className="text-xl font-bold mb-2 text-white" style={{ fontFamily: 'Nunito, sans-serif' }}>{title}</h3>
+    <h3 className="text-xl font-bold mb-3 text-white" style={{ fontFamily: 'Nunito, sans-serif' }}>{title}</h3>
     <p className="text-white/80 leading-relaxed">{description}</p>
   </div>
 );
