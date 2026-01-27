@@ -426,8 +426,8 @@ const DaarLandingPage2 = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-navy py-24 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+      <section className="bg-daar-blue py-24">
+        <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
             Klaar voor meer grip en geluk?
           </h2>
