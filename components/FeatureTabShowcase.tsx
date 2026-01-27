@@ -21,8 +21,8 @@ const features: Feature[] = [
     label: 'VrijwilligersCheck',
     title: 'Signaleer overbelasting voordat het te laat is',
     description: 'Onze slimme Geluksformule meet het welbevinden van je vrijwilligers. Het stoplicht-systeem waarschuwt automatisch wanneer iemand extra aandacht nodig heeft.',
-    bgColor: '#FFD166',
-    accentColor: '#2D334A',
+    bgColor: '#D4A84B',
+    accentColor: '#FFFFFF',
     ctaText: 'Probeer de check',
     ctaHref: '/quiz',
     visual: (
@@ -68,8 +68,8 @@ const features: Feature[] = [
     label: 'Smart Matching',
     title: 'De perfecte match in seconden',
     description: 'Een Tinder-achtige ervaring voor vrijwilligerswerk. Swipe door profielen en vind de ideale vrijwilliger voor elke klus op basis van skills, beschikbaarheid en persoonlijkheid.',
-    bgColor: '#8ECAE6',
-    accentColor: '#2D334A',
+    bgColor: '#E07A5A',
+    accentColor: '#FFFFFF',
     ctaText: 'Bekijk matching',
     ctaHref: '/platform',
     visual: (
@@ -121,8 +121,8 @@ const features: Feature[] = [
     label: 'Impact Dashboard',
     title: 'Maak je waarde zichtbaar',
     description: 'Genereer real-time rapporten voor gemeenten en fondsen. Koppel vrijwilligersuren aan SDG\'s en toon de maatschappelijke impact met harde cijfers.',
-    bgColor: '#83D4C8',
-    accentColor: '#2D334A',
+    bgColor: '#5BA3BD',
+    accentColor: '#FFFFFF',
     ctaText: 'Bekijk dashboard',
     ctaHref: '/platform',
     visual: (
@@ -174,8 +174,8 @@ const features: Feature[] = [
     label: 'Centraal Dossier',
     title: 'Alles veilig op één plek',
     description: 'VOG\'s, contracten, certificaten en notities AVG-proof opgeslagen. Automatische herinneringen voor verlopen documenten en volledige audit trail.',
-    bgColor: '#E8F4EA',
-    accentColor: '#2D334A',
+    bgColor: '#4BA99B',
+    accentColor: '#FFFFFF',
     ctaText: 'Ontdek dossiers',
     ctaHref: '/platform',
     visual: (
@@ -222,8 +222,8 @@ const features: Feature[] = [
     label: 'Communicatie',
     title: 'Blijf moeiteloos in contact',
     description: 'Chat met groepen, deel nieuws en vier successen. Verstuur automatisch bedankjes en houd iedereen betrokken met de "Vrijwilliger van de maand" feature.',
-    bgColor: '#FFE5E5',
-    accentColor: '#2D334A',
+    bgColor: '#2D334A',
+    accentColor: '#FFFFFF',
     ctaText: 'Bekijk features',
     ctaHref: '/platform',
     visual: (
@@ -313,10 +313,10 @@ export default function FeatureTabShowcase() {
 
             {/* Content */}
             <div className="order-1 md:order-2">
-              <h3 className="text-2xl md:text-3xl font-bold text-daar-blue mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 {activeFeature.title}
               </h3>
-              <p className="text-gray-700 text-lg leading-relaxed mb-8">
+              <p className="text-white/90 text-lg leading-relaxed mb-8">
                 {activeFeature.description}
               </p>
               <a
