@@ -8,6 +8,7 @@ import { Logo } from '@/components/ui/Logo';
 import { LatestArticles } from '@/components/home/LatestArticles';
 import ToolsCarouselPremium from '@/components/ToolsCarouselPremium';
 import ImpactStats from '@/components/ImpactStats';
+import FeatureTabShowcase from '@/components/FeatureTabShowcase';
 
 const DaarLandingPage2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -278,6 +279,9 @@ const DaarLandingPage2 = () => {
 
       {/* Impact Stats - Evidence-based outcomes */}
       <ImpactStats />
+
+      {/* Feature Tab Showcase */}
+      <FeatureTabShowcase />
 
       {/* Geluksmeter Feature Section */}
       <section className="py-24 bg-gradient-to-br from-daar-helder/10 via-white to-daar-mint/10 overflow-hidden relative">
