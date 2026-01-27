@@ -498,7 +498,7 @@ const ToolsCarouselPremium: React.FC = () => {
                 boxShadow: `0 10px 30px -10px ${activeTool.accentColor}88`
               }}
             >
-              {React.cloneElement(activeTool.icon as React.ReactElement, { className: 'w-8 h-8' })}
+              {React.cloneElement(activeTool.icon as React.ReactElement<{ className?: string }>, { className: 'w-8 h-8' })}
             </div>
 
             {/* Progress dots */}
