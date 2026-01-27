@@ -29,8 +29,8 @@ const stats: StatCard[] = [
     description: '12-15 uur/week besparing voor coördinatoren',
     highlight: '€26.500 waarde/jaar',
     color: 'daar-geel',
-    bgColor: '#FFD166',
-    textColor: '#2D334A',
+    bgColor: '#D4A84B',
+    textColor: '#FFFFFF',
     icon: <Clock className="w-5 h-5" />
   },
   {
@@ -42,7 +42,7 @@ const stats: StatCard[] = [
     description: '+2.5 punten op VSI-schaal (3.5x hoger dan ongematchd)',
     highlight: '90% kans op doorgaan',
     color: 'daar-koraal',
-    bgColor: '#FF8C66',
+    bgColor: '#E07A5A',
     textColor: '#FFFFFF',
     icon: <Heart className="w-5 h-5" />
   },
@@ -56,8 +56,8 @@ const stats: StatCard[] = [
     description: '65% baseline → 75-80% met Daar (eerste 30 dagen cruciaal)',
     highlight: '~10-15 extra vrijwilligers per 100',
     color: 'daar-helder',
-    bgColor: '#8ECAE6',
-    textColor: '#2D334A',
+    bgColor: '#5BA3BD',
+    textColor: '#FFFFFF',
     icon: <Users className="w-5 h-5" />
   },
   {
@@ -70,8 +70,8 @@ const stats: StatCard[] = [
     description: 'Via GMU/GMA meting + Geluksmomentenshop',
     highlight: '13% productiviteitsstijging',
     color: 'daar-mint',
-    bgColor: '#83D4C8',
-    textColor: '#2D334A',
+    bgColor: '#4BA99B',
+    textColor: '#FFFFFF',
     icon: <TrendingUp className="w-5 h-5" />
   },
   {
@@ -142,8 +142,8 @@ const StatCardComponent: React.FC<{ stat: StatCard; index: number; isVisible: bo
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider mb-4 w-fit"
           style={{
-            backgroundColor: stat.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.2)' : 'rgba(45,51,74,0.1)',
-            color: stat.textColor
+            backgroundColor: 'rgba(255,255,255,0.2)',
+            color: '#FFFFFF'
           }}
         >
           {stat.icon}
@@ -174,7 +174,7 @@ const StatCardComponent: React.FC<{ stat: StatCard; index: number; isVisible: bo
         <p
           className="text-xs leading-relaxed flex-grow"
           style={{
-            color: stat.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.75)' : 'rgba(45,51,74,0.7)'
+            color: 'rgba(255,255,255,0.8)'
           }}
         >
           {stat.description}
@@ -185,8 +185,8 @@ const StatCardComponent: React.FC<{ stat: StatCard; index: number; isVisible: bo
           <div
             className="mt-3 px-3 py-2 rounded-xl text-xs font-semibold text-center"
             style={{
-              backgroundColor: stat.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.15)' : 'rgba(45,51,74,0.08)',
-              color: stat.textColor
+              backgroundColor: 'rgba(255,255,255,0.15)',
+              color: '#FFFFFF'
             }}
           >
             {stat.highlight}
@@ -197,7 +197,7 @@ const StatCardComponent: React.FC<{ stat: StatCard; index: number; isVisible: bo
         <div
           className="absolute -bottom-8 -right-8 w-20 h-20 rounded-full opacity-20"
           style={{
-            backgroundColor: stat.textColor === '#FFFFFF' ? '#FFFFFF' : stat.bgColor,
+            backgroundColor: '#FFFFFF',
             filter: 'blur(20px)'
           }}
         />
