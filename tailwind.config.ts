@@ -15,6 +15,13 @@ const config: Config = {
         brandGreenHover: '#2E855D',
         lightGreen: '#EBF7F2',
         offWhite: '#F8F9FA',
+        // Samen Daar 2.0 Palet
+        'daar-blue': '#2D334A',
+        'daar-koraal': '#FF8C66',
+        'daar-koraal-hover': '#E67A57',
+        'daar-geel': '#FFD166',
+        'daar-helder': '#8ECAE6',
+        'daar-mint': '#83D4C8',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
