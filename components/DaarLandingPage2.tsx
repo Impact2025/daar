@@ -113,12 +113,7 @@ const DaarLandingPage2 = () => {
       </nav>
 
       {/* Hero Section - Soft & Warm */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-br from-white via-daar-helder/10 to-daar-mint/10">
-        {/* Organic blob shapes */}
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-daar-geel/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-daar-helder/30 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-[200px] h-[200px] bg-daar-mint/20 rounded-full blur-2xl"></div>
-
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
@@ -131,10 +126,7 @@ const DaarLandingPage2 = () => {
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 Grip op vrijwilligers,<br/>
-                focus op <span className="relative inline-block">
-                  <span className="relative z-10 text-brandGreen">geluk.</span>
-                  <span className="absolute bottom-2 left-0 w-full h-3 bg-daar-geel/50 -z-0 rounded-full"></span>
-                </span>
+                focus op <span className="text-brandGreen">geluk.</span>
               </h1>
 
               <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
@@ -216,22 +208,22 @@ const DaarLandingPage2 = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatsCard2
               icon={<Shield size={28} />}
-              bgColor="bg-daar-helder/20"
-              iconColor="text-daar-blue"
+              bgColorHex="#5BA3BD"
+              iconColorHex="#FFFFFF"
               title="Veilig Dossier"
               description="AVG-proof en centraal. Al je documenten op één veilige plek."
             />
             <StatsCard2
               icon={<TrendingUp size={28} />}
-              bgColor="bg-daar-geel/20"
-              iconColor="text-daar-koraal"
+              bgColorHex="#D4A84B"
+              iconColorHex="#FFFFFF"
               title="Meetbare Impact"
               description="Harde cijfers voor stakeholders. Koppel inzet direct aan SDG's."
             />
             <StatsCard2
               icon={<Heart size={28} />}
-              bgColor="bg-daar-mint/20"
-              iconColor="text-daar-mint"
+              bgColorHex="#4BA99B"
+              iconColorHex="#FFFFFF"
               title="De Geluksformule"
               description="Onze unieke methodiek meet welbevinden op basis van jarenlange expertise."
             />
@@ -354,9 +346,7 @@ const DaarLandingPage2 = () => {
       <LatestArticles />
 
       {/* VrijwilligersCheck CTA */}
-      <section className="py-24 bg-gradient-to-br from-daar-mint/20 via-daar-helder/10 to-daar-geel/10 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-brandGreen opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-
+      <section className="py-24 bg-lightGreen relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             <div className="mb-12 lg:mb-0">
@@ -436,10 +426,7 @@ const DaarLandingPage2 = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-daar-blue py-24 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-brandGreen opacity-20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-daar-mint opacity-20 rounded-full blur-3xl"></div>
-
+      <section className="bg-navy py-24 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
             Klaar voor meer grip en geluk?
@@ -605,19 +592,25 @@ const FeatureItem2: React.FC<FeatureItem2Props> = ({ text, color }) => {
 
 interface StatsCard2Props {
   icon: React.ReactNode;
-  bgColor: string;
-  iconColor: string;
+  bgColorHex: string;
+  iconColorHex: string;
   title: string;
   description: string;
 }
 
-const StatsCard2: React.FC<StatsCard2Props> = ({ icon, bgColor, iconColor, title, description }) => (
-  <div className={`p-8 rounded-3xl ${bgColor} hover:shadow-lg transition-all group`}>
-    <div className={`bg-white w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm mb-5 ${iconColor} group-hover:scale-110 transition-transform`}>
+const StatsCard2: React.FC<StatsCard2Props> = ({ icon, bgColorHex, iconColorHex, title, description }) => (
+  <div
+    className="p-8 rounded-3xl hover:shadow-lg transition-all group"
+    style={{ backgroundColor: bgColorHex }}
+  >
+    <div
+      className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm mb-5 group-hover:scale-110 transition-transform"
+      style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#FFFFFF' }}
+    >
       {icon}
     </div>
-    <h3 className="text-xl font-bold mb-2 text-daar-blue" style={{ fontFamily: 'Nunito, sans-serif' }}>{title}</h3>
-    <p className="text-gray-600 leading-relaxed">{description}</p>
+    <h3 className="text-xl font-bold mb-2 text-white" style={{ fontFamily: 'Nunito, sans-serif' }}>{title}</h3>
+    <p className="text-white/80 leading-relaxed">{description}</p>
   </div>
 );
 
