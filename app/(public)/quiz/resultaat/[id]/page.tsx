@@ -94,7 +94,7 @@ export default async function QuizResultPage({ params }: PageProps) {
               VRIJWILLIGERSCHECK
             </span>
           </div>
-          <h1 className="text-3xl font-bold text-navy">
+          <h1 className="text-3xl font-bold text-daar-blue">
             Quiz Resultaat
           </h1>
         </div>

@@ -19,7 +19,7 @@ export default function QuizPage() {
         <div className="grid lg:grid-cols-5 gap-12 items-start">
           {/* Left: Info (smaller) */}
           <div className="lg:col-span-2 order-2 lg:order-1">
-            <h2 className="text-2xl font-bold text-navy mb-4">
+            <h2 className="text-2xl font-bold text-daar-blue mb-4">
               Waarom deze check?
             </h2>
             <p className="text-gray-600 mb-8">
@@ -35,7 +35,7 @@ export default function QuizPage() {
                   <Clock className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">2 minuten</h3>
+                  <h3 className="font-medium text-daar-blue">2 minuten</h3>
                   <p className="text-gray-600 text-sm">
                     11 vragen, direct resultaat
                   </p>
@@ -47,7 +47,7 @@ export default function QuizPage() {
                   <BarChart3 className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">Expertanalyse</h3>
+                  <h3 className="font-medium text-daar-blue">Expertanalyse</h3>
                   <p className="text-gray-600 text-sm">
                     Krijg inzicht in je sterke en zwakke punten
                   </p>
@@ -59,7 +59,7 @@ export default function QuizPage() {
                   <TrendingUp className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">ROI-berekening</h3>
+                  <h3 className="font-medium text-daar-blue">ROI-berekening</h3>
                   <p className="text-gray-600 text-sm">
                     Concrete cijfers over potentiele besparingen
                   </p>
@@ -71,7 +71,7 @@ export default function QuizPage() {
                   <Target className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">Actiegericht</h3>
+                  <h3 className="font-medium text-daar-blue">Actiegericht</h3>
                   <p className="text-gray-600 text-sm">
                     Gepersonaliseerde aanbevelingen per dimensie
                   </p>
@@ -83,7 +83,7 @@ export default function QuizPage() {
                   <Users className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">Geen account nodig</h3>
+                  <h3 className="font-medium text-daar-blue">Geen account nodig</h3>
                   <p className="text-gray-600 text-sm">
                     Start direct, resultaat is deelbaar
                   </p>
@@ -96,15 +96,15 @@ export default function QuizPage() {
               <p className="text-sm text-gray-500 mb-4">Ontwikkeld door experts</p>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <p className="text-2xl font-bold text-navy">3</p>
+                  <p className="text-2xl font-bold text-daar-blue">3</p>
                   <p className="text-xs text-gray-500">Specialisten</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-navy">15+</p>
+                  <p className="text-2xl font-bold text-daar-blue">15+</p>
                   <p className="text-xs text-gray-500">Jaar ervaring</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-navy">5</p>
+                  <p className="text-2xl font-bold text-daar-blue">5</p>
                   <p className="text-xs text-gray-500">Dimensies</p>
                 </div>
               </div>

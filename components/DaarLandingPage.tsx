@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, ChevronRight, BarChart2, Users, Heart, Shield, Check, Globe, MessageCircle, Smile, ClipboardCheck, BookOpen, Calendar } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronRight, BarChart2, Users, Heart, Shield, Check, Globe, MessageCircle, Smile, ClipboardCheck } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
@@ -33,7 +33,7 @@ const DaarLandingPage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 5000); // Wissel elke 5 seconden
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -46,7 +46,7 @@ const DaarLandingPage = () => {
   };
 
   return (
-    <div className="font-sans antialiased text-navy bg-offWhite selection:bg-brandGreen selection:text-white">
+    <div className="font-sans antialiased text-daar-blue bg-offWhite selection:bg-brandGreen selection:text-white">
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,8 +66,8 @@ const DaarLandingPage = () => {
 
               <div className="flex items-center space-x-3 ml-4">
                 <Link
-                  href="/admin/login"
-                  className="text-navy font-semibold px-4 py-2 hover:text-brandGreen transition-colors tracking-tight"
+                  href="https://samen.daar.nl/login"
+                  className="text-daar-blue font-semibold px-4 py-2 hover:text-brandGreen transition-colors tracking-tight"
                 >
                   Inloggen
                 </Link>
@@ -82,7 +82,7 @@ const DaarLandingPage = () => {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-navy focus:outline-none">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-daar-blue focus:outline-none">
                 {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
             </div>
@@ -112,28 +112,19 @@ const DaarLandingPage = () => {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
-        {/* Background blobs */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-lightGreen rounded-full opacity-60 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] bg-blue-50 rounded-full opacity-60 blur-3xl"></div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
             {/* Left Content */}
             <div className="lg:col-span-6 text-center lg:text-left mb-12 lg:mb-0">
-               <div className="inline-flex items-center px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-navy text-sm font-semibold mb-8 animate-fade-in-up tracking-tight">
+               <div className="inline-flex items-center px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-daar-blue text-sm font-semibold mb-8 animate-fade-in-up tracking-tight">
                   <span className="w-2 h-2 rounded-full bg-brandGreen mr-2"></span>
                   Nieuw: Impact Dashboard 2.0 live
                </div>
 
-               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy leading-[1.1] mb-6 tracking-tighter">
+               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6 tracking-tighter">
                  Grip op vrijwilligers,<br/>
-                 focus op <span className="text-brandGreen relative inline-block">
-                    geluk.
-                    <svg className="absolute w-full h-3 -bottom-1 left-0 text-brandGreen opacity-30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                       <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                    </svg>
-                 </span>
+                 focus op <span className="text-brandGreen">geluk.</span>
                </h1>
 
                <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed font-normal">
@@ -144,14 +135,14 @@ const DaarLandingPage = () => {
                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <button
                      onClick={() => scrollToSection('producten')}
-                     className="bg-navy text-white font-bold px-8 py-4 rounded-xl hover:bg-navy/90 transition-all shadow-lg hover:shadow-xl flex items-center justify-center group tracking-tight"
+                     className="bg-daar-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-daar-blue/90 transition-all shadow-lg hover:shadow-xl flex items-center justify-center group tracking-tight"
                   >
                      Bekijk de modules
                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                   </button>
                   <Link
                      href="/afspraak"
-                     className="bg-white text-navy border border-gray-200 font-bold px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors text-center shadow-sm tracking-tight"
+                     className="bg-white text-daar-blue border border-gray-200 font-bold px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors text-center shadow-sm tracking-tight"
                   >
                      Vraag demo aan
                   </Link>
@@ -190,15 +181,14 @@ const DaarLandingPage = () => {
                         index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                       }`}
                     >
-                      <p className="text-sm text-navy italic leading-relaxed">"{quote}"</p>
+                      <p className="text-sm text-daar-blue italic leading-relaxed">"{quote}"</p>
                     </div>
                   ))}
-
                </div>
 
                {/* Decorative Graphic Elements */}
                <div className="absolute -z-10 top-1/2 -right-12 w-24 h-24 bg-brandGreen rounded-full opacity-10"></div>
-               <svg className="absolute -z-10 -bottom-8 -left-8 text-navy w-32 h-32 opacity-5" viewBox="0 0 100 100" fill="currentColor">
+               <svg className="absolute -z-10 -bottom-8 -left-8 text-daar-blue w-32 h-32 opacity-5" viewBox="0 0 100 100" fill="currentColor">
                   <circle cx="10" cy="10" r="4" /> <circle cx="30" cy="10" r="4" /> <circle cx="50" cy="10" r="4" />
                   <circle cx="10" cy="30" r="4" /> <circle cx="30" cy="30" r="4" /> <circle cx="50" cy="30" r="4" />
                   <circle cx="10" cy="50" r="4" /> <circle cx="30" cy="50" r="4" /> <circle cx="50" cy="50" r="4" />
@@ -214,7 +204,7 @@ const DaarLandingPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                <StatsCard
                  icon={<Shield size={24} />}
-                 iconColor="text-navy"
+                 iconColor="text-daar-blue"
                  title="Veilig Dossier"
                  description="AVG-proof en centraal. Al je documenten op één veilige plek."
                />
@@ -237,7 +227,7 @@ const DaarLandingPage = () => {
       {/* Expertise Statement */}
       <section className="py-16 bg-offWhite">
          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4 tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-bold text-daar-blue mb-4 tracking-tight">
                Gebouwd vanuit de praktijk, voor de praktijk.
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
@@ -248,15 +238,15 @@ const DaarLandingPage = () => {
             <div className="flex flex-wrap justify-center gap-6 text-sm">
                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
                   <Users size={18} className="text-brandGreen" />
-                  <span className="font-medium text-navy">3 experts met gedeelde passie</span>
+                  <span className="font-medium text-daar-blue">3 experts met gedeelde passie</span>
                </div>
                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
                   <Heart size={18} className="text-brandGreen" />
-                  <span className="font-medium text-navy">Ervaring in zorg & vrijwilligerswerk</span>
+                  <span className="font-medium text-daar-blue">Ervaring in zorg & vrijwilligerswerk</span>
                </div>
                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
                   <BarChart2 size={18} className="text-brandGreen" />
-                  <span className="font-medium text-navy">Slimme, praktische oplossingen</span>
+                  <span className="font-medium text-daar-blue">Slimme, praktische oplossingen</span>
                </div>
             </div>
          </div>
@@ -266,7 +256,7 @@ const DaarLandingPage = () => {
       <section id="producten" className="py-24 bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-navy mb-4 tracking-tight">Alles voor je vrijwilligers.</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-4 tracking-tight">Alles voor je vrijwilligers.</h2>
             <p className="text-gray-600 text-lg">Modulair opgebouwd, dus je betaalt alleen voor wat je gebruikt.</p>
           </div>
 
@@ -313,8 +303,6 @@ const DaarLandingPage = () => {
 
       {/* "Geluksmomenten" Feature Section */}
       <section id="over-ons" className="py-24 bg-white overflow-hidden relative">
-         <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-lightGreen to-transparent rounded-full opacity-50 blur-3xl"></div>
-
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
 
@@ -324,7 +312,7 @@ const DaarLandingPage = () => {
                      <div className="absolute -top-6 -left-6 bg-brandGreen text-white p-4 rounded-2xl shadow-lg">
                         <Heart className="w-8 h-8 fill-current" />
                      </div>
-                     <h3 className="text-2xl font-bold text-navy mb-6 mt-4 tracking-tight">Geluksmeter</h3>
+                     <h3 className="text-2xl font-bold text-daar-blue mb-6 mt-4 tracking-tight">Geluksmeter</h3>
 
                      <div className="space-y-6">
                         <ProgressBar label="Plezier in werk" value={92} icon={<Smile size={24} strokeWidth={2} />} color="brandGreen" />
@@ -336,7 +324,7 @@ const DaarLandingPage = () => {
 
                {/* Text Content */}
                <div>
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-navy mb-6 tracking-tight">
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-6 tracking-tight">
                      Meet wat er écht toe doet.
                   </h2>
                   <p className="text-lg text-gray-600 mb-8 leading-relaxed">
@@ -365,7 +353,7 @@ const DaarLandingPage = () => {
                               />
                            </div>
                         </div>
-                        <div className="speech-bubble speech-bubble-navy bg-navy text-white p-4 rounded-2xl rounded-bl-none shadow-md">
+                        <div className="speech-bubble speech-bubble-navy bg-daar-blue text-white p-4 rounded-2xl rounded-bl-none shadow-md">
                            <p className="text-sm italic">"Eindelijk hebben we harde cijfers voor onze subsidieaanvraag, zonder dat het menselijke aspect verloren gaat."</p>
                            <p className="text-xs font-bold mt-2 text-brandGreen">- Marieke, Coördinator Buurtwerk</p>
                         </div>
@@ -382,8 +370,6 @@ const DaarLandingPage = () => {
 
       {/* VrijwilligersCheck CTA */}
       <section className="py-24 bg-lightGreen relative overflow-hidden">
-         <div className="absolute top-0 right-0 w-96 h-96 bg-brandGreen opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
                <div className="mb-12 lg:mb-0">
@@ -392,7 +378,7 @@ const DaarLandingPage = () => {
                      Gratis tool
                   </div>
 
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-navy mb-6 tracking-tight">
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-6 tracking-tight">
                      Hoe gezond is jouw vrijwilligersbeleid?
                   </h2>
 
@@ -406,19 +392,19 @@ const DaarLandingPage = () => {
                         <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
                            <Check size={16} className="text-brandGreen" />
                         </div>
-                        <span className="text-navy font-medium">11 vragen, 2 minuten</span>
+                        <span className="text-daar-blue font-medium">11 vragen, 2 minuten</span>
                      </div>
                      <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
                            <Check size={16} className="text-brandGreen" />
                         </div>
-                        <span className="text-navy font-medium">Gebaseerd op jarenlange praktijkervaring</span>
+                        <span className="text-daar-blue font-medium">Gebaseerd op jarenlange praktijkervaring</span>
                      </div>
                      <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
                            <Check size={16} className="text-brandGreen" />
                         </div>
-                        <span className="text-navy font-medium">Direct inzicht in verbeterpunten</span>
+                        <span className="text-daar-blue font-medium">Direct inzicht in verbeterpunten</span>
                      </div>
                   </div>
 
@@ -438,7 +424,7 @@ const DaarLandingPage = () => {
                         <div className="inline-flex items-center px-3 py-1 rounded-full bg-brandGreen/10 text-brandGreen text-sm font-medium mb-4">
                            Goed op weg
                         </div>
-                        <div className="text-5xl font-bold text-navy mb-2">68%</div>
+                        <div className="text-5xl font-bold text-daar-blue mb-2">68%</div>
                         <p className="text-gray-500">Totale score</p>
                      </div>
 
@@ -465,10 +451,7 @@ const DaarLandingPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section id="gemeenten" className="bg-navy py-20 relative overflow-hidden">
-         <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-2xl"></div>
-         <div className="absolute bottom-0 left-0 w-48 h-48 bg-brandGreen opacity-10 rounded-full blur-2xl"></div>
-
+      <section id="gemeenten" className="bg-daar-blue py-20 relative overflow-hidden">
          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Klaar voor meer grip en geluk?</h2>
             <p className="text-xl text-gray-300 mb-10 font-light max-w-2xl mx-auto">
@@ -557,7 +540,7 @@ interface NavButtonProps {
 const NavButton: React.FC<NavButtonProps> = ({ text, onClick }) => (
   <button
     onClick={onClick}
-    className="text-navy font-semibold px-3 py-2 hover:text-brandGreen transition-colors relative group tracking-tight"
+    className="text-daar-blue font-semibold px-3 py-2 hover:text-brandGreen transition-colors relative group tracking-tight"
   >
     {text}
     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brandGreen transition-all duration-300 group-hover:w-full rounded-full"></span>
@@ -572,7 +555,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ href, text }) => (
   <Link
     href={href}
-    className="text-navy font-semibold px-3 py-2 hover:text-brandGreen transition-colors relative group tracking-tight"
+    className="text-daar-blue font-semibold px-3 py-2 hover:text-brandGreen transition-colors relative group tracking-tight"
   >
     {text}
     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brandGreen transition-all duration-300 group-hover:w-full rounded-full"></span>
@@ -582,7 +565,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, text }) => (
 const MobileNavButton: React.FC<NavButtonProps> = ({ text, onClick }) => (
   <button
     onClick={onClick}
-    className="text-left text-lg font-medium text-navy py-3 px-2 border-b border-gray-50 hover:bg-gray-50 rounded-lg tracking-tight"
+    className="text-left text-lg font-medium text-daar-blue py-3 px-2 border-b border-gray-50 hover:bg-gray-50 rounded-lg tracking-tight"
   >
     {text}
   </button>
@@ -598,7 +581,7 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({ href, text, onClick }) =>
   <Link
     href={href}
     onClick={onClick}
-    className="text-left text-lg font-medium text-navy py-3 px-2 border-b border-gray-50 hover:bg-gray-50 rounded-lg tracking-tight block"
+    className="text-left text-lg font-medium text-daar-blue py-3 px-2 border-b border-gray-50 hover:bg-gray-50 rounded-lg tracking-tight block"
   >
     {text}
   </Link>
@@ -612,15 +595,15 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, desc, icon, accent }) => {
-   const accentColor = accent === 'navy' ? 'text-navy' : 'text-brandGreen';
-   const bgHover = accent === 'navy' ? 'group-hover:bg-navy' : 'group-hover:bg-brandGreen';
+   const accentColor = accent === 'navy' ? 'text-daar-blue' : 'text-brandGreen';
+   const bgHover = accent === 'navy' ? 'group-hover:bg-daar-blue' : 'group-hover:bg-brandGreen';
 
    return (
      <div className="group bg-white rounded-2xl p-8 border border-gray-200 hover:border-transparent hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col h-full relative overflow-hidden">
         <div className={`w-14 h-14 rounded-2xl bg-offWhite flex items-center justify-center mb-6 ${accentColor} ${bgHover} group-hover:text-white transition-colors duration-300`}>
            {icon}
         </div>
-        <h3 className="text-xl font-bold text-navy mb-3 tracking-tight">{title}</h3>
+        <h3 className="text-xl font-bold text-daar-blue mb-3 tracking-tight">{title}</h3>
         <p className="text-gray-600 leading-relaxed mb-6 flex-grow">{desc}</p>
         <div className={`flex items-center font-semibold text-sm ${accentColor} group-hover:translate-x-1 transition-transform cursor-pointer`}>
            Ontdek meer <ChevronRight size={16} className="ml-1" />
@@ -636,9 +619,9 @@ interface FeatureItemProps {
 const FeatureItem: React.FC<FeatureItemProps> = ({ text }) => (
    <div className="flex items-start">
       <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center mt-0.5 mr-3">
-         <Check size={14} className="text-navy" strokeWidth={3} />
+         <Check size={14} className="text-daar-blue" strokeWidth={3} />
       </div>
-      <span className="text-navy font-medium">{text}</span>
+      <span className="text-daar-blue font-medium">{text}</span>
    </div>
 );
 
@@ -668,9 +651,9 @@ interface ProgressBarProps {
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ label, value, icon, color, bgColor = 'blue-50' }) => {
-  const barColor = color === 'brandGreen' ? 'bg-brandGreen' : 'bg-navy';
+  const barColor = color === 'brandGreen' ? 'bg-brandGreen' : 'bg-daar-blue';
   const iconBgColor = bgColor === 'lightGreen' ? 'bg-lightGreen' : 'bg-blue-50';
-  const iconTextColor = color === 'brandGreen' && bgColor === 'lightGreen' ? 'text-brandGreen' : 'text-navy';
+  const iconTextColor = color === 'brandGreen' && bgColor === 'lightGreen' ? 'text-brandGreen' : 'text-daar-blue';
 
   return (
     <div className="flex items-center">
@@ -680,7 +663,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ label, value, icon, color, bg
       <div className="flex-1">
         <div className="flex justify-between mb-1">
           <span className="font-medium text-sm">{label}</span>
-          <span className="font-bold text-navy">{value}%</span>
+          <span className="font-bold text-daar-blue">{value}%</span>
         </div>
         <div className="h-2 bg-offWhite rounded-full overflow-hidden">
           <div className={`h-full ${barColor} rounded-full`} style={{width: `${value}%`}}></div>
@@ -732,7 +715,7 @@ const QuizDimensionBar: React.FC<QuizDimensionBarProps> = ({ label, value, color
     <div>
       <div className="flex justify-between mb-1">
         <span className="text-sm font-medium text-gray-700">{label}</span>
-        <span className="text-sm font-bold text-navy">{value}%</span>
+        <span className="text-sm font-bold text-daar-blue">{value}%</span>
       </div>
       <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
         <div

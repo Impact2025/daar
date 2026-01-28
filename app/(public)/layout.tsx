@@ -50,7 +50,7 @@ export default function PublicLayout({
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              <Logo className="h-7" color="#1A2332" />
+              <Logo className="h-7" color="#2D334A" />
             </Link>
 
             {/* Desktop Navigation */}
@@ -129,7 +129,7 @@ export default function PublicLayout({
       </main>
 
       {/* Footer */}
-      <footer className="bg-navy text-white py-12">
+      <footer className="bg-daar-blue text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Brand */}

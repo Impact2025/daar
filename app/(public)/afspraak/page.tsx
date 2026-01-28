@@ -19,7 +19,7 @@ export default function AfspraakPage() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left: Info */}
           <div>
-            <h1 className="text-4xl font-bold text-navy mb-4">
+            <h1 className="text-4xl font-bold text-daar-blue mb-4">
               Plan een afspraak
             </h1>
             <p className="text-xl text-gray-600 mb-8">
@@ -34,7 +34,7 @@ export default function AfspraakPage() {
                   <Calendar className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">Flexibele planning</h3>
+                  <h3 className="font-medium text-daar-blue">Flexibele planning</h3>
                   <p className="text-gray-600 text-sm">
                     Kies een datum en tijd die jou uitkomt
                   </p>
@@ -46,7 +46,7 @@ export default function AfspraakPage() {
                   <Video className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">Online of fysiek</h3>
+                  <h3 className="font-medium text-daar-blue">Online of fysiek</h3>
                   <p className="text-gray-600 text-sm">
                     We kunnen videobellen of afspreken op locatie
                   </p>
@@ -58,7 +58,7 @@ export default function AfspraakPage() {
                   <Users className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">Het hele team</h3>
+                  <h3 className="font-medium text-daar-blue">Het hele team</h3>
                   <p className="text-gray-600 text-sm">
                     Vincent, Saviem of Thijs - afhankelijk van je vraag
                   </p>
@@ -70,7 +70,7 @@ export default function AfspraakPage() {
                   <Clock className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-navy">Direct bevestiging</h3>
+                  <h3 className="font-medium text-daar-blue">Direct bevestiging</h3>
                   <p className="text-gray-600 text-sm">
                     Je ontvangt meteen een bevestiging per e-mail
                   </p>
@@ -90,7 +90,7 @@ export default function AfspraakPage() {
                   V
                 </div>
                 <div>
-                  <p className="font-medium text-navy">Vincent van Munster</p>
+                  <p className="font-medium text-daar-blue">Vincent van Munster</p>
                   <p className="text-sm text-gray-500">Co-founder, Het Sociale Hart</p>
                 </div>
               </div>

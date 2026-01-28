@@ -95,39 +95,35 @@ const faqCategories = [
 // Support options
 const supportOptions = [
   {
-    icon: MessageCircle,
     title: 'Chat met ons',
     description: 'Direct antwoord van onze AI-assistent of een medewerker',
     action: 'Start chat',
     href: '#chat',
-    color: 'bg-brandGreen',
+    cardBg: 'bg-daar-geel',
     available: 'Direct beschikbaar',
   },
   {
-    icon: Calendar,
     title: 'Plan een gesprek',
     description: 'Boek een gratis kennismakingsgesprek met ons team',
     action: 'Plan afspraak',
     href: '/afspraak',
-    color: 'bg-navy',
+    cardBg: 'bg-brandGreen',
     available: 'Binnen 2 werkdagen',
   },
   {
-    icon: Mail,
     title: 'Stuur een e-mail',
     description: 'Voor uitgebreide vragen of documentatie',
     action: 'info@daar.nl',
     href: 'mailto:info@daar.nl',
-    color: 'bg-purple-600',
+    cardBg: 'bg-daar-helder',
     available: 'Reactie binnen 24 uur',
   },
   {
-    icon: BookOpen,
     title: 'Kennisbank',
     description: 'Vind zelf antwoorden in onze uitgebreide artikelen',
     action: 'Bekijk artikelen',
     href: '/kennisbank',
-    color: 'bg-orange-500',
+    cardBg: 'bg-daar-mint',
     available: 'Altijd beschikbaar',
   },
 ]
@@ -196,37 +192,32 @@ export default function ContactPage() {
   return (
     <div className="bg-offWhite">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-navy via-navy to-brandGreen overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-20 w-72 h-72 bg-brandGreen rounded-full blur-3xl" />
-          <div className="absolute bottom-10 left-20 w-96 h-96 bg-white rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <section className="relative bg-lightGreen pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
-              <Headphones className="w-4 h-4 text-brandGreen" />
-              <span className="text-sm font-medium text-white">We staan voor je klaar</span>
+            <div className="inline-flex items-center px-5 py-2.5 rounded-full bg-daar-geel/20 border border-daar-geel/30 text-daar-blue text-sm font-semibold mb-8">
+              <Headphones className="w-4 h-4 mr-2 text-brandGreen" />
+              We staan voor je klaar
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
               Hoe kunnen we
               <span className="block text-brandGreen">je helpen?</span>
             </h1>
-            <p className="text-xl text-white/80 leading-relaxed mb-8">
+            <p className="text-xl text-gray-600 leading-relaxed mb-10 max-w-2xl mx-auto">
               Heb je een vraag, wil je een demo of gewoon even sparren over vrijwilligersbeheer?
               Ons team staat klaar om je te helpen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#contact-form"
-                className="inline-flex items-center justify-center px-6 py-3 bg-brandGreen text-white rounded-lg font-medium hover:bg-brandGreenHover transition-colors"
+                className="bg-brandGreen text-white font-bold px-8 py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 flex items-center justify-center group"
               >
                 Stuur een bericht
-                <Send className="w-5 h-5 ml-2" />
+                <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link
                 href="/afspraak"
-                className="inline-flex items-center justify-center px-6 py-3 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors"
+                className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-8 py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm flex items-center justify-center"
               >
                 Plan een gesprek
                 <Calendar className="w-5 h-5 ml-2" />
@@ -234,6 +225,10 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-10 left-10 w-32 h-32 bg-brandGreen/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-daar-geel/10 rounded-full blur-3xl"></div>
       </section>
 
       {/* Support Options */}
@@ -244,18 +239,15 @@ export default function ContactPage() {
               <a
                 key={option.title}
                 href={option.href}
-                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all group"
+                className={`${option.cardBg} rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group`}
               >
-                <div className={`w-14 h-14 ${option.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                  <option.icon className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-navy mb-2">{option.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{option.description}</p>
+                <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Nunito, sans-serif' }}>{option.title}</h3>
+                <p className="text-white/80 text-sm mb-4 leading-relaxed">{option.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-brandGreen font-medium text-sm group-hover:underline">
+                  <span className="text-white font-semibold text-sm group-hover:underline">
                     {option.action}
                   </span>
-                  <span className="text-xs text-gray-400 flex items-center gap-1">
+                  <span className="text-xs text-white/60 flex items-center gap-1">
                     <Clock className="w-3 h-3" />
                     {option.available}
                   </span>
@@ -267,14 +259,14 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content: Form + Info */}
-      <section className="py-16" id="contact-form">
+      <section className="py-20" id="contact-form">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-3">
-              <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100">
+              <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-lg border border-gray-100">
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-navy mb-2">Stuur ons een bericht</h2>
+                  <h2 className="text-2xl font-extrabold text-daar-blue mb-2" style={{ fontFamily: 'Nunito, sans-serif' }}>Stuur ons een bericht</h2>
                   <p className="text-gray-600">
                     Vul het formulier in en we nemen zo snel mogelijk contact met je op.
                   </p>
@@ -285,7 +277,7 @@ export default function ContactPage() {
                     <div className="w-16 h-16 bg-brandGreen/10 rounded-full flex items-center justify-center mx-auto mb-6">
                       <CheckCircle2 className="w-8 h-8 text-brandGreen" />
                     </div>
-                    <h3 className="text-xl font-semibold text-navy mb-2">Bericht verzonden!</h3>
+                    <h3 className="text-xl font-semibold text-daar-blue mb-2">Bericht verzonden!</h3>
                     <p className="text-gray-600 mb-6">
                       Bedankt voor je bericht. We nemen binnen 24 uur contact met je op.
                     </p>
@@ -334,7 +326,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="w-full">
-                      <label className="block text-sm font-medium text-navy mb-1">
+                      <label className="block text-sm font-medium text-daar-blue mb-1">
                         Onderwerp *
                       </label>
                       <select
@@ -342,7 +334,7 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent hover:border-gray-400 bg-white"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent hover:border-gray-300 bg-white"
                       >
                         <option value="">Selecteer een onderwerp</option>
                         {subjects.map((subject) => (
@@ -354,7 +346,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="w-full">
-                      <label className="block text-sm font-medium text-navy mb-1">
+                      <label className="block text-sm font-medium text-daar-blue mb-1">
                         Bericht *
                       </label>
                       <textarea
@@ -364,7 +356,7 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent hover:border-gray-400 resize-none"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent hover:border-gray-300 resize-none"
                       />
                     </div>
 
@@ -394,8 +386,8 @@ export default function ContactPage() {
             {/* Contact Info Sidebar */}
             <div className="lg:col-span-2 space-y-6">
               {/* Quick Contact */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                <h3 className="font-semibold text-navy mb-4">Direct contact</h3>
+              <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100">
+                <h3 className="font-bold text-daar-blue mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>Direct contact</h3>
                 <div className="space-y-4">
                   <a
                     href="mailto:info@daar.nl"
@@ -406,7 +398,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">E-mail</p>
-                      <p className="font-medium text-navy group-hover:text-brandGreen transition-colors">
+                      <p className="font-medium text-daar-blue group-hover:text-brandGreen transition-colors">
                         info@daar.nl
                       </p>
                     </div>
@@ -415,12 +407,12 @@ export default function ContactPage() {
                     href="tel:+31201234567"
                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <div className="w-10 h-10 bg-navy/10 rounded-lg flex items-center justify-center">
-                      <Phone className="w-5 h-5 text-navy" />
+                    <div className="w-10 h-10 bg-daar-blue/10 rounded-lg flex items-center justify-center">
+                      <Phone className="w-5 h-5 text-daar-blue" />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Telefoon</p>
-                      <p className="font-medium text-navy group-hover:text-brandGreen transition-colors">
+                      <p className="font-medium text-daar-blue group-hover:text-brandGreen transition-colors">
                         +31 (0)20 123 4567
                       </p>
                     </div>
@@ -431,7 +423,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Adres</p>
-                      <p className="font-medium text-navy">
+                      <p className="font-medium text-daar-blue">
                         Amsterdam, Nederland
                       </p>
                     </div>
@@ -440,15 +432,15 @@ export default function ContactPage() {
               </div>
 
               {/* Office Hours */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                <h3 className="font-semibold text-navy mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100">
+                <h3 className="font-bold text-daar-blue mb-4 flex items-center gap-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
                   <Clock className="w-5 h-5 text-brandGreen" />
                   Bereikbaarheid
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Maandag - Vrijdag</span>
-                    <span className="font-medium text-navy">09:00 - 17:00</span>
+                    <span className="font-medium text-daar-blue">09:00 - 17:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Zaterdag - Zondag</span>
@@ -463,8 +455,8 @@ export default function ContactPage() {
               </div>
 
               {/* Quick Links */}
-              <div className="bg-gradient-to-br from-navy to-navy/90 rounded-2xl p-6 text-white">
-                <h3 className="font-semibold mb-4 flex items-center gap-2">
+              <div className="bg-daar-blue rounded-3xl p-6 text-white">
+                <h3 className="font-bold mb-4 flex items-center gap-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
                   <Sparkles className="w-5 h-5 text-brandGreen" />
                   Snel aan de slag
                 </h3>
@@ -498,17 +490,17 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-offWhite">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brandGreen/10 rounded-full mb-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brandGreen/10 rounded-full mb-6">
               <HelpCircle className="w-4 h-4 text-brandGreen" />
-              <span className="text-sm font-medium text-brandGreen">Veelgestelde vragen</span>
+              <span className="text-sm font-semibold text-brandGreen">Veelgestelde vragen</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
               Heb je een vraag?
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 leading-relaxed">
               Vind snel antwoord op de meest gestelde vragen.
             </p>
           </div>
@@ -516,7 +508,7 @@ export default function ContactPage() {
           <div className="space-y-8">
             {faqCategories.map((category) => (
               <div key={category.category}>
-                <h3 className="text-lg font-semibold text-navy mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-bold text-daar-blue mb-4 flex items-center gap-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
                   {category.category === 'Over DAAR' && <Building2 className="w-5 h-5 text-brandGreen" />}
                   {category.category === 'VrijwilligersCheck' && <Sparkles className="w-5 h-5 text-brandGreen" />}
                   {category.category === 'Platform & Prijzen' && <Users className="w-5 h-5 text-brandGreen" />}
@@ -530,13 +522,13 @@ export default function ContactPage() {
                     return (
                       <div
                         key={faqId}
-                        className="border border-gray-200 rounded-xl overflow-hidden"
+                        className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm"
                       >
                         <button
                           onClick={() => toggleFaq(faqId)}
                           className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
                         >
-                          <span className="font-medium text-navy pr-4">{faq.q}</span>
+                          <span className="font-medium text-daar-blue pr-4">{faq.q}</span>
                           {isOpen ? (
                             <ChevronUp className="w-5 h-5 text-brandGreen flex-shrink-0" />
                           ) : (
@@ -556,21 +548,21 @@ export default function ContactPage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-gray-600 mb-4">
+          <div className="mt-16 text-center">
+            <p className="text-gray-600 mb-6 text-lg">
               Staat je vraag er niet tussen?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#contact-form"
-                className="inline-flex items-center justify-center px-6 py-3 bg-brandGreen text-white rounded-lg font-medium hover:bg-brandGreenHover transition-colors"
+                className="bg-brandGreen text-white font-bold px-8 py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 flex items-center justify-center group"
               >
                 Stel je vraag
-                <Send className="w-5 h-5 ml-2" />
+                <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link
                 href="/kennisbank"
-                className="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-200 text-navy rounded-lg font-medium hover:border-brandGreen hover:text-brandGreen transition-colors"
+                className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-8 py-4 rounded-full hover:bg-daar-helder/10 transition-colors flex items-center justify-center shadow-sm"
               >
                 Bekijk de kennisbank
                 <BookOpen className="w-5 h-5 ml-2" />
@@ -581,29 +573,29 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-brandGreen to-brandGreenHover rounded-3xl p-8 lg:p-16 text-center text-white relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-            </div>
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Liever direct in gesprek?
-              </h2>
-              <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-                Plan een gratis en vrijblijvend kennismakingsgesprek. We vertellen je graag
-                meer over hoe DAAR jouw organisatie kan helpen.
-              </p>
-              <Link
-                href="/afspraak"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-brandGreen rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-              >
-                Plan een gesprek
-                <Calendar className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
+      <section className="py-24 bg-daar-blue">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
+            Liever direct in gesprek?
+          </h2>
+          <p className="text-xl text-gray-300 mb-10 font-light max-w-2xl mx-auto">
+            Plan een gratis en vrijblijvend kennismakingsgesprek. We vertellen je graag
+            meer over hoe DAAR jouw organisatie kan helpen.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link
+              href="/afspraak"
+              className="bg-brandGreen text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-brandGreenHover transition-all shadow-lg shadow-green-900/20 transform hover:-translate-y-1 flex items-center justify-center group"
+            >
+              Plan een gesprek
+              <Calendar className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              href="/quiz"
+              className="bg-transparent border-2 border-white/30 text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-white/10 transition-colors text-center"
+            >
+              Doe de VrijwilligersCheck
+            </Link>
           </div>
         </div>
       </section>

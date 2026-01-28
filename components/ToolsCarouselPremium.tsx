@@ -347,19 +347,6 @@ const ToolsCarouselPremium: React.FC = () => {
 
   return (
     <section className="py-20 lg:py-28 overflow-hidden relative">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50/50 to-white" />
-
-      {/* Decorative blobs */}
-      <div
-        className="absolute top-20 right-10 w-[400px] h-[400px] rounded-full blur-3xl opacity-30 transition-colors duration-1000"
-        style={{ backgroundColor: activeTool.accentColor }}
-      />
-      <div
-        className="absolute bottom-20 left-10 w-[300px] h-[300px] rounded-full blur-3xl opacity-20 transition-colors duration-1000"
-        style={{ backgroundColor: activeTool.accentColor }}
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
@@ -369,12 +356,7 @@ const ToolsCarouselPremium: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-daar-blue mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
             Ondersteun je vrijwilligers met{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-daar-koraal to-orange-500 bg-clip-text text-transparent">
-                bewezen tools.
-              </span>
-              <span className="absolute bottom-1 left-0 w-full h-3 bg-daar-geel/40 -z-0 rounded-full"></span>
-            </span>
+<span className="text-brandGreen">bewezen tools.</span>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
             Van check-ins tot impact-rapporten. Elke module is gebouwd op basis van wat écht werkt in de praktijk.

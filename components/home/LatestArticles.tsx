@@ -56,7 +56,7 @@ export function LatestArticles() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-navy mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-4 tracking-tight">
               Laatste artikelen
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl">
@@ -124,7 +124,7 @@ export function LatestArticles() {
                   )}
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-navy mb-2 group-hover:text-brandGreen transition-colors line-clamp-2 tracking-tight">
+                  <h3 className="text-xl font-bold text-daar-blue mb-2 group-hover:text-brandGreen transition-colors line-clamp-2 tracking-tight">
                     {article.title}
                   </h3>
 

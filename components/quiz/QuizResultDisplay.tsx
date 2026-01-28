@@ -98,7 +98,7 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
               {profile.title}
             </span>
 
-            <div className="text-6xl font-bold text-navy mb-2">{data.totalScore}%</div>
+            <div className="text-6xl font-bold text-daar-blue mb-2">{data.totalScore}%</div>
             <p className="text-gray-500">Totale Geluksscore</p>
           </div>
 
@@ -113,7 +113,7 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
 
           {/* Profile description */}
           <div className="bg-gray-50 rounded-xl p-4 mb-6">
-            <p className="text-navy">{profile.description}</p>
+            <p className="text-daar-blue">{profile.description}</p>
           </div>
 
           {/* Recommendation */}
@@ -121,7 +121,7 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
             className="rounded-xl p-4 mb-6"
             style={{ backgroundColor: `${profile.color}10` }}
           >
-            <p className="text-sm font-medium text-navy mb-1">Onze aanbeveling</p>
+            <p className="text-sm font-medium text-daar-blue mb-1">Onze aanbeveling</p>
             <p className="text-gray-700">{profile.recommendation}</p>
           </div>
         </CardContent>
@@ -131,7 +131,7 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
       {data.roiData && (
         <Card>
           <CardContent className="p-6">
-            <h3 className="font-semibold text-navy mb-4">Potentiele impact van verbetering</h3>
+            <h3 className="font-semibold text-daar-blue mb-4">Potentiele impact van verbetering</h3>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-lightGreen rounded-xl p-4">
@@ -168,7 +168,7 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
       {/* Modules Card */}
       <Card>
         <CardContent className="p-6">
-          <h3 className="font-semibold text-navy mb-2">
+          <h3 className="font-semibold text-daar-blue mb-2">
             Aanbevolen voor {QUIZ_DIMENSIONS[lowestDimensionId].name}
           </h3>
           <p className="text-sm text-gray-500 mb-4">
@@ -182,7 +182,7 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
                   <Check className="w-4 h-4 text-brandGreen" />
                 </div>
                 <div>
-                  <p className="font-medium text-navy">{module.name}</p>
+                  <p className="font-medium text-daar-blue">{module.name}</p>
                   <p className="text-sm text-gray-500">{module.description}</p>
                 </div>
               </div>

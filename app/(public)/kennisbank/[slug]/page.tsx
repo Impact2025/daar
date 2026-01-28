@@ -140,7 +140,7 @@ export default async function ArticlePage({ params }: PageProps) {
         {/* Related Articles */}
         {relatedArticles.length > 0 && (
           <section className="mt-16 pt-12 border-t border-gray-200">
-            <h2 className="text-2xl font-bold text-navy mb-8 text-center">
+            <h2 className="text-2xl font-bold text-daar-blue mb-8 text-center">
               Gerelateerde artikelen
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

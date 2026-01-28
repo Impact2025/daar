@@ -218,7 +218,7 @@ export function BookingWidget({
             </button>
           )}
           <div>
-            <h3 className="font-semibold text-navy">
+            <h3 className="font-semibold text-daar-blue">
               {step === 'type' && 'Plan een afspraak'}
               {step === 'date' && 'Kies een datum'}
               {step === 'time' && 'Kies een tijd'}
@@ -255,7 +255,7 @@ export function BookingWidget({
               >
                 <div className="flex justify-between items-start">
                   <div>
-                    <h4 className="font-medium text-navy">{type.name}</h4>
+                    <h4 className="font-medium text-daar-blue">{type.name}</h4>
                     {type.description && (
                       <p className="text-sm text-gray-500 mt-1">{type.description}</p>
                     )}
@@ -338,7 +338,7 @@ export function BookingWidget({
                     className={cn(
                       'p-2 rounded-lg transition-all',
                       isSelected && 'bg-brandGreen text-white',
-                      !isSelected && isAvailable && !isPast && 'hover:bg-lightGreen text-navy',
+                      !isSelected && isAvailable && !isPast && 'hover:bg-lightGreen text-daar-blue',
                       (!isAvailable || isPast) && 'text-gray-300 cursor-not-allowed'
                     )}
                   >
@@ -427,7 +427,7 @@ export function BookingWidget({
             />
 
             <div>
-              <label className="block text-sm font-medium text-navy mb-1">
+              <label className="block text-sm font-medium text-daar-blue mb-1">
                 Opmerkingen (optioneel)
               </label>
               <textarea
@@ -456,7 +456,7 @@ export function BookingWidget({
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Check className="w-8 h-8 text-green-600" />
             </div>
-            <h3 className="text-xl font-semibold text-navy mb-2">
+            <h3 className="text-xl font-semibold text-daar-blue mb-2">
               Afspraak bevestigd!
             </h3>
             <p className="text-gray-600 mb-4">
@@ -464,7 +464,7 @@ export function BookingWidget({
             </p>
 
             <div className="bg-gray-50 rounded-lg p-4 text-left mb-6">
-              <p className="font-medium text-navy">{selectedType?.name}</p>
+              <p className="font-medium text-daar-blue">{selectedType?.name}</p>
               <p className="text-sm text-gray-600">
                 {selectedDate && formatDate(selectedDate)} om {selectedSlot && formatTime(selectedSlot)}
               </p>

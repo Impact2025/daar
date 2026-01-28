@@ -2,8 +2,6 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import {
   Heart,
-  Lightbulb,
-  Shield,
   Eye,
   Sparkles,
   Target,
@@ -12,9 +10,7 @@ import {
   ArrowRight,
   CheckCircle2,
   Quote,
-  Clock,
   TrendingUp,
-  Zap,
 } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -61,37 +57,27 @@ const values = [
   {
     name: 'Integriteit',
     description: 'Wij doen wat we zeggen en zeggen wat we doen.',
-    icon: Shield,
-    color: 'text-daar-blue',
-    bgColor: 'bg-daar-blue/10',
+    accentColor: 'bg-daar-blue',
   },
   {
     name: 'Innovatie',
     description: 'Continu zoeken naar betere manieren.',
-    icon: Lightbulb,
-    color: 'text-daar-geel',
-    bgColor: 'bg-daar-geel/20',
+    accentColor: 'bg-daar-geel',
   },
   {
     name: 'Verantwoordelijkheid',
     description: 'Eigenaarschap voor onze impact.',
-    icon: Target,
-    color: 'text-daar-koraal',
-    bgColor: 'bg-daar-koraal/10',
+    accentColor: 'bg-daar-koraal',
   },
   {
     name: 'Transparantie',
     description: 'Open delen van kennis en inzichten.',
-    icon: Eye,
-    color: 'text-daar-helder',
-    bgColor: 'bg-daar-helder/10',
+    accentColor: 'bg-daar-helder',
   },
   {
     name: 'Positiviteit',
     description: 'De kracht van waardering en geluk.',
-    icon: Heart,
-    color: 'text-brandGreen',
-    bgColor: 'bg-brandGreen/10',
+    accentColor: 'bg-brandGreen',
   },
 ]
 
@@ -404,10 +390,13 @@ export default function OverOnsPage() {
             {values.map((value) => (
               <div
                 key={value.name}
-                className="bg-offWhite rounded-2xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
+                className="bg-white rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
               >
-                <h3 className="font-bold text-daar-blue mb-3 text-lg" style={{ fontFamily: 'Nunito, sans-serif' }}>{value.name}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{value.description}</p>
+                <div className={`h-1.5 ${value.accentColor}`}></div>
+                <div className="p-6 text-center">
+                  <h3 className="font-bold text-daar-blue mb-3 text-lg" style={{ fontFamily: 'Nunito, sans-serif' }}>{value.name}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{value.description}</p>
+                </div>
               </div>
             ))}
           </div>

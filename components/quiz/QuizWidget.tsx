@@ -181,7 +181,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
               </span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-daar-blue mb-4">
               Hoe gezond is jouw
               <br />
               <span className="text-brandGreen">vrijwilligersbeleid?</span>
@@ -262,7 +262,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
                 </span>
               </div>
 
-              <h2 className="text-xl md:text-2xl font-semibold text-navy mb-2">
+              <h2 className="text-xl md:text-2xl font-semibold text-daar-blue mb-2">
                 {QUIZ_QUESTIONS[currentQuestion].question}
               </h2>
 
@@ -284,7 +284,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
                         : 'border-gray-200 hover:border-brandGreen hover:bg-gray-50'
                     )}
                   >
-                    <span className="text-navy font-medium">{option.text}</span>
+                    <span className="text-daar-blue font-medium">{option.text}</span>
                   </button>
                 ))}
               </div>
@@ -294,7 +294,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
             {currentQuestion > 0 && (
               <button
                 onClick={handleBack}
-                className="flex items-center gap-2 mt-6 text-gray-500 hover:text-navy transition-colors"
+                className="flex items-center gap-2 mt-6 text-gray-500 hover:text-daar-blue transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span className="text-sm">Vorige vraag</span>
@@ -312,7 +312,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
               <div className="w-16 h-16 bg-lightGreen rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-brandGreen" />
               </div>
-              <h2 className="text-2xl font-bold text-navy mb-2">Bijna klaar</h2>
+              <h2 className="text-2xl font-bold text-daar-blue mb-2">Bijna klaar</h2>
               <p className="text-gray-600">
                 Vul je gegevens in om je persoonlijke rapport te ontvangen met benchmarks en
                 ROI-berekeningen.
@@ -373,7 +373,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
                   {profile.title}
                 </span>
 
-                <div className="text-6xl font-bold text-navy mb-2">{totalScore}%</div>
+                <div className="text-6xl font-bold text-daar-blue mb-2">{totalScore}%</div>
                 <p className="text-gray-500">Totale Geluksscore</p>
               </div>
 
@@ -391,7 +391,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
 
               {/* Profile description */}
               <div className="bg-gray-50 rounded-xl p-4 mb-6">
-                <p className="text-navy">{profile.description}</p>
+                <p className="text-daar-blue">{profile.description}</p>
               </div>
 
               {/* Recommendation */}
@@ -399,7 +399,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
                 className="rounded-xl p-4 mb-6"
                 style={{ backgroundColor: `${profile.color}10` }}
               >
-                <p className="text-sm font-medium text-navy mb-1">Onze aanbeveling</p>
+                <p className="text-sm font-medium text-daar-blue mb-1">Onze aanbeveling</p>
                 <p className="text-gray-700">{profile.recommendation}</p>
               </div>
             </CardContent>
@@ -408,7 +408,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
           {/* ROI Card */}
           <Card>
             <CardContent className="p-6">
-              <h3 className="font-semibold text-navy mb-4">Potentiele impact van verbetering</h3>
+              <h3 className="font-semibold text-daar-blue mb-4">Potentiele impact van verbetering</h3>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-lightGreen rounded-xl p-4">
@@ -440,7 +440,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
           {/* Modules Card */}
           <Card>
             <CardContent className="p-6">
-              <h3 className="font-semibold text-navy mb-2">
+              <h3 className="font-semibold text-daar-blue mb-2">
                 Aanbevolen voor {QUIZ_DIMENSIONS[lowestDimensionId].name}
               </h3>
               <p className="text-sm text-gray-500 mb-4">
@@ -454,7 +454,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
                       <Check className="w-4 h-4 text-brandGreen" />
                     </div>
                     <div>
-                      <p className="font-medium text-navy">{module.name}</p>
+                      <p className="font-medium text-daar-blue">{module.name}</p>
                       <p className="text-sm text-gray-500">{module.description}</p>
                     </div>
                   </div>

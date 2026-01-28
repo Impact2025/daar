@@ -105,7 +105,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
             )}
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-daar-blue mb-6 leading-tight">
               {article.title}
             </h1>
 
@@ -153,7 +153,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
                   </div>
                 )}
                 <div>
-                  <p className="font-medium text-navy">{article.author.name}</p>
+                  <p className="font-medium text-daar-blue">{article.author.name}</p>
                   {article.author.role && (
                     <p className="text-sm text-gray-500">{article.author.role}</p>
                   )}
@@ -232,7 +232,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
                   </div>
                 )}
                 <div>
-                  <h3 className="font-bold text-navy text-lg mb-2">Over {article.author.name}</h3>
+                  <h3 className="font-bold text-daar-blue text-lg mb-2">Over {article.author.name}</h3>
                   <p className="text-gray-600 leading-relaxed">{article.author.bio}</p>
                 </div>
               </div>
@@ -269,7 +269,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
               <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
                   <List className="w-4 h-4 text-brandGreen" />
-                  <h4 className="font-semibold text-navy text-sm">In dit artikel</h4>
+                  <h4 className="font-semibold text-daar-blue text-sm">In dit artikel</h4>
                 </div>
                 <nav className="space-y-1">
                   {tocItems.map((item) => (
@@ -292,7 +292,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
 
               {/* Quick Links */}
               <div className="mt-6 p-5 bg-lightGreen rounded-xl">
-                <h4 className="font-semibold text-navy text-sm mb-3">Snelle links</h4>
+                <h4 className="font-semibold text-daar-blue text-sm mb-3">Snelle links</h4>
                 <div className="space-y-2">
                   <Link
                     href="/vrijwilligerscheck"
