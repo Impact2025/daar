@@ -1,29 +1,19 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, ChevronRight, BarChart2, Users, Heart, Shield, Check, Globe, MessageCircle, Smile, ClipboardCheck, Sparkles, TrendingUp } from 'lucide-react';
-import Image from 'next/image';
+import { Menu, X, ArrowRight, Heart, Check, ClipboardCheck, Sparkles, Clock } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Logo } from '@/components/ui/Logo';
 import { LatestArticles } from '@/components/home/LatestArticles';
-import ToolsCarouselPremium from '@/components/ToolsCarouselPremium';
-import ImpactStats from '@/components/ImpactStats';
+import ProblemSolution from '@/components/ProblemSolution';
 import FeatureTabShowcase from '@/components/FeatureTabShowcase';
+import ImpactStats from '@/components/ImpactStats';
+import Testimonials from '@/components/Testimonials';
 
 const DaarLandingPage2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const heroImages = [
-    '/Creatieve middag in de kunstklas-min.png',
-    '/Gezelligheid in het Nederlandse landschap-min.png'
-  ];
-
-  const heroQuotes = [
-    'Je denkt dat je komt om te geven, maar stiekem krijg je er net zoveel energie voor terug.',
-    'Samen op pad. Voor hen een uitje, voor mij mijn wekelijkse portie geluk.'
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,13 +21,6 @@ const DaarLandingPage2 = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -163,114 +146,93 @@ const DaarLandingPage2 = () => {
               </div>
             </div>
 
-            {/* Right Visual */}
+            {/* Right Visual - Dashboard Card */}
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white transform lg:rotate-1 hover:rotate-0 transition-all duration-500">
-                <div className="relative w-full aspect-[3/2]">
-                  {heroImages.map((image, index) => (
-                    <Image
-                      key={image}
-                      src={image}
-                      alt={index === 0 ? "Creatieve middag in de kunstklas" : "Gezelligheid in het Nederlandse landschap"}
-                      width={1200}
-                      height={800}
-                      className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                        index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                {/* Quote Overlay */}
-                {heroQuotes.map((quote, index) => (
-                  <div
-                    key={index}
-                    className={`absolute bottom-6 right-6 bg-white/95 backdrop-blur p-5 rounded-3xl shadow-lg max-w-[280px] transition-opacity duration-1000 ${
-                      index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  >
-                    <p className="text-sm text-daar-blue italic leading-relaxed">"{quote}"</p>
+               <div className="bg-white rounded-3xl p-6 shadow-2xl border border-gray-100">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-6">
+                     <div>
+                        <span className="inline-block px-3 py-1 bg-brandGreen/10 text-brandGreen text-xs font-semibold rounded-full mb-2">
+                           VRIJWILLIGER
+                        </span>
+                        <h3 className="text-xl font-bold text-daar-blue" style={{ fontFamily: 'Nunito, sans-serif' }}>Sanne Jansen</h3>
+                        <p className="text-gray-500 text-sm">Barvrijwilliger & Coach</p>
+                     </div>
+                     <div className="w-12 h-12 rounded-full bg-daar-blue/10 flex items-center justify-center text-daar-blue font-bold">
+                        SJ
+                     </div>
                   </div>
-                ))}
-              </div>
 
-              {/* Decorative organic shapes */}
-              <div className="absolute -z-10 top-1/2 -right-8 w-20 h-20 bg-daar-geel rounded-full opacity-60"></div>
-              <div className="absolute -z-10 -bottom-4 -left-4 w-16 h-16 bg-daar-mint rounded-full opacity-60"></div>
+                  {/* Stats Cards */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                     <div className="bg-lightGreen rounded-2xl p-4">
+                        <div className="flex items-center gap-2 text-brandGreen text-xs font-semibold mb-1">
+                           <Sparkles size={14} />
+                           GELUKSMOMENTEN
+                        </div>
+                        <div className="flex items-baseline gap-2">
+                           <span className="text-3xl font-bold text-brandGreen">124</span>
+                           <span className="text-sm text-brandGreen/70">+12%</span>
+                        </div>
+                     </div>
+                     <div className="bg-gray-50 rounded-2xl p-4">
+                        <div className="flex items-center gap-2 text-gray-500 text-xs font-semibold mb-1">
+                           <Clock size={14} />
+                           UREN INZET
+                        </div>
+                        <div className="flex items-baseline gap-2">
+                           <span className="text-3xl font-bold text-daar-blue">18</span>
+                           <span className="text-sm text-gray-400">u</span>
+                           <span className="text-sm text-gray-400">Deze maand</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  {/* Impact Trend */}
+                  <div className="mb-4">
+                     <div className="flex justify-between items-center mb-3">
+                        <span className="font-semibold text-daar-blue">Impact Trend</span>
+                        <span className="text-xs text-gray-400">Laatste 6 maanden</span>
+                     </div>
+                     <div className="flex items-end gap-2 h-20">
+                        <div className="flex-1 bg-gray-100 rounded-lg" style={{height: '45%'}}></div>
+                        <div className="flex-1 bg-gray-100 rounded-lg" style={{height: '60%'}}></div>
+                        <div className="flex-1 bg-gray-100 rounded-lg" style={{height: '50%'}}></div>
+                        <div className="flex-1 bg-gray-100 rounded-lg" style={{height: '70%'}}></div>
+                        <div className="flex-1 bg-gray-100 rounded-lg" style={{height: '55%'}}></div>
+                        <div className="flex-1 bg-daar-geel rounded-lg" style={{height: '100%'}}></div>
+                     </div>
+                  </div>
+
+                  {/* Action Button */}
+                  <button className="w-full bg-daar-blue text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-daar-blue/90 transition-colors">
+                     <Heart size={18} />
+                     Stuur een bedankje
+                  </button>
+               </div>
+
+               {/* Decorative shadow */}
+               <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full bg-brandGreen/10 rounded-3xl"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section - Cards met subtiele kleuren */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <StatsCard2
-              bgColorHex="#5BA3BD"
-              title="Veilig Dossier"
-              description="AVG-proof en centraal. Al je documenten op één veilige plek."
-            />
-            <StatsCard2
-              bgColorHex="#D4A84B"
-              title="Meetbare Impact"
-              description="Harde cijfers voor stakeholders. Koppel inzet direct aan SDG's."
-            />
-            <StatsCard2
-              bgColorHex="#4BA99B"
-              title="De Geluksformule"
-              description="Onze unieke methodiek meet welbevinden op basis van jarenlange expertise."
-            />
-          </div>
-        </div>
-      </section>
+      {/* Problem → Solution */}
+      <ProblemSolution />
 
-      {/* Expertise Statement */}
-      <section className="py-20 bg-gradient-to-b from-white to-daar-helder/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-daar-blue mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>
-            Gebouwd vanuit de praktijk, voor de praktijk.
-          </h2>
-          <p className="text-lg text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-            Daar is nieuw, maar onze expertise is dat niet. Met een team van drie specialisten
-            bundelen we jarenlange ervaring in de vrijwilligerssector en de zorg.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="flex items-center gap-2 px-5 py-3 bg-white rounded-full border border-gray-100 shadow-sm">
-              <div className="w-8 h-8 rounded-full bg-daar-koraal/20 flex items-center justify-center">
-                <Users size={16} className="text-daar-koraal" />
-              </div>
-              <span className="font-medium text-daar-blue">3 experts met gedeelde passie</span>
-            </div>
-            <div className="flex items-center gap-2 px-5 py-3 bg-white rounded-full border border-gray-100 shadow-sm">
-              <div className="w-8 h-8 rounded-full bg-daar-mint/20 flex items-center justify-center">
-                <Heart size={16} className="text-daar-mint" />
-              </div>
-              <span className="font-medium text-daar-blue">Ervaring in zorg & vrijwilligerswerk</span>
-            </div>
-            <div className="flex items-center gap-2 px-5 py-3 bg-white rounded-full border border-gray-100 shadow-sm">
-              <div className="w-8 h-8 rounded-full bg-daar-geel/30 flex items-center justify-center">
-                <BarChart2 size={16} className="text-daar-koraal" />
-              </div>
-              <span className="font-medium text-daar-blue">Slimme, praktische oplossingen</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Carousel - Premium Slider */}
-      <div id="producten">
-        <ToolsCarouselPremium />
-      </div>
+      {/* Feature Tab Showcase - Modules */}
+      <div id="producten"></div>
+      <FeatureTabShowcase />
 
       {/* Impact Stats - Evidence-based outcomes */}
       <ImpactStats />
 
-      {/* Feature Tab Showcase */}
-      <FeatureTabShowcase />
+      {/* Testimonials */}
+      <Testimonials />
 
       {/* Geluksmeter Feature Section */}
-      <section className="py-24 bg-gradient-to-br from-daar-helder/10 via-white to-daar-mint/10 overflow-hidden relative">
+      <section className="py-24 bg-offWhite overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
 
@@ -305,31 +267,19 @@ const DaarLandingPage2 = () => {
                 de voldoening en de sociale verbinding.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-4 mb-8">
                 <FeatureItem2 text="Automatische tevredenheids-checks" color="daar-mint" />
                 <FeatureItem2 text="Rapportages voor gemeenten en fondsen" color="daar-helder" />
                 <FeatureItem2 text="Inzicht in verloop en retentie" color="daar-geel" />
               </div>
 
-              <div className="mt-10 pt-10 border-t border-gray-100">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 mr-4">
-                    <div className="w-12 h-12 rounded-full bg-daar-helder/30 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                        alt="Avatar"
-                        width={48}
-                        height={48}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                  <div className="bg-daar-blue text-white p-5 rounded-3xl rounded-bl-none shadow-md">
-                    <p className="text-sm italic leading-relaxed">"Eindelijk hebben we harde cijfers voor onze subsidieaanvraag, zonder dat het menselijke aspect verloren gaat."</p>
-                    <p className="text-xs font-bold mt-2 text-daar-geel">- Marieke, Coördinator Buurtwerk</p>
-                  </div>
-                </div>
-              </div>
+              <Link
+                href="/platform"
+                className="inline-flex items-center bg-brandGreen text-white font-bold px-6 py-3 rounded-full hover:bg-brandGreenHover transition-all shadow-lg group"
+              >
+                Meer over de Geluksformule
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+              </Link>
             </div>
 
           </div>
@@ -534,29 +484,6 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({ href, text, onClick }) =>
   </Link>
 );
 
-interface Card2Props {
-  title: string;
-  desc: string;
-  icon: React.ReactNode;
-  accentBg: string;
-  accentColor: string;
-}
-
-const Card2: React.FC<Card2Props> = ({ title, desc, icon, accentBg, accentColor }) => {
-  return (
-    <div className="group bg-white rounded-3xl p-8 border border-gray-100 hover:border-transparent hover:shadow-xl transition-all duration-300 flex flex-col h-full relative overflow-hidden">
-      <div className={`w-16 h-16 rounded-2xl ${accentBg} flex items-center justify-center mb-6 ${accentColor} group-hover:scale-110 transition-transform duration-300`}>
-        {icon}
-      </div>
-      <h3 className="text-xl font-bold text-daar-blue mb-3" style={{ fontFamily: 'Nunito, sans-serif' }}>{title}</h3>
-      <p className="text-gray-600 leading-relaxed mb-6 flex-grow">{desc}</p>
-      <div className={`flex items-center font-semibold text-sm ${accentColor} group-hover:translate-x-1 transition-transform cursor-pointer`}>
-        Ontdek meer <ChevronRight size={16} className="ml-1" />
-      </div>
-    </div>
-  );
-};
-
 interface FeatureItem2Props {
   text: string;
   color: string;
@@ -583,22 +510,6 @@ const FeatureItem2: React.FC<FeatureItem2Props> = ({ text, color }) => {
     </div>
   );
 };
-
-interface StatsCard2Props {
-  bgColorHex: string;
-  title: string;
-  description: string;
-}
-
-const StatsCard2: React.FC<StatsCard2Props> = ({ bgColorHex, title, description }) => (
-  <div
-    className="p-8 rounded-3xl hover:shadow-lg transition-all group"
-    style={{ backgroundColor: bgColorHex }}
-  >
-    <h3 className="text-xl font-bold mb-3 text-white" style={{ fontFamily: 'Nunito, sans-serif' }}>{title}</h3>
-    <p className="text-white/80 leading-relaxed">{description}</p>
-  </div>
-);
 
 interface ProgressBar2Props {
   label: string;

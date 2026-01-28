@@ -17,6 +17,7 @@ interface StatCard {
   bgColor: string;
   textColor: string;
   icon: React.ReactNode;
+  animated?: boolean;
 }
 
 const stats: StatCard[] = [
@@ -31,7 +32,8 @@ const stats: StatCard[] = [
     color: 'daar-geel',
     bgColor: '#D4A84B',
     textColor: '#FFFFFF',
-    icon: <Clock className="w-5 h-5" />
+    icon: <Clock className="w-5 h-5" />,
+    animated: false
   },
   {
     id: 2,
@@ -44,7 +46,8 @@ const stats: StatCard[] = [
     color: 'daar-koraal',
     bgColor: '#E07A5A',
     textColor: '#FFFFFF',
-    icon: <Heart className="w-5 h-5" />
+    icon: <Heart className="w-5 h-5" />,
+    animated: false
   },
   {
     id: 3,
@@ -58,7 +61,8 @@ const stats: StatCard[] = [
     color: 'daar-helder',
     bgColor: '#5BA3BD',
     textColor: '#FFFFFF',
-    icon: <Users className="w-5 h-5" />
+    icon: <Users className="w-5 h-5" />,
+    animated: false
   },
   {
     id: 4,
@@ -72,7 +76,8 @@ const stats: StatCard[] = [
     color: 'daar-mint',
     bgColor: '#4BA99B',
     textColor: '#FFFFFF',
-    icon: <TrendingUp className="w-5 h-5" />
+    icon: <TrendingUp className="w-5 h-5" />,
+    animated: false
   },
   {
     id: 5,
@@ -85,7 +90,8 @@ const stats: StatCard[] = [
     color: 'daar-blue',
     bgColor: '#2D334A',
     textColor: '#FFFFFF',
-    icon: <PiggyBank className="w-5 h-5" />
+    icon: <PiggyBank className="w-5 h-5" />,
+    animated: true
   }
 ];
 
@@ -118,14 +124,18 @@ const useCountUp = (end: number, duration: number = 2000, start: number = 0, sho
 
 const StatCardComponent: React.FC<{ stat: StatCard; index: number; isVisible: boolean }> = ({ stat, index, isVisible }) => {
   const numericValue = parseInt(stat.value);
-  const count = useCountUp(numericValue, 2000 + index * 200, 0, isVisible);
+  // Only animate if stat.animated is true
+  const shouldAnimate = stat.animated === true;
+  const count = useCountUp(numericValue, 2500, 0, isVisible && shouldAnimate);
+
+  // Display value: animated count or static value
+  const displayValue = shouldAnimate ? (isVisible ? count : 0) : stat.value;
 
   return (
     <div
       className="group relative overflow-hidden rounded-3xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1"
       style={{
-        backgroundColor: stat.bgColor,
-        animationDelay: `${index * 100}ms`
+        backgroundColor: stat.bgColor
       }}
     >
       {/* Decorative gradient overlay */}
@@ -157,7 +167,7 @@ const StatCardComponent: React.FC<{ stat: StatCard; index: number; isVisible: bo
             style={{ color: stat.textColor, fontFamily: 'Nunito, sans-serif' }}
           >
             {stat.prefix}
-            {isVisible ? count : 0}
+            {displayValue}
             {stat.suffix}
           </span>
         </div>
@@ -248,10 +258,7 @@ const ImpactStats: React.FC = () => {
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-daar-blue mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>
             Impact die je kunt{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-daar-koraal">meten.</span>
-              <span className="absolute bottom-1 left-0 w-full h-3 bg-daar-geel/40 -z-0 rounded-full"></span>
-            </span>
+<span className="text-brandGreen">meten.</span>
           </h2>
 
           <p className="text-lg text-gray-600 leading-relaxed">
