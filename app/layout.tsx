@@ -55,21 +55,15 @@ export const metadata: Metadata = {
     siteName: 'Daar',
     title: 'Daar - Het Vrijwilligersplatform voor Grip en Geluk',
     description: 'Het complete platform voor vrijwilligersmanagement. Van werving tot impactmeting, met de unieke Geluksformule.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Daar - Vrijwilligersplatform',
-      },
-    ],
+    // Images are auto-generated via opengraph-image.tsx
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Daar - Het Vrijwilligersplatform voor Grip en Geluk',
     description: 'Het complete platform voor vrijwilligersmanagement. Van werving tot impactmeting.',
-    images: ['/og-image.png'],
+    // Images are auto-generated via twitter-image.tsx
     creator: '@daarnl',
+    site: '@daarnl',
   },
   robots: {
     index: true,
