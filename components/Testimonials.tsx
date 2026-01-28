@@ -53,7 +53,10 @@ const Testimonials: React.FC = () => {
   const active = testimonials[activeIndex];
 
   return (
-    <section className="py-20 lg:py-28 bg-daar-blue relative overflow-hidden">
+    <section
+      className="py-20 lg:py-28 bg-daar-blue relative overflow-hidden"
+      aria-label="Klantervaringen"
+    >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-brandGreen/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-daar-mint/10 rounded-full blur-3xl" />
@@ -78,7 +81,7 @@ const Testimonials: React.FC = () => {
 
           <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
             {/* Quote content */}
-            <div className="lg:col-span-8 mb-8 lg:mb-0">
+            <div className="lg:col-span-8 mb-8 lg:mb-0" aria-live="polite">
               <blockquote className="text-xl lg:text-2xl text-daar-blue leading-relaxed mb-8 font-medium">
                 "{active.quote}"
               </blockquote>
@@ -116,17 +119,19 @@ const Testimonials: React.FC = () => {
           {/* Navigation */}
           <div className="flex items-center justify-between mt-8 pt-8 border-t border-gray-100">
             {/* Dots */}
-            <div className="flex items-center gap-2">
-              {testimonials.map((_, index) => (
+            <div className="flex items-center gap-2" role="tablist" aria-label="Testimonials">
+              {testimonials.map((t, index) => (
                 <button
                   key={index}
+                  role="tab"
                   onClick={() => setActiveIndex(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     index === activeIndex
                       ? 'w-8 bg-brandGreen'
                       : 'w-2 bg-gray-200 hover:bg-gray-300'
                   }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
+                  aria-label={`Testimonial van ${t.author}`}
+                  aria-selected={index === activeIndex}
                 />
               ))}
             </div>

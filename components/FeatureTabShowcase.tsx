@@ -57,7 +57,7 @@ const features: Feature[] = [
           </div>
         </div>
         {/* Floating emoji */}
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-daar-koraal to-pink-400 rounded-full flex items-center justify-center shadow-lg">
+        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-daar-koraal rounded-full flex items-center justify-center shadow-lg">
           <span className="text-2xl">😊</span>
         </div>
       </div>
@@ -83,7 +83,7 @@ const features: Feature[] = [
           {/* Front card */}
           <div className="relative bg-white rounded-3xl p-6 shadow-xl">
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-daar-mint to-daar-helder flex items-center justify-center text-white text-xl font-bold">
+              <div className="w-16 h-16 rounded-2xl bg-daar-mint flex items-center justify-center text-white text-xl font-bold">
                 SJ
               </div>
               <div>
@@ -277,24 +277,29 @@ export default function FeatureTabShowcase() {
           </p>
         </div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {features.map((feature, index) => (
-            <button
-              key={feature.id}
-              onClick={() => setActiveTab(index)}
-              className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
-                activeTab === index
-                  ? 'bg-daar-blue text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              {activeTab === index && (
-                <span className="inline-block w-2 h-2 rounded-full bg-white mr-2"></span>
-              )}
-              {feature.label}
-            </button>
-          ))}
+        {/* Tabs - horizontally scrollable on mobile */}
+        <div className="relative mb-8">
+          <div className="flex md:flex-wrap md:justify-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+            {features.map((feature, index) => (
+              <button
+                key={feature.id}
+                onClick={() => setActiveTab(index)}
+                aria-pressed={activeTab === index}
+                className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
+                  activeTab === index
+                    ? 'bg-daar-blue text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                {activeTab === index && (
+                  <span className="inline-block w-2 h-2 rounded-full bg-white mr-2"></span>
+                )}
+                {feature.label}
+              </button>
+            ))}
+          </div>
+          {/* Fade indicators for scroll on mobile */}
+          <div className="absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none md:hidden" />
         </div>
 
         {/* Content area */}
@@ -302,9 +307,6 @@ export default function FeatureTabShowcase() {
           className="rounded-[2rem] p-8 md:p-12 transition-colors duration-500 relative overflow-hidden"
           style={{ backgroundColor: activeFeature.bgColor }}
         >
-          {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-20 blur-3xl" style={{ backgroundColor: activeFeature.accentColor }}></div>
-
           <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
             {/* Visual */}
             <div className="flex justify-center order-2 md:order-1">

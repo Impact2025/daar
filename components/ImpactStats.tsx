@@ -239,7 +239,11 @@ const ImpactStats: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28 bg-white relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="py-20 lg:py-28 bg-white relative overflow-hidden"
+      aria-label="Impact statistieken"
+    >
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{

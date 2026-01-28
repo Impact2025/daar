@@ -33,6 +33,11 @@ const DaarLandingPage2 = () => {
 
   return (
     <div className="font-sans antialiased text-daar-blue bg-white selection:bg-brandGreen selection:text-white">
+      {/* Skip to content link for accessibility */}
+      <a href="#main-content" className="skip-link">
+        Ga naar hoofdinhoud
+      </a>
+
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +72,12 @@ const DaarLandingPage2 = () => {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-daar-blue focus:outline-none">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-daar-blue p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                aria-label={isMenuOpen ? 'Sluit menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
+              >
                 {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
             </div>
@@ -96,6 +106,7 @@ const DaarLandingPage2 = () => {
       </nav>
 
       {/* Hero Section - Soft & Warm */}
+      <main id="main-content">
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
@@ -394,6 +405,8 @@ const DaarLandingPage2 = () => {
           </div>
         </div>
       </section>
+
+      </main>
 
       {/* Footer */}
       <footer className="bg-[#1E2433] text-white pt-20 pb-10 text-sm">

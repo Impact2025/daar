@@ -2,16 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Samen Daar 2.0 Design System */
-/* Soft & Human - Van puur functioneel naar menselijk & positief */
+/* ============================================
+   DAAR Design System 2.0
+   Soft & Human - Consistent & Accessible
+   ============================================ */
 
-html,
-body {
-  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
-  background-color: #FFFFFF;
-  color: #2D334A;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Base Layer - Typography & Colors */
+@layer base {
+  html,
+  body {
+    font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+    background-color: #FFFFFF;
+    color: #374151; /* gray-700 for better contrast */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus indicators - Accessibility */
+  *:focus-visible {
+    outline: none;
+    ring: 2px;
+    ring-offset: 2px;
+    --tw-ring-color: #3BA273;
+    --tw-ring-offset-color: #FFFFFF;
+    box-shadow: 0 0 0 2px var(--tw-ring-offset-color), 0 0 0 4px var(--tw-ring-color);
+    border-radius: 4px;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #3BA273;
+  }
+
+  /* Skip to content link - Accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #3BA273;
+    color: white;
+    padding: 8px 16px;
+    z-index: 100;
+    transition: top 0.3s;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
 }
 
 /* Nunito voor koppen & grote cijfers */
@@ -20,16 +58,18 @@ h1, h2, h3, .font-nunito {
 }
 
 /* Zachte schaduwen - meer rust */
-.shadow-soft {
-  box-shadow: 0 4px 20px -2px rgba(45, 51, 74, 0.08);
-}
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0 4px 20px -2px rgba(45, 51, 74, 0.08);
+  }
 
-.shadow-soft-lg {
-  box-shadow: 0 8px 30px -4px rgba(45, 51, 74, 0.12);
-}
+  .shadow-soft-lg {
+    box-shadow: 0 8px 30px -4px rgba(45, 51, 74, 0.12);
+  }
 
-.shadow-soft-xl {
-  box-shadow: 0 12px 40px -6px rgba(45, 51, 74, 0.15);
+  .shadow-soft-xl {
+    box-shadow: 0 12px 40px -6px rgba(45, 51, 74, 0.15);
+  }
 }
 
 /* Hover effect - zachte lift */
@@ -179,4 +219,46 @@ h1, h2, h3, .font-nunito {
 
 .preserve-3d {
   transform-style: preserve-3d;
+}
+
+/* Scrollbar hide utility for horizontal scroll containers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Button consistent hover states */
+.btn-primary {
+  @apply bg-brandGreen text-white font-bold px-6 py-3 rounded-full
+         hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50
+         transform hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-secondary {
+  @apply bg-white text-daar-blue border-2 border-daar-helder font-bold px-6 py-3
+         rounded-full hover:bg-daar-helder/10 transition-colors shadow-sm;
+}
+
+.btn-ghost {
+  @apply text-daar-blue font-semibold px-4 py-2 hover:text-brandGreen
+         transition-colors rounded-lg hover:bg-gray-50;
+}
+
+/* Card consistent styling */
+.card {
+  @apply bg-white rounded-3xl p-6 border border-gray-100;
+  box-shadow: 0 4px 20px -2px rgba(45, 51, 74, 0.08);
+}
+
+.card-elevated {
+  @apply bg-white rounded-3xl p-6 border border-gray-100 transition-shadow;
+  box-shadow: 0 8px 30px -4px rgba(45, 51, 74, 0.12);
+}
+
+.card-elevated:hover {
+  box-shadow: 0 12px 40px -6px rgba(45, 51, 74, 0.15);
 }
