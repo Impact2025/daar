@@ -99,7 +99,7 @@ const supportOptions = [
     description: 'Direct antwoord van onze AI-assistent of een medewerker',
     action: 'Start chat',
     href: '#chat',
-    cardBg: 'bg-daar-geel',
+    bgColor: '#D4A84B',
     available: 'Direct beschikbaar',
   },
   {
@@ -107,7 +107,7 @@ const supportOptions = [
     description: 'Boek een gratis kennismakingsgesprek met ons team',
     action: 'Plan afspraak',
     href: '/afspraak',
-    cardBg: 'bg-brandGreen',
+    bgColor: '#E07A5A',
     available: 'Binnen 2 werkdagen',
   },
   {
@@ -115,7 +115,7 @@ const supportOptions = [
     description: 'Voor uitgebreide vragen of documentatie',
     action: 'info@daar.nl',
     href: 'mailto:info@daar.nl',
-    cardBg: 'bg-daar-helder',
+    bgColor: '#5BA3BD',
     available: 'Reactie binnen 24 uur',
   },
   {
@@ -123,7 +123,7 @@ const supportOptions = [
     description: 'Vind zelf antwoorden in onze uitgebreide artikelen',
     action: 'Bekijk artikelen',
     href: '/kennisbank',
-    cardBg: 'bg-daar-mint',
+    bgColor: '#4BA99B',
     available: 'Altijd beschikbaar',
   },
 ]
@@ -239,18 +239,23 @@ export default function ContactPage() {
               <a
                 key={option.title}
                 href={option.href}
-                className={`${option.cardBg} rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group`}
+                className="relative overflow-hidden rounded-3xl hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 group"
+                style={{ backgroundColor: option.bgColor }}
               >
-                <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Nunito, sans-serif' }}>{option.title}</h3>
-                <p className="text-white/80 text-sm mb-4 leading-relaxed">{option.description}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-white font-semibold text-sm group-hover:underline">
-                    {option.action}
-                  </span>
-                  <span className="text-xs text-white/60 flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {option.available}
-                  </span>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)' }} />
+                <div className="relative p-5 lg:p-6 flex flex-col min-h-[220px]">
+                  <h3 className="text-lg font-bold mb-2" style={{ color: '#FFFFFF', fontFamily: 'Nunito, sans-serif' }}>{option.title}</h3>
+                  <p className="text-sm leading-relaxed flex-grow" style={{ color: 'rgba(255,255,255,0.8)' }}>{option.description}</p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="font-semibold text-sm group-hover:underline" style={{ color: '#FFFFFF' }}>
+                      {option.action}
+                    </span>
+                    <span className="text-xs flex items-center gap-1" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                      <Clock className="w-3 h-3" />
+                      {option.available}
+                    </span>
+                  </div>
+                  <div className="absolute -bottom-6 -right-6 w-16 h-16 rounded-full opacity-20" style={{ backgroundColor: '#FFFFFF', filter: 'blur(16px)' }} />
                 </div>
               </a>
             ))}
