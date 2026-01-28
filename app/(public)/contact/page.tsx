@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import {
-  MessageCircle,
   Mail,
   Phone,
   Calendar,
@@ -15,7 +14,7 @@ import {
   ChevronUp,
   CheckCircle2,
   ArrowRight,
-  Headphones,
+  Check,
   Users,
   Sparkles,
   Building2,
@@ -192,18 +191,18 @@ export default function ContactPage() {
   return (
     <div className="bg-offWhite">
       {/* Hero Section */}
-      <section className="relative bg-lightGreen pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center px-5 py-2.5 rounded-full bg-daar-geel/20 border border-daar-geel/30 text-daar-blue text-sm font-semibold mb-8">
-              <Headphones className="w-4 h-4 mr-2 text-brandGreen" />
+              <Sparkles className="w-4 h-4 mr-2 text-brandGreen" />
               We staan voor je klaar
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
               Hoe kunnen we
               <span className="block text-brandGreen">je helpen?</span>
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed mb-10 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto leading-relaxed">
               Heb je een vraag, wil je een demo of gewoon even sparren over vrijwilligersbeheer?
               Ons team staat klaar om je te helpen.
             </p>
@@ -220,15 +219,22 @@ export default function ContactPage() {
                 className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-8 py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm flex items-center justify-center"
               >
                 Plan een gesprek
-                <Calendar className="w-5 h-5 ml-2" />
               </Link>
+            </div>
+
+            <div className="mt-12 flex items-center justify-center space-x-6 text-sm text-gray-600 font-medium">
+              <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <Check size={18} className="text-daar-mint mr-2" /> AVG-Proof
+              </span>
+              <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <Check size={18} className="text-daar-mint mr-2" /> 24/7 beschikbaar
+              </span>
+              <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <Check size={18} className="text-daar-mint mr-2" /> Persoonlijk
+              </span>
             </div>
           </div>
         </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-32 h-32 bg-brandGreen/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-daar-geel/10 rounded-full blur-3xl"></div>
       </section>
 
       {/* Support Options */}
