@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { ArticleContent } from '@/components/kennisbank/ArticleContent'
 import { ArticleCard } from '@/components/kennisbank/ArticleCard'
+import { ArticleSchema, BreadcrumbSchema } from '@/components/seo/JsonLd'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -101,22 +102,38 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
+  const baseUrl = 'https://daar.nl';
+
   return {
-    title: article.metaTitle || `${article.title} | DAAR Kennisbank`,
+    title: article.metaTitle || article.title,
     description: article.metaDescription || article.excerpt || undefined,
     openGraph: {
       title: article.title,
       description: article.excerpt || undefined,
       type: 'article',
+      url: `${baseUrl}/kennisbank/${slug}`,
+      siteName: 'Daar',
+      locale: 'nl_NL',
       publishedTime: article.publishedAt?.toISOString(),
-      authors: article.author?.name ? [article.author.name] : undefined,
-      images: article.featuredImage ? [article.featuredImage] : undefined,
+      modifiedTime: article.publishedAt?.toISOString(),
+      authors: article.author?.name ? [article.author.name] : ['Daar Team'],
+      images: article.featuredImage ? [
+        {
+          url: article.featuredImage,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        }
+      ] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: article.title,
       description: article.excerpt || undefined,
       images: article.featuredImage ? [article.featuredImage] : undefined,
+    },
+    alternates: {
+      canonical: `${baseUrl}/kennisbank/${slug}`,
     },
   }
 }
@@ -131,11 +148,34 @@ export default async function ArticlePage({ params }: PageProps) {
 
   const relatedArticles = await getRelatedArticles(article.id, article.categoryId)
 
+  const baseUrl = 'https://daar.nl';
+
   return (
-    <div className="bg-offWhite min-h-screen py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Article */}
-        <ArticleContent article={article as any} />
+    <>
+      <ArticleSchema
+        headline={article.title}
+        description={article.excerpt || ''}
+        image={article.featuredImage || undefined}
+        datePublished={article.publishedAt?.toISOString() || article.createdAt.toISOString()}
+        dateModified={article.updatedAt.toISOString()}
+        author={{
+          name: article.author?.name || 'Daar Team',
+        }}
+        url={`${baseUrl}/kennisbank/${article.slug}`}
+        keywords={article.tags?.map(t => t.tag.name)}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', url: baseUrl },
+          { name: 'Kennisbank', url: `${baseUrl}/kennisbank` },
+          ...(article.category ? [{ name: article.category.name, url: `${baseUrl}/kennisbank/categorie/${article.category.slug}` }] : []),
+          { name: article.title, url: `${baseUrl}/kennisbank/${article.slug}` },
+        ]}
+      />
+      <div className="bg-offWhite min-h-screen py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Main Article */}
+          <ArticleContent article={article as any} />
 
         {/* Related Articles */}
         {relatedArticles.length > 0 && (
@@ -150,7 +190,8 @@ export default async function ArticlePage({ params }: PageProps) {
             </div>
           </section>
         )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

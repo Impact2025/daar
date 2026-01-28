@@ -1,17 +1,88 @@
 import type { Metadata } from "next";
 import DaarLandingPage2 from "@/components/DaarLandingPage2";
+import { SoftwareApplicationSchema, FAQSchema } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Daar 2.0 - Grip op vrijwilligers, focus op geluk",
-  description: "Het complete platform dat werving, beheer en impactmeting verbindt. Verhoog de betrokkenheid en maak elk uur meetbaar waardevol.",
-  keywords: ["vrijwilligers", "impact", "beheer", "welzijn", "AVG"],
+  title: "Grip op vrijwilligers, focus op geluk",
+  description: "Het complete platform dat werving, beheer en impactmeting verbindt. Verhoog de betrokkenheid en maak elk uur meetbaar waardevol. 667% ROI in jaar 1.",
+  keywords: [
+    "vrijwilligers",
+    "vrijwilligersmanagement",
+    "vrijwilligersplatform",
+    "impact meten",
+    "beheer",
+    "welzijn",
+    "AVG-proof",
+    "geluksformule",
+    "vrijwilligers werving",
+    "vrijwilligers matching",
+    "retentie vrijwilligers",
+  ],
   openGraph: {
-    title: "Daar 2.0 - Grip op vrijwilligers, focus op geluk",
-    description: "Het complete platform voor vrijwilligersmanagement",
+    title: "Daar - Grip op vrijwilligers, focus op geluk",
+    description: "Het complete platform dat werving, beheer en impactmeting verbindt. 667% ROI in jaar 1.",
     type: "website",
+    url: "https://daar.nl",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Daar - Het vrijwilligersplatform voor grip en geluk",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daar - Grip op vrijwilligers, focus op geluk",
+    description: "Het complete platform dat werving, beheer en impactmeting verbindt.",
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: "https://daar.nl",
   },
 };
 
+const homepageFAQs = [
+  {
+    question: "Wat is Daar?",
+    answer: "Daar is het complete platform voor vrijwilligersmanagement. Van werving tot impactmeting, met de unieke Geluksformule die het welbevinden van vrijwilligers meet.",
+  },
+  {
+    question: "Wat kost Daar?",
+    answer: "Daar biedt flexibele prijsmodellen op basis van het aantal vrijwilligers. Neem contact op voor een persoonlijke offerte en ontdek hoe je 667% ROI kunt behalen.",
+  },
+  {
+    question: "Hoe werkt de Geluksformule?",
+    answer: "De Geluksformule meet het welbevinden van vrijwilligers via regelmatige check-ins. Het stoplicht-systeem waarschuwt automatisch wanneer iemand extra aandacht nodig heeft.",
+  },
+  {
+    question: "Is Daar AVG-proof?",
+    answer: "Ja, Daar is volledig AVG-compliant. Alle gegevens worden veilig opgeslagen in Nederland en je hebt volledige controle over wie toegang heeft tot welke informatie.",
+  },
+];
+
 export default function Home() {
-  return <DaarLandingPage2 />;
+  return (
+    <>
+      <SoftwareApplicationSchema
+        name="Daar Vrijwilligersplatform"
+        description="Het complete platform voor vrijwilligersmanagement met werving, matching, beheer en impactmeting."
+        features={[
+          "Smart Matching voor vrijwilligers",
+          "Geluksformule impactmeting",
+          "Centraal documentbeheer (AVG-proof)",
+          "Real-time rapportages en dashboards",
+          "Communicatie en engagement tools",
+          "VrijwilligersCheck assessment",
+        ]}
+        aggregateRating={{
+          ratingValue: 4.8,
+          reviewCount: 50,
+        }}
+      />
+      <FAQSchema items={homepageFAQs} />
+      <DaarLandingPage2 />
+    </>
+  );
 }
