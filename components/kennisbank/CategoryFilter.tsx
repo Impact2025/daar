@@ -36,10 +36,10 @@ export function CategoryFilter({ categories, activeCategory }: CategoryFilterPro
       <Link
         href={currentQuery ? `/kennisbank?q=${currentQuery}` : '/kennisbank'}
         className={cn(
-          'px-4 py-2 rounded-full text-sm font-medium transition-all',
+          'px-5 py-2.5 rounded-full text-sm font-semibold transition-all',
           !activeCategory
-            ? 'bg-brandGreen text-white'
-            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            ? 'bg-brandGreen text-white shadow-md shadow-green-200/50 hover:bg-brandGreenHover'
+            : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm'
         )}
       >
         Alles
@@ -54,10 +54,10 @@ export function CategoryFilter({ categories, activeCategory }: CategoryFilterPro
             key={category.id}
             href={`/kennisbank/categorie/${category.slug}${queryParam}`}
             className={cn(
-              'px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2',
+              'px-5 py-2.5 rounded-full text-sm font-semibold transition-all flex items-center gap-2',
               isActive
-                ? 'text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'text-white shadow-md'
+                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm'
             )}
             style={{
               backgroundColor: isActive ? (category.color || '#3BA273') : undefined,

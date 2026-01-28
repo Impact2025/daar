@@ -37,7 +37,7 @@ export function SearchBar({ placeholder = 'Zoek artikelen...', className }: Sear
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
-          className="w-full pl-12 pr-10 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent transition-all"
+          className="w-full pl-12 pr-10 py-4 bg-white border border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent focus:shadow-md transition-all"
         />
         {query && (
           <button

@@ -14,7 +14,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
 
   return (
     <Link href={`/kennisbank/${article.slug}`}>
-      <article className="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-gray-300">
+      <article className="group bg-white rounded-2xl border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1">
         {/* Featured Image */}
         {article.featuredImage ? (
           <div className="relative h-48 overflow-hidden">
@@ -76,7 +76,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
           )}
 
           {/* Title */}
-          <h3 className="text-lg font-semibold text-navy mb-2 line-clamp-2 group-hover:text-brandGreen transition-colors">
+          <h3 className="text-xl font-bold text-daar-blue mb-2 line-clamp-2 group-hover:text-brandGreen transition-colors" style={{ fontFamily: 'Nunito, sans-serif' }}>
             {article.title}
           </h3>
 
