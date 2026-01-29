@@ -48,9 +48,15 @@ export function Header() {
             ))}
             <Link
               href="/admin"
-              className="px-4 py-2 bg-brandGreen text-white rounded-lg hover:bg-brandGreenHover transition-colors"
+              className="text-gray-600 hover:text-brandGreen transition-colors font-medium"
             >
               Inloggen
+            </Link>
+            <Link
+              href="/afspraak"
+              className="px-6 py-2.5 bg-brandGreen text-white rounded-lg hover:bg-brandGreenHover transition-colors font-semibold shadow-sm"
+            >
+              Plan gesprek
             </Link>
           </nav>
 
@@ -87,11 +93,18 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-2 mt-2 border-t border-gray-100">
+            <div className="pt-2 mt-2 border-t border-gray-100 space-y-2">
+              <Link
+                href="/afspraak"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 bg-brandGreen text-white rounded-lg text-center font-semibold hover:bg-brandGreenHover transition-colors"
+              >
+                Plan gesprek
+              </Link>
               <Link
                 href="/admin"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 bg-brandGreen text-white rounded-lg text-center font-medium hover:bg-brandGreenHover transition-colors"
+                className="block px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg text-center font-medium transition-colors"
               >
                 Inloggen
               </Link>
