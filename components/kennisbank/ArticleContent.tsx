@@ -18,9 +18,22 @@ interface TOCItem {
   level: number
 }
 
+const gradientColors: Record<string, string> = {
+  'gradient': 'from-brandGreen to-brandGreenHover', // Backward compatibility
+  'gradient-green': 'from-brandGreen to-brandGreenHover',
+  'gradient-yellow': 'from-[#D4A574] to-[#C99A64]',
+  'gradient-coral': 'from-[#E07856] to-[#D96B4A]',
+  'gradient-blue': 'from-[#5B9BD5] to-[#4A8BC2]',
+  'gradient-teal': 'from-[#4DB8A8] to-[#3FA799]',
+  'gradient-navy': 'from-[#2D334A] to-[#1F2537]',
+}
+
 export function ArticleContent({ article }: ArticleContentProps) {
   const [tocItems, setTocItems] = useState<TOCItem[]>([])
   const [activeId, setActiveId] = useState<string>('')
+
+  const headerStyle = (article as any).headerStyle || 'image'
+  const gradientClass = gradientColors[headerStyle] || gradientColors['gradient-green']
 
   // Extract TOC items from content
   useEffect(() => {
@@ -178,8 +191,8 @@ export function ArticleContent({ article }: ArticleContentProps) {
                 priority
               />
             </div>
-          ) : (article as any).headerStyle === 'gradient' ? (
-            <div className="relative rounded-xl overflow-hidden mb-10 shadow-lg bg-gradient-to-br from-brandGreen to-brandGreenHover py-16 px-8">
+          ) : headerStyle.startsWith('gradient-') ? (
+            <div className={`relative rounded-xl overflow-hidden mb-10 shadow-lg bg-gradient-to-br ${gradientClass} py-16 px-8`}>
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-4 right-4 w-32 h-32 bg-white rounded-full blur-2xl" />
                 <div className="absolute bottom-4 left-4 w-48 h-48 bg-white rounded-full blur-3xl" />

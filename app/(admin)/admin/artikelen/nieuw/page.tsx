@@ -26,7 +26,7 @@ export default function NewArticlePage() {
   const [metaTitle, setMetaTitle] = useState('')
   const [metaDescription, setMetaDescription] = useState('')
   const [featuredImage, setFeaturedImage] = useState('')
-  const [headerStyle, setHeaderStyle] = useState<HeaderStyle>('image')
+  const [headerStyle, setHeaderStyle] = useState<HeaderStyle>('gradient-green')
 
   const handleTitleChange = (newTitle: string) => {
     setTitle(newTitle)

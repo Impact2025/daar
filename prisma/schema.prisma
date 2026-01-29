@@ -30,7 +30,7 @@ model Article {
   // Media
   featuredImage    String?
   featuredImageAlt String?
-  headerStyle      String         @default("image") // "image" | "gradient"
+  headerStyle      String         @default("gradient-green") // "image" | "gradient-green" | "gradient-yellow" | "gradient-coral" | "gradient-blue" | "gradient-teal" | "gradient-navy"
 
   // Publishing
   status          ArticleStatus  @default(DRAFT)

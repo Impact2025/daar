@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { cn } from '@/lib/utils'
 
-export type HeaderStyle = 'image' | 'gradient' | 'none'
+export type HeaderStyle = 'image' | 'gradient-green' | 'gradient-yellow' | 'gradient-coral' | 'gradient-blue' | 'gradient-teal' | 'gradient-navy' | 'none'
 
 interface FeaturedImagePickerProps {
   value: string
@@ -123,6 +123,15 @@ export function FeaturedImagePicker({
     onChange('')
   }
 
+  const colorOptions = [
+    { id: 'gradient-green', label: 'Groen', color: 'from-brandGreen to-brandGreenHover', bgPreview: 'bg-brandGreen' },
+    { id: 'gradient-yellow', label: 'Geel', color: 'from-[#D4A574] to-[#C99A64]', bgPreview: 'bg-[#D4A574]' },
+    { id: 'gradient-coral', label: 'Koraal', color: 'from-[#E07856] to-[#D96B4A]', bgPreview: 'bg-[#E07856]' },
+    { id: 'gradient-blue', label: 'Blauw', color: 'from-[#5B9BD5] to-[#4A8BC2]', bgPreview: 'bg-[#5B9BD5]' },
+    { id: 'gradient-teal', label: 'Teal', color: 'from-[#4DB8A8] to-[#3FA799]', bgPreview: 'bg-[#4DB8A8]' },
+    { id: 'gradient-navy', label: 'Navy', color: 'from-[#2D334A] to-[#1F2537]', bgPreview: 'bg-[#2D334A]' },
+  ]
+
   const styleOptions = [
     {
       id: 'image' as HeaderStyle,
@@ -130,65 +139,82 @@ export function FeaturedImagePicker({
       icon: ImageIcon,
       description: 'Upload een afbeelding',
     },
-    {
-      id: 'gradient' as HeaderStyle,
-      label: 'Groene header',
-      icon: Type,
-      description: 'Witte tekst op groene achtergrond',
-    },
   ]
+
+  const currentColorOption = colorOptions.find(c => c.id === headerStyle)
 
   return (
     <div className={cn('space-y-4', className)}>
       {/* Style Selection */}
-      <div className="grid grid-cols-2 gap-3">
-        {styleOptions.map((option) => (
-          <button
-            key={option.id}
-            type="button"
-            onClick={() => {
-              onHeaderStyleChange(option.id)
-              if (option.id === 'gradient') {
-                onChange('')
-              }
-            }}
-            className={cn(
-              'p-4 rounded-xl border-2 text-left transition-all',
-              headerStyle === option.id
-                ? 'border-brandGreen bg-lightGreen'
-                : 'border-gray-200 hover:border-gray-300 bg-white'
-            )}
-          >
-            <div className="flex items-center gap-3">
-              <div
+      <div className="space-y-3">
+        <label className="text-sm font-medium text-navy">Header stijl</label>
+
+        {/* Image option */}
+        <button
+          type="button"
+          onClick={() => onHeaderStyleChange('image')}
+          className={cn(
+            'w-full p-4 rounded-xl border-2 text-left transition-all',
+            headerStyle === 'image'
+              ? 'border-brandGreen bg-lightGreen'
+              : 'border-gray-200 hover:border-gray-300 bg-white'
+          )}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className={cn(
+                'w-10 h-10 rounded-lg flex items-center justify-center',
+                headerStyle === 'image'
+                  ? 'bg-brandGreen text-white'
+                  : 'bg-gray-100 text-gray-500'
+              )}
+            >
+              <ImageIcon className="w-5 h-5" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <span className="font-medium text-navy">Afbeelding</span>
+                {headerStyle === 'image' && (
+                  <Check className="w-4 h-4 text-brandGreen" />
+                )}
+              </div>
+              <p className="text-xs text-gray-500">Upload een afbeelding</p>
+            </div>
+          </div>
+        </button>
+
+        {/* Color options */}
+        <div>
+          <p className="text-xs font-medium text-gray-500 mb-2">Of kies een kleur:</p>
+          <div className="grid grid-cols-3 gap-2">
+            {colorOptions.map((option) => (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => {
+                  onHeaderStyleChange(option.id as HeaderStyle)
+                  onChange('')
+                }}
                 className={cn(
-                  'w-10 h-10 rounded-lg flex items-center justify-center',
+                  'p-3 rounded-xl border-2 text-center transition-all',
                   headerStyle === option.id
-                    ? 'bg-brandGreen text-white'
-                    : 'bg-gray-100 text-gray-500'
+                    ? 'border-brandGreen bg-lightGreen'
+                    : 'border-gray-200 hover:border-gray-300 bg-white'
                 )}
               >
-                <option.icon className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-medium text-navy">{option.label}</span>
-                  {headerStyle === option.id && (
-                    <Check className="w-4 h-4 text-brandGreen" />
-                  )}
-                </div>
-                <p className="text-xs text-gray-500">{option.description}</p>
-              </div>
-            </div>
-          </button>
-        ))}
+                <div className={cn('w-8 h-8 rounded-lg mx-auto mb-1.5', option.bgPreview)} />
+                <span className="text-xs font-medium text-navy">{option.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Preview */}
       <div className="rounded-xl overflow-hidden border border-gray-200">
-        {headerStyle === 'gradient' ? (
+        {headerStyle.startsWith('gradient-') ? (
           // Gradient Preview
-          <div className="h-48 bg-gradient-to-br from-brandGreen to-brandGreenHover flex items-center justify-center p-6 relative overflow-hidden">
+          <div className={cn('h-48 bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden', currentColorOption?.color || 'from-brandGreen to-brandGreenHover')}>
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-4 right-4 w-32 h-32 bg-white rounded-full blur-2xl" />
               <div className="absolute bottom-4 left-4 w-48 h-48 bg-white rounded-full blur-3xl" />
