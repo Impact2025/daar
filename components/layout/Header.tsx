@@ -7,7 +7,6 @@ import { Menu, X } from 'lucide-react'
 import { Logo } from '@/components/ui/Logo'
 
 const navLinks = [
-  { href: '/', label: 'Home' },
   { href: '/platform', label: 'Platform' },
   { href: '/quiz', label: 'Geluksmonitor' },
   { href: '/over-ons', label: 'Over ons' },
