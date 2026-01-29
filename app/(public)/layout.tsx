@@ -24,7 +24,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/platform', label: 'Platform' },
   { href: '/kennisbank', label: 'Kennisbank' },
-  { href: '/quiz', label: 'VrijwilligersCheck' },
+  { href: '/quiz', label: 'Geluksmonitor' },
   { href: '/over-ons', label: 'Over ons' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -177,7 +177,7 @@ export default function PublicLayout({
                 </li>
                 <li>
                   <Link href="/quiz" className="hover:text-white transition-colors">
-                    VrijwilligersCheck
+                    Geluksmonitor
                   </Link>
                 </li>
               </ul>

@@ -65,8 +65,8 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Mijn VrijwilligersCheck score',
-          text: `Ik scoorde ${data.totalScore}% op de DAAR VrijwilligersCheck. Hoe scoort jouw organisatie?`,
+          title: 'Mijn Geluksmonitor score',
+          text: `Ik scoorde ${data.totalScore}% op de DAAR Geluksmonitor. Hoe scoort jouw organisatie?`,
           url: shareUrl,
         })
       } catch {

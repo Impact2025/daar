@@ -17,8 +17,8 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    id: 'vrijwilligerscheck',
-    label: 'VrijwilligersCheck',
+    id: 'geluksmonitor',
+    label: 'Geluksmonitor',
     title: 'Signaleer overbelasting voordat het te laat is',
     description: 'Onze slimme Geluksformule meet het welbevinden van je vrijwilligers. Het stoplicht-systeem waarschuwt automatisch wanneer iemand extra aandacht nodig heeft.',
     bgColor: '#D4A84B',

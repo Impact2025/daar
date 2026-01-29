@@ -92,7 +92,7 @@ export default function OverOnsPage() {
   return (
     <div className="bg-offWhite">
       {/* Hero Section - Clean & Modern */}
-      <section className="relative bg-lightGreen pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <section className="relative bg-lightGreen pt-20 pb-16 lg:pt-24 lg:pb-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left Content */}
@@ -124,7 +124,7 @@ export default function OverOnsPage() {
                   href="/quiz"
                   className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-8 py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm"
                 >
-                  Doe de VrijwilligersCheck
+                  Doe de gratis Geluksmonitor scan
                 </Link>
               </div>
             </div>
@@ -276,7 +276,7 @@ export default function OverOnsPage() {
                   href="/quiz"
                   className="inline-flex items-center bg-brandGreen text-white font-bold px-8 py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 group"
                 >
-                  Probeer de VrijwilligersCheck
+                  Probeer de gratis Geluksmonitor scan
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                 </Link>
               </div>
@@ -445,14 +445,14 @@ export default function OverOnsPage() {
             Klaar om te ontdekken wat DAAR voor jou kan betekenen?
           </h2>
           <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
-            Start met de gratis VrijwilligersCheck of plan direct een gesprek met ons team.
+            Start met de gratis Geluksmonitor scan of plan direct een gesprek met ons team.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/quiz"
               className="bg-brandGreen text-white font-bold px-8 py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-900/20 transform hover:-translate-y-1 flex items-center justify-center group"
             >
-              Start de VrijwilligersCheck
+              Start de gratis Geluksmonitor scan
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Link>
             <Link

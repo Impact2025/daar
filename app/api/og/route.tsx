@@ -139,7 +139,7 @@ export async function GET(request: NextRequest) {
                   fontWeight: 600,
                 }}
               >
-                VrijwilligersCheck
+                Geluksmonitor
               </div>
             )}
           </div>

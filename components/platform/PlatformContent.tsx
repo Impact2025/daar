@@ -10,7 +10,7 @@ export const PlatformContent = () => {
     <div className="font-sans antialiased text-daar-blue bg-offWhite">
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-lightGreen">
+      <section className="relative pt-20 pb-16 lg:pt-24 lg:pb-20 overflow-hidden bg-lightGreen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>

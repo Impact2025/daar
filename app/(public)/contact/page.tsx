@@ -38,24 +38,24 @@ const faqCategories = [
       },
       {
         q: 'Wat maakt DAAR anders dan andere platforms?',
-        a: 'Wij meten niet alleen uren, maar Geluksmomenten - de echte impact die vrijwilligers creëren. Daarnaast bieden we de VrijwilligersCheck voor welzijnsmonitoring en AI-ondersteuning voor coördinatoren.',
+        a: 'Wij meten niet alleen uren, maar Geluksmomenten - de echte impact die vrijwilligers creëren. Daarnaast bieden we de Geluksmonitor voor welzijnsmonitoring en AI-ondersteuning voor coördinatoren.',
       },
     ],
   },
   {
-    category: 'VrijwilligersCheck',
+    category: 'Geluksmonitor',
     questions: [
       {
-        q: 'Hoe werkt de VrijwilligersCheck?',
-        a: 'De VrijwilligersCheck is een korte vragenlijst die het welzijn van vrijwilligers meet op 5 dimensies: waardering, communicatie, werkdruk, ontwikkeling en verbondenheid. In 5 minuten krijg je inzicht in je organisatie.',
+        q: 'Hoe werkt de Geluksmonitor?',
+        a: 'De Geluksmonitor is een korte vragenlijst die het welzijn van vrijwilligers meet op 5 dimensies: waardering, communicatie, werkdruk, ontwikkeling en verbondenheid. In 5 minuten krijg je inzicht in je organisatie.',
       },
       {
-        q: 'Is de VrijwilligersCheck gratis?',
-        a: 'Ja, de basis VrijwilligersCheck is volledig gratis. Je kunt direct starten zonder registratie. Voor geavanceerde analyses en benchmarking bieden we betaalde opties.',
+        q: 'Is de Geluksmonitor gratis?',
+        a: 'Ja, de basis Geluksmonitor scan is volledig gratis. Je kunt direct starten zonder registratie. Voor geavanceerde analyses en benchmarking bieden we betaalde opties.',
       },
       {
-        q: 'Hoe vaak moet ik de VrijwilligersCheck doen?',
-        a: 'Wij raden aan om de check minimaal elk kwartaal te doen. Zo kun je trends volgen en vroegtijdig signalen oppikken voordat problemen ontstaan.',
+        q: 'Hoe vaak moet ik de Geluksmonitor doen?',
+        a: 'Wij raden aan om de scan minimaal elk kwartaal te doen. Zo kun je trends volgen en vroegtijdig signalen oppikken voordat problemen ontstaan.',
       },
     ],
   },
@@ -68,7 +68,7 @@ const faqCategories = [
       },
       {
         q: 'Kan ik DAAR eerst uitproberen?',
-        a: 'Ja, wij bieden een gratis proefperiode aan. Daarnaast kun je de VrijwilligersCheck direct gratis gebruiken om een eerste indruk te krijgen van onze aanpak.',
+        a: 'Ja, wij bieden een gratis proefperiode aan. Daarnaast kun je de Geluksmonitor direct gratis gebruiken om een eerste indruk te krijgen van onze aanpak.',
       },
       {
         q: 'Biedt DAAR ondersteuning bij de implementatie?',
@@ -191,7 +191,7 @@ export default function ContactPage() {
   return (
     <div className="bg-offWhite">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
+      <section className="relative pt-20 pb-16 lg:pt-24 lg:pb-20 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center px-5 py-2.5 rounded-full bg-daar-geel/20 border border-daar-geel/30 text-daar-blue text-sm font-semibold mb-8">
@@ -476,7 +476,7 @@ export default function ContactPage() {
                     href="/quiz"
                     className="flex items-center justify-between p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
                   >
-                    <span className="text-sm">Doe de VrijwilligersCheck</span>
+                    <span className="text-sm">Doe de gratis Geluksmonitor scan</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
@@ -521,7 +521,7 @@ export default function ContactPage() {
               <div key={category.category}>
                 <h3 className="text-lg font-bold text-daar-blue mb-4 flex items-center gap-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
                   {category.category === 'Over DAAR' && <Building2 className="w-5 h-5 text-brandGreen" />}
-                  {category.category === 'VrijwilligersCheck' && <Sparkles className="w-5 h-5 text-brandGreen" />}
+                  {category.category === 'Geluksmonitor' && <Sparkles className="w-5 h-5 text-brandGreen" />}
                   {category.category === 'Platform & Prijzen' && <Users className="w-5 h-5 text-brandGreen" />}
                   {category.category === 'Privacy & Beveiliging' && <CheckCircle2 className="w-5 h-5 text-brandGreen" />}
                   {category.category}
@@ -605,7 +605,7 @@ export default function ContactPage() {
               href="/quiz"
               className="bg-transparent border-2 border-white/30 text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-white/10 transition-colors text-center"
             >
-              Doe de VrijwilligersCheck
+              Doe de gratis Geluksmonitor scan
             </Link>
           </div>
         </div>

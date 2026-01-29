@@ -3,10 +3,10 @@ import { QuizWidget } from '@/components/quiz/QuizWidget'
 import { BarChart3, Clock, Target, TrendingUp, Users } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'VrijwilligersCheck | DAAR',
+  title: 'Geluksmonitor | DAAR',
   description: 'Ontdek in 2 minuten hoe gezond jouw vrijwilligersbeleid is. Krijg gepersonaliseerde aanbevelingen en ROI-berekeningen voor jouw organisatie.',
   openGraph: {
-    title: 'VrijwilligersCheck | DAAR',
+    title: 'Geluksmonitor | DAAR',
     description: 'Ontdek hoe gezond jouw vrijwilligersbeleid is en ontvang concrete verbeterpunten.',
     type: 'website',
   },
@@ -23,7 +23,7 @@ export default function QuizPage() {
               Waarom deze check?
             </h2>
             <p className="text-gray-600 mb-8">
-              De VrijwilligersCheck geeft inzicht in hoe jouw organisatie scoort op 5
+              De gratis Geluksmonitor scan geeft inzicht in hoe jouw organisatie scoort op 5
               cruciale dimensies van vrijwilligersbeheer, vergeleken met vergelijkbare
               organisaties.
             </p>

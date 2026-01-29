@@ -150,8 +150,8 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Mijn VrijwilligersCheck score',
-          text: `Ik scoorde ${totalScore}% op de DAAR VrijwilligersCheck. Hoe scoort jouw organisatie?`,
+          title: 'Mijn Geluksmonitor score',
+          text: `Ik scoorde ${totalScore}% op de DAAR Geluksmonitor. Hoe scoort jouw organisatie?`,
           url: shareUrl,
         })
       } catch {
@@ -177,7 +177,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
           <CardContent className="p-8 md:p-12 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-lightGreen rounded-full mb-6">
               <span className="text-brandGreen text-sm font-semibold tracking-wide">
-                VRIJWILLIGERSCHECK
+                GELUKSMONITOR
               </span>
             </div>
 

@@ -60,7 +60,7 @@ const DaarLandingPage = () => {
             <div className="hidden md:flex space-x-6 items-center">
               <NavLink href="/platform" text="Platform" />
               <NavLink href="/kennisbank" text="Kennisbank" />
-              <NavLink href="/quiz" text="VrijwilligersCheck" />
+              <NavLink href="/quiz" text="Geluksmonitor" />
               <NavLink href="/over-ons" text="Over ons" />
               <NavLink href="/contact" text="Contact" />
 
@@ -95,7 +95,7 @@ const DaarLandingPage = () => {
             <div className="flex flex-col p-4 space-y-2">
               <MobileNavLink href="/platform" text="Platform" onClick={() => setIsMenuOpen(false)} />
               <MobileNavLink href="/kennisbank" text="Kennisbank" onClick={() => setIsMenuOpen(false)} />
-              <MobileNavLink href="/quiz" text="VrijwilligersCheck" onClick={() => setIsMenuOpen(false)} />
+              <MobileNavLink href="/quiz" text="Geluksmonitor" onClick={() => setIsMenuOpen(false)} />
               <MobileNavLink href="/over-ons" text="Over ons" onClick={() => setIsMenuOpen(false)} />
               <MobileNavLink href="/contact" text="Contact" onClick={() => setIsMenuOpen(false)} />
               <Link
@@ -130,6 +130,7 @@ const DaarLandingPage = () => {
                <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed font-normal">
                  Het complete platform dat werving, beheer en impactmeting verbindt.
                  Verhoog de betrokkenheid en maak elk uur meetbaar waardevol.
+                 <span className="block mt-3 font-semibold text-brandGreen">Nodig uw organisatie uit voor een gratis Geluksmonitor scan!</span>
                </p>
 
                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -262,7 +263,7 @@ const DaarLandingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card
-               title="Vrijwilligers Check"
+               title="Geluksmonitor"
                desc="Gebaseerd op onze bewezen Geluksformule. Signaleer overbelasting vroegtijdig met ons slimme stoplicht-systeem."
                icon={<Smile size={28} />}
                accent="green"
@@ -383,7 +384,7 @@ const DaarLandingPage = () => {
                   </h2>
 
                   <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                     Doe de VrijwilligersCheck en ontdek in 2 minuten hoe je scoort op 5 cruciale
+                     Doe de gratis Geluksmonitor scan en ontdek in 2 minuten hoe je scoort op 5 cruciale
                      dimensies. Gebaseerd op onze unieke Geluksformule—ontwikkeld uit jarenlange praktijkervaring.
                   </p>
 
@@ -412,7 +413,7 @@ const DaarLandingPage = () => {
                      href="/quiz"
                      className="inline-flex items-center bg-brandGreen text-white font-bold px-8 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg hover:shadow-xl group tracking-tight"
                   >
-                     Start de VrijwilligersCheck
+                     Start de gratis Geluksmonitor scan
                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                   </Link>
                </div>
@@ -462,7 +463,7 @@ const DaarLandingPage = () => {
                   href="/quiz"
                   className="bg-brandGreen text-white font-bold px-8 py-4 rounded-xl text-lg hover:bg-brandGreenHover transition-all shadow-lg hover:shadow-green-900/20 transform hover:-translate-y-1 tracking-tight text-center"
                >
-                  Doe de VrijwilligersCheck
+                  Doe de gratis Geluksmonitor scan
                </Link>
                <Link
                   href="/afspraak"
@@ -490,8 +491,7 @@ const DaarLandingPage = () => {
                  title="Product"
                  links={[
                    { label: 'Modules', href: '/platform' },
-                   { label: 'Vrijwilligers Check', href: '/vrijwilligerscheck' },
-                   { label: 'Quiz', href: '/quiz' },
+                   { label: 'Geluksmonitor', href: '/quiz' },
                    { label: 'Afspraak maken', href: '/afspraak' }
                  ]}
                />

@@ -1,4 +1,4 @@
-// DAAR VrijwilligersCheck - Wereldklasse Quiz
+// DAAR Geluksmonitor - Wereldklasse Quiz
 // 5 dimensies, adaptive vragen, benchmarks, ROI berekeningen
 
 export const QUIZ_DIMENSIONS = {
@@ -320,7 +320,7 @@ export const MODULE_RECOMMENDATIONS: Record<DimensionId, { name: string; descrip
     { name: 'E-learning Module', description: 'Online trainingen voor vrijwilligers' },
   ],
   retentie: [
-    { name: 'VrijwilligersCheck', description: 'Structurele tevredenheidsmeting' },
+    { name: 'Geluksmonitor', description: 'Structurele tevredenheidsmeting' },
     { name: 'Waardering & Badges', description: 'Erkenning die motiveert' },
   ],
   impact: [

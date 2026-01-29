@@ -69,7 +69,7 @@ export default function Home() {
           "Centraal documentbeheer (AVG-proof)",
           "Real-time rapportages en dashboards",
           "Communicatie en engagement tools",
-          "VrijwilligersCheck assessment",
+          "Geluksmonitor assessment",
         ]}
         aggregateRating={{
           ratingValue: 4.8,
