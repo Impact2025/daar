@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Check, Users, BarChart2, Shield, Zap, RefreshCw, Database } from 'lucide-react';
+import { ArrowRight, Check, Users, BarChart2, Shield, Zap, RefreshCw, Database, Sparkles, Heart, Clock } from 'lucide-react';
 import FeatureTabShowcase from '@/components/FeatureTabShowcase';
 
 export const PlatformContent = () => {
@@ -10,33 +10,109 @@ export const PlatformContent = () => {
     <div className="font-sans antialiased text-daar-blue bg-offWhite">
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 lg:pt-24 lg:pb-20 overflow-hidden bg-lightGreen">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
-              Hoe werkt het <span className="text-brandGreen">Daar</span> platform?
-            </h1>
-            <p className="text-xl text-gray-600 mb-10 leading-relaxed">
-              Een complete oplossing die werving, beheer en impactmeting naadloos met elkaar verbindt.
-              Ontdek hoe Daar jouw vrijwilligersorganisatie naar een hoger niveau tilt.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-daar-blue font-medium">
-              <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
-                <Check size={18} className="text-daar-mint mr-2" /> Cloud-based
-              </span>
-              <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
-                <Check size={18} className="text-daar-mint mr-2" /> Realtime
-              </span>
-              <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
-                <Check size={18} className="text-daar-mint mr-2" /> Schaalbaar
-              </span>
+          <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-6 text-center lg:text-left mb-12 lg:mb-0">
+              <div className="inline-flex items-center px-5 py-2.5 rounded-full bg-daar-geel/20 border border-daar-geel/30 text-daar-blue text-sm font-semibold mb-8 animate-fade-in-up">
+                <Sparkles size={16} className="mr-2 text-brandGreen" />
+                Complete workflow
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                Hoe werkt het <span className="text-brandGreen">Daar</span> platform?
+              </h1>
+
+              <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                Een complete oplossing die werving, beheer en impactmeting naadloos met elkaar verbindt.
+                Ontdek hoe Daar jouw vrijwilligersorganisatie naar een hoger niveau tilt.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link
+                  href="/afspraak"
+                  className="bg-brandGreen text-white font-bold px-8 py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 flex items-center justify-center group"
+                >
+                  Plan een demo
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                </Link>
+                <Link
+                  href="/quiz"
+                  className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-8 py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm"
+                >
+                  Doe de Geluksmonitor
+                </Link>
+              </div>
+
+              <div className="mt-12 flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-600 font-medium">
+                <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                  <Check size={18} className="text-daar-mint mr-2" /> Cloud-based
+                </span>
+                <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                  <Check size={18} className="text-daar-mint mr-2" /> Realtime
+                </span>
+                <span className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                  <Check size={18} className="text-daar-mint mr-2" /> Schaalbaar
+                </span>
+              </div>
+            </div>
+
+            {/* Right Visual - Workflow Card */}
+            <div className="lg:col-span-6 relative">
+              <div className="bg-white rounded-3xl p-6 shadow-2xl border border-gray-100">
+                {/* Workflow Steps Mini Preview */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4 p-4 bg-lightGreen rounded-2xl">
+                    <div className="w-12 h-12 rounded-full bg-brandGreen/20 flex items-center justify-center flex-shrink-0">
+                      <Users className="w-6 h-6 text-brandGreen" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-xs font-semibold text-brandGreen mb-1">STAP 1</div>
+                      <div className="font-semibold text-daar-blue">Aanmelding & Onboarding</div>
+                      <div className="text-sm text-gray-600">Smart formulieren met auto-complete</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl">
+                    <div className="w-12 h-12 rounded-full bg-daar-helder/20 flex items-center justify-center flex-shrink-0">
+                      <Zap className="w-6 h-6 text-daar-helder" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-xs font-semibold text-daar-helder mb-1">STAP 2</div>
+                      <div className="font-semibold text-daar-blue">Smart Matching</div>
+                      <div className="text-sm text-gray-600">AI-matching binnen 3 seconden</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 p-4 bg-purple-50 rounded-2xl">
+                    <div className="w-12 h-12 rounded-full bg-purple-200/50 flex items-center justify-center flex-shrink-0">
+                      <Shield className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-xs font-semibold text-purple-600 mb-1">STAP 3</div>
+                      <div className="font-semibold text-daar-blue">Planning & Actieve Inzet</div>
+                      <div className="text-sm text-gray-600">Geïntegreerde agenda & welzijn</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 p-4 bg-amber-50 rounded-2xl">
+                    <div className="w-12 h-12 rounded-full bg-amber-200/50 flex items-center justify-center flex-shrink-0">
+                      <BarChart2 className="w-6 h-6 text-amber-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-xs font-semibold text-amber-600 mb-1">STAP 4</div>
+                      <div className="font-semibold text-daar-blue">Impact Meting</div>
+                      <div className="text-sm text-gray-600">Automatische SDG-rapportage</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full bg-brandGreen/10 rounded-3xl"></div>
             </div>
           </div>
         </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-32 h-32 bg-brandGreen/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-daar-geel/10 rounded-full blur-3xl"></div>
       </section>
 
       {/* Feature Tab Showcase */}
