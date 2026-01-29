@@ -20,26 +20,26 @@ export const PlatformContent = () => {
                 Complete workflow
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 Hoe werkt het <span className="text-brandGreen">Daar</span> platform?
               </h1>
 
-              <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Een complete oplossing die werving, beheer en impactmeting naadloos met elkaar verbindt.
                 Ontdek hoe Daar jouw vrijwilligersorganisatie naar een hoger niveau tilt.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Link
                   href="/afspraak"
-                  className="bg-brandGreen text-white font-bold px-8 py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 flex items-center justify-center group"
+                  className="bg-brandGreen text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 flex items-center justify-center group text-sm sm:text-base"
                 >
                   Plan een demo
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
                 </Link>
                 <Link
                   href="/quiz"
-                  className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-8 py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm"
+                  className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm text-sm sm:text-base"
                 >
                   Doe de Geluksmonitor
                 </Link>

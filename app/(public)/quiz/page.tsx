@@ -27,44 +27,44 @@ export default function QuizPage() {
                 Gratis tool - 2 minuten
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 Hoe gezond is jouw <span className="text-brandGreen">vrijwilligersbeleid?</span>
               </h1>
 
-              <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Ontdek in 2 minuten hoe je scoort op 5 cruciale dimensies van vrijwilligersbeheer.
                 Krijg directe inzichten en concrete verbeterpunten gebaseerd op onze Geluksformule.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-10 sm:mb-12">
                 <a
                   href="#quiz"
-                  className="bg-brandGreen text-white font-bold px-8 py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 flex items-center justify-center group"
+                  className="bg-brandGreen text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 flex items-center justify-center group text-sm sm:text-base"
                 >
                   Start de gratis scan
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
                 </a>
                 <Link
                   href="/platform"
-                  className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-8 py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm"
+                  className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm text-sm sm:text-base"
                 >
                   Bekijk het platform
                 </Link>
               </div>
 
               {/* Trust Badges */}
-              <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-lg mx-auto lg:mx-0">
                 <div className="text-center lg:text-left">
-                  <div className="text-3xl font-bold text-brandGreen mb-1">11</div>
-                  <div className="text-sm text-gray-600">vragen</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-brandGreen mb-1">11</div>
+                  <div className="text-xs sm:text-sm text-gray-600">vragen</div>
                 </div>
                 <div className="text-center lg:text-left">
-                  <div className="text-3xl font-bold text-brandGreen mb-1">5</div>
-                  <div className="text-sm text-gray-600">dimensies</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-brandGreen mb-1">5</div>
+                  <div className="text-xs sm:text-sm text-gray-600">dimensies</div>
                 </div>
                 <div className="text-center lg:text-left">
-                  <div className="text-3xl font-bold text-brandGreen mb-1">2</div>
-                  <div className="text-sm text-gray-600">minuten</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-brandGreen mb-1">2</div>
+                  <div className="text-xs sm:text-sm text-gray-600">minuten</div>
                 </div>
               </div>
             </div>

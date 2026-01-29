@@ -215,18 +215,22 @@ export function ChatWidget() {
       <button
         onClick={() => setIsOpen(true)}
         className={cn(
-          'fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-brandGreen text-white shadow-lg hover:bg-brandGreenHover transition-all hover:scale-105',
+          'fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-brandGreen text-white shadow-lg hover:bg-brandGreenHover transition-all hover:scale-105',
           isOpen && 'hidden'
         )}
         aria-label="Open chat"
       >
-        <MessageCircle className="w-6 h-6 mx-auto" />
+        <MessageCircle className="w-6 h-6 md:w-7 md:h-7 mx-auto" />
       </button>
 
       {/* Chat Window */}
       <div
         className={cn(
-          'fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300',
+          'fixed z-50 bg-white shadow-2xl flex flex-col overflow-hidden transition-all duration-300',
+          // Mobile: full screen
+          'inset-0 md:inset-auto',
+          // Desktop: bottom right corner
+          'md:bottom-6 md:right-6 md:w-96 md:h-[600px] md:rounded-2xl',
           isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
         )}
       >
