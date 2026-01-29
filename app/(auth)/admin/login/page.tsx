@@ -89,7 +89,7 @@ export default function LoginPage() {
           {/* Help text */}
           <p className="mt-6 text-center text-sm text-gray-500">
             Problemen met inloggen?{' '}
-            <a href="mailto:support@daar.nl" className="text-brandGreen hover:underline">
+            <a href="mailto:hallo@daar.nl" className="text-brandGreen hover:underline">
               Neem contact op
             </a>
           </p>

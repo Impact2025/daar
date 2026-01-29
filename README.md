@@ -302,7 +302,7 @@ Copyright © 2025 DAAR B.V. Alle rechten voorbehouden.
 
 ## 🆘 Support
 
-- **Email**: info@daar.nl
+- **Email**: hallo@daar.nl
 - **Website**: [daar.nl](https://daar.nl)
 - **LinkedIn**: [DAAR](https://linkedin.com/company/samendaar)
 - **Issues**: [GitHub Issues](https://github.com/jouw-org/daar-nextjs/issues)

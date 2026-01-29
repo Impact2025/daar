@@ -61,7 +61,7 @@ export default function ContactLayout({
       <LocalBusinessSchema
         name="Daar B.V."
         description="Vrijwilligersplatform voor organisaties in Nederland"
-        email="info@daar.nl"
+        email="hallo@daar.nl"
       />
       {children}
     </>

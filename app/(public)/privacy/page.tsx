@@ -77,8 +77,8 @@ export default function PrivacyPage() {
             <h2 className="text-xl font-semibold text-navy mt-8 mb-4">6. Contact</h2>
             <p className="text-gray-600 mb-4">
               Heb je vragen over dit privacybeleid? Neem dan contact met ons op via{' '}
-              <a href="mailto:privacy@daar.nl" className="text-brandGreen hover:underline">
-                privacy@daar.nl
+              <a href="mailto:hallo@daar.nl" className="text-brandGreen hover:underline">
+                hallo@daar.nl
               </a>
             </p>
           </div>

@@ -73,7 +73,7 @@ Bedankt voor je boeking! Wij kijken ernaar uit om je te spreken.
 
 {meetingLink ? "**Videogesprek:** " + meetingLink : ""}
 
-Heb je vragen of moet je de afspraak wijzigen? Neem dan contact met ons op via info@daar.nl.
+Heb je vragen of moet je de afspraak wijzigen? Neem dan contact met ons op via hallo@daar.nl.
 
 Met vriendelijke groet,
 Team DAAR

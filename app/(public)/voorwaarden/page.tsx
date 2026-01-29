@@ -75,8 +75,8 @@ export default function VoorwaardenPage() {
             <h2 className="text-xl font-semibold text-navy mt-8 mb-4">Artikel 8 - Contact</h2>
             <p className="text-gray-600 mb-4">
               Voor vragen over deze voorwaarden kun je contact opnemen via{' '}
-              <a href="mailto:info@daar.nl" className="text-brandGreen hover:underline">
-                info@daar.nl
+              <a href="mailto:hallo@daar.nl" className="text-brandGreen hover:underline">
+                hallo@daar.nl
               </a>
             </p>
           </div>

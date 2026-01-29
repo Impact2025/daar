@@ -439,7 +439,7 @@ const DaarLandingPage2 = () => {
               <ul className="space-y-4 text-gray-400">
                 <li><Link href="/contact" className="hover:text-brandGreen transition-colors">Support</Link></li>
                 <li><Link href="/afspraak" className="hover:text-brandGreen transition-colors">Afspraak plannen</Link></li>
-                <li><a href="mailto:info@daar.nl" className="hover:text-brandGreen transition-colors">info@daar.nl</a></li>
+                <li><a href="mailto:hallo@daar.nl" className="hover:text-brandGreen transition-colors">hallo@daar.nl</a></li>
                 <li className="flex space-x-4 pt-2">
                   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandGreen transition-colors cursor-pointer text-xs">Li</a>
                   <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandGreen transition-colors cursor-pointer text-xs">X</a>

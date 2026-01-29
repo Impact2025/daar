@@ -129,11 +129,11 @@ export async function Footer() {
             <ul className="space-y-2 text-gray-300">
               <li>
                 <a
-                  href="mailto:info@daar.nl"
+                  href="mailto:hallo@daar.nl"
                   className="hover:text-white transition-colors"
                   rel="noopener noreferrer"
                 >
-                  info@daar.nl
+                  hallo@daar.nl
                 </a>
               </li>
               <li>

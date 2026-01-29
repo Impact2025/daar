@@ -67,8 +67,8 @@ export default function CookiesPage() {
             <h2 className="text-xl font-semibold text-navy mt-8 mb-4">Contact</h2>
             <p className="text-gray-600 mb-4">
               Heb je vragen over ons cookiebeleid? Neem dan contact met ons op via{' '}
-              <a href="mailto:info@daar.nl" className="text-brandGreen hover:underline">
-                info@daar.nl
+              <a href="mailto:hallo@daar.nl" className="text-brandGreen hover:underline">
+                hallo@daar.nl
               </a>
             </p>
           </div>

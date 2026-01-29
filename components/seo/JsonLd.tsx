@@ -14,7 +14,7 @@ export function OrganizationSchema({
   url = 'https://daar.nl',
   logo = 'https://daar.nl/logo.png',
   description = 'Daar is het complete platform voor vrijwilligersmanagement. Van werving tot impactmeting, met de unieke Geluksformule.',
-  email = 'info@daar.nl',
+  email = 'hallo@daar.nl',
   sameAs = [
     'https://www.linkedin.com/company/daar-nl',
     'https://twitter.com/daarnl',
@@ -321,7 +321,7 @@ export function LocalBusinessSchema({
   name = 'Daar B.V.',
   description = 'Vrijwilligersplatform voor organisaties in Nederland',
   url = 'https://daar.nl',
-  email = 'info@daar.nl',
+  email = 'hallo@daar.nl',
   address = {
     streetAddress: 'Nederland',
     addressLocality: 'Amsterdam',

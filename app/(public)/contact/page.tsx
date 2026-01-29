@@ -112,8 +112,8 @@ const supportOptions = [
   {
     title: 'Stuur een e-mail',
     description: 'Voor uitgebreide vragen of documentatie',
-    action: 'info@daar.nl',
-    href: 'mailto:info@daar.nl',
+    action: 'hallo@daar.nl',
+    href: 'mailto:hallo@daar.nl',
     bgColor: '#5BA3BD',
     available: 'Reactie binnen 24 uur',
   },
@@ -401,7 +401,7 @@ export default function ContactPage() {
                 <h3 className="font-bold text-daar-blue mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>Direct contact</h3>
                 <div className="space-y-4">
                   <a
-                    href="mailto:info@daar.nl"
+                    href="mailto:hallo@daar.nl"
                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
                     <div className="w-10 h-10 bg-brandGreen/10 rounded-lg flex items-center justify-center">
@@ -410,7 +410,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm text-gray-500">E-mail</p>
                       <p className="font-medium text-daar-blue group-hover:text-brandGreen transition-colors">
-                        info@daar.nl
+                        hallo@daar.nl
                       </p>
                     </div>
                   </a>

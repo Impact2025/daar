@@ -224,7 +224,7 @@ export async function POST(request: NextRequest) {
 
     // Send emails
     if (resend) {
-      const adminEmails = process.env.ADMIN_NOTIFICATION_EMAILS?.split(',') || ['info@daar.nl']
+      const adminEmails = process.env.ADMIN_NOTIFICATION_EMAILS?.split(',') || ['hallo@daar.nl']
 
       // Send confirmation to user
       await resend.emails.send({
