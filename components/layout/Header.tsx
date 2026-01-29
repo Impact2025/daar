@@ -9,8 +9,7 @@ import { Logo } from '@/components/ui/Logo'
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/platform', label: 'Platform' },
-  { href: '/kennisbank', label: 'Kennisbank' },
-  { href: '/quiz', label: 'VrijwilligersCheck' },
+  { href: '/quiz', label: 'Geluksmonitor' },
   { href: '/over-ons', label: 'Over ons' },
   { href: '/contact', label: 'Contact' },
 ]

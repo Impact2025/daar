@@ -59,7 +59,6 @@ const DaarLandingPage = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-6 items-center">
               <NavLink href="/platform" text="Platform" />
-              <NavLink href="/kennisbank" text="Kennisbank" />
               <NavLink href="/quiz" text="Geluksmonitor" />
               <NavLink href="/over-ons" text="Over ons" />
               <NavLink href="/contact" text="Contact" />
@@ -94,7 +93,6 @@ const DaarLandingPage = () => {
           <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl rounded-b-2xl">
             <div className="flex flex-col p-4 space-y-2">
               <MobileNavLink href="/platform" text="Platform" onClick={() => setIsMenuOpen(false)} />
-              <MobileNavLink href="/kennisbank" text="Kennisbank" onClick={() => setIsMenuOpen(false)} />
               <MobileNavLink href="/quiz" text="Geluksmonitor" onClick={() => setIsMenuOpen(false)} />
               <MobileNavLink href="/over-ons" text="Over ons" onClick={() => setIsMenuOpen(false)} />
               <MobileNavLink href="/contact" text="Contact" onClick={() => setIsMenuOpen(false)} />
@@ -499,7 +497,6 @@ const DaarLandingPage = () => {
                  title="Over Daar"
                  links={[
                    { label: 'Onze Missie', href: '/over-ons' },
-                   { label: 'Kennisbank', href: '/kennisbank' },
                    { label: 'Contact', href: '/contact' }
                  ]}
                />
