@@ -107,7 +107,7 @@ export default async function KennisbankPage({ searchParams }: PageProps) {
   return (
     <div className="bg-offWhite min-h-screen">
       {/* Hero */}
-      <section className="relative bg-lightGreen py-20 lg:py-24 overflow-hidden">
+      <section className="relative bg-offWhite py-20 lg:py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-brandGreen/10 rounded-full mb-6 shadow-sm">
             <BookOpen className="w-8 h-8 text-brandGreen" />
