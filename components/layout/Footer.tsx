@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Linkedin, Facebook, Instagram } from 'lucide-react'
 import { Logo } from '@/components/ui/Logo'
+import { prisma } from '@/lib/prisma'
 
 // X (Twitter) icon
 const XIcon = ({ className }: { className?: string }) => (
@@ -16,12 +17,39 @@ const socialLinks = [
   { name: 'Instagram', href: 'https://www.instagram.com/samendaar/', icon: Instagram },
 ]
 
+async function getTopCategories() {
+  const categories = await prisma.category.findMany({
+    where: {
+      parentId: null,
+      articles: {
+        some: {
+          status: 'PUBLISHED'
+        }
+      }
+    },
+    select: {
+      name: true,
+      slug: true,
+      _count: {
+        select: {
+          articles: { where: { status: 'PUBLISHED' } }
+        }
+      }
+    },
+    orderBy: { sortOrder: 'asc' },
+    take: 3,
+  })
+
+  return categories
+}
+
 export async function Footer() {
+  const topCategories = await getTopCategories()
 
   return (
     <footer className="bg-daar-blue text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1">
             <Link href="/" className="flex items-center mb-4">
@@ -70,6 +98,28 @@ export async function Footer() {
                   Geluksmonitor
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Kennisbank - Dynamische categorieën */}
+          <div>
+            <h3 className="font-semibold mb-4">Kennisbank</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li>
+                <Link href="/kennisbank" className="hover:text-white transition-colors">
+                  Alle artikelen
+                </Link>
+              </li>
+              {topCategories.map((category) => (
+                <li key={category.slug}>
+                  <Link
+                    href={`/kennisbank/categorie/${category.slug}`}
+                    className="hover:text-white transition-colors"
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
