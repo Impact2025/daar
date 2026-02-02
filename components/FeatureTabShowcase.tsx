@@ -376,9 +376,6 @@ export default function FeatureTabShowcase() {
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                {activeTab === index && (
-                  <span className="inline-block w-2 h-2 rounded-full bg-white mr-2"></span>
-                )}
                 {feature.label}
               </button>
             ))}
