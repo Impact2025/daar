@@ -119,8 +119,8 @@ const features: Feature[] = [
   {
     id: 'planning',
     label: 'Planning & Projecten',
-    title: 'Wie kan, wil en doet mee? Niemand wordt overgeslagen.',
-    description: 'Beheer projecten, zie in één oogopslag wie beschikbaar is en wie al deelneemt. Eerlijke verdeling en overzicht voor coördinatoren — zodat iedereen wordt gezien en meedoet.',
+    title: 'Wie kan, wil en doet mee? Chat direct met je projectgroep.',
+    description: 'Beheer projecten, zie in één oogopslag wie beschikbaar is en chat direct met je team. "Wie neemt de ballen mee?" — communiceer moeiteloos binnen je projectgroep.',
     bgColor: '#4BA99B',
     accentColor: '#FFFFFF',
     ctaText: 'Ontdek planning',
@@ -161,16 +161,36 @@ const features: Feature[] = [
             <span className="text-sm text-daar-blue flex-1">9 uitgenodigd</span>
             <span className="text-xs text-gray-500">⏳</span>
           </div>
-          <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
-            <Users className="w-4 h-4 text-gray-500" />
-            <span className="text-sm text-daar-blue flex-1">6 plekken vrij</span>
-            <span className="text-xs text-brandGreen">+</span>
+        </div>
+
+        {/* Project groepschat preview */}
+        <div className="bg-gray-50 rounded-2xl p-4 mb-3">
+          <div className="flex items-center gap-2 mb-3">
+            <MessageCircle className="w-4 h-4 text-daar-mint" />
+            <span className="text-sm font-semibold text-daar-blue">Projectgroep chat</span>
+            <span className="ml-auto w-5 h-5 bg-daar-koraal text-white text-xs font-bold rounded-full flex items-center justify-center">2</span>
+          </div>
+          <div className="space-y-2">
+            <div className="flex items-start gap-2">
+              <div className="w-6 h-6 rounded-full bg-daar-helder flex items-center justify-center text-white text-xs font-bold flex-shrink-0">M</div>
+              <div className="bg-white rounded-lg rounded-tl-none p-2 flex-1">
+                <p className="text-xs text-gray-700">Wie neemt de ballen mee naar het veld?</p>
+                <p className="text-xs text-gray-400 mt-1">10:24</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <div className="w-6 h-6 rounded-full bg-brandGreen flex items-center justify-center text-white text-xs font-bold flex-shrink-0">A</div>
+              <div className="bg-white rounded-lg rounded-tl-none p-2 flex-1">
+                <p className="text-xs text-gray-700">Regel ik! Tot zo 👍</p>
+                <p className="text-xs text-gray-400 mt-1">10:26</p>
+              </div>
+            </div>
           </div>
         </div>
 
         <button className="w-full bg-daar-mint text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-daar-mint/90 transition-colors">
-          <UserCheck size={18} />
-          Nodig vrijwilligers uit
+          <MessageCircle size={18} />
+          Open groepschat
         </button>
       </div>
     ),
@@ -279,8 +299,8 @@ const features: Feature[] = [
   {
     id: 'communicatie',
     label: 'Communicatie',
-    title: 'Blijf moeiteloos in contact',
-    description: 'Chat met groepen, deel nieuws en vier successen. Verstuur automatisch bedankjes en houd iedereen betrokken met de "Vrijwilliger van de maand" feature.',
+    title: 'Chat met je projectgroepen en teams',
+    description: 'Directe communicatie binnen projecten. "Willem is ziek vandaag, Achmed krijgt de leiding." Chat met groepen, deel nieuws en vier successen samen.',
     bgColor: '#2D334A',
     accentColor: '#FFFFFF',
     ctaText: 'Bekijk features',
@@ -289,28 +309,34 @@ const features: Feature[] = [
       <div className="bg-white rounded-3xl p-6 shadow-xl max-w-sm">
         <div className="flex items-center gap-3 mb-4">
           <MessageCircle className="w-6 h-6 text-daar-koraal" />
-          <p className="font-bold text-daar-blue">Team Buurtwerk</p>
+          <p className="font-bold text-daar-blue">Voetbaltraining Zaterdag</p>
           <span className="ml-auto w-6 h-6 bg-daar-koraal text-white text-xs font-bold rounded-full flex items-center justify-center">3</span>
         </div>
         <div className="space-y-3">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-full bg-daar-helder flex items-center justify-center text-daar-blue text-xs font-bold">LB</div>
+            <div className="w-8 h-8 rounded-full bg-daar-helder flex items-center justify-center text-white text-xs font-bold">M</div>
             <div className="flex-1 bg-gray-50 rounded-2xl rounded-tl-none p-3">
-              <p className="text-sm text-gray-700">Geweldig nieuws! We hebben deze maand 50 nieuwe matches gemaakt!</p>
-              <p className="text-xs text-gray-400 mt-1">14:32</p>
+              <p className="text-sm text-gray-700">Wie neemt de ballen mee naar het veld?</p>
+              <p className="text-xs text-gray-400 mt-1">08:15</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-full bg-daar-mint flex items-center justify-center text-daar-blue text-xs font-bold">PK</div>
+            <div className="w-8 h-8 rounded-full bg-daar-koraal flex items-center justify-center text-white text-xs font-bold">W</div>
             <div className="flex-1 bg-gray-50 rounded-2xl rounded-tl-none p-3">
-              <p className="text-sm text-gray-700">Super! Wie wordt vrijwilliger van de maand?</p>
-              <p className="text-xs text-gray-400 mt-1">14:35</p>
+              <p className="text-sm text-gray-700">Ik ben ziek vandaag 😷 Sorry!</p>
+              <p className="text-xs text-gray-400 mt-1">08:42</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-full bg-brandGreen flex items-center justify-center text-white text-xs font-bold">A</div>
+            <div className="flex-1 bg-gray-50 rounded-2xl rounded-tl-none p-3">
+              <p className="text-sm text-gray-700">Geen probleem! Ik neem vandaag de leiding. Beterschap Willem! 💪</p>
+              <p className="text-xs text-gray-400 mt-1">08:45</p>
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="bg-daar-geel/30 px-4 py-2 rounded-full flex items-center gap-2">
-              <span className="text-lg">🎉</span>
-              <span className="text-sm font-medium text-daar-blue">Marieke is Vrijwilliger van de Maand!</span>
+            <div className="bg-lightGreen px-4 py-2 rounded-full flex items-center gap-2">
+              <span className="text-sm font-medium text-brandGreen">We gaan gewoon door! ⚽</span>
             </div>
           </div>
         </div>

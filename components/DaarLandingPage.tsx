@@ -300,7 +300,7 @@ const DaarLandingPage = () => {
             />
             <Card
                title="Planning & Projecten"
-               desc="Wie wil, kan en doet mee? Overzicht van alle projecten, planning en deelnemers. Niemand wordt overgeslagen, iedereen wordt gezien."
+               desc="Wie wil, kan en doet mee? Overzicht van projecten en deelnemers met groepschat. 'Wie neemt de ballen mee?' Chat direct met je projectgroep."
                icon={<Calendar size={28} />}
                accent="green"
             />
@@ -318,7 +318,7 @@ const DaarLandingPage = () => {
             />
             <Card
                title="Communicatie"
-               desc="Chat met groepen, deel nieuws en verstuur 'Vrijwilliger van de maand' updates."
+               desc="Chat met projectgroepen en teams. 'Willem is ziek, Achmed krijgt vandaag de leiding'. Deel direct nieuws en updates."
                icon={<MessageCircle size={28} />}
                accent="navy"
             />
