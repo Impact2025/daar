@@ -15,13 +15,13 @@ const config: Config = {
         brandGreenHover: '#2E855D',
         lightGreen: '#EBF7F2',
         offWhite: '#F8F9FA',
-        // Samen Daar 2.0 Palet
-        'daar-blue': '#2D334A',
-        'daar-koraal': '#FF8C66',
-        'daar-koraal-hover': '#E67A57',
-        'daar-geel': '#FFD166',
-        'daar-helder': '#8ECAE6',
-        'daar-mint': '#83D4C8',
+        // Samen Daar 2.0 Palet - Impact Stats kleuren
+        'daar-blue': '#2D334A',        // Navy (ROI)
+        'daar-koraal': '#E07A5A',      // Koraal (Tevredenheid)
+        'daar-koraal-hover': '#D06948',
+        'daar-geel': '#D4A84B',        // Goud (Tijdsbesparing)
+        'daar-helder': '#5BA3BD',      // Helder blauw (Retentie)
+        'daar-mint': '#4BA99B',        // Mint groen (Impact)
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
