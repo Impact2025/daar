@@ -63,19 +63,19 @@ export const PlatformContent = () => {
               <div className="bg-white rounded-3xl p-6 shadow-2xl border border-gray-100">
                 {/* Workflow Steps Mini Preview */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-lightGreen rounded-2xl">
-                    <div className="w-12 h-12 rounded-full bg-brandGreen/20 flex items-center justify-center flex-shrink-0">
-                      <Users className="w-6 h-6 text-brandGreen" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#E8F5F3' }}>
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#4BA99B20' }}>
+                      <Users className="w-6 h-6 text-daar-mint" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-semibold text-brandGreen mb-1">STAP 1</div>
+                      <div className="text-xs font-semibold text-daar-mint mb-1">STAP 1</div>
                       <div className="font-semibold text-daar-blue">Aanmelding & Onboarding</div>
                       <div className="text-sm text-gray-600">Smart formulieren met auto-complete</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl">
-                    <div className="w-12 h-12 rounded-full bg-daar-helder/20 flex items-center justify-center flex-shrink-0">
+                  <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#E6F3F7' }}>
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#5BA3BD20' }}>
                       <Zap className="w-6 h-6 text-daar-helder" />
                     </div>
                     <div className="flex-1">
@@ -85,23 +85,23 @@ export const PlatformContent = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 p-4 bg-purple-50 rounded-2xl">
-                    <div className="w-12 h-12 rounded-full bg-purple-200/50 flex items-center justify-center flex-shrink-0">
-                      <Shield className="w-6 h-6 text-purple-600" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#FCF0EB' }}>
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#E07A5A20' }}>
+                      <Shield className="w-6 h-6 text-daar-koraal" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-semibold text-purple-600 mb-1">STAP 3</div>
+                      <div className="text-xs font-semibold text-daar-koraal mb-1">STAP 3</div>
                       <div className="font-semibold text-daar-blue">Planning & Actieve Inzet</div>
                       <div className="text-sm text-gray-600">Geïntegreerde agenda & welzijn</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 p-4 bg-amber-50 rounded-2xl">
-                    <div className="w-12 h-12 rounded-full bg-amber-200/50 flex items-center justify-center flex-shrink-0">
-                      <BarChart2 className="w-6 h-6 text-amber-600" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#F9F3E8' }}>
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D4A84B20' }}>
+                      <BarChart2 className="w-6 h-6 text-daar-geel" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-semibold text-amber-600 mb-1">STAP 4</div>
+                      <div className="text-xs font-semibold text-daar-geel mb-1">STAP 4</div>
                       <div className="font-semibold text-daar-blue">Impact Meting</div>
                       <div className="text-sm text-gray-600">Automatische SDG-rapportage</div>
                     </div>
