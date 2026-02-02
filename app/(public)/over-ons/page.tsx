@@ -109,7 +109,7 @@ export default function OverOnsPage() {
 
               <p className="text-xl text-gray-600 leading-relaxed mb-10 max-w-lg">
                 Wij geloven dat elke vrijwilliger gezien en gewaardeerd verdient te worden.
-                Daarom bouwen we technologie die de mens centraal zet.
+                Of je nu een gemeente, sportvereniging, museum of buurthuis bent — wij bouwen technologie die de mens centraal zet.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -203,7 +203,8 @@ export default function OverOnsPage() {
                 <h3 className="text-2xl font-bold text-daar-blue mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>Onze Missie</h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
                   DAAR maakt vrijwilligerswerk <strong className="text-daar-blue">slimmer, leuker en duurzamer</strong>.
-                  We creëren en meten Geluksmomenten, brengen vrijwilligers en organisaties bij elkaar,
+                  Van gemeentes en welzijnsorganisaties tot sportclubs en buurthuizen —
+                  we creëren en meten Geluksmomenten, brengen vrijwilligers en organisaties bij elkaar,
                   en monitoren het welzijn van iedereen die bijdraagt.
                 </p>
                 <div className="flex items-center gap-2 text-brandGreen font-medium">
@@ -442,10 +443,10 @@ export default function OverOnsPage() {
       <section className="py-24 bg-daar-blue">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
-            Klaar om te ontdekken wat DAAR voor jou kan betekenen?
+            Klaar om te ontdekken wat DAAR voor je kan betekenen?
           </h2>
           <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
-            Start met de gratis Geluksmonitor scan of plan direct een gesprek met ons team.
+            Voor elke organisatie die werkt met vrijwilligers. Start met de gratis Geluksmonitor scan of plan direct een gesprek met ons team.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

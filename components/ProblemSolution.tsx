@@ -29,10 +29,10 @@ const ProblemSolution: React.FC = () => {
             <ul className="space-y-4">
               {[
                 'Excel-sheets die niemand begrijpt',
+                'Geen overzicht wie kan en wil meedoen',
                 'Vrijwilligers die afhaken zonder waarschuwing',
-                'Urenlang zoeken naar de juiste match',
+                'Mensen worden per ongeluk overgeslagen',
                 'Subsidieaanvragen zonder harde cijfers',
-                'VOG\'s en contracten overal verspreid',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 flex items-center justify-center mt-0.5">
@@ -58,10 +58,10 @@ const ProblemSolution: React.FC = () => {
               <ul className="space-y-4">
                 {[
                   'Eén overzichtelijk dashboard voor alles',
-                  'Vroegtijdige signalen via de Gelukscheck',
+                  'Projectoverzicht: wie kan, wil en doet mee',
+                  'Eerlijke verdeling — niemand wordt vergeten',
                   'Smart Matching vindt de perfecte vrijwilliger',
                   'Kant-en-klare impactrapporten met één klik',
-                  'Centraal, AVG-proof documentbeheer',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-brandGreen/20 flex items-center justify-center mt-0.5">

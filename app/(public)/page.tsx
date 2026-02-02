@@ -71,11 +71,11 @@ export default function Home() {
         description="Het complete platform voor vrijwilligersmanagement met werving, matching, beheer en impactmeting."
         features={[
           "Smart Matching voor vrijwilligers",
+          "Planning & Projectbeheer met deelnemersoverzicht",
           "Geluksformule impactmeting",
           "Centraal documentbeheer (AVG-proof)",
           "Real-time rapportages en dashboards",
           "Communicatie en engagement tools",
-          "Geluksmonitor assessment",
         ]}
         aggregateRating={{
           ratingValue: 4.8,
@@ -102,8 +102,8 @@ export default function Home() {
 
               <p className="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Het complete platform dat werving, beheer en impactmeting verbindt.
-                Verhoog de betrokkenheid en maak elk uur meetbaar waardevol.
-                <span className="block mt-3 font-semibold text-brandGreen">Nodig uw organisatie uit voor een gratis Geluksmonitor scan!</span>
+                Voor gemeenten, sportverenigingen, musea én de plaatselijke duivenclub.
+                <span className="block mt-3 font-semibold text-brandGreen">Nodig je organisatie uit voor een gratis Geluksmonitor scan!</span>
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">

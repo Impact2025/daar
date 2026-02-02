@@ -26,7 +26,7 @@ export const PlatformContent = () => {
 
               <p className="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Een complete oplossing die werving, beheer en impactmeting naadloos met elkaar verbindt.
-                Ontdek hoe Daar jouw vrijwilligersorganisatie naar een hoger niveau tilt.
+                Of je nu een gemeente, sportclub, museum of buurthuis bent — ontdek hoe Daar je organisatie naar een hoger niveau tilt.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -207,7 +207,7 @@ export const PlatformContent = () => {
             Klaar om te starten?
           </h2>
           <p className="text-xl text-gray-300 mb-10 font-light max-w-2xl mx-auto">
-            Plan een demo en ontdek hoe Daar jouw vrijwilligerswerk transformeert
+            Voor elke organisatie die werkt met vrijwilligers. Plan een demo en ontdek hoe Daar je vrijwilligerswerk transformeert.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
@@ -250,10 +250,10 @@ export const PlatformContent = () => {
             },
             "featureList": [
               "Smart Matching met AI",
+              "Planning & Projectbeheer",
               "Centraal AVG-proof Dossier",
               "Impact Dashboard met SDG-koppeling",
-              "Stemmingsmeter welzijnsmonitor",
-              "Declaratie App met OCR",
+              "Geluksmonitor welzijnsmonitor",
               "Communicatie Hub"
             ]
           })

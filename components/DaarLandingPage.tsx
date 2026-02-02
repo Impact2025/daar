@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, ChevronRight, BarChart2, Users, Heart, Shield, Check, Globe, MessageCircle, Smile, ClipboardCheck } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronRight, BarChart2, Users, Heart, Shield, Check, Globe, MessageCircle, Smile, ClipboardCheck, Calendar } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
@@ -127,8 +127,8 @@ const DaarLandingPage = () => {
 
                <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed font-normal">
                  Het complete platform dat werving, beheer en impactmeting verbindt.
-                 Verhoog de betrokkenheid en maak elk uur meetbaar waardevol.
-                 <span className="block mt-3 font-semibold text-brandGreen">Nodig uw organisatie uit voor een gratis Geluksmonitor scan!</span>
+                 Voor gemeenten, sportverenigingen, musea én de plaatselijke duivenclub.
+                 <span className="block mt-3 font-semibold text-brandGreen">Nodig je organisatie uit voor een gratis Geluksmonitor scan!</span>
                </p>
 
                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -223,6 +223,32 @@ const DaarLandingPage = () => {
          </div>
       </section>
 
+      {/* Voor Iedereen Section */}
+      <section className="py-16 bg-gradient-to-b from-white to-offWhite">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+               <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-4 tracking-tight">
+                  Voor elke organisatie die werkt met vrijwilligers
+               </h2>
+               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                  Van gemeentes, welzijnsorganisaties en musea, tot de plaatselijke voetbal- of duivenvereniging.
+                  Van scouting tot buurthulp. Daar groeit mee met je organisatie.
+               </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+               <OrgTypeCard emoji="🏛️" label="Gemeentes" />
+               <OrgTypeCard emoji="🤝" label="Welzijnswerk" />
+               <OrgTypeCard emoji="🎨" label="Musea" />
+               <OrgTypeCard emoji="⚽" label="Sportclubs" />
+               <OrgTypeCard emoji="🏘️" label="Buurthuizen" />
+               <OrgTypeCard emoji="⛺" label="Scouting" />
+               <OrgTypeCard emoji="🕊️" label="Verenigingen" />
+               <OrgTypeCard emoji="💚" label="Buurthulp" />
+            </div>
+         </div>
+      </section>
+
       {/* Expertise Statement */}
       <section className="py-16 bg-offWhite">
          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -273,6 +299,12 @@ const DaarLandingPage = () => {
                accent="navy"
             />
             <Card
+               title="Planning & Projecten"
+               desc="Wie wil, kan en doet mee? Overzicht van alle projecten, planning en deelnemers. Niemand wordt overgeslagen, iedereen wordt gezien."
+               icon={<Calendar size={28} />}
+               accent="green"
+            />
+            <Card
                title="Impact Dashboard"
                desc="Genereer real-time rapporten voor gemeenten en fondsen. Maak je waarde zichtbaar."
                icon={<BarChart2 size={28} />}
@@ -285,15 +317,15 @@ const DaarLandingPage = () => {
                accent="navy"
             />
             <Card
-               title="Declaratie App"
-               desc="Laat vrijwilligers bonnetjes scannen en declareren. Snel, foutloos en transparant."
-               icon={<Globe size={28} />}
-               accent="navy"
-            />
-            <Card
                title="Communicatie"
                desc="Chat met groepen, deel nieuws en verstuur 'Vrijwilliger van de maand' updates."
                icon={<MessageCircle size={28} />}
+               accent="navy"
+            />
+            <Card
+               title="Declaratie App"
+               desc="Laat vrijwilligers bonnetjes scannen en declareren. Snel, foutloos en transparant."
+               icon={<Globe size={28} />}
                accent="green"
             />
           </div>
@@ -454,7 +486,7 @@ const DaarLandingPage = () => {
          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Klaar voor meer grip en geluk?</h2>
             <p className="text-xl text-gray-300 mb-10 font-light max-w-2xl mx-auto">
-               Ontdek hoe Daar jouw organisatie kan versterken. Vraag vandaag nog een demo aan.
+               Of je nu een gemeente, welzijnsorganisatie, sportvereniging of buurthuis bent — ontdek hoe Daar je organisatie kan versterken.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
                <Link
@@ -723,5 +755,17 @@ const QuizDimensionBar: React.FC<QuizDimensionBarProps> = ({ label, value, color
     </div>
   );
 };
+
+interface OrgTypeCardProps {
+  emoji: string;
+  label: string;
+}
+
+const OrgTypeCard: React.FC<OrgTypeCardProps> = ({ emoji, label }) => (
+  <div className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-brandGreen/20 group">
+    <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{emoji}</div>
+    <p className="text-sm font-semibold text-daar-blue">{label}</p>
+  </div>
+);
 
 export default DaarLandingPage;

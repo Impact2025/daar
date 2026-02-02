@@ -266,7 +266,7 @@ const ImpactStats: React.FC = () => {
           </h2>
 
           <p className="text-lg text-gray-600 leading-relaxed">
-            Organisaties die Daar gebruiken zien direct resultaat. Van minder administratie tot gelukkigere vrijwilligers — onze cijfers spreken voor zich.
+            Van gemeentes tot sportverenigingen, van musea tot buurthuizen — organisaties die Daar gebruiken zien direct resultaat. Van minder administratie tot gelukkigere vrijwilligers.
           </p>
         </div>
 

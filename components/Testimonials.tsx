@@ -26,10 +26,10 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 2,
-    quote: "De Smart Matching module heeft onze wervingstijd gehalveerd. Vrijwilligers worden nu gekoppeld op basis van wat ze écht leuk vinden, niet alleen op beschikbaarheid.",
+    quote: "Als kleine voetbalvereniging dachten we dat zo'n platform niet voor ons was. Maar Daar schaalt perfect mee. We hebben nu eindelijk overzicht over al onze vrijwilligers.",
     author: "Peter Jansen",
-    role: "Manager Vrijwilligerszaken",
-    organization: "Stichting Welzijn",
+    role: "Voorzitter",
+    organization: "VV Schoonhoven",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
     metric: { value: "50%", label: "snellere matching" }
   },
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     quote: "We zagen vrijwilligers afhaken zonder te weten waarom. Nu krijgen we vroegtijdige signalen en kunnen we ingrijpen voordat het te laat is. Ons verloop is met 17% gedaald.",
     author: "Sandra Bakker",
     role: "Directeur",
-    organization: "Humanitas Regio",
+    organization: "Museum Het Valkhof",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
     metric: { value: "-17%", label: "minder verloop" }
   }
@@ -68,7 +68,7 @@ const Testimonials: React.FC = () => {
             Wat onze klanten zeggen
           </h2>
           <p className="text-gray-400 text-lg">
-            Organisaties die de overstap maakten naar Daar
+            Van gemeentes tot sportverenigingen — organisaties die de overstap maakten
           </p>
         </div>
 

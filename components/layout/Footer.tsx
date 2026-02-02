@@ -56,8 +56,8 @@ export async function Footer() {
               <Logo className="h-6" color="white" />
             </Link>
             <p className="text-gray-300 mb-4">
-              Warme Zorg door Slimme Tech. Wij helpen vrijwilligersorganisaties
-              met het professionaliseren van hun vrijwilligersbeheer.
+              Warme Zorg door Slimme Tech. Van gemeentes tot de lokale voetbalclub,
+              van musea tot buurthulp — voor iedere organisatie die werkt met vrijwilligers.
             </p>
             <p className="text-sm text-gray-400 mb-6">
               10% van onze winst gaat naar de Impact Reserve

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Smile, Users, BarChart2, Shield, MessageCircle, ArrowRight, Check, Play, Heart, TrendingUp, Clock } from 'lucide-react';
+import { Smile, Users, BarChart2, Shield, MessageCircle, ArrowRight, Check, Play, Heart, TrendingUp, Clock, Calendar, UserCheck } from 'lucide-react';
 
 interface Feature {
   id: string;
@@ -113,6 +113,65 @@ const features: Feature[] = [
           <Check className="w-5 h-5" />
           <span className="font-semibold text-sm">Match!</span>
         </div>
+      </div>
+    ),
+  },
+  {
+    id: 'planning',
+    label: 'Planning & Projecten',
+    title: 'Wie kan, wil en doet mee? Niemand wordt overgeslagen.',
+    description: 'Beheer projecten, zie in één oogopslag wie beschikbaar is en wie al deelneemt. Eerlijke verdeling en overzicht voor coördinatoren — zodat iedereen wordt gezien en meedoet.',
+    bgColor: '#4BA99B',
+    accentColor: '#FFFFFF',
+    ctaText: 'Ontdek planning',
+    ctaHref: '/platform',
+    visual: (
+      <div className="bg-white rounded-3xl p-6 shadow-xl max-w-sm">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-daar-mint/10 flex items-center justify-center">
+              <Calendar className="w-6 h-6 text-daar-mint" />
+            </div>
+            <div>
+              <p className="font-bold text-daar-blue">Zomerfestival 2025</p>
+              <p className="text-sm text-gray-500">25 juni - 2 juli</p>
+            </div>
+          </div>
+          <span className="px-3 py-1 bg-brandGreen/10 text-brandGreen text-xs font-medium rounded-full">Actief</span>
+        </div>
+
+        <div className="mb-4">
+          <div className="flex justify-between text-sm mb-2">
+            <span className="text-gray-600">Deelnemers</span>
+            <span className="font-semibold text-daar-blue">24 / 30</span>
+          </div>
+          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div className="h-full bg-daar-mint rounded-full" style={{ width: '80%' }}></div>
+          </div>
+        </div>
+
+        <div className="space-y-2 mb-4">
+          <div className="flex items-center gap-2 p-2 bg-lightGreen rounded-lg">
+            <UserCheck className="w-4 h-4 text-brandGreen" />
+            <span className="text-sm text-daar-blue flex-1">15 bevestigd</span>
+            <span className="text-xs text-gray-500">✓</span>
+          </div>
+          <div className="flex items-center gap-2 p-2 bg-daar-geel/20 rounded-lg">
+            <Clock className="w-4 h-4 text-daar-koraal" />
+            <span className="text-sm text-daar-blue flex-1">9 uitgenodigd</span>
+            <span className="text-xs text-gray-500">⏳</span>
+          </div>
+          <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+            <Users className="w-4 h-4 text-gray-500" />
+            <span className="text-sm text-daar-blue flex-1">6 plekken vrij</span>
+            <span className="text-xs text-brandGreen">+</span>
+          </div>
+        </div>
+
+        <button className="w-full bg-daar-mint text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-daar-mint/90 transition-colors">
+          <UserCheck size={18} />
+          Nodig vrijwilligers uit
+        </button>
       </div>
     ),
   },
@@ -273,7 +332,7 @@ export default function FeatureTabShowcase() {
             Alles wat je nodig hebt, op één plek
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Van werving tot impactmeting. Ontdek hoe elke module je vrijwilligerswerk versterkt.
+            Voor grote én kleine organisaties. Van werving tot impactmeting — ontdek hoe elke module je vrijwilligerswerk versterkt.
           </p>
         </div>
 
