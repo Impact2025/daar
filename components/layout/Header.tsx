@@ -8,6 +8,7 @@ import { Logo } from '@/components/ui/Logo'
 
 const navLinks = [
   { href: '/platform', label: 'Platform' },
+  { href: '/prijzen', label: 'Prijzen' },
   { href: '/quiz', label: 'Geluksmonitor' },
   { href: '/over-ons', label: 'Over ons' },
   { href: '/contact', label: 'Contact' },
