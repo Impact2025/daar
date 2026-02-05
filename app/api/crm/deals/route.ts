@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
         value: data.value || null,
         currency: data.currency || 'EUR',
         stage: data.stage || 'QUALIFICATION',
-        probability: data.probability ?? stageProbabilities[data.stage || 'QUALIFICATION'],
+        probability: data.probability ?? stageProbabilities[(data.stage || 'QUALIFICATION') as DealStage],
         expectedCloseDate: data.expectedCloseDate ? new Date(data.expectedCloseDate) : null,
         customerId: data.customerId,
         ownerId: data.ownerId,

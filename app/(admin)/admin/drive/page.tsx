@@ -329,8 +329,8 @@ export default function DrivePage() {
                       id={folder.id}
                       name={folder.name}
                       color={folder.color}
-                      filesCount={'_count' in folder ? folder._count?.files || 0 : 0}
-                      foldersCount={'_count' in folder ? folder._count?.children || 0 : 0}
+                      filesCount={'_count' in folder ? (folder._count as { files?: number })?.files || 0 : 0}
+                      foldersCount={'_count' in folder ? (folder._count as { children?: number })?.children || 0 : 0}
                       onClick={() => navigateToFolder(folder.id)}
                       onRename={handleRenameFolder}
                       onDelete={handleDeleteFolder}
