@@ -213,30 +213,6 @@ export interface CardProps {
 // CRM TYPES
 // ============================================
 
-export type CustomerWithRelations = Customer & {
-  assignedTo: TeamMember | null
-  activities: Activity[]
-  tasks: Task[]
-  deals: Deal[]
-  notes: Note[]
-  _count?: {
-    activities: number
-    tasks: number
-    deals: number
-    notes: number
-  }
-}
-
-export type CustomerListItem = Pick<Customer,
-  'id' | 'companyName' | 'contactName' | 'contactEmail' | 'status' | 'source' | 'lastContactAt' | 'nextFollowUp'
-> & {
-  assignedTo: Pick<TeamMember, 'id' | 'name' | 'avatar' | 'color'> | null
-  _count?: {
-    deals: number
-    tasks: number
-  }
-}
-
 export type DealWithRelations = Deal & {
   customer: Pick<Customer, 'id' | 'companyName' | 'contactName'>
   owner: Pick<TeamMember, 'id' | 'name' | 'avatar' | 'color'>
@@ -255,6 +231,30 @@ export type ActivityWithRelations = Activity & {
 
 export type NoteWithAuthor = Note & {
   author: Pick<TeamMember, 'id' | 'name' | 'avatar'>
+}
+
+export type CustomerWithRelations = Customer & {
+  assignedTo: TeamMember | null
+  activities: ActivityWithRelations[]
+  tasks: TaskWithRelations[]
+  deals: DealWithRelations[]
+  notes: NoteWithAuthor[]
+  _count?: {
+    activities: number
+    tasks: number
+    deals: number
+    notes: number
+  }
+}
+
+export type CustomerListItem = Pick<Customer,
+  'id' | 'companyName' | 'contactName' | 'contactEmail' | 'status' | 'source' | 'lastContactAt' | 'nextFollowUp'
+> & {
+  assignedTo: Pick<TeamMember, 'id' | 'name' | 'avatar' | 'color'> | null
+  _count?: {
+    deals: number
+    tasks: number
+  }
 }
 
 // CRM Form types
