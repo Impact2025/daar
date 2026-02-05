@@ -447,6 +447,10 @@ model Booking {
   leadId        String?
   lead          Lead?         @relation(fields: [leadId], references: [id])
 
+  // CRM Customer koppeling
+  customerId    String?
+  customer      Customer?     @relation(fields: [customerId], references: [id])
+
   // Email tracking
   confirmationSent Boolean    @default(false)
   reminderSent     Boolean    @default(false)
@@ -463,6 +467,7 @@ model Booking {
   @@index([email])
   @@index([status])
   @@index([leadId])
+  @@index([customerId])
 }
 
 enum BookingSource {
@@ -524,6 +529,10 @@ model QuizResult {
   leadId        String?
   lead          Lead?         @relation(fields: [leadId], references: [id])
 
+  // CRM Customer koppeling
+  customerId    String?
+  customer      Customer?     @relation(fields: [customerId], references: [id])
+
   // PDF rapport
   pdfUrl        String?
 
@@ -536,6 +545,7 @@ model QuizResult {
   @@index([profileId])
   @@index([shareToken])
   @@index([createdAt])
+  @@index([customerId])
 }
 
 // ============================================
@@ -769,6 +779,8 @@ model Customer {
   deals           Deal[]
   notes           Note[]
   folders         DriveFolder[]
+  quizResults     QuizResult[]
+  bookings        Booking[]
 
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
@@ -797,6 +809,8 @@ enum CustomerSource {
   EVENT             // Event/beurs
   PARTNER           // Partner
   CHAT              // Chat widget
+  QUIZ              // Via VrijwilligersCheck quiz
+  DEMO_REQUEST      // Demo aanvraag
   OTHER             // Overig
 }
 
@@ -870,6 +884,7 @@ enum ActivityType {
   PROPOSAL          // Offerte verstuurd
   FOLLOW_UP         // Vervolgactie
   STATUS_CHANGE     // Status wijziging
+  OTHER             // Overig
   DEAL_UPDATE       // Deal update
   LINKEDIN          // LinkedIn interactie
   WHATSAPP          // WhatsApp bericht
