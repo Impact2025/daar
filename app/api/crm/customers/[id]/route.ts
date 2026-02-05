@@ -23,6 +23,7 @@ export async function GET(
         },
         deals: {
           include: {
+            customer: { select: { id: true, companyName: true, contactName: true } },
             owner: { select: { id: true, name: true, avatar: true, color: true } },
           },
           orderBy: { updatedAt: 'desc' },
@@ -30,7 +31,9 @@ export async function GET(
         tasks: {
           where: { status: { not: 'COMPLETED' } },
           include: {
+            customer: { select: { id: true, companyName: true } },
             assignedTo: { select: { id: true, name: true, avatar: true, color: true } },
+            createdBy: { select: { id: true, name: true } },
           },
           orderBy: { dueDate: 'asc' },
           take: 10,
@@ -44,6 +47,7 @@ export async function GET(
         },
         activities: {
           include: {
+            customer: { select: { id: true, companyName: true } },
             performedBy: { select: { id: true, name: true, avatar: true, color: true } },
           },
           orderBy: { occurredAt: 'desc' },
