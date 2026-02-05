@@ -14,6 +14,40 @@ async function main() {
   console.log('Seeding database...')
 
   // ===========================================
+  // TEAM MEMBERS (CRM)
+  // ===========================================
+  const teamMembers = [
+    {
+      name: 'Vincent',
+      email: 'vincent@daar.nl',
+      role: 'Co-founder & Sales',
+      color: '#3BA273',
+    },
+    {
+      name: 'Saveim',
+      email: 'saveim@daar.nl',
+      role: 'Co-founder & Operations',
+      color: '#C8A860',
+    },
+    {
+      name: 'Thijs',
+      email: 'thijs@daar.nl',
+      role: 'Co-founder & Tech',
+      color: '#6CB4C8',
+    },
+  ]
+
+  for (const member of teamMembers) {
+    await prisma.teamMember.upsert({
+      where: { email: member.email },
+      update: member,
+      create: member,
+    })
+  }
+
+  console.log('Created team members:', teamMembers.length)
+
+  // ===========================================
   // AUTEURS
   // ===========================================
   const teamDaar = await prisma.author.upsert({

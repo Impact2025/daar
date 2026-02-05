@@ -148,6 +148,7 @@ model User {
   name          String?
   image         String?
   role          UserRole  @default(VIEWER)
+  passwordHash  String?   // Bcrypt hashed password
 
   // NextAuth
   emailVerified DateTime?
@@ -156,6 +157,7 @@ model User {
 
   // Relaties
   author        Author?
+  teamMember    TeamMember?
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -303,6 +305,7 @@ model Lead {
   chatSession   ChatSession?
   bookings      Booking[]
   quizResults   QuizResult[]
+  customer      Customer?     // Link naar CRM Customer
 
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -663,4 +666,416 @@ enum SourceUsageType {
   REFERENCE       // Ter ondersteuning geciteerd
   STATISTIC       // Statistiek overgenomen
   QUOTE           // Directe quote gebruikt
+}
+
+// ============================================
+// CRM SYSTEEM
+// ============================================
+
+model TeamMember {
+  id          String    @id @default(cuid())
+  name        String                    // Vincent, Saveim, Thijs
+  email       String    @unique
+  phone       String?
+  role        String?                   // Sales, Account Manager, etc.
+  avatar      String?
+  color       String    @default("#3BA273") // Voor kalender/UI
+  isActive    Boolean   @default(true)
+
+  // Link naar User voor auth
+  userId      String?   @unique
+  user        User?     @relation(fields: [userId], references: [id])
+
+  // CRM Relaties
+  customers         Customer[]
+  activities        Activity[]
+  tasksAssigned     Task[]      @relation("TaskAssignee")
+  tasksCreated      Task[]      @relation("TaskCreator")
+  deals             Deal[]
+  notes             Note[]
+
+  // Drive relaties
+  filesUploaded     DriveFile[]
+  foldersCreated    DriveFolder[] @relation("FolderCreator")
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([email])
+  @@index([isActive])
+}
+
+model Customer {
+  id              String          @id @default(cuid())
+
+  // Basis bedrijfsinfo
+  companyName     String
+  kvkNumber       String?                   // KVK nummer (8 cijfers)
+  vatNumber       String?                   // BTW nummer
+  website         String?
+  industry        String?                   // Branche
+
+  // Daar-specifiek: Vrijwilligersorganisatie info
+  organizationType  OrganizationType?       // Stichting, Vereniging, etc.
+  sector            OrganizationSector?     // Zorg, Welzijn, Sport, etc.
+  volunteerCount    Int?                    // Aantal vrijwilligers
+  paidStaffCount    Int?                    // Aantal betaalde medewerkers
+  currentSoftware   String?                 // Huidige software voor vrijwilligersbeheer
+  painPoints        String?       @db.Text  // Belangrijkste uitdagingen
+  desiredFeatures   String?       @db.Text  // Gewenste functionaliteiten
+  annualBudget      Decimal?      @db.Decimal(10, 2)  // Jaarbudget organisatie
+  subsidized        Boolean       @default(false)     // Ontvangt subsidie
+  subsidySource     String?                 // Bron van subsidie (gemeente, etc.)
+
+  // Hoofdcontact
+  contactName     String
+  contactEmail    String
+  contactPhone    String?
+  contactRole     String?                   // Functie
+
+  // Adres
+  address         String?
+  postalCode      String?
+  city            String?
+  country         String          @default("Nederland")
+
+  // CRM Status
+  status          CustomerStatus  @default(LEAD)
+  source          CustomerSource  @default(WEBSITE)
+  employeeCount   String?                   // Grootte organisatie (legacy, use paidStaffCount)
+
+  // Financieel / Prijsafspraken
+  priceAgreement  String?         @db.Text  // Beschrijving prijsafspraak
+  hourlyRate      Decimal?        @db.Decimal(10, 2)
+  monthlyBudget   Decimal?        @db.Decimal(10, 2)
+  paymentTerms    Int             @default(30)  // Betalingstermijn in dagen
+  currency        String          @default("EUR")
+
+  // Toewijzing
+  assignedToId    String?
+  assignedTo      TeamMember?     @relation(fields: [assignedToId], references: [id])
+
+  // Follow-up tracking
+  lastContactAt   DateTime?
+  nextFollowUp    DateTime?
+
+  // Link naar oude Lead (migratie)
+  leadId          String?         @unique
+  lead            Lead?           @relation(fields: [leadId], references: [id])
+
+  // Relaties
+  activities      Activity[]
+  tasks           Task[]
+  deals           Deal[]
+  notes           Note[]
+  folders         DriveFolder[]
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@index([assignedToId])
+  @@index([status])
+  @@index([nextFollowUp])
+  @@index([companyName])
+  @@index([kvkNumber])
+}
+
+enum CustomerStatus {
+  LEAD              // Nieuwe lead
+  PROSPECT          // Gekwalificeerde prospect
+  NEGOTIATION       // In onderhandeling
+  CUSTOMER          // Actieve klant
+  CHURNED           // Verloren klant
+  INACTIVE          // Inactief
+}
+
+enum CustomerSource {
+  WEBSITE           // Via website
+  REFERRAL          // Doorverwijzing
+  LINKEDIN          // LinkedIn
+  COLD_CALL         // Cold call
+  EVENT             // Event/beurs
+  PARTNER           // Partner
+  CHAT              // Chat widget
+  OTHER             // Overig
+}
+
+enum OrganizationType {
+  STICHTING         // Stichting
+  VERENIGING        // Vereniging
+  GOED_DOEL         // Goed doel / Charity
+  GEMEENTE          // Gemeente
+  ZORGINSTELLING    // Zorginstelling
+  WELZIJNSORG       // Welzijnsorganisatie
+  COOPERATIE        // Coöperatie
+  KERK              // Kerkelijke organisatie
+  SPORTCLUB         // Sportvereniging
+  BUURTVERENIGING   // Buurt- of wijkvereniging
+  OVERIG            // Overig
+}
+
+enum OrganizationSector {
+  ZORG              // Zorg & Gezondheid
+  WELZIJN           // Welzijn & Maatschappelijk werk
+  SPORT             // Sport & Recreatie
+  CULTUUR           // Cultuur & Kunst
+  ONDERWIJS         // Onderwijs & Educatie
+  NATUUR            // Natuur & Milieu
+  DIEREN            // Dierenwelzijn
+  NOODHULP          // Noodhulp & Rampenbestrijding
+  OUDEREN           // Ouderenzorg
+  JEUGD             // Jeugd & Jongeren
+  RELIGIE           // Religieus & Levensbeschouwelijk
+  INTERNATIONAAL    // Internationale hulp
+  BUURT             // Buurt & Wijk
+  OVERIG            // Overig
+}
+
+model Activity {
+  id              String        @id @default(cuid())
+  type            ActivityType
+  title           String
+  description     String?       @db.Text
+
+  // Wanneer & hoe lang
+  occurredAt      DateTime      @default(now())
+  duration        Int?                      // Minuten
+
+  // Relaties
+  customerId      String
+  customer        Customer      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  performedById   String
+  performedBy     TeamMember    @relation(fields: [performedById], references: [id])
+
+  // Extra metadata (JSON voor flexibiliteit)
+  metadata        Json?                     // { emailSubject, callOutcome, meetingType, etc. }
+
+  createdAt       DateTime      @default(now())
+
+  @@index([customerId])
+  @@index([performedById])
+  @@index([occurredAt])
+  @@index([type])
+}
+
+enum ActivityType {
+  CALL              // Telefoongesprek
+  EMAIL_SENT        // Email verstuurd
+  EMAIL_RECEIVED    // Email ontvangen
+  MEETING           // Vergadering
+  VIDEO_CALL        // Video call
+  NOTE              // Notitie toegevoegd
+  DEMO              // Demo gegeven
+  PROPOSAL          // Offerte verstuurd
+  FOLLOW_UP         // Vervolgactie
+  STATUS_CHANGE     // Status wijziging
+  DEAL_UPDATE       // Deal update
+  LINKEDIN          // LinkedIn interactie
+  WHATSAPP          // WhatsApp bericht
+}
+
+model Task {
+  id              String        @id @default(cuid())
+  title           String
+  description     String?       @db.Text
+
+  // Status & prioriteit
+  status          TaskStatus    @default(TODO)
+  priority        TaskPriority  @default(MEDIUM)
+
+  // Timing
+  dueDate         DateTime?
+  reminderAt      DateTime?
+  completedAt     DateTime?
+
+  // Relaties
+  customerId      String?
+  customer        Customer?     @relation(fields: [customerId], references: [id], onDelete: SetNull)
+
+  assignedToId    String
+  assignedTo      TeamMember    @relation("TaskAssignee", fields: [assignedToId], references: [id])
+
+  createdById     String
+  createdBy       TeamMember    @relation("TaskCreator", fields: [createdById], references: [id])
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([assignedToId])
+  @@index([customerId])
+  @@index([dueDate])
+  @@index([status])
+  @@index([priority])
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  WAITING           // Wachtend op klant/collega
+  COMPLETED
+  CANCELLED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model Deal {
+  id                  String      @id @default(cuid())
+  name                String
+  description         String?     @db.Text
+
+  // Waarde
+  value               Decimal?    @db.Decimal(12, 2)
+  currency            String      @default("EUR")
+
+  // Pipeline
+  stage               DealStage   @default(QUALIFICATION)
+  probability         Int         @default(10)        // Percentage kans
+
+  // Timing
+  expectedCloseDate   DateTime?
+  actualCloseDate     DateTime?
+
+  // Relaties
+  customerId          String
+  customer            Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  ownerId             String
+  owner               TeamMember  @relation(fields: [ownerId], references: [id])
+
+  // Win/Loss tracking
+  lostReason          String?
+  wonReason           String?
+  competitorName      String?               // Bij verlies: aan wie verloren?
+
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+
+  @@index([customerId])
+  @@index([ownerId])
+  @@index([stage])
+  @@index([expectedCloseDate])
+}
+
+enum DealStage {
+  QUALIFICATION       // 10% - Eerste contact
+  NEEDS_ANALYSIS      // 25% - Behoefteanalyse
+  PROPOSAL            // 50% - Offerte fase
+  NEGOTIATION         // 75% - Onderhandeling
+  CLOSED_WON          // 100% - Gewonnen
+  CLOSED_LOST         // 0% - Verloren
+}
+
+model Note {
+  id          String      @id @default(cuid())
+  content     String      @db.Text
+  isPinned    Boolean     @default(false)
+
+  // Relaties
+  customerId  String
+  customer    Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  authorId    String
+  author      TeamMember  @relation(fields: [authorId], references: [id])
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([customerId])
+  @@index([authorId])
+  @@index([isPinned])
+}
+
+// ============================================
+// DRIVE / DOCUMENTEN SYSTEEM
+// ============================================
+
+model DriveFolder {
+  id              String        @id @default(cuid())
+  name            String
+  color           String?                   // Kleur voor UI
+  icon            String?                   // Lucide icon naam
+
+  // Hiërarchie
+  parentId        String?
+  parent          DriveFolder?  @relation("FolderHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children        DriveFolder[] @relation("FolderHierarchy")
+
+  // Optioneel gekoppeld aan klant
+  customerId      String?
+  customer        Customer?     @relation(fields: [customerId], references: [id], onDelete: SetNull)
+
+  // Wie heeft aangemaakt
+  createdById     String
+  createdBy       TeamMember    @relation("FolderCreator", fields: [createdById], references: [id])
+
+  // Bestanden in deze map
+  files           DriveFile[]
+
+  // Sharing
+  isShared        Boolean       @default(false)
+  shareToken      String?       @unique
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([parentId])
+  @@index([customerId])
+  @@index([createdById])
+  @@index([name])
+}
+
+model DriveFile {
+  id              String        @id @default(cuid())
+  name            String                    // Originele bestandsnaam
+  displayName     String?                   // Weergavenaam (optioneel)
+
+  // File info
+  mimeType        String
+  size            Int                       // Bytes
+  extension       String?                   // .pdf, .docx, etc.
+
+  // Storage
+  url             String                    // Vercel Blob URL
+  blobPathname    String?                   // Blob pathname voor beheer
+  thumbnailUrl    String?                   // Preview thumbnail
+
+  // Organisatie
+  folderId        String?
+  folder          DriveFolder?  @relation(fields: [folderId], references: [id], onDelete: SetNull)
+
+  // Metadata
+  description     String?
+  tags            String[]                  // Tags voor zoeken
+
+  // Upload info
+  uploadedById    String
+  uploadedBy      TeamMember    @relation(fields: [uploadedById], references: [id])
+
+  // Versioning (simpel)
+  version         Int           @default(1)
+  previousVersionId String?
+
+  // Sharing
+  isShared        Boolean       @default(false)
+  shareToken      String?       @unique
+  shareExpiresAt  DateTime?
+
+  // Tracking
+  downloadCount   Int           @default(0)
+  lastAccessedAt  DateTime?
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([folderId])
+  @@index([uploadedById])
+  @@index([mimeType])
+  @@index([name])
+  @@index([tags])
 }

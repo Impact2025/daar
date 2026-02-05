@@ -15,13 +15,26 @@ const config: Config = {
         brandGreenHover: '#2E855D',
         lightGreen: '#EBF7F2',
         offWhite: '#F8F9FA',
-        // Samen Daar 2.0 Palet - Impact Stats kleuren
-        'daar-blue': '#2D334A',        // Navy (ROI)
-        'daar-koraal': '#E07A5A',      // Koraal (Tevredenheid)
-        'daar-koraal-hover': '#D06948',
-        'daar-geel': '#D4A84B',        // Goud (Tijdsbesparing)
-        'daar-helder': '#5BA3BD',      // Helder blauw (Retentie)
-        'daar-mint': '#4BA99B',        // Mint groen (Impact)
+
+        // Samen Daar 2.0 Palet - Workflow & Impact kleuren
+        // Hoofdkleuren (uit impact cards)
+        'daar-navy': '#3E3D5C',        // Dark navy achtergrond
+        'daar-goud': '#C8A860',        // Goud/Mustard (Tijdsbesparing)
+        'daar-koraal': '#D97C6E',      // Koraal/Salmon (Tevredenheid)
+        'daar-koraal-hover': '#C66B5E',
+        'daar-turquoise': '#6CB4C8',   // Turquoise/Helder blauw (Retentie)
+        'daar-mint': '#5BA99D',        // Mint/Teal groen (Impact)
+
+        // Lichte achtergrondkleuren (voor workflow stappen)
+        'daar-mint-light': '#D5E8E4',     // STAP 1 achtergrond
+        'daar-blue-light': '#D4E4ED',     // STAP 2 achtergrond
+        'daar-koraal-light': '#F4DDD6',   // STAP 3 achtergrond
+        'daar-goud-light': '#F0E5D4',     // STAP 4 achtergrond
+
+        // Legacy support (oude kleuren behouden voor backwards compatibility)
+        'daar-blue': '#2D334A',
+        'daar-geel': '#D4A84B',
+        'daar-helder': '#5BA3BD',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],

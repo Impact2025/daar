@@ -13,18 +13,29 @@ import {
   ClipboardCheck,
   Settings,
   LogOut,
+  Building2,
+  Kanban,
+  CheckSquare,
+  HardDrive,
+  Activity,
 } from 'lucide-react'
 
 const sidebarItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/artikelen', label: 'Artikelen', icon: FileText },
+  { href: '/admin/crm', label: 'CRM', icon: Building2, dividerBefore: true },
+  { href: '/admin/crm/pipeline', label: 'Pipeline', icon: Kanban, indent: true },
+  { href: '/admin/crm/klanten', label: 'Klanten', icon: Users, indent: true },
+  { href: '/admin/crm/taken', label: 'Taken', icon: CheckSquare, indent: true },
+  { href: '/admin/crm/activiteiten', label: 'Activiteiten', icon: Activity, indent: true },
+  { href: '/admin/drive', label: 'Drive', icon: HardDrive, dividerBefore: true },
+  { href: '/admin/artikelen', label: 'Artikelen', icon: FileText, dividerBefore: true },
   { href: '/admin/categorieen', label: 'Categorieën', icon: FolderOpen },
   { href: '/admin/afspraken', label: 'Afspraken', icon: Calendar },
   { href: '/admin/quiz', label: 'Quiz resultaten', icon: ClipboardCheck },
-  { href: '/admin/leads', label: 'Leads', icon: Users },
+  { href: '/admin/leads', label: 'Leads (oud)', icon: Users },
   { href: '/admin/chat', label: 'Chat logs', icon: MessageSquare },
   { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
-]
+] as const
 
 export default async function AdminLayout({
   children,
@@ -57,15 +68,20 @@ export default async function AdminLayout({
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 py-6">
+          <nav className="flex-1 py-6 overflow-y-auto">
             <ul className="space-y-1 px-3">
               {sidebarItems.map((item) => (
                 <li key={item.href}>
+                  {'dividerBefore' in item && item.dividerBefore && (
+                    <div className="border-t border-white/10 my-3" />
+                  )}
                   <Link
                     href={item.href}
-                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-300 hover:bg-white/10 hover:text-white transition-colors ${
+                      'indent' in item && item.indent ? 'ml-4 text-sm' : ''
+                    }`}
                   >
-                    <item.icon className="w-5 h-5" />
+                    <item.icon className={`${'indent' in item && item.indent ? 'w-4 h-4' : 'w-5 h-5'}`} />
                     {item.label}
                   </Link>
                 </li>

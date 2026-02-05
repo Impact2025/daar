@@ -327,3 +327,150 @@ export function formatBookingDateTime(startTime: Date): { date: string; time: st
     }),
   }
 }
+
+// ============================================
+// TAAK NOTIFICATIES
+// ============================================
+
+interface TaskAssignmentEmailData {
+  assigneeName: string
+  assigneeEmail: string
+  taskTitle: string
+  taskDescription?: string | null
+  dueDate?: Date | null
+  priority: string
+  customerName?: string | null
+  createdByName: string
+}
+
+function getTaskAssignmentTemplate(data: TaskAssignmentEmailData): string {
+  const priorityColors: Record<string, string> = {
+    LOW: '#6B7280',
+    MEDIUM: '#F59E0B',
+    HIGH: '#EF4444',
+    URGENT: '#DC2626',
+  }
+  const priorityLabels: Record<string, string> = {
+    LOW: 'Laag',
+    MEDIUM: 'Gemiddeld',
+    HIGH: 'Hoog',
+    URGENT: 'Urgent',
+  }
+
+  const dueDateFormatted = data.dueDate
+    ? new Date(data.dueDate).toLocaleDateString('nl-NL', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+    : null
+
+  return `
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nieuwe taak toegewezen</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #F9FAFB;">
+  <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 32px;">
+      <img src="https://daar.nl/image_c30806.png" alt="DAAR" style="width: 60px; height: 60px; margin-bottom: 16px;">
+      <h1 style="color: #1A2332; font-size: 24px; font-weight: bold; margin: 0;">
+        Nieuwe taak voor jou
+      </h1>
+    </div>
+
+    <!-- Main Card -->
+    <div style="background-color: white; border-radius: 16px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+      <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
+        Hoi ${data.assigneeName},
+      </p>
+
+      <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
+        ${data.createdByName} heeft een nieuwe taak aan je toegewezen.
+      </p>
+
+      <!-- Task Details -->
+      <div style="background-color: #EBF7F2; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+        <h2 style="color: #1A2332; font-size: 18px; font-weight: 600; margin: 0 0 16px 0;">
+          ${data.taskTitle}
+        </h2>
+
+        ${data.taskDescription ? `
+        <p style="color: #374151; font-size: 14px; line-height: 1.6; margin: 0 0 16px 0;">
+          ${data.taskDescription}
+        </p>
+        ` : ''}
+
+        <div style="color: #374151; font-size: 14px;">
+          <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="margin-right: 8px;">🎯</span>
+            <span><strong>Prioriteit:</strong> <span style="color: ${priorityColors[data.priority] || '#6B7280'}; font-weight: 600;">${priorityLabels[data.priority] || data.priority}</span></span>
+          </div>
+          ${dueDateFormatted ? `
+          <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="margin-right: 8px;">📅</span>
+            <span><strong>Deadline:</strong> ${dueDateFormatted}</span>
+          </div>
+          ` : ''}
+          ${data.customerName ? `
+          <div style="display: flex; align-items: center;">
+            <span style="margin-right: 8px;">🏢</span>
+            <span><strong>Klant:</strong> ${data.customerName}</span>
+          </div>
+          ` : ''}
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 24px;">
+        <a href="${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/admin/crm/taken" style="display: inline-block; background-color: #3BA273; color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 500; font-size: 14px;">
+          Bekijk in CRM
+        </a>
+      </div>
+
+      <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0;">
+        Succes!<br>
+        <strong>Team DAAR</strong>
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; margin-top: 32px; color: #9CA3AF; font-size: 12px;">
+      <p style="margin: 0 0 8px 0;">
+        DAAR - Het Sociale Hart
+      </p>
+      <p style="margin: 0;">
+        Vrijwilligersbeheer met impact
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+`
+}
+
+export async function sendTaskAssignmentEmail(data: TaskAssignmentEmailData): Promise<{ success: boolean; error?: string }> {
+  if (!resend) {
+    console.log('[Email] Resend not configured - skipping task assignment email')
+    return { success: true }
+  }
+
+  try {
+    await resend.emails.send({
+      from: `${FROM_NAME} <${FROM_EMAIL}>`,
+      to: data.assigneeEmail,
+      subject: `Nieuwe taak: ${data.taskTitle}`,
+      html: getTaskAssignmentTemplate(data),
+    })
+
+    console.log(`[Email] Task assignment email sent to ${data.assigneeEmail}`)
+    return { success: true }
+  } catch (error) {
+    console.error('[Email] Failed to send task assignment email:', error)
+    return { success: false, error: 'Failed to send task assignment email' }
+  }
+}
