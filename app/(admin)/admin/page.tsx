@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { Card, CardContent, CardHeader } from '@/components/ui'
-import { FileText, Eye, Users, TrendingUp } from 'lucide-react'
+import { FileText, Eye, Building2, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 import { formatRelativeTime } from '@/lib/utils'
 
@@ -9,14 +9,14 @@ async function getStats() {
     totalArticles,
     publishedArticles,
     totalViews,
-    totalLeads,
+    totalCustomers,
     recentArticles,
-    recentLeads,
+    recentCustomers,
   ] = await Promise.all([
     prisma.article.count(),
     prisma.article.count({ where: { status: 'PUBLISHED' } }),
     prisma.article.aggregate({ _sum: { viewCount: true } }),
-    prisma.lead.count(),
+    prisma.customer.count(),
     prisma.article.findMany({
       orderBy: { createdAt: 'desc' },
       take: 5,
@@ -29,14 +29,14 @@ async function getStats() {
         createdAt: true,
       },
     }),
-    prisma.lead.findMany({
+    prisma.customer.findMany({
       orderBy: { createdAt: 'desc' },
       take: 5,
       select: {
         id: true,
-        name: true,
-        email: true,
-        organization: true,
+        companyName: true,
+        contactName: true,
+        contactEmail: true,
         status: true,
         createdAt: true,
       },
@@ -47,9 +47,9 @@ async function getStats() {
     totalArticles,
     publishedArticles,
     totalViews: totalViews._sum.viewCount || 0,
-    totalLeads,
+    totalCustomers,
     recentArticles,
-    recentLeads,
+    recentCustomers,
   }
 }
 
@@ -72,10 +72,10 @@ export default async function AdminDashboard() {
       color: 'bg-green-500',
     },
     {
-      label: 'Leads',
-      value: stats.totalLeads,
-      subValue: 'via chat & formulieren',
-      icon: Users,
+      label: 'Klanten',
+      value: stats.totalCustomers,
+      subValue: 'in CRM',
+      icon: Building2,
       color: 'bg-purple-500',
     },
     {
@@ -182,13 +182,13 @@ export default async function AdminDashboard() {
           </CardContent>
         </Card>
 
-        {/* Recent Leads */}
+        {/* Recent Customers */}
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <h2 className="font-semibold text-navy">Recente leads</h2>
+              <h2 className="font-semibold text-navy">Recente klanten</h2>
               <Link
-                href="/admin/leads"
+                href="/admin/crm/klanten"
                 className="text-sm text-brandGreen hover:underline"
               >
                 Bekijk alle
@@ -196,35 +196,37 @@ export default async function AdminDashboard() {
             </div>
           </CardHeader>
           <CardContent className="p-0">
-            {stats.recentLeads.length > 0 ? (
+            {stats.recentCustomers.length > 0 ? (
               <ul className="divide-y divide-gray-100">
-                {stats.recentLeads.map((lead) => (
-                  <li key={lead.id}>
+                {stats.recentCustomers.map((customer) => (
+                  <li key={customer.id}>
                     <Link
-                      href={`/admin/leads?id=${lead.id}`}
+                      href={`/admin/crm/klanten/${customer.id}`}
                       className="flex items-center justify-between px-6 py-3 hover:bg-gray-50 transition-colors"
                     >
                       <div className="min-w-0 flex-1">
                         <p className="font-medium text-navy truncate">
-                          {lead.name || lead.email || 'Onbekend'}
+                          {customer.companyName}
                         </p>
                         <p className="text-sm text-gray-500 truncate">
-                          {lead.organization || lead.email}
+                          {customer.contactName || customer.contactEmail}
                         </p>
                       </div>
                       <div className="ml-4">
                         <span
                           className={`px-2 py-0.5 text-xs font-medium rounded-full ${
-                            lead.status === 'NEW'
-                              ? 'bg-blue-100 text-blue-700'
-                              : lead.status === 'CONTACTED'
-                              ? 'bg-yellow-100 text-yellow-700'
-                              : lead.status === 'QUALIFIED'
+                            customer.status === 'CUSTOMER'
                               ? 'bg-green-100 text-green-700'
+                              : customer.status === 'PROSPECT'
+                              ? 'bg-blue-100 text-blue-700'
+                              : customer.status === 'LEAD'
+                              ? 'bg-yellow-100 text-yellow-700'
                               : 'bg-gray-100 text-gray-700'
                           }`}
                         >
-                          {lead.status === 'NEW' ? 'Nieuw' : lead.status}
+                          {customer.status === 'CUSTOMER' ? 'Klant' :
+                           customer.status === 'PROSPECT' ? 'Prospect' :
+                           customer.status === 'LEAD' ? 'Lead' : customer.status}
                         </span>
                       </div>
                     </Link>
@@ -233,8 +235,13 @@ export default async function AdminDashboard() {
               </ul>
             ) : (
               <div className="px-6 py-8 text-center text-gray-500">
-                <p>Nog geen leads</p>
-                <p className="text-sm mt-1">Leads verschijnen hier wanneer bezoekers de chat gebruiken</p>
+                <p>Nog geen klanten</p>
+                <Link
+                  href="/admin/crm/klanten/nieuw"
+                  className="text-brandGreen hover:underline mt-2 inline-block"
+                >
+                  Voeg je eerste klant toe
+                </Link>
               </div>
             )}
           </CardContent>

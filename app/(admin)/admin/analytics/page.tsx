@@ -394,7 +394,7 @@ export default function AnalyticsPage() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-navy">Leads per bron</h3>
-                <Link href="/admin/leads" className="text-sm text-brandGreen hover:underline">
+                <Link href="/admin/crm/klanten" className="text-sm text-brandGreen hover:underline">
                   Bekijk →
                 </Link>
               </div>
@@ -422,7 +422,7 @@ export default function AnalyticsPage() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-navy">Afspraken</h3>
-                <Link href="/admin/afspraken" className="text-sm text-brandGreen hover:underline">
+                <Link href="/admin/crm/afspraken" className="text-sm text-brandGreen hover:underline">
                   Bekijk →
                 </Link>
               </div>

@@ -185,7 +185,7 @@ function getAdminNotificationTemplate(data: BookingEmailData): string {
       ` : ''}
 
       <div style="text-align: center;">
-        <a href="${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/admin/afspraken" style="display: inline-block; background-color: #1A2332; color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 500; font-size: 14px;">
+        <a href="${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/admin/crm/afspraken" style="display: inline-block; background-color: #1A2332; color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 500; font-size: 14px;">
           Bekijk in admin panel
         </a>
       </div>

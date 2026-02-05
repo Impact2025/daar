@@ -27,13 +27,12 @@ const sidebarItems = [
   { href: '/admin/crm/klanten', label: 'Klanten', icon: Users, indent: true },
   { href: '/admin/crm/taken', label: 'Taken', icon: CheckSquare, indent: true },
   { href: '/admin/crm/activiteiten', label: 'Activiteiten', icon: Activity, indent: true },
+  { href: '/admin/crm/afspraken', label: 'Afspraken', icon: Calendar, indent: true },
+  { href: '/admin/crm/quiz', label: 'Quiz', icon: ClipboardCheck, indent: true },
+  { href: '/admin/crm/chat', label: 'Chat logs', icon: MessageSquare, indent: true },
   { href: '/admin/drive', label: 'Drive', icon: HardDrive, dividerBefore: true },
   { href: '/admin/artikelen', label: 'Artikelen', icon: FileText, dividerBefore: true },
   { href: '/admin/categorieen', label: 'Categorieën', icon: FolderOpen },
-  { href: '/admin/afspraken', label: 'Afspraken', icon: Calendar },
-  { href: '/admin/quiz', label: 'Quiz resultaten', icon: ClipboardCheck },
-  { href: '/admin/leads', label: 'Leads (oud)', icon: Users },
-  { href: '/admin/chat', label: 'Chat logs', icon: MessageSquare },
   { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
 ] as const
 
