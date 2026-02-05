@@ -356,6 +356,7 @@ export type DriveFolderWithRelations = DriveFolder & {
   files: DriveFileListItem[]
   customer: Pick<Customer, 'id' | 'companyName'> | null
   createdBy: Pick<TeamMember, 'id' | 'name'>
+  breadcrumbs?: { id: string; name: string }[]
   _count?: {
     children: number
     files: number
