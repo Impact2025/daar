@@ -13,6 +13,7 @@ import {
   MessageSquare,
   Linkedin,
   Clock,
+  MoreHorizontal,
 } from 'lucide-react'
 import { ActivityType } from '@prisma/client'
 
@@ -30,6 +31,7 @@ const activityConfig: Record<ActivityType, { icon: typeof Phone; color: string; 
   DEAL_UPDATE: { icon: TrendingUp, color: 'text-emerald-600 bg-emerald-100', label: 'Deal' },
   LINKEDIN: { icon: Linkedin, color: 'text-blue-700 bg-blue-100', label: 'LinkedIn' },
   WHATSAPP: { icon: MessageSquare, color: 'text-green-500 bg-green-100', label: 'WhatsApp' },
+  OTHER: { icon: MoreHorizontal, color: 'text-gray-500 bg-gray-100', label: 'Overig' },
 }
 
 interface ActivityIconProps {
