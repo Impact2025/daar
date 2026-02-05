@@ -352,7 +352,9 @@ export interface TeamMemberStats {
 
 export type DriveFolderWithRelations = DriveFolder & {
   parent: Pick<DriveFolder, 'id' | 'name'> | null
-  children: Pick<DriveFolder, 'id' | 'name' | 'color' | 'icon'>[]
+  children: (Pick<DriveFolder, 'id' | 'name' | 'color' | 'icon'> & {
+    _count?: { files: number; children: number }
+  })[]
   files: DriveFileListItem[]
   customer: Pick<Customer, 'id' | 'companyName'> | null
   createdBy: Pick<TeamMember, 'id' | 'name'>

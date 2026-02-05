@@ -322,15 +322,15 @@ export default function DrivePage() {
               <h3 className="text-sm font-medium text-gray-500 mb-3">Mappen</h3>
               <div className={viewMode === 'grid' ? 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4' : 'space-y-2'}>
                 {folders
-                  .filter((f: { name: string }) => !search || f.name.toLowerCase().includes(search.toLowerCase()))
-                  .map((folder: DriveFolderWithRelations) => (
+                  .filter((f) => !search || f.name.toLowerCase().includes(search.toLowerCase()))
+                  .map((folder) => (
                     <FolderCard
                       key={folder.id}
                       id={folder.id}
                       name={folder.name}
                       color={folder.color}
-                      filesCount={folder._count?.files || 0}
-                      foldersCount={folder._count?.children || 0}
+                      filesCount={'_count' in folder ? folder._count?.files || 0 : 0}
+                      foldersCount={'_count' in folder ? folder._count?.children || 0 : 0}
                       onClick={() => navigateToFolder(folder.id)}
                       onRename={handleRenameFolder}
                       onDelete={handleDeleteFolder}
