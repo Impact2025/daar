@@ -85,14 +85,17 @@ export async function POST(request: NextRequest) {
       CLOSED_LOST: 0,
     }
 
+    const stage: DealStage = data.stage || 'QUALIFICATION'
+    const probability = data.probability ?? stageProbabilities[stage]
+
     const deal = await prisma.deal.create({
       data: {
         name: data.name,
         description: data.description || null,
         value: data.value || null,
         currency: data.currency || 'EUR',
-        stage: data.stage || 'QUALIFICATION',
-        probability: data.probability ?? stageProbabilities[(data.stage || 'QUALIFICATION') as DealStage],
+        stage,
+        probability,
         expectedCloseDate: data.expectedCloseDate ? new Date(data.expectedCloseDate) : null,
         customerId: data.customerId,
         ownerId: data.ownerId,
