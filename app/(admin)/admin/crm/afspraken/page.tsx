@@ -182,7 +182,8 @@ export default async function AfsprakenPage() {
                     return (
                       <tr
                         key={booking.id}
-                        className={`hover:bg-gray-50 ${isPast ? 'opacity-60' : ''}`}
+                        className={`hover:bg-gray-50 cursor-pointer ${isPast ? 'opacity-60' : ''}`}
+                        onClick={() => window.location.href = `/admin/crm/afspraken/${booking.id}/bewerken`}
                       >
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">

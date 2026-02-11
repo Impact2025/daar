@@ -71,13 +71,24 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       )
     }
 
+    // Build update data object
+    const updateData: any = {}
+
+    if (body.bookingTypeId !== undefined) updateData.bookingTypeId = body.bookingTypeId
+    if (body.startTime !== undefined) updateData.startTime = new Date(body.startTime)
+    if (body.endTime !== undefined) updateData.endTime = new Date(body.endTime)
+    if (body.status !== undefined) updateData.status = body.status
+    if (body.name !== undefined) updateData.name = body.name
+    if (body.email !== undefined) updateData.email = body.email
+    if (body.phone !== undefined) updateData.phone = body.phone
+    if (body.organization !== undefined) updateData.organization = body.organization
+    if (body.notes !== undefined) updateData.notes = body.notes
+    if (body.meetingLink !== undefined) updateData.meetingLink = body.meetingLink
+    if (body.customerId !== undefined) updateData.customerId = body.customerId
+
     const updated = await prisma.booking.update({
       where: { id },
-      data: {
-        status: body.status,
-        notes: body.notes,
-        meetingLink: body.meetingLink,
-      },
+      data: updateData,
       include: {
         bookingType: true,
       },
