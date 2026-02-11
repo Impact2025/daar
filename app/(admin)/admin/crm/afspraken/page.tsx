@@ -94,12 +94,20 @@ export default async function AfsprakenPage() {
           <h1 className="text-2xl font-bold text-navy">Afspraken</h1>
           <p className="text-gray-500">Beheer afspraken en koppel aan CRM</p>
         </div>
-        <Link href="/afspraak" target="_blank">
-          <Button variant="outline" className="gap-2">
-            <ExternalLink className="w-4 h-4" />
-            Booking pagina
-          </Button>
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/admin/crm/afspraken/nieuw">
+            <Button className="gap-2">
+              <Calendar className="w-4 h-4" />
+              Nieuwe afspraak
+            </Button>
+          </Link>
+          <Link href="/afspraak" target="_blank">
+            <Button variant="outline" className="gap-2">
+              <ExternalLink className="w-4 h-4" />
+              Booking pagina
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {/* Stats */}

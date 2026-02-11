@@ -18,6 +18,8 @@ const bookingSchema = z.object({
   organization: z.string().optional(),
   notes: z.string().optional(),
   source: z.enum(['WEBSITE', 'CHAT', 'PHONE', 'EMAIL', 'ADMIN']).default('WEBSITE'),
+  customerId: z.string().optional(),
+  meetingLink: z.string().optional(),
 })
 
 // GET /api/bookings - Haal boekingen op (admin only)
@@ -140,14 +142,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check minimum booking notice
-    const now = new Date()
-    const minNoticeTime = new Date(now.getTime() + 24 * 60 * 60 * 1000) // 24 hours
-    if (startTime < minNoticeTime) {
-      return NextResponse.json(
-        { success: false, error: 'Afspraken moeten minimaal 24 uur van tevoren worden gemaakt' },
-        { status: 400 }
-      )
+    // Check minimum booking notice (skip for admin bookings)
+    if (validated.source !== 'ADMIN') {
+      const now = new Date()
+      const minNoticeTime = new Date(now.getTime() + 24 * 60 * 60 * 1000) // 24 hours
+      if (startTime < minNoticeTime) {
+        return NextResponse.json(
+          { success: false, error: 'Afspraken moeten minimaal 24 uur van tevoren worden gemaakt' },
+          { status: 400 }
+        )
+      }
     }
 
     // Create or find lead
@@ -182,6 +186,8 @@ export async function POST(request: NextRequest) {
         source: validated.source,
         status: 'CONFIRMED', // Auto-confirm for now
         leadId: lead.id,
+        customerId: validated.customerId || null,
+        meetingLink: validated.meetingLink || null,
       },
       include: {
         bookingType: true,
