@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Plus, Filter, Calendar, AlertTriangle } from 'lucide-react'
-import { TaskCard, TeamMemberBadge } from '@/components/crm'
+import { TaskCard, TeamMemberBadge, EditTaskModal } from '@/components/crm'
 import type { TaskWithRelations, TeamMember, TaskStatus, TaskPriority } from '@/types'
 
 export default function TasksPage() {
@@ -14,6 +14,7 @@ export default function TasksPage() {
   const [priorityFilter, setPriorityFilter] = useState<TaskPriority | ''>('')
   const [assignedFilter, setAssignedFilter] = useState('')
   const [showOverdue, setShowOverdue] = useState(false)
+  const [editTaskId, setEditTaskId] = useState<string | null>(null)
 
   useEffect(() => {
     fetchTeam()
@@ -169,9 +170,20 @@ export default function TasksPage() {
               key={task.id}
               task={task}
               onToggleComplete={handleToggleComplete}
+              onClick={() => setEditTaskId(task.id)}
             />
           ))}
         </div>
+      )}
+
+      {/* Edit Task Modal */}
+      {editTaskId && (
+        <EditTaskModal
+          taskId={editTaskId}
+          isOpen={!!editTaskId}
+          onClose={() => setEditTaskId(null)}
+          onUpdate={fetchTasks}
+        />
       )}
     </div>
   )
