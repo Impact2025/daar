@@ -3,6 +3,48 @@ import { prisma } from '@/lib/prisma'
 import { auth } from '@/lib/auth'
 import { DealStage, ActivityType } from '@prisma/client'
 
+// GET /api/crm/deals/[id] - Get single deal
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const session = await auth()
+    if (!session?.user || !['ADMIN', 'EDITOR'].includes(session.user.role)) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { id } = await params
+
+    const deal = await prisma.deal.findUnique({
+      where: { id },
+      include: {
+        customer: {
+          select: {
+            id: true,
+            companyName: true,
+            contactName: true,
+            contactEmail: true,
+            contactPhone: true
+          },
+        },
+        owner: {
+          select: { id: true, name: true, avatar: true, color: true },
+        },
+      },
+    })
+
+    if (!deal) {
+      return NextResponse.json({ error: 'Deal not found' }, { status: 404 })
+    }
+
+    return NextResponse.json(deal)
+  } catch (error) {
+    console.error('Error fetching deal:', error)
+    return NextResponse.json({ error: 'Failed to fetch deal' }, { status: 500 })
+  }
+}
+
 // PATCH /api/crm/deals/[id] - Update deal
 export async function PATCH(
   request: NextRequest,

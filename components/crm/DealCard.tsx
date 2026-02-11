@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Building2, Calendar, Euro } from 'lucide-react'
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale'
@@ -17,13 +18,8 @@ export function DealCard({ deal, onClick, isDragging }: DealCardProps) {
     ? new Intl.NumberFormat('nl-NL', { style: 'currency', currency: deal.currency }).format(Number(deal.value))
     : null
 
-  return (
-    <div
-      onClick={onClick}
-      className={`bg-white rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-brandGreen hover:shadow-sm transition-all ${
-        isDragging ? 'shadow-lg ring-2 ring-brandGreen' : ''
-      }`}
-    >
+  const cardContent = (
+    <>
       <div className="flex items-start justify-between gap-2 mb-2">
         <h4 className="font-medium text-gray-900 text-sm line-clamp-2">{deal.name}</h4>
         {formattedValue && (
@@ -60,6 +56,26 @@ export function DealCard({ deal, onClick, isDragging }: DealCardProps) {
         </div>
         <span className="text-xs text-gray-400">{deal.probability}%</span>
       </div>
-    </div>
+    </>
+  )
+
+  const className = `bg-white rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-brandGreen hover:shadow-sm transition-all ${
+    isDragging ? 'shadow-lg ring-2 ring-brandGreen' : ''
+  }`
+
+  // If there's an onClick handler (e.g., for drag and drop), use a div
+  if (onClick) {
+    return (
+      <div onClick={onClick} className={className}>
+        {cardContent}
+      </div>
+    )
+  }
+
+  // Otherwise, use a Link for navigation
+  return (
+    <Link href={`/admin/crm/deals/${deal.id}`} className={className}>
+      {cardContent}
+    </Link>
   )
 }
