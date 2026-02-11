@@ -64,6 +64,7 @@ export default function NewCustomerPage() {
     paymentTerms: '30',
     assignedToId: '',
     nextFollowUp: '',
+    remarks: '',
   })
 
   useEffect(() => {
@@ -729,6 +730,17 @@ export default function NewCustomerPage() {
                 value={formData.nextFollowUp}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen"
+              />
+            </div>
+            <div className="col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Overige opmerkingen</label>
+              <textarea
+                name="remarks"
+                value={formData.remarks}
+                onChange={handleChange}
+                rows={3}
+                placeholder="Extra notities over deze klant..."
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen resize-none"
               />
             </div>
           </div>

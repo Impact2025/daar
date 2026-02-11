@@ -117,6 +117,7 @@ export async function POST(request: NextRequest) {
         paymentTerms: data.paymentTerms || 30,
         assignedToId: data.assignedToId || null,
         nextFollowUp: data.nextFollowUp ? new Date(data.nextFollowUp) : null,
+        remarks: data.remarks || null,
       },
       include: {
         assignedTo: {

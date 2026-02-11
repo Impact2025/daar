@@ -129,7 +129,7 @@ export async function PATCH(
       'address', 'postalCode', 'city', 'country',
       'status', 'source', 'employeeCount',
       'priceAgreement', 'hourlyRate', 'monthlyBudget', 'paymentTerms',
-      'assignedToId', 'lastContactAt'
+      'assignedToId', 'lastContactAt', 'remarks'
     ]
 
     for (const field of fields) {

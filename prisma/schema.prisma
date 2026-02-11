@@ -769,6 +769,9 @@ model Customer {
   lastContactAt   DateTime?
   nextFollowUp    DateTime?
 
+  // Overige informatie
+  remarks         String?         @db.Text  // Overige opmerkingen
+
   // Link naar oude Lead (migratie)
   leadId          String?         @unique
   lead            Lead?           @relation(fields: [leadId], references: [id])
