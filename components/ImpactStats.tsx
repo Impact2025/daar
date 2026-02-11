@@ -29,8 +29,8 @@ const stats: StatCard[] = [
     title: 'Administratieve efficiëntie per jaar',
     description: '12-15 uur/week besparing voor coördinatoren',
     highlight: '€26.500 waarde/jaar',
-    color: 'daar-geel',
-    bgColor: '#D4A84B',
+    color: 'daar-goud',
+    bgColor: '#C8A860',
     textColor: '#FFFFFF',
     icon: <Clock className="w-5 h-5" />,
     animated: false
@@ -44,7 +44,7 @@ const stats: StatCard[] = [
     description: '+2.5 punten op VSI-schaal (3.5x hoger dan ongematchd)',
     highlight: '90% kans op doorgaan',
     color: 'daar-koraal',
-    bgColor: '#E07A5A',
+    bgColor: '#D97C6E',
     textColor: '#FFFFFF',
     icon: <Heart className="w-5 h-5" />,
     animated: false
@@ -58,8 +58,8 @@ const stats: StatCard[] = [
     title: 'Verbeterde retentierate',
     description: '65% baseline → 75-80% met Daar (eerste 30 dagen cruciaal)',
     highlight: '~10-15 extra vrijwilligers per 100',
-    color: 'daar-helder',
-    bgColor: '#5BA3BD',
+    color: 'daar-turquoise',
+    bgColor: '#6CB4C8',
     textColor: '#FFFFFF',
     icon: <Users className="w-5 h-5" />,
     animated: false
@@ -74,7 +74,7 @@ const stats: StatCard[] = [
     description: 'Via GMU/GMA meting + Geluksmomentenshop',
     highlight: '13% productiviteitsstijging',
     color: 'daar-mint',
-    bgColor: '#4BA99B',
+    bgColor: '#5BA99D',
     textColor: '#FFFFFF',
     icon: <TrendingUp className="w-5 h-5" />,
     animated: false
@@ -87,8 +87,8 @@ const stats: StatCard[] = [
     title: 'Return on Investment in jaar 1',
     description: '30-45% administratieve overhead reductie',
     highlight: 'Payback in 3-4 maanden',
-    color: 'daar-blue',
-    bgColor: '#2D334A',
+    color: 'daar-navy',
+    bgColor: '#3E3D5C',
     textColor: '#FFFFFF',
     icon: <PiggyBank className="w-5 h-5" />,
     animated: true
@@ -260,7 +260,7 @@ const ImpactStats: React.FC = () => {
             Bewezen resultaten
           </div>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-daar-blue mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-daar-navy mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>
             Impact die je kunt{' '}
 <span className="text-brandGreen">meten.</span>
           </h2>
@@ -290,7 +290,7 @@ const ImpactStats: React.FC = () => {
 
           <Link
             href="/afspraak"
-            className="inline-flex items-center gap-2 bg-daar-blue text-white font-bold px-6 py-3 rounded-full hover:bg-daar-blue/90 transition-all shadow-lg group whitespace-nowrap"
+            className="inline-flex items-center gap-2 bg-daar-navy text-white font-bold px-6 py-3 rounded-full hover:bg-daar-navy/90 transition-all shadow-lg group whitespace-nowrap"
           >
             Bereken jouw ROI
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

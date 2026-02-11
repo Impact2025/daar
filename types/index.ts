@@ -33,6 +33,10 @@ import type {
   // Drive types
   DriveFolder,
   DriveFile,
+  // Quiz & Booking types
+  QuizResult,
+  Booking,
+  BookingType,
 } from '@prisma/client'
 
 // Re-export Prisma types

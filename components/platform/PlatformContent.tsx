@@ -63,47 +63,47 @@ export const PlatformContent = () => {
               <div className="bg-white rounded-3xl p-6 shadow-2xl border border-gray-100">
                 {/* Workflow Steps Mini Preview */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#E8F5F3' }}>
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#4BA99B20' }}>
-                      <Users className="w-6 h-6 text-daar-mint" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-daar-mint">
+                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                      <Users className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-semibold text-daar-mint mb-1">STAP 1</div>
-                      <div className="font-semibold text-daar-blue">Aanmelding & Onboarding</div>
-                      <div className="text-sm text-gray-600">Smart formulieren met auto-complete</div>
+                      <div className="text-xs font-semibold text-white/80 mb-1">STAP 1</div>
+                      <div className="font-semibold text-white">Aanmelding & Onboarding</div>
+                      <div className="text-sm text-white/80">Smart formulieren met auto-complete</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#E6F3F7' }}>
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#5BA3BD20' }}>
-                      <Zap className="w-6 h-6 text-daar-helder" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-daar-turquoise">
+                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                      <Zap className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-semibold text-daar-helder mb-1">STAP 2</div>
-                      <div className="font-semibold text-daar-blue">Smart Matching</div>
-                      <div className="text-sm text-gray-600">AI-matching binnen 3 seconden</div>
+                      <div className="text-xs font-semibold text-white/80 mb-1">STAP 2</div>
+                      <div className="font-semibold text-white">Smart Matching</div>
+                      <div className="text-sm text-white/80">AI-matching binnen 3 seconden</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#FCF0EB' }}>
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#E07A5A20' }}>
-                      <Shield className="w-6 h-6 text-daar-koraal" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-daar-koraal">
+                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                      <Shield className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-semibold text-daar-koraal mb-1">STAP 3</div>
-                      <div className="font-semibold text-daar-blue">Planning & Actieve Inzet</div>
-                      <div className="text-sm text-gray-600">Geïntegreerde agenda & welzijn</div>
+                      <div className="text-xs font-semibold text-white/80 mb-1">STAP 3</div>
+                      <div className="font-semibold text-white">Planning & Actieve Inzet</div>
+                      <div className="text-sm text-white/80">Geïntegreerde agenda & welzijn</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#F9F3E8' }}>
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D4A84B20' }}>
-                      <BarChart2 className="w-6 h-6 text-daar-geel" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-daar-goud">
+                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                      <BarChart2 className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-semibold text-daar-geel mb-1">STAP 4</div>
-                      <div className="font-semibold text-daar-blue">Impact Meting</div>
-                      <div className="text-sm text-gray-600">Automatische SDG-rapportage</div>
+                      <div className="text-xs font-semibold text-white/80 mb-1">STAP 4</div>
+                      <div className="font-semibold text-white">Impact Meting</div>
+                      <div className="text-sm text-white/80">Automatische SDG-rapportage</div>
                     </div>
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export const PlatformContent = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-daar-blue relative overflow-hidden">
+      <section className="py-24 bg-daar-navy relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
             Klaar om te starten?

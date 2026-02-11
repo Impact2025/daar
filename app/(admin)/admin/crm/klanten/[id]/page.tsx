@@ -16,7 +16,10 @@ import {
   Trash2,
   Plus,
   ExternalLink,
+  ClipboardCheck,
+  Eye,
 } from 'lucide-react'
+import { Badge } from '@/components/ui'
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale'
 import {
@@ -326,6 +329,140 @@ export default function CustomerDetailPage({ params }: { params: Promise<{ id: s
             <h3 className="font-semibold text-gray-900 mb-4">Activiteiten</h3>
             <ActivityTimeline activities={customer.activities} />
           </div>
+
+          {/* Quiz Results */}
+          {customer.quizResults && customer.quizResults.length > 0 && (
+            <div className="bg-white rounded-xl border border-gray-200 p-5">
+              <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <ClipboardCheck className="w-5 h-5 text-brandGreen" />
+                Quiz Resultaten ({customer.quizResults.length})
+              </h3>
+              <div className="space-y-3">
+                {customer.quizResults.map((quiz: {
+                  id: string
+                  totalScore: number
+                  profileId: string
+                  organizationSize: string | null
+                  volunteerCount: number | null
+                  createdAt: Date
+                }) => (
+                  <div key={quiz.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-brandGreen rounded-full"
+                            style={{ width: `${quiz.totalScore}%` }}
+                          />
+                        </div>
+                        <span className="font-semibold text-navy">{quiz.totalScore}%</span>
+                      </div>
+                      <Badge
+                        className="capitalize"
+                        style={{
+                          backgroundColor: quiz.profileId === 'kampioen' ? '#10B98115' :
+                            quiz.profileId === 'gevorderd' ? '#3B82F615' :
+                            quiz.profileId === 'groei' ? '#F59E0B15' : '#EF444415',
+                          color: quiz.profileId === 'kampioen' ? '#10B981' :
+                            quiz.profileId === 'gevorderd' ? '#3B82F6' :
+                            quiz.profileId === 'groei' ? '#F59E0B' : '#EF4444',
+                        }}
+                      >
+                        {quiz.profileId}
+                      </Badge>
+                      {quiz.volunteerCount && (
+                        <span className="text-sm text-gray-500">
+                          {quiz.volunteerCount} vrijwilligers
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm text-gray-400">
+                        {format(new Date(quiz.createdAt), 'd MMM yyyy', { locale: nl })}
+                      </span>
+                      <Link
+                        href={`/quiz/resultaat/${quiz.id}`}
+                        target="_blank"
+                        className="text-brandGreen hover:underline"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Bookings */}
+          {customer.bookings && customer.bookings.length > 0 && (
+            <div className="bg-white rounded-xl border border-gray-200 p-5">
+              <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-blue-500" />
+                Afspraken ({customer.bookings.length})
+              </h3>
+              <div className="space-y-3">
+                {customer.bookings.map((booking: {
+                  id: string
+                  startTime: Date
+                  endTime: Date
+                  status: string
+                  meetingLink: string | null
+                  bookingType: { name: string; duration: number; color: string | null }
+                }) => {
+                  const isPast = new Date(booking.startTime) < new Date()
+                  return (
+                    <div
+                      key={booking.id}
+                      className={`flex items-center justify-between p-3 bg-gray-50 rounded-lg ${isPast ? 'opacity-60' : ''}`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div>
+                          <p className="font-medium text-navy">
+                            {format(new Date(booking.startTime), 'EEE d MMM yyyy', { locale: nl })}
+                          </p>
+                          <p className="text-sm text-gray-500">
+                            {format(new Date(booking.startTime), 'HH:mm')} - {format(new Date(booking.endTime), 'HH:mm')}
+                          </p>
+                        </div>
+                        <Badge
+                          style={{
+                            backgroundColor: booking.bookingType.color ? `${booking.bookingType.color}15` : undefined,
+                            color: booking.bookingType.color || undefined,
+                          }}
+                        >
+                          {booking.bookingType.name}
+                        </Badge>
+                        <Badge
+                          variant={
+                            booking.status === 'CONFIRMED' ? 'success' :
+                            booking.status === 'PENDING' ? 'warning' :
+                            booking.status === 'CANCELLED' ? 'danger' : 'default'
+                          }
+                        >
+                          {booking.status === 'CONFIRMED' ? 'Bevestigd' :
+                           booking.status === 'PENDING' ? 'In afwachting' :
+                           booking.status === 'CANCELLED' ? 'Geannuleerd' :
+                           booking.status === 'COMPLETED' ? 'Voltooid' : booking.status}
+                        </Badge>
+                      </div>
+                      {booking.meetingLink && (
+                        <a
+                          href={booking.meetingLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-brandGreen hover:underline flex items-center gap-1"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Meeting
+                        </a>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Notes */}
           {customer.notes.length > 0 && (

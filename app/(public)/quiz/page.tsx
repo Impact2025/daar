@@ -27,7 +27,7 @@ export default function QuizPage() {
                 Gratis tool - 2 minuten
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-daar-navy leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 Hoe gezond is jouw <span className="text-brandGreen">vrijwilligersbeleid?</span>
               </h1>
 
@@ -46,7 +46,7 @@ export default function QuizPage() {
                 </a>
                 <Link
                   href="/platform"
-                  className="bg-white text-daar-blue border-2 border-daar-helder font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-daar-helder/10 transition-colors text-center shadow-sm text-sm sm:text-base"
+                  className="bg-white text-daar-navy border-2 border-daar-turquoise font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-daar-turquoise/10 transition-colors text-center shadow-sm text-sm sm:text-base"
                 >
                   Bekijk het platform
                 </Link>
@@ -77,7 +77,7 @@ export default function QuizPage() {
                     <Shield size={16} className="mr-2" />
                     Geen account nodig
                   </div>
-                  <h3 className="text-2xl font-bold text-daar-blue mb-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                  <h3 className="text-2xl font-bold text-daar-navy mb-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
                     Direct inzicht
                   </h3>
                   <p className="text-gray-600">in je vrijwilligersbeleid</p>
@@ -85,38 +85,38 @@ export default function QuizPage() {
 
                 {/* 5 Dimensions Preview */}
                 <div className="space-y-3 mb-6">
-                  <div className="flex items-center justify-between p-3 bg-lightGreen rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-daar-mint/15 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-brandGreen"></div>
-                      <span className="font-medium text-daar-blue">Beheer</span>
+                      <div className="w-2 h-2 rounded-full bg-daar-mint"></div>
+                      <span className="font-medium text-daar-navy">Beheer</span>
                     </div>
                     <span className="text-sm text-gray-500">Organisatie & administratie</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-blue-50 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-daar-turquoise/15 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                      <span className="font-medium text-daar-blue">Communicatie</span>
+                      <div className="w-2 h-2 rounded-full bg-daar-turquoise"></div>
+                      <span className="font-medium text-daar-navy">Communicatie</span>
                     </div>
                     <span className="text-sm text-gray-500">Informatie & bereikbaarheid</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-purple-50 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-daar-goud/15 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-                      <span className="font-medium text-daar-blue">Onboarding</span>
+                      <div className="w-2 h-2 rounded-full bg-daar-goud"></div>
+                      <span className="font-medium text-daar-navy">Onboarding</span>
                     </div>
                     <span className="text-sm text-gray-500">Introductie & begeleiding</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-pink-50 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-daar-koraal/15 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-pink-500"></div>
-                      <span className="font-medium text-daar-blue">Retentie</span>
+                      <div className="w-2 h-2 rounded-full bg-daar-koraal"></div>
+                      <span className="font-medium text-daar-navy">Retentie</span>
                     </div>
                     <span className="text-sm text-gray-500">Waardering & motivatie</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-amber-50 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-daar-navy/15 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-amber-500"></div>
-                      <span className="font-medium text-daar-blue">Impact</span>
+                      <div className="w-2 h-2 rounded-full bg-daar-navy"></div>
+                      <span className="font-medium text-daar-navy">Impact</span>
                     </div>
                     <span className="text-sm text-gray-500">Meting & rapportage</span>
                   </div>
@@ -150,7 +150,7 @@ export default function QuizPage() {
           <div className="grid lg:grid-cols-5 gap-12 items-start">
             {/* Left: Info (smaller) */}
             <div className="lg:col-span-2 order-2 lg:order-1">
-              <h2 className="text-2xl font-bold text-daar-blue mb-4">
+              <h2 className="text-2xl font-bold text-daar-navy mb-4">
                 Waarom deze check?
               </h2>
               <p className="text-gray-600 mb-8">
@@ -166,7 +166,7 @@ export default function QuizPage() {
                   <Clock className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-daar-blue">2 minuten</h3>
+                  <h3 className="font-medium text-daar-navy">2 minuten</h3>
                   <p className="text-gray-600 text-sm">
                     11 vragen, direct resultaat
                   </p>
@@ -178,7 +178,7 @@ export default function QuizPage() {
                   <BarChart3 className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-daar-blue">Expertanalyse</h3>
+                  <h3 className="font-medium text-daar-navy">Expertanalyse</h3>
                   <p className="text-gray-600 text-sm">
                     Krijg inzicht in je sterke en zwakke punten
                   </p>
@@ -190,7 +190,7 @@ export default function QuizPage() {
                   <TrendingUp className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-daar-blue">ROI-berekening</h3>
+                  <h3 className="font-medium text-daar-navy">ROI-berekening</h3>
                   <p className="text-gray-600 text-sm">
                     Concrete cijfers over potentiele besparingen
                   </p>
@@ -202,7 +202,7 @@ export default function QuizPage() {
                   <Target className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-daar-blue">Actiegericht</h3>
+                  <h3 className="font-medium text-daar-navy">Actiegericht</h3>
                   <p className="text-gray-600 text-sm">
                     Gepersonaliseerde aanbevelingen per dimensie
                   </p>
@@ -214,7 +214,7 @@ export default function QuizPage() {
                   <Users className="w-5 h-5 text-brandGreen" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-daar-blue">Geen account nodig</h3>
+                  <h3 className="font-medium text-daar-navy">Geen account nodig</h3>
                   <p className="text-gray-600 text-sm">
                     Start direct, resultaat is deelbaar
                   </p>
@@ -227,15 +227,15 @@ export default function QuizPage() {
               <p className="text-sm text-gray-500 mb-4">Ontwikkeld door experts</p>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <p className="text-2xl font-bold text-daar-blue">3</p>
+                  <p className="text-2xl font-bold text-daar-navy">3</p>
                   <p className="text-xs text-gray-500">Specialisten</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-daar-blue">15+</p>
+                  <p className="text-2xl font-bold text-daar-navy">15+</p>
                   <p className="text-xs text-gray-500">Jaar ervaring</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-daar-blue">5</p>
+                  <p className="text-2xl font-bold text-daar-navy">5</p>
                   <p className="text-xs text-gray-500">Dimensies</p>
                 </div>
               </div>
