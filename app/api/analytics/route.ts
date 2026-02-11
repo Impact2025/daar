@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     const startDate = new Date()
     startDate.setDate(startDate.getDate() - parseInt(period))
 
-    // Parallel queries for performance
+    // Parallel queries for performance with error handling
     const [
       totalPageViews,
       pageViewsByDay,
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
       // Total page views
       prisma.pageView.count({
         where: { createdAt: { gte: startDate } }
-      }),
+      }).catch(() => 0),
 
       // Page views by day
       prisma.$queryRaw`
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
         WHERE created_at >= ${startDate}
         GROUP BY DATE(created_at)
         ORDER BY date ASC
-      ` as Promise<{ date: Date; views: number }[]>,
+      `.catch(() => []) as Promise<{ date: Date; views: number }[]>,
 
       // Top articles
       prisma.article.findMany({
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
         },
         orderBy: { viewCount: 'desc' },
         take: 10
-      }),
+      }).catch(() => []),
 
       // Top search queries
       prisma.$queryRaw`
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest) {
         GROUP BY query
         ORDER BY count DESC
         LIMIT 10
-      ` as Promise<{ query: string; count: number; avg_results: number }[]>,
+      `.catch(() => []) as Promise<{ query: string; count: number; avg_results: number }[]>,
 
       // Device breakdown
       prisma.$queryRaw`
@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
         FROM "PageView"
         WHERE created_at >= ${startDate}
         GROUP BY device_type
-      ` as Promise<{ device: string; count: number }[]>,
+      `.catch(() => []) as Promise<{ device: string; count: number }[]>,
 
       // Traffic sources (referrers)
       prisma.$queryRaw`
@@ -100,7 +100,7 @@ export async function GET(request: NextRequest) {
         WHERE created_at >= ${startDate}
         GROUP BY source
         ORDER BY count DESC
-      ` as Promise<{ source: string; count: number }[]>,
+      `.catch(() => []) as Promise<{ source: string; count: number }[]>,
 
       // Leads by source
       prisma.$queryRaw`
@@ -110,7 +110,7 @@ export async function GET(request: NextRequest) {
         FROM "Lead"
         WHERE created_at >= ${startDate}
         GROUP BY source
-      ` as Promise<{ source: string; count: number }[]>,
+      `.catch(() => []) as Promise<{ source: string; count: number }[]>,
 
       // Quiz stats
       prisma.$queryRaw`
@@ -120,7 +120,7 @@ export async function GET(request: NextRequest) {
           COUNT(CASE WHEN lead_id IS NOT NULL THEN 1 END)::int as with_lead
         FROM "QuizResult"
         WHERE created_at >= ${startDate}
-      ` as Promise<{ total: number; avg_score: number; with_lead: number }[]>,
+      `.catch(() => [{ total: 0, avg_score: 0, with_lead: 0 }]) as Promise<{ total: number; avg_score: number; with_lead: number }[]>,
 
       // Booking stats
       prisma.$queryRaw`
@@ -130,7 +130,7 @@ export async function GET(request: NextRequest) {
         FROM "Booking"
         WHERE created_at >= ${startDate}
         GROUP BY status
-      ` as Promise<{ status: string; count: number }[]>
+      `.catch(() => []) as Promise<{ status: string; count: number }[]>
     ])
 
     // Calculate unique visitors (approximate based on visitor_id)
@@ -138,7 +138,7 @@ export async function GET(request: NextRequest) {
       by: ['visitorId'],
       where: { createdAt: { gte: startDate } },
       _count: true
-    })
+    }).catch(() => [])
 
     // Calculate averages
     const avgTimeOnPage = await prisma.pageView.aggregate({
@@ -147,7 +147,7 @@ export async function GET(request: NextRequest) {
         timeOnPage: { not: null }
       },
       _avg: { timeOnPage: true }
-    })
+    }).catch(() => ({ _avg: { timeOnPage: 0 } }))
 
     return NextResponse.json({
       success: true,
@@ -170,8 +170,9 @@ export async function GET(request: NextRequest) {
     })
   } catch (error) {
     console.error('Error fetching analytics:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     return NextResponse.json(
-      { success: false, error: 'Er ging iets mis bij het ophalen van analytics' },
+      { success: false, error: 'Er ging iets mis bij het ophalen van analytics', details: errorMessage },
       { status: 500 }
     )
   }
