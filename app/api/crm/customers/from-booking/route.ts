@@ -76,8 +76,8 @@ export async function POST(request: NextRequest) {
     const customer = await prisma.customer.create({
       data: {
         companyName: booking.organization || `${booking.name} (persoonlijk)`,
-        contactName: booking.name,
-        contactEmail: booking.email,
+        contactName: booking.name || null,
+        contactEmail: booking.email || null,
         contactPhone: booking.phone || null,
 
         // Status

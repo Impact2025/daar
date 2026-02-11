@@ -114,8 +114,6 @@ export default function EditCustomerPage({ params }: { params: Promise<{ id: str
   const validate = () => {
     const newErrors: Record<string, string> = {}
     if (!formData.companyName) newErrors.companyName = 'Bedrijfsnaam is verplicht'
-    if (!formData.contactName) newErrors.contactName = 'Contactnaam is verplicht'
-    if (!formData.contactEmail) newErrors.contactEmail = 'Email is verplicht'
     if (formData.kvkNumber && !/^\d{8}$/.test(formData.kvkNumber)) {
       newErrors.kvkNumber = 'KVK nummer moet 8 cijfers zijn'
     }
@@ -422,17 +420,14 @@ export default function EditCustomerPage({ params }: { params: Promise<{ id: str
           <h2 className="font-semibold text-gray-900 mb-4">Contactpersoon</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Naam *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Naam</label>
               <input
                 type="text"
                 name="contactName"
                 value={formData.contactName}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen ${
-                  errors.contactName ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen"
               />
-              {errors.contactName && <p className="mt-1 text-sm text-red-500">{errors.contactName}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Functie</label>
@@ -446,17 +441,14 @@ export default function EditCustomerPage({ params }: { params: Promise<{ id: str
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
               <input
                 type="email"
                 name="contactEmail"
                 value={formData.contactEmail}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen ${
-                  errors.contactEmail ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen"
               />
-              {errors.contactEmail && <p className="mt-1 text-sm text-red-500">{errors.contactEmail}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Telefoon</label>

@@ -68,8 +68,8 @@ export async function POST(request: NextRequest) {
     const customer = await prisma.customer.create({
       data: {
         companyName: quizResult.lead?.organization || 'Onbekende organisatie',
-        contactName: quizResult.lead?.name || 'Onbekend',
-        contactEmail: quizResult.lead?.email || '',
+        contactName: quizResult.lead?.name || null,
+        contactEmail: quizResult.lead?.email || null,
         contactPhone: quizResult.lead?.phone || null,
 
         // Daar-specific fields from quiz

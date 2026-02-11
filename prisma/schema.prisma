@@ -738,8 +738,8 @@ model Customer {
   subsidySource     String?                 // Bron van subsidie (gemeente, etc.)
 
   // Hoofdcontact
-  contactName     String
-  contactEmail    String
+  contactName     String?
+  contactEmail    String?
   contactPhone    String?
   contactRole     String?                   // Functie
 

@@ -56,12 +56,32 @@ export async function GET(
         folders: {
           select: { id: true, name: true, color: true },
         },
+        quizResults: {
+          select: {
+            id: true,
+            totalScore: true,
+            profileId: true,
+            organizationSize: true,
+            volunteerCount: true,
+            createdAt: true,
+          },
+          orderBy: { createdAt: 'desc' },
+        },
+        bookings: {
+          include: {
+            bookingType: { select: { name: true, duration: true, color: true } },
+          },
+          orderBy: { startTime: 'desc' },
+          take: 10,
+        },
         _count: {
           select: {
             activities: true,
             tasks: true,
             deals: true,
             notes: true,
+            quizResults: true,
+            bookings: true,
           },
         },
       },
@@ -102,6 +122,9 @@ export async function PATCH(
     // Only include fields that are provided
     const fields = [
       'companyName', 'kvkNumber', 'vatNumber', 'website', 'industry',
+      'organizationType', 'sector', 'volunteerCount', 'paidStaffCount',
+      'currentSoftware', 'painPoints', 'desiredFeatures', 'annualBudget',
+      'subsidized', 'subsidySource',
       'contactName', 'contactEmail', 'contactPhone', 'contactRole',
       'address', 'postalCode', 'city', 'country',
       'status', 'source', 'employeeCount',
