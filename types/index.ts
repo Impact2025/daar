@@ -243,6 +243,26 @@ export type CustomerWithRelations = Customer & {
   tasks: TaskWithRelations[]
   deals: DealWithRelations[]
   notes: NoteWithAuthor[]
+  quizResults?: Array<{
+    id: string
+    totalScore: number
+    profileId: string
+    organizationSize: string | null
+    volunteerCount: number | null
+    createdAt: Date
+  }>
+  bookings?: Array<{
+    id: string
+    startTime: Date
+    endTime: Date
+    status: string
+    meetingLink: string | null
+    bookingType: {
+      name: string
+      duration: number
+      color: string | null
+    }
+  }>
   _count?: {
     activities: number
     tasks: number
