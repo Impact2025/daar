@@ -10,6 +10,7 @@ import type { ArticleWithRelations } from '@/types'
 
 interface ArticleContentProps {
   article: ArticleWithRelations
+  basePath?: string
 }
 
 interface TOCItem {
@@ -28,7 +29,9 @@ const gradientColors: Record<string, string> = {
   'gradient-navy': 'from-[#2D334A] to-[#1F2537]',
 }
 
-export function ArticleContent({ article }: ArticleContentProps) {
+export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleContentProps) {
+  const isBlog = basePath === '/blog'
+  const backLabel = isBlog ? 'Terug naar blog' : 'Terug naar kennisbank'
   const [tocItems, setTocItems] = useState<TOCItem[]>([])
   const [activeId, setActiveId] = useState<string>('')
 
@@ -89,11 +92,11 @@ export function ArticleContent({ article }: ArticleContentProps) {
     <div className="relative">
       {/* Back link */}
       <Link
-        href="/kennisbank"
+        href={basePath}
         className="inline-flex items-center gap-2 text-gray-600 hover:text-brandGreen transition-colors mb-6"
       >
         <ArrowLeft className="w-4 h-4" />
-        Terug naar kennisbank
+        {backLabel}
       </Link>
 
       <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
@@ -103,7 +106,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
           <header className="mb-8">
             {/* Category */}
             {article.category && (
-              <Link href={`/kennisbank/categorie/${article.category.slug}`}>
+              <Link href={`${basePath}/categorie/${article.category.slug}`}>
                 <Badge
                   variant="default"
                   className="mb-4"
@@ -217,7 +220,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
                 {article.tags.map(({ tag }) => (
                   <Link
                     key={tag.id}
-                    href={`/kennisbank?tag=${tag.slug}`}
+                    href={`${basePath}?tag=${tag.slug}`}
                     className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-brandGreen hover:text-white transition-colors"
                   >
                     {tag.name}
@@ -314,10 +317,10 @@ export function ArticleContent({ article }: ArticleContentProps) {
                     → VrijwilligersCheck
                   </Link>
                   <Link
-                    href="/kennisbank"
+                    href={basePath}
                     className="block text-sm text-brandGreen hover:underline"
                   >
-                    → Meer artikelen
+                    → {isBlog ? 'Meer blogposts' : 'Meer artikelen'}
                   </Link>
                   <Link
                     href="/contact"
