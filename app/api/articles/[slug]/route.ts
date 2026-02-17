@@ -14,11 +14,12 @@ const updateSchema = z.object({
   metaDescription: z.string().max(160).optional(),
   featuredImage: z.string().url().optional().or(z.literal('')).or(z.null()),
   featuredImageAlt: z.string().optional(),
-  headerStyle: z.enum(['image', 'gradient']).optional(),
+  headerStyle: z.string().optional(),
   categoryId: z.string().optional().or(z.null()),
   tagIds: z.array(z.string()).optional(),
   status: z.enum(['DRAFT', 'REVIEW', 'PUBLISHED', 'ARCHIVED']).optional(),
   publishedAt: z.string().datetime().optional().or(z.null()),
+  type: z.enum(['KENNISBANK', 'BLOG']).optional(),
 })
 
 interface RouteParams {

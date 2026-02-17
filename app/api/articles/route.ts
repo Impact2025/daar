@@ -14,10 +14,11 @@ const articleSchema = z.object({
   metaDescription: z.string().max(160).optional(),
   featuredImage: z.string().url().optional().or(z.literal('')),
   featuredImageAlt: z.string().optional(),
-  headerStyle: z.enum(['image', 'gradient']).default('image'),
+  headerStyle: z.string().default('gradient-green'),
   categoryId: z.string().optional(),
   tagIds: z.array(z.string()).optional(),
   status: z.enum(['DRAFT', 'REVIEW', 'PUBLISHED', 'ARCHIVED']).default('DRAFT'),
+  type: z.enum(['KENNISBANK', 'BLOG']).default('KENNISBANK'),
 })
 
 // GET /api/articles - Haal artikelen op
@@ -168,6 +169,7 @@ export async function POST(request: NextRequest) {
         featuredImage: validated.featuredImage || null,
         featuredImageAlt: validated.featuredImageAlt,
         headerStyle: validated.headerStyle,
+        type: validated.type,
         status: validated.status,
         publishedAt: validated.status === 'PUBLISHED' ? new Date() : null,
         readingTime,

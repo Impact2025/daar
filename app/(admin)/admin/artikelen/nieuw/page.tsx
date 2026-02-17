@@ -27,6 +27,7 @@ export default function NewArticlePage() {
   const [metaDescription, setMetaDescription] = useState('')
   const [featuredImage, setFeaturedImage] = useState('')
   const [headerStyle, setHeaderStyle] = useState<HeaderStyle>('gradient-green')
+  const [articleType, setArticleType] = useState<'KENNISBANK' | 'BLOG'>('KENNISBANK')
 
   const handleTitleChange = (newTitle: string) => {
     setTitle(newTitle)
@@ -132,6 +133,7 @@ export default function NewArticlePage() {
           metaDescription,
           featuredImage: featuredImage || undefined,
           headerStyle,
+          type: articleType,
           status: publishStatus,
         }),
       })
@@ -215,7 +217,7 @@ export default function NewArticlePage() {
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
                 placeholder="artikel-url"
-                hint={`/kennisbank/${slug || 'artikel-url'}`}
+                hint={`/${articleType === 'BLOG' ? 'blog' : 'kennisbank'}/${slug || 'artikel-url'}`}
               />
 
               <div>
@@ -234,6 +236,44 @@ export default function NewArticlePage() {
 
         {/* Sidebar */}
         <div className="space-y-6">
+          {/* Type */}
+          <Card>
+            <CardHeader>
+              <h3 className="font-semibold text-navy">Type artikel</h3>
+            </CardHeader>
+            <CardContent>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setArticleType('KENNISBANK')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${
+                    articleType === 'KENNISBANK'
+                      ? 'bg-brandGreen text-white border-brandGreen'
+                      : 'bg-white text-gray-600 border-gray-300 hover:border-brandGreen'
+                  }`}
+                >
+                  Kennisbank
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setArticleType('BLOG')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${
+                    articleType === 'BLOG'
+                      ? 'bg-daar-blue text-white border-daar-blue'
+                      : 'bg-white text-gray-600 border-gray-300 hover:border-daar-blue'
+                  }`}
+                >
+                  Blog
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                {articleType === 'BLOG'
+                  ? 'Verschijnt op /blog'
+                  : 'Verschijnt op /kennisbank'}
+              </p>
+            </CardContent>
+          </Card>
+
           {/* AI Assistant */}
           <Card>
             <CardHeader>

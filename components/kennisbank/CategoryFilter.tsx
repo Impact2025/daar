@@ -19,9 +19,10 @@ interface Category {
 interface CategoryFilterProps {
   categories: Category[]
   activeCategory?: string
+  basePath?: string
 }
 
-export function CategoryFilter({ categories, activeCategory }: CategoryFilterProps) {
+export function CategoryFilter({ categories, activeCategory, basePath = '/kennisbank' }: CategoryFilterProps) {
   const searchParams = useSearchParams()
   const currentQuery = searchParams.get('q')
 
@@ -34,7 +35,7 @@ export function CategoryFilter({ categories, activeCategory }: CategoryFilterPro
   return (
     <div className="flex flex-wrap gap-2">
       <Link
-        href={currentQuery ? `/kennisbank?q=${currentQuery}` : '/kennisbank'}
+        href={currentQuery ? `${basePath}?q=${currentQuery}` : basePath}
         className={cn(
           'px-5 py-2.5 rounded-full text-sm font-semibold transition-all',
           !activeCategory
@@ -52,7 +53,7 @@ export function CategoryFilter({ categories, activeCategory }: CategoryFilterPro
         return (
           <Link
             key={category.id}
-            href={`/kennisbank/categorie/${category.slug}${queryParam}`}
+            href={`${basePath}/categorie/${category.slug}${queryParam}`}
             className={cn(
               'px-5 py-2.5 rounded-full text-sm font-semibold transition-all flex items-center gap-2',
               isActive

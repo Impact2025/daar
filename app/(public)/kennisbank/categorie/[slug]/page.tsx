@@ -31,6 +31,7 @@ async function getArticles(categoryId: string, query?: string, page: number = 1)
 
   const where: any = {
     status: 'PUBLISHED',
+    type: 'KENNISBANK',
     categoryId,
   }
 

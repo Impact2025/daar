@@ -32,6 +32,9 @@ model Article {
   featuredImageAlt String?
   headerStyle      String         @default("gradient-green") // "image" | "gradient-green" | "gradient-yellow" | "gradient-coral" | "gradient-blue" | "gradient-teal" | "gradient-navy"
 
+  // Type: Kennisbank of Blog
+  type            ArticleType    @default(KENNISBANK)
+
   // Publishing
   status          ArticleStatus  @default(DRAFT)
   publishedAt     DateTime?
@@ -60,6 +63,7 @@ model Article {
 
   @@index([slug])
   @@index([status])
+  @@index([type])
   @@index([categoryId])
   @@index([publishedAt])
   @@index([authorId])
@@ -70,6 +74,11 @@ enum ArticleStatus {
   REVIEW
   PUBLISHED
   ARCHIVED
+}
+
+enum ArticleType {
+  KENNISBANK
+  BLOG
 }
 
 model Category {

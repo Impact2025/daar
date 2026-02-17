@@ -1,11 +1,16 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { Card, CardContent, Badge, Button } from '@/components/ui'
-import { Plus, Edit, Eye, Trash2 } from 'lucide-react'
+import { Plus, Edit, Eye } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 
-async function getArticles() {
+interface PageProps {
+  searchParams: Promise<{ type?: string }>
+}
+
+async function getArticles(type?: string) {
   return prisma.article.findMany({
+    where: type === 'blog' ? { type: 'BLOG' } : type === 'kennisbank' ? { type: 'KENNISBANK' } : {},
     orderBy: { updatedAt: 'desc' },
     include: {
       author: {
@@ -18,8 +23,10 @@ async function getArticles() {
   })
 }
 
-export default async function ArticlesPage() {
-  const articles = await getArticles()
+export default async function ArticlesPage({ searchParams }: PageProps) {
+  const params = await searchParams
+  const activeType = params.type || 'alle'
+  const articles = await getArticles(activeType === 'alle' ? undefined : activeType)
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -36,12 +43,22 @@ export default async function ArticlesPage() {
     }
   }
 
+  const getPreviewUrl = (article: { slug: string; type: string }) => {
+    return article.type === 'BLOG' ? `/blog/${article.slug}` : `/kennisbank/${article.slug}`
+  }
+
+  const tabs = [
+    { key: 'alle', label: 'Alle' },
+    { key: 'kennisbank', label: 'Kennisbank' },
+    { key: 'blog', label: 'Blog' },
+  ]
+
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-navy">Artikelen</h1>
-          <p className="text-gray-500">Beheer je kennisbank artikelen</p>
+          <p className="text-gray-500">Beheer kennisbank artikelen en blogposts</p>
         </div>
         <Link href="/admin/artikelen/nieuw">
           <Button className="gap-2">
@@ -49,6 +66,23 @@ export default async function ArticlesPage() {
             Nieuw artikel
           </Button>
         </Link>
+      </div>
+
+      {/* Type tabs */}
+      <div className="flex gap-1 mb-6 bg-gray-100 p-1 rounded-lg w-fit">
+        {tabs.map((tab) => (
+          <Link
+            key={tab.key}
+            href={tab.key === 'alle' ? '/admin/artikelen' : `/admin/artikelen?type=${tab.key}`}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              activeType === tab.key
+                ? 'bg-white text-navy shadow-sm'
+                : 'text-gray-600 hover:text-navy'
+            }`}
+          >
+            {tab.label}
+          </Link>
+        ))}
       </div>
 
       <Card>
@@ -59,6 +93,9 @@ export default async function ArticlesPage() {
                 <tr className="border-b border-gray-200 bg-gray-50">
                   <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">
                     Titel
+                  </th>
+                  <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">
+                    Type
                   </th>
                   <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">
                     Categorie
@@ -87,6 +124,11 @@ export default async function ArticlesPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
+                      <Badge variant={article.type === 'BLOG' ? 'warning' : 'default'}>
+                        {article.type === 'BLOG' ? 'Blog' : 'Kennisbank'}
+                      </Badge>
+                    </td>
+                    <td className="px-6 py-4">
                       {article.category ? (
                         <Badge
                           style={{
@@ -111,7 +153,7 @@ export default async function ArticlesPage() {
                       <div className="flex items-center justify-end gap-2">
                         {article.status === 'PUBLISHED' && (
                           <Link
-                            href={`/kennisbank/${article.slug}`}
+                            href={getPreviewUrl(article)}
                             target="_blank"
                             className="p-2 text-gray-400 hover:text-brandGreen transition-colors"
                             title="Bekijken"

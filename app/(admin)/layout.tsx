@@ -5,6 +5,7 @@ import { Logo } from '@/components/ui/Logo'
 import {
   LayoutDashboard,
   FileText,
+  Newspaper,
   FolderOpen,
   Users,
   BarChart3,
@@ -31,7 +32,8 @@ const sidebarItems = [
   { href: '/admin/crm/quiz', label: 'Quiz', icon: ClipboardCheck, indent: true },
   { href: '/admin/crm/chat', label: 'Chat logs', icon: MessageSquare, indent: true },
   { href: '/admin/drive', label: 'Drive', icon: HardDrive, dividerBefore: true },
-  { href: '/admin/artikelen', label: 'Artikelen', icon: FileText, dividerBefore: true },
+  { href: '/admin/artikelen?type=kennisbank', label: 'Kennisbank', icon: FileText, dividerBefore: true },
+  { href: '/admin/artikelen?type=blog', label: 'Blog', icon: Newspaper },
   { href: '/admin/categorieen', label: 'Categorieën', icon: FolderOpen },
   { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
 ] as const

@@ -7,6 +7,7 @@ import { ArrowLeft, Save, Eye, Sparkles, Loader2, Wand2, Calendar } from 'lucide
 import { Button, Input, Card, CardContent, CardHeader } from '@/components/ui'
 import { WYSIWYGEditor } from '@/components/admin/WYSIWYGEditor'
 import { FeaturedImagePicker, HeaderStyle } from '@/components/admin/FeaturedImagePicker'
+import { BlogWizard } from '@/components/admin/BlogWizard'
 import { generateSlug } from '@/lib/utils'
 
 export default function EditArticlePage() {
@@ -33,6 +34,7 @@ export default function EditArticlePage() {
   const [headerStyle, setHeaderStyle] = useState<HeaderStyle>('image')
   const [status, setStatus] = useState<'DRAFT' | 'PUBLISHED'>('DRAFT')
   const [publishedAt, setPublishedAt] = useState('')
+  const [articleType, setArticleType] = useState<'KENNISBANK' | 'BLOG'>('KENNISBANK')
 
   // Load article data
   useEffect(() => {
@@ -56,6 +58,7 @@ export default function EditArticlePage() {
         setFeaturedImage(article.featuredImage || '')
         setHeaderStyle((article.headerStyle as HeaderStyle) || 'image')
         setStatus(article.status === 'PUBLISHED' ? 'PUBLISHED' : 'DRAFT')
+        setArticleType(article.type === 'BLOG' ? 'BLOG' : 'KENNISBANK')
         // Format date for datetime-local input
         if (article.publishedAt) {
           const date = new Date(article.publishedAt)
@@ -174,6 +177,7 @@ export default function EditArticlePage() {
           metaDescription,
           featuredImage: featuredImage || null,
           headerStyle,
+          type: articleType,
           status: publishStatus,
           publishedAt: publishedAt ? new Date(publishedAt).toISOString() : null,
         }),
@@ -225,7 +229,7 @@ export default function EditArticlePage() {
 
         <div className="flex items-center gap-3">
           <Link
-            href={`/kennisbank/${articleSlug}`}
+            href={`/${articleType === 'BLOG' ? 'blog' : 'kennisbank'}/${articleSlug}`}
             target="_blank"
             className="px-4 py-2 text-sm text-gray-600 hover:text-brandGreen transition-colors"
           >
@@ -276,7 +280,7 @@ export default function EditArticlePage() {
                 value={articleSlug}
                 onChange={(e) => setArticleSlug(e.target.value)}
                 placeholder="artikel-url"
-                hint={`/kennisbank/${articleSlug || 'artikel-url'}`}
+                hint={`/${articleType === 'BLOG' ? 'blog' : 'kennisbank'}/${articleSlug || 'artikel-url'}`}
               />
 
               <div>
@@ -295,6 +299,18 @@ export default function EditArticlePage() {
 
         {/* Sidebar */}
         <div className="space-y-6">
+          {/* Blog AI Wizard - alleen zichtbaar voor Blog artikelen */}
+          {articleType === 'BLOG' && (
+            <BlogWizard
+              title={title}
+              content={content}
+              onApplyMetaTitle={setMetaTitle}
+              onApplyMetaDescription={setMetaDescription}
+              onApplyExcerpt={setExcerpt}
+              onApplyContent={setContent}
+            />
+          )}
+
           {/* Status & Publicatie */}
           <Card>
             <CardHeader>
@@ -330,6 +346,44 @@ export default function EditArticlePage() {
                   Wordt automatisch ingesteld bij eerste publicatie
                 </p>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Type */}
+          <Card>
+            <CardHeader>
+              <h3 className="font-semibold text-navy">Type artikel</h3>
+            </CardHeader>
+            <CardContent>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setArticleType('KENNISBANK')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${
+                    articleType === 'KENNISBANK'
+                      ? 'bg-brandGreen text-white border-brandGreen'
+                      : 'bg-white text-gray-600 border-gray-300 hover:border-brandGreen'
+                  }`}
+                >
+                  Kennisbank
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setArticleType('BLOG')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${
+                    articleType === 'BLOG'
+                      ? 'bg-daar-blue text-white border-daar-blue'
+                      : 'bg-white text-gray-600 border-gray-300 hover:border-daar-blue'
+                  }`}
+                >
+                  Blog
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                {articleType === 'BLOG'
+                  ? 'Verschijnt op /blog'
+                  : 'Verschijnt op /kennisbank'}
+              </p>
             </CardContent>
           </Card>
 

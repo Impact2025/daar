@@ -7,13 +7,14 @@ import type { ArticleListItem } from '@/types'
 
 interface ArticleCardProps {
   article: ArticleListItem & { headerStyle?: string }
+  basePath?: string
 }
 
-export function ArticleCard({ article }: ArticleCardProps) {
+export function ArticleCard({ article, basePath = '/kennisbank' }: ArticleCardProps) {
   const hasGradientHeader = !article.featuredImage && article.headerStyle === 'gradient'
 
   return (
-    <Link href={`/kennisbank/${article.slug}`}>
+    <Link href={`${basePath}/${article.slug}`}>
       <article className="group bg-white rounded-2xl border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1">
         {/* Featured Image */}
         {article.featuredImage ? (

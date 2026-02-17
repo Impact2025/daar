@@ -9,9 +9,9 @@ interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-async function getArticle(slug: string) {
+async function getBlogPost(slug: string) {
   const article = await prisma.article.findUnique({
-    where: { slug, status: 'PUBLISHED', type: 'KENNISBANK' },
+    where: { slug, status: 'PUBLISHED', type: 'BLOG' },
     include: {
       author: {
         select: {
@@ -42,11 +42,11 @@ async function getArticle(slug: string) {
   return article
 }
 
-async function getRelatedArticles(articleId: string, categoryId: string | null) {
+async function getRelatedPosts(articleId: string, categoryId: string | null) {
   return prisma.article.findMany({
     where: {
       status: 'PUBLISHED',
-      type: 'KENNISBANK',
+      type: 'BLOG',
       id: { not: articleId },
       ...(categoryId ? { categoryId } : {}),
     },
@@ -82,14 +82,13 @@ async function getRelatedArticles(articleId: string, categoryId: string | null) 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const article = await prisma.article.findUnique({
-    where: { slug, status: 'PUBLISHED', type: 'KENNISBANK' },
+    where: { slug, status: 'PUBLISHED', type: 'BLOG' },
     select: {
       title: true,
       excerpt: true,
       metaTitle: true,
       metaDescription: true,
       featuredImage: true,
-      headerStyle: true,
       publishedAt: true,
       author: {
         select: { name: true },
@@ -99,11 +98,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!article) {
     return {
-      title: 'Artikel niet gevonden | DAAR',
+      title: 'Blogpost niet gevonden | DAAR',
     }
   }
 
-  const baseUrl = 'https://daar.nl';
+  const baseUrl = 'https://daar.nl'
 
   return {
     title: article.metaTitle || article.title,
@@ -112,11 +111,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: article.title,
       description: article.excerpt || undefined,
       type: 'article',
-      url: `${baseUrl}/kennisbank/${slug}`,
+      url: `${baseUrl}/blog/${slug}`,
       siteName: 'Daar',
       locale: 'nl_NL',
       publishedTime: article.publishedAt?.toISOString(),
-      modifiedTime: article.publishedAt?.toISOString(),
       authors: article.author?.name ? [article.author.name] : ['Daar Team'],
       images: article.featuredImage ? [
         {
@@ -134,22 +132,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: article.featuredImage ? [article.featuredImage] : undefined,
     },
     alternates: {
-      canonical: `${baseUrl}/kennisbank/${slug}`,
+      canonical: `${baseUrl}/blog/${slug}`,
     },
   }
 }
 
-export default async function ArticlePage({ params }: PageProps) {
+export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params
-  const article = await getArticle(slug)
+  const article = await getBlogPost(slug)
 
   if (!article) {
     notFound()
   }
 
-  const relatedArticles = await getRelatedArticles(article.id, article.categoryId)
+  const relatedPosts = await getRelatedPosts(article.id, article.categoryId)
 
-  const baseUrl = 'https://daar.nl';
+  const baseUrl = 'https://daar.nl'
 
   return (
     <>
@@ -162,15 +160,15 @@ export default async function ArticlePage({ params }: PageProps) {
         author={{
           name: article.author?.name || 'Daar Team',
         }}
-        url={`${baseUrl}/kennisbank/${article.slug}`}
+        url={`${baseUrl}/blog/${article.slug}`}
         keywords={article.tags?.map(t => t.tag.name)}
       />
       <BreadcrumbSchema
         items={[
           { name: 'Home', url: baseUrl },
-          { name: 'Kennisbank', url: `${baseUrl}/kennisbank` },
-          ...(article.category ? [{ name: article.category.name, url: `${baseUrl}/kennisbank/categorie/${article.category.slug}` }] : []),
-          { name: article.title, url: `${baseUrl}/kennisbank/${article.slug}` },
+          { name: 'Blog', url: `${baseUrl}/blog` },
+          ...(article.category ? [{ name: article.category.name, url: `${baseUrl}/blog/categorie/${article.category.slug}` }] : []),
+          { name: article.title, url: `${baseUrl}/blog/${article.slug}` },
         ]}
       />
       <div className="bg-offWhite min-h-screen py-12">
@@ -178,19 +176,19 @@ export default async function ArticlePage({ params }: PageProps) {
           {/* Main Article */}
           <ArticleContent article={article as any} />
 
-        {/* Related Articles */}
-        {relatedArticles.length > 0 && (
-          <section className="mt-16 pt-12 border-t border-gray-200">
-            <h2 className="text-2xl font-bold text-daar-blue mb-8 text-center">
-              Gerelateerde artikelen
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedArticles.map((article) => (
-                <ArticleCard key={article.id} article={article as any} />
-              ))}
-            </div>
-          </section>
-        )}
+          {/* Related Posts */}
+          {relatedPosts.length > 0 && (
+            <section className="mt-16 pt-12 border-t border-gray-200">
+              <h2 className="text-2xl font-bold text-daar-blue mb-8 text-center">
+                Gerelateerde blogposts
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {relatedPosts.map((post) => (
+                  <ArticleCard key={post.id} article={post as any} basePath="/blog" />
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </div>
     </>
