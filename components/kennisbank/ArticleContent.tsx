@@ -37,6 +37,7 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
 
   const headerStyle = (article as any).headerStyle || 'image'
   const gradientClass = gradientColors[headerStyle] || gradientColors['gradient-green']
+  const hasGradientHeader = !article.featuredImage && headerStyle.startsWith('gradient-')
 
   // Extract TOC items from content
   useEffect(() => {
@@ -120,16 +121,18 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
               </Link>
             )}
 
-            {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-daar-blue mb-6 leading-tight">
-              {article.title}
-            </h1>
-
-            {/* Excerpt */}
-            {article.excerpt && (
-              <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                {article.excerpt}
-              </p>
+            {/* Title + Excerpt — verborgen als gradient header de titel al toont */}
+            {!hasGradientHeader && (
+              <>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-daar-blue mb-6 leading-tight">
+                  {article.title}
+                </h1>
+                {article.excerpt && (
+                  <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                    {article.excerpt}
+                  </p>
+                )}
+              </>
             )}
 
             {/* Meta */}
