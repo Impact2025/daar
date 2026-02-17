@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Clock, Eye, Calendar, ArrowLeft, Share2, List } from 'lucide-react'
 import { Badge, Button } from '@/components/ui'
 import { formatDate } from '@/lib/utils'
@@ -34,28 +34,30 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
   const backLabel = isBlog ? 'Terug naar blog' : 'Terug naar kennisbank'
   const [tocItems, setTocItems] = useState<TOCItem[]>([])
   const [activeId, setActiveId] = useState<string>('')
+  const contentRef = useRef<HTMLDivElement>(null)
 
   const headerStyle = (article as any).headerStyle || 'image'
   const gradientClass = gradientColors[headerStyle] || gradientColors['gradient-green']
   const hasGradientHeader = !article.featuredImage && headerStyle.startsWith('gradient-')
 
-  // Extract TOC items from content
+  // Voeg IDs toe aan headings in de gerenderde DOM en extraheer TOC
   useEffect(() => {
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(article.content, 'text/html')
-    const headings = doc.querySelectorAll('h2, h3')
+    if (!contentRef.current) return
 
+    const headings = contentRef.current.querySelectorAll('h2, h3')
     const items: TOCItem[] = []
+
     headings.forEach((heading) => {
-      const id = heading.id || heading.textContent?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || ''
-      if (heading.textContent) {
-        items.push({
-          id,
-          text: heading.textContent,
-          level: heading.tagName === 'H2' ? 2 : 3,
-        })
-      }
+      const text = heading.textContent || ''
+      const generated = text.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+      if (!heading.id) heading.id = generated
+      items.push({
+        id: heading.id,
+        text,
+        level: heading.tagName === 'H2' ? 2 : 3,
+      })
     })
+
     setTocItems(items)
   }, [article.content])
 
@@ -211,6 +213,7 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
 
           {/* Content */}
           <div
+            ref={contentRef}
             className="prose prose-lg max-w-none"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
