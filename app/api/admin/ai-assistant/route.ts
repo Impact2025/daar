@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
         'HTTP-Referer': process.env.NEXTAUTH_URL || 'http://localhost:3000',
       },
       body: JSON.stringify({
-        model: process.env.OPENROUTER_MODEL || 'anthropic/claude-3-haiku',
+        model: process.env.OPENROUTER_MODEL || 'anthropic/claude-3-haiku-20240307',
         messages: [
           {
             role: 'user',

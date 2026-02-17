@@ -110,7 +110,7 @@ Geef je antwoord ALLEEN als valide JSON, zonder markdown blokken:
         'HTTP-Referer': process.env.NEXTAUTH_URL || 'http://localhost:3000',
       },
       body: JSON.stringify({
-        model: process.env.OPENROUTER_MODEL || 'anthropic/claude-3-haiku',
+        model: process.env.OPENROUTER_MODEL || 'anthropic/claude-3-haiku-20240307',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 4000,
         temperature: 0.3,
@@ -139,12 +139,22 @@ Geef je antwoord ALLEEN als valide JSON, zonder markdown blokken:
     // Parse JSON antwoord van AI
     let parsed: BlogWizardResult
     try {
-      // Verwijder eventuele markdown code blocks
-      const jsonStr = rawContent
-        .replace(/^```json\s*/i, '')
-        .replace(/^```\s*/i, '')
-        .replace(/\s*```$/i, '')
-        .trim()
+      // Probeer JSON te extraheren uit de response (ook als er markdown of extra tekst omheen staat)
+      let jsonStr = rawContent.trim()
+
+      // Optie 1: JSON zit in een ```json ... ``` blok
+      const codeBlockMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/)
+      if (codeBlockMatch) {
+        jsonStr = codeBlockMatch[1].trim()
+      } else {
+        // Optie 2: Pak alles tussen de eerste { en laatste }
+        const firstBrace = jsonStr.indexOf('{')
+        const lastBrace = jsonStr.lastIndexOf('}')
+        if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+          jsonStr = jsonStr.substring(firstBrace, lastBrace + 1)
+        }
+      }
+
       parsed = JSON.parse(jsonStr)
     } catch {
       console.error('JSON parse fout:', rawContent)
