@@ -10,8 +10,19 @@ interface ArticleCardProps {
   basePath?: string
 }
 
+const gradientMap: Record<string, string> = {
+  'gradient-green': 'from-brandGreen to-brandGreenHover',
+  'gradient-yellow': 'from-[#D4A574] to-[#C99A64]',
+  'gradient-coral': 'from-[#E07856] to-[#D96B4A]',
+  'gradient-blue': 'from-[#5B9BD5] to-[#4A8BC2]',
+  'gradient-teal': 'from-[#4DB8A8] to-[#3FA799]',
+  'gradient-navy': 'from-[#2D334A] to-[#1F2537]',
+}
+
 export function ArticleCard({ article, basePath = '/kennisbank' }: ArticleCardProps) {
-  const hasGradientHeader = !article.featuredImage && article.headerStyle === 'gradient'
+  const gradientClass = !article.featuredImage && article.headerStyle?.startsWith('gradient-')
+    ? (gradientMap[article.headerStyle] ?? gradientMap['gradient-green'])
+    : null
 
   return (
     <Link href={`${basePath}/${article.slug}`}>
@@ -37,8 +48,8 @@ export function ArticleCard({ article, basePath = '/kennisbank' }: ArticleCardPr
               </div>
             )}
           </div>
-        ) : hasGradientHeader ? (
-          <div className="relative h-48 overflow-hidden bg-gradient-to-br from-brandGreen to-brandGreenHover flex items-center justify-center p-6">
+        ) : gradientClass ? (
+          <div className={`relative h-48 overflow-hidden bg-gradient-to-br ${gradientClass} flex items-center justify-center p-6`}>
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-2 right-2 w-20 h-20 bg-white rounded-full blur-xl" />
               <div className="absolute bottom-2 left-2 w-28 h-28 bg-white rounded-full blur-2xl" />
@@ -61,8 +72,8 @@ export function ArticleCard({ article, basePath = '/kennisbank' }: ArticleCardPr
         ) : null}
 
         <div className="p-5">
-          {/* Category (if no image) */}
-          {!article.featuredImage && article.category && (
+          {/* Category (if no image and no gradient header) */}
+          {!article.featuredImage && !gradientClass && article.category && (
             <div className="mb-2">
               <Badge
                 variant="default"
