@@ -88,8 +88,8 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
         if (!document.getElementById(targetId)) {
           const anchor = document.createElement('span')
           anchor.id = targetId
-          anchor.style.cssText = 'position:absolute; visibility:hidden; pointer-events:none; margin-top:-120px;'
-          match.style.position = 'relative'
+          anchor.style.cssText = 'position:absolute; visibility:hidden; pointer-events:none; margin-top:-120px;';
+          (match as HTMLElement).style.position = 'relative'
           match.prepend(anchor)
         }
       }
