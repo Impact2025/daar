@@ -112,8 +112,8 @@ export default async function BlogPage({ searchParams }: PageProps) {
       {/* Hero */}
       <section className="relative bg-offWhite py-20 lg:py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-daar-geel/20 rounded-full mb-6 shadow-sm">
-            <Newspaper className="w-8 h-8 text-daar-blue" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-brandGreen/10 rounded-full mb-6 shadow-sm">
+            <Newspaper className="w-8 h-8 text-brandGreen" />
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-daar-blue mb-6 leading-tight" style={{ fontFamily: 'Nunito, sans-serif' }}>
             Blog
@@ -129,8 +129,8 @@ export default async function BlogPage({ searchParams }: PageProps) {
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-32 h-32 bg-daar-geel/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-brandGreen/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 left-10 w-32 h-32 bg-brandGreen/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-daar-geel/10 rounded-full blur-3xl"></div>
       </section>
 
       {/* Content */}
@@ -167,7 +167,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full mb-6 shadow-lg border border-gray-100">
                   <Newspaper className="w-10 h-10 text-gray-400" />
                 </div>
-                <div className="absolute -z-10 -bottom-2 -right-2 w-20 h-20 bg-daar-geel/20 rounded-full"></div>
+                <div className="absolute -z-10 -bottom-2 -right-2 w-20 h-20 bg-brandGreen/10 rounded-full"></div>
               </div>
               <h3 className="text-2xl font-bold text-daar-blue mb-3" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 Geen blogposts gevonden
