@@ -35,6 +35,15 @@ export default function EditArticlePage() {
   const [status, setStatus] = useState<'DRAFT' | 'PUBLISHED'>('DRAFT')
   const [publishedAt, setPublishedAt] = useState('')
   const [articleType, setArticleType] = useState<'KENNISBANK' | 'BLOG'>('KENNISBANK')
+  const [categoryId, setCategoryId] = useState('')
+  const [categories, setCategories] = useState<Array<{ id: string; name: string }>>([])
+
+  // Load categories
+  useEffect(() => {
+    fetch('/api/categories')
+      .then((r) => r.json())
+      .then((data) => { if (data.success) setCategories(data.data) })
+  }, [])
 
   // Load article data
   useEffect(() => {
@@ -59,6 +68,7 @@ export default function EditArticlePage() {
         setHeaderStyle((article.headerStyle as HeaderStyle) || 'image')
         setStatus(article.status === 'PUBLISHED' ? 'PUBLISHED' : 'DRAFT')
         setArticleType(article.type === 'BLOG' ? 'BLOG' : 'KENNISBANK')
+        setCategoryId(article.categoryId || '')
         // Format date for datetime-local input
         if (article.publishedAt) {
           const date = new Date(article.publishedAt)
@@ -177,6 +187,7 @@ export default function EditArticlePage() {
           metaDescription,
           featuredImage: featuredImage || null,
           headerStyle,
+          categoryId: categoryId || null,
           type: articleType,
           status: publishStatus,
           publishedAt: publishedAt ? new Date(publishedAt).toISOString() : null,
@@ -384,6 +395,25 @@ export default function EditArticlePage() {
                   ? 'Verschijnt op /blog'
                   : 'Verschijnt op /kennisbank'}
               </p>
+            </CardContent>
+          </Card>
+
+          {/* Categorie */}
+          <Card>
+            <CardHeader>
+              <h3 className="font-semibold text-navy">Categorie</h3>
+            </CardHeader>
+            <CardContent>
+              <select
+                value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent"
+              >
+                <option value="">— Geen categorie —</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id}>{cat.name}</option>
+                ))}
+              </select>
             </CardContent>
           </Card>
 

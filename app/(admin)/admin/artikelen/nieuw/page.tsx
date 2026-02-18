@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Save, Eye, Sparkles, Loader2, Wand2 } from 'lucide-react'
@@ -28,6 +28,14 @@ export default function NewArticlePage() {
   const [featuredImage, setFeaturedImage] = useState('')
   const [headerStyle, setHeaderStyle] = useState<HeaderStyle>('gradient-green')
   const [articleType, setArticleType] = useState<'KENNISBANK' | 'BLOG'>('KENNISBANK')
+  const [categoryId, setCategoryId] = useState('')
+  const [categories, setCategories] = useState<Array<{ id: string; name: string }>>([])
+
+  useEffect(() => {
+    fetch('/api/categories')
+      .then((r) => r.json())
+      .then((data) => { if (data.success) setCategories(data.data) })
+  }, [])
 
   const handleTitleChange = (newTitle: string) => {
     setTitle(newTitle)
@@ -133,6 +141,7 @@ export default function NewArticlePage() {
           metaDescription,
           featuredImage: featuredImage || undefined,
           headerStyle,
+          categoryId: categoryId || undefined,
           type: articleType,
           status: publishStatus,
         }),
@@ -271,6 +280,25 @@ export default function NewArticlePage() {
                   ? 'Verschijnt op /blog'
                   : 'Verschijnt op /kennisbank'}
               </p>
+            </CardContent>
+          </Card>
+
+          {/* Categorie */}
+          <Card>
+            <CardHeader>
+              <h3 className="font-semibold text-navy">Categorie</h3>
+            </CardHeader>
+            <CardContent>
+              <select
+                value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent"
+              >
+                <option value="">— Geen categorie —</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id}>{cat.name}</option>
+                ))}
+              </select>
             </CardContent>
           </Card>
 
