@@ -40,25 +40,60 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
   const gradientClass = gradientColors[headerStyle] || gradientColors['gradient-green']
   const hasGradientHeader = !article.featuredImage && headerStyle.startsWith('gradient-')
 
-  // Voeg IDs toe aan headings in de gerenderde DOM en extraheer TOC
+  // Voeg IDs toe aan headings en fix interne ankerlinks
   useEffect(() => {
     if (!contentRef.current) return
 
-    const headings = contentRef.current.querySelectorAll('h2, h3')
+    const headings = Array.from(contentRef.current.querySelectorAll('h1, h2, h3'))
     const items: TOCItem[] = []
 
-    headings.forEach((heading) => {
-      const text = heading.textContent || ''
-      const generated = text.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+    // Stap 1: genereer IDs voor alle koppen
+    headings.forEach((heading, index) => {
+      const text = (heading.textContent || '').trim()
+      const generated = text
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-]/g, '')
+        .replace(/^-+|-+$/g, '') || `heading-${index}`
       if (!heading.id) heading.id = generated
-      items.push({
-        id: heading.id,
-        text,
-        level: heading.tagName === 'H2' ? 2 : 3,
-      })
+      if (heading.tagName !== 'H1') {
+        items.push({
+          id: heading.id,
+          text,
+          level: heading.tagName === 'H2' ? 2 : 3,
+        })
+      }
     })
 
     setTocItems(items)
+
+    // Stap 2: fix interne ankerlinks die naar niet-bestaande IDs verwijzen
+    const internalLinks = Array.from(
+      contentRef.current.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
+    )
+
+    internalLinks.forEach((link) => {
+      const targetId = link.getAttribute('href')?.slice(1)
+      if (!targetId || document.getElementById(targetId)) return
+
+      // Zoek de kop waarvan de tekst het beste overeenkomt met de linktekst
+      const linkText = (link.textContent || '').trim().toLowerCase()
+      const match = headings.find((h) => {
+        const headingText = (h.textContent || '').trim().toLowerCase()
+        return headingText.startsWith(linkText.slice(0, 20)) || linkText.startsWith(headingText.slice(0, 20))
+      })
+
+      if (match) {
+        // Voeg een extra span-anker toe voor de kop met het gewenste ID
+        if (!document.getElementById(targetId)) {
+          const anchor = document.createElement('span')
+          anchor.id = targetId
+          anchor.style.cssText = 'position:absolute; visibility:hidden; pointer-events:none; margin-top:-120px;'
+          match.style.position = 'relative'
+          match.prepend(anchor)
+        }
+      }
+    })
   }, [article.content])
 
   // Track active heading on scroll
@@ -85,8 +120,7 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id)
     if (element) {
-      const offset = 100
-      const top = element.getBoundingClientRect().top + window.scrollY - offset
+      const top = element.getBoundingClientRect().top + window.scrollY - 100
       window.scrollTo({ top, behavior: 'smooth' })
     }
   }
