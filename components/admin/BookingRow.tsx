@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Calendar, User, Mail, Building2 } from 'lucide-react'
+import { Calendar, User, Mail, Building2, Video, Phone, MapPin } from 'lucide-react'
 import { Badge } from '@/components/ui'
 import { BookingCRMActions } from '@/components/admin/BookingCRMActions'
 
@@ -14,6 +14,7 @@ interface BookingRowProps {
     email: string
     organization: string | null
     status: string
+    meetingType: string | null
     meetingLink: string | null
     bookingType: {
       name: string
@@ -116,16 +117,35 @@ export function BookingRow({ booking }: BookingRowProps) {
       </td>
       <td className="px-6 py-4">{getStatusBadge(booking.status)}</td>
       <td className="px-6 py-4">
-        {booking.meetingLink && (
+        {booking.meetingType === 'BELAFSPRAAK' && (
+          <span className="inline-flex items-center gap-1 text-sm text-blue-600">
+            <Phone className="w-3 h-3" />
+            Belafspraak
+          </span>
+        )}
+        {booking.meetingType === 'OP_LOCATIE' && (
+          <span className="inline-flex items-center gap-1 text-sm text-orange-600">
+            <MapPin className="w-3 h-3" />
+            Op locatie
+          </span>
+        )}
+        {(!booking.meetingType || booking.meetingType === 'ONLINE') && booking.meetingLink && (
           <a
             href={booking.meetingLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-brandGreen hover:underline"
+            className="inline-flex items-center gap-1 text-sm text-brandGreen hover:underline"
             onClick={(e) => e.stopPropagation()}
           >
+            <Video className="w-3 h-3" />
             Open link
           </a>
+        )}
+        {(!booking.meetingType || booking.meetingType === 'ONLINE') && !booking.meetingLink && (
+          <span className="inline-flex items-center gap-1 text-sm text-gray-400">
+            <Video className="w-3 h-3" />
+            Online
+          </span>
         )}
       </td>
       <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>

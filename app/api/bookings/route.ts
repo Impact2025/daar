@@ -19,6 +19,7 @@ const bookingSchema = z.object({
   notes: z.string().optional(),
   source: z.enum(['WEBSITE', 'CHAT', 'PHONE', 'EMAIL', 'ADMIN']).default('WEBSITE'),
   customerId: z.string().optional(),
+  meetingType: z.enum(['ONLINE', 'BELAFSPRAAK', 'OP_LOCATIE']).default('ONLINE'),
   meetingLink: z.string().optional(),
 })
 
@@ -187,7 +188,8 @@ export async function POST(request: NextRequest) {
         status: 'CONFIRMED', // Auto-confirm for now
         leadId: lead.id,
         customerId: validated.customerId || null,
-        meetingLink: validated.meetingLink || null,
+        meetingType: validated.meetingType,
+        meetingLink: validated.meetingType === 'ONLINE' ? (validated.meetingLink || null) : null,
       },
       include: {
         bookingType: true,

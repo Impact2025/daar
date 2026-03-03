@@ -83,6 +83,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     if (body.phone !== undefined) updateData.phone = body.phone
     if (body.organization !== undefined) updateData.organization = body.organization
     if (body.notes !== undefined) updateData.notes = body.notes
+    if (body.meetingType !== undefined) updateData.meetingType = body.meetingType
     if (body.meetingLink !== undefined) updateData.meetingLink = body.meetingLink
     if (body.customerId !== undefined) updateData.customerId = body.customerId
 

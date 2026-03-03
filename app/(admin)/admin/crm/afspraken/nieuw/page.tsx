@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Loader2, Plus, User } from 'lucide-react'
+import { ArrowLeft, Loader2, Plus, User, Phone, Video, MapPin } from 'lucide-react'
 
 interface BookingType {
   id: string
@@ -40,6 +40,7 @@ export default function NewBookingPage() {
     phone: '',
     organization: '',
     notes: '',
+    meetingType: 'ONLINE' as 'ONLINE' | 'BELAFSPRAAK' | 'OP_LOCATIE',
     meetingLink: '',
   })
 
@@ -126,7 +127,8 @@ export default function NewBookingPage() {
         notes: formData.notes || undefined,
         source: 'ADMIN' as const,
         customerId: (useExistingCustomer && formData.customerId) ? formData.customerId : undefined,
-        meetingLink: formData.meetingLink || undefined,
+        meetingType: formData.meetingType,
+        meetingLink: formData.meetingType === 'ONLINE' ? (formData.meetingLink || undefined) : undefined,
       }
 
       // Create the booking
@@ -360,17 +362,44 @@ export default function NewBookingPage() {
           <h2 className="font-semibold text-gray-900 mb-4">Extra informatie</h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Meeting link</label>
-              <input
-                type="url"
-                name="meetingLink"
-                value={formData.meetingLink}
-                onChange={handleChange}
-                placeholder="https://meet.google.com/..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen"
-              />
-              <p className="mt-1 text-xs text-gray-500">Google Meet, Zoom, Teams, etc.</p>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Locatie / Wijze</label>
+              <div className="flex gap-3">
+                {([
+                  { value: 'ONLINE', label: 'Online', icon: Video },
+                  { value: 'BELAFSPRAAK', label: 'Belafspraak', icon: Phone },
+                  { value: 'OP_LOCATIE', label: 'Op locatie', icon: MapPin },
+                ] as const).map(({ value, label, icon: Icon }) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setFormData(prev => ({ ...prev, meetingType: value, meetingLink: value !== 'ONLINE' ? '' : prev.meetingLink }))}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border-2 transition-colors text-sm ${
+                      formData.meetingType === value
+                        ? 'border-brandGreen bg-brandGreen/5 text-brandGreen font-medium'
+                        : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            {formData.meetingType === 'ONLINE' && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Meeting link</label>
+                <input
+                  type="url"
+                  name="meetingLink"
+                  value={formData.meetingLink}
+                  onChange={handleChange}
+                  placeholder="https://meet.google.com/..."
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen"
+                />
+                <p className="mt-1 text-xs text-gray-500">Google Meet, Zoom, Teams, etc.</p>
+              </div>
+            )}
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Notities</label>

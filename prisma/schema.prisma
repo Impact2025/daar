@@ -448,9 +448,12 @@ model Booking {
   // Status
   status        BookingStatus @default(PENDING)
 
+  // Hoe de afspraak plaatsvindt
+  meetingType   MeetingType   @default(ONLINE)
+
   // Google Calendar
   calendarEventId String?     // ID van event in Google Calendar
-  meetingLink   String?       // Zoom/Meet link
+  meetingLink   String?       // Zoom/Meet link (alleen bij ONLINE)
 
   // Lead koppeling
   leadId        String?
@@ -493,6 +496,12 @@ enum BookingStatus {
   CANCELLED
   COMPLETED
   NO_SHOW
+}
+
+enum MeetingType {
+  ONLINE
+  BELAFSPRAAK
+  OP_LOCATIE
 }
 
 // Business hours configuratie

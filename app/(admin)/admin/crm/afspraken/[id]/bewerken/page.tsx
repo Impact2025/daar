@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Loader2, Save } from 'lucide-react'
+import { ArrowLeft, Loader2, Save, Phone, Video, MapPin } from 'lucide-react'
 
 interface BookingType {
   id: string
@@ -32,6 +32,7 @@ interface BookingDetail {
   organization: string | null
   notes: string | null
   status: string
+  meetingType: 'ONLINE' | 'BELAFSPRAAK' | 'OP_LOCATIE'
   meetingLink: string | null
   customerId: string | null
   bookingType: {
@@ -61,6 +62,7 @@ export default function EditBookingPage({ params }: { params: Promise<{ id: stri
     phone: '',
     organization: '',
     notes: '',
+    meetingType: 'ONLINE' as 'ONLINE' | 'BELAFSPRAAK' | 'OP_LOCATIE',
     meetingLink: '',
     customerId: '',
   })
@@ -94,6 +96,7 @@ export default function EditBookingPage({ params }: { params: Promise<{ id: stri
             phone: b.phone || '',
             organization: b.organization || '',
             notes: b.notes || '',
+            meetingType: b.meetingType || 'ONLINE',
             meetingLink: b.meetingLink || '',
             customerId: b.customerId || '',
           })
@@ -156,7 +159,8 @@ export default function EditBookingPage({ params }: { params: Promise<{ id: stri
         phone: formData.phone || null,
         organization: formData.organization || null,
         notes: formData.notes || null,
-        meetingLink: formData.meetingLink || null,
+        meetingType: formData.meetingType,
+        meetingLink: formData.meetingType === 'ONLINE' ? (formData.meetingLink || null) : null,
         customerId: formData.customerId || null,
       }
 
@@ -381,17 +385,44 @@ export default function EditBookingPage({ params }: { params: Promise<{ id: stri
           <h2 className="font-semibold text-gray-900 mb-4">Extra informatie</h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Meeting link</label>
-              <input
-                type="url"
-                name="meetingLink"
-                value={formData.meetingLink}
-                onChange={handleChange}
-                placeholder="https://meet.google.com/..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen"
-              />
-              <p className="mt-1 text-xs text-gray-500">Google Meet, Zoom, Teams, etc.</p>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Locatie / Wijze</label>
+              <div className="flex gap-3">
+                {([
+                  { value: 'ONLINE', label: 'Online', icon: Video },
+                  { value: 'BELAFSPRAAK', label: 'Belafspraak', icon: Phone },
+                  { value: 'OP_LOCATIE', label: 'Op locatie', icon: MapPin },
+                ] as const).map(({ value, label, icon: Icon }) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setFormData(prev => ({ ...prev, meetingType: value, meetingLink: value !== 'ONLINE' ? '' : prev.meetingLink }))}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border-2 transition-colors text-sm ${
+                      formData.meetingType === value
+                        ? 'border-brandGreen bg-brandGreen/5 text-brandGreen font-medium'
+                        : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            {formData.meetingType === 'ONLINE' && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Meeting link</label>
+                <input
+                  type="url"
+                  name="meetingLink"
+                  value={formData.meetingLink}
+                  onChange={handleChange}
+                  placeholder="https://meet.google.com/..."
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:border-brandGreen"
+                />
+                <p className="mt-1 text-xs text-gray-500">Google Meet, Zoom, Teams, etc.</p>
+              </div>
+            )}
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Notities</label>
