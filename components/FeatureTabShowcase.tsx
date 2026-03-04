@@ -386,10 +386,10 @@ export default function FeatureTabShowcase() {
 
         {/* Content area */}
         <div
-          className="rounded-[2rem] p-8 md:p-12 transition-colors duration-500 relative overflow-hidden"
+          className="rounded-[2rem] p-8 md:p-12 transition-colors duration-500 relative overflow-hidden min-h-[480px] flex items-center"
           style={{ backgroundColor: activeFeature.bgColor }}
         >
-          <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center relative z-10 w-full">
             {/* Visual */}
             <div className="flex justify-center order-2 md:order-1">
               {activeFeature.visual}
