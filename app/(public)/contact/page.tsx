@@ -415,7 +415,7 @@ export default function ContactPage() {
                     </div>
                   </a>
                   <a
-                    href="tel:+31201234567"
+                    href="tel:+31614470977"
                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
                     <div className="w-10 h-10 bg-daar-blue/10 rounded-lg flex items-center justify-center">
@@ -424,7 +424,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm text-gray-500">Telefoon</p>
                       <p className="font-medium text-daar-blue group-hover:text-brandGreen transition-colors">
-                        +31 (0)20 123 4567
+                        +31 6 144 709 77
                       </p>
                     </div>
                   </a>
@@ -435,9 +435,27 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm text-gray-500">Adres</p>
                       <p className="font-medium text-daar-blue">
-                        Amsterdam, Nederland
+                        Boslaan 18, 7231DH Warnsveld
                       </p>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* KVK Info */}
+              <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100">
+                <h3 className="font-bold text-daar-blue mb-4 flex items-center gap-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                  <Building2 className="w-5 h-5 text-brandGreen" />
+                  Bedrijfsgegevens
+                </h3>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">KVK-nummer</span>
+                    <span className="font-medium text-daar-blue">99576759</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Vestigingsnummer</span>
+                    <span className="font-medium text-daar-blue">000064638502</span>
                   </div>
                 </div>
               </div>
