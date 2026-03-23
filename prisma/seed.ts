@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 import {
-  ARTICLE_IMPACT_METEN,
   ARTICLE_AI_VRIJWILLIGERSBEHEER,
   ARTICLE_VRIJWILLIGERS_WERVEN,
   ARTICLE_VRIJWILLIGERSWELZIJN,
@@ -640,7 +639,6 @@ Dit artikel is geschreven door Team DAAR - Vincent, Saviem en Thijs.
 
   // Create all additional pillar pages
   const additionalArticles = [
-    ARTICLE_IMPACT_METEN,
     ARTICLE_AI_VRIJWILLIGERSBEHEER,
     ARTICLE_VRIJWILLIGERS_WERVEN,
     ARTICLE_VRIJWILLIGERSWELZIJN,
