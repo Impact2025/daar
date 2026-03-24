@@ -135,6 +135,7 @@ export default function Prijzen2Page() {
   );
   const [isAnnual, setIsAnnual] = useState(false);
   const [expandedModule, setExpandedModule] = useState<string | null>(null);
+  const [hoursPerMonth, setHoursPerMonth] = useState(6);
   const [showTiersTable, setShowTiersTable] = useState(false);
 
   const isOnRequest = numVolunteers > 2500;
@@ -169,7 +170,6 @@ export default function Prijzen2Page() {
   const displayYearly = isAnnual ? yearlyTotalDiscounted : yearlyTotal;
 
   // ROI / impact
-  const hoursPerMonth = 6; // gemiddelde
   const volunteerHourValue = 25.04;
   const volunteerValuePerMonth = numVolunteers * hoursPerMonth * volunteerHourValue;
   const roi = displayYearly > 0
@@ -312,6 +312,50 @@ export default function Prijzen2Page() {
                     <span>2.000</span>
                     <span>2.500+</span>
                   </div>
+                </div>
+
+                {/* Uren per vrijwilliger */}
+                <div className="mt-8">
+                  <div className="flex justify-between items-center mb-3">
+                    <label className="text-daar-blue font-semibold">
+                      Uren per vrijwilliger per maand
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        value={hoursPerMonth}
+                        min={1}
+                        max={40}
+                        onChange={(e) =>
+                          setHoursPerMonth(Math.max(1, Math.min(40, parseInt(e.target.value) || 1)))
+                        }
+                        className="w-20 px-3 py-2 border-2 border-daar-helder rounded-xl font-bold text-daar-blue text-right focus:outline-none focus:ring-2 focus:ring-daar-helder/50"
+                      />
+                      <span className="text-gray-500">uur</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    min={1}
+                    max={40}
+                    value={hoursPerMonth}
+                    onChange={(e) => setHoursPerMonth(parseInt(e.target.value))}
+                    className="w-full h-3 bg-gray-200 rounded-full appearance-none cursor-pointer slider-blue"
+                  />
+                  <div className="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>1u</span>
+                    <span>20u</span>
+                    <span>40u</span>
+                  </div>
+                </div>
+
+                <div className="mt-4 p-4 bg-lightGreen rounded-2xl">
+                  <p className="text-sm text-gray-600">
+                    <Clock className="inline w-4 h-4 mr-1 text-brandGreen" />
+                    Totaal: <span className="font-bold text-daar-blue">
+                      {(numVolunteers * hoursPerMonth).toLocaleString('nl-NL')} uur/maand
+                    </span>
+                  </p>
                 </div>
 
                 {/* Schijf indicator */}
