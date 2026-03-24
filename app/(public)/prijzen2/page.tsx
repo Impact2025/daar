@@ -13,13 +13,13 @@ import {
   Clock,
   Euro,
   Calculator,
-  BarChart3,
   MessageSquare,
   FileText,
   Zap,
   ChevronDown,
   ChevronUp,
   Tag,
+  Receipt,
 } from 'lucide-react';
 
 // ─── Tariefschijven uit Excel 20260209-prijsDaar ─────────────────────────────
@@ -30,18 +30,19 @@ interface Schijf {
   centraalDossier: number;
   communicatie: number;
   vrijwilligersCheck: number;
+  declaratie: number;
 }
 
 const SCHIJVEN: Schijf[] = [
-  { label: 'Schijf 1', min: 15,   max: 50,   centraalDossier: 1.70, communicatie: 0.75, vrijwilligersCheck: 1.00 },
-  { label: 'Schijf 2', min: 51,   max: 100,  centraalDossier: 1.55, communicatie: 0.75, vrijwilligersCheck: 1.00 },
-  { label: 'Schijf 3', min: 101,  max: 250,  centraalDossier: 1.40, communicatie: 0.75, vrijwilligersCheck: 1.00 },
-  { label: 'Schijf 4', min: 251,  max: 500,  centraalDossier: 1.25, communicatie: 0.60, vrijwilligersCheck: 0.90 },
-  { label: 'Schijf 5', min: 501,  max: 750,  centraalDossier: 1.05, communicatie: 0.60, vrijwilligersCheck: 0.90 },
-  { label: 'Schijf 6', min: 751,  max: 1000, centraalDossier: 0.90, communicatie: 0.60, vrijwilligersCheck: 0.90 },
-  { label: 'Schijf 7', min: 1001, max: 1500, centraalDossier: 0.75, communicatie: 0.45, vrijwilligersCheck: 0.80 },
-  { label: 'Schijf 8', min: 1501, max: 2000, centraalDossier: 0.60, communicatie: 0.45, vrijwilligersCheck: 0.80 },
-  { label: 'Schijf 9', min: 2001, max: 2500, centraalDossier: 0.45, communicatie: 0.45, vrijwilligersCheck: 0.80 },
+  { label: 'Schijf 1', min: 15,   max: 50,   centraalDossier: 1.70, communicatie: 0.75, vrijwilligersCheck: 1.00, declaratie: 2.00 },
+  { label: 'Schijf 2', min: 51,   max: 100,  centraalDossier: 1.55, communicatie: 0.75, vrijwilligersCheck: 1.00, declaratie: 1.90 },
+  { label: 'Schijf 3', min: 101,  max: 250,  centraalDossier: 1.40, communicatie: 0.75, vrijwilligersCheck: 1.00, declaratie: 1.80 },
+  { label: 'Schijf 4', min: 251,  max: 500,  centraalDossier: 1.25, communicatie: 0.60, vrijwilligersCheck: 0.90, declaratie: 1.70 },
+  { label: 'Schijf 5', min: 501,  max: 750,  centraalDossier: 1.05, communicatie: 0.60, vrijwilligersCheck: 0.90, declaratie: 1.60 },
+  { label: 'Schijf 6', min: 751,  max: 1000, centraalDossier: 0.90, communicatie: 0.60, vrijwilligersCheck: 0.90, declaratie: 1.60 },
+  { label: 'Schijf 7', min: 1001, max: 1500, centraalDossier: 0.75, communicatie: 0.45, vrijwilligersCheck: 0.80, declaratie: 1.60 },
+  { label: 'Schijf 8', min: 1501, max: 2000, centraalDossier: 0.60, communicatie: 0.45, vrijwilligersCheck: 0.80, declaratie: 1.60 },
+  { label: 'Schijf 9', min: 2001, max: 2500, centraalDossier: 0.45, communicatie: 0.45, vrijwilligersCheck: 0.80, declaratie: 1.60 },
 ];
 
 const ANNUAL_DISCOUNT = 0.15; // 15% korting bij jaarcontract
@@ -52,7 +53,7 @@ function getSchijf(volunteers: number): Schijf | null {
 
 // ─── Module definities ────────────────────────────────────────────────────────
 interface ModuleDef {
-  id: 'cd' | 'comm' | 'vcheck';
+  id: 'cd' | 'comm' | 'vcheck' | 'declaratie';
   name: string;
   shortName: string;
   description: string;
@@ -109,6 +110,21 @@ const MODULE_DEFS: ModuleDef[] = [
       'Subsidie-rapportages',
     ],
   },
+  {
+    id: 'declaratie',
+    name: 'Declaratie',
+    shortName: 'Declaratie',
+    description: 'Onkostendeclaraties eenvoudig ingediend en goedgekeurd, rechtstreeks in het platform.',
+    icon: <Receipt className="w-5 h-5" />,
+    color: '#F4A261',
+    bgColor: 'bg-orange-100',
+    includes: [
+      'Onkostendeclaraties indienen',
+      'Goedkeuringsworkflow voor coördinatoren',
+      'Overzicht per vrijwilliger & periode',
+      'Exporteren voor administratie',
+    ],
+  },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -140,6 +156,7 @@ export default function Prijzen2Page() {
     if (selectedModules.has('cd')) total += currentSchijf.centraalDossier;
     if (selectedModules.has('comm')) total += currentSchijf.communicatie;
     if (selectedModules.has('vcheck')) total += currentSchijf.vrijwilligersCheck;
+    if (selectedModules.has('declaratie')) total += currentSchijf.declaratie;
     return total;
   }, [currentSchijf, selectedModules, isOnRequest]);
 
@@ -355,6 +372,7 @@ export default function Prijzen2Page() {
                               <th className="px-3 py-2 text-right font-semibold">Dossier</th>
                               <th className="px-3 py-2 text-right font-semibold">Comm.</th>
                               <th className="px-3 py-2 text-right font-semibold">Check</th>
+                              <th className="px-3 py-2 text-right font-semibold">Decl.</th>
                               <th className="px-3 py-2 text-right font-semibold text-brandGreen">Totaal</th>
                             </tr>
                           </thead>
@@ -374,15 +392,16 @@ export default function Prijzen2Page() {
                                   <td className="px-3 py-2 text-right">€{s.centraalDossier.toFixed(2)}</td>
                                   <td className="px-3 py-2 text-right">€{s.communicatie.toFixed(2)}</td>
                                   <td className="px-3 py-2 text-right">€{s.vrijwilligersCheck.toFixed(2)}</td>
+                                  <td className="px-3 py-2 text-right">€{s.declaratie.toFixed(2)}</td>
                                   <td className="px-3 py-2 text-right text-brandGreen">
-                                    €{(s.centraalDossier + s.communicatie + s.vrijwilligersCheck).toFixed(2)}
+                                    €{(s.centraalDossier + s.communicatie + s.vrijwilligersCheck + s.declaratie).toFixed(2)}
                                   </td>
                                 </tr>
                               );
                             })}
                             <tr className="border-t border-gray-200 bg-gray-50 text-gray-500 italic">
                               <td className="px-3 py-2">&gt; 2.500</td>
-                              <td colSpan={4} className="px-3 py-2 text-center">Op aanvraag</td>
+                              <td colSpan={5} className="px-3 py-2 text-center">Op aanvraag</td>
                             </tr>
                           </tbody>
                         </table>
@@ -419,7 +438,9 @@ export default function Prijzen2Page() {
                         ? currentSchijf.centraalDossier
                         : mod.id === 'comm'
                         ? currentSchijf.communicatie
-                        : currentSchijf.vrijwilligersCheck
+                        : mod.id === 'vcheck'
+                        ? currentSchijf.vrijwilligersCheck
+                        : currentSchijf.declaratie
                       : null;
 
                     return (
@@ -674,6 +695,12 @@ export default function Prijzen2Page() {
                             <span className="font-semibold">€{fmt(currentSchijf.vrijwilligersCheck)}</span>
                           </div>
                         )}
+                        {selectedModules.has('declaratie') && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-white/80">Declaratie</span>
+                            <span className="font-semibold">€{fmt(currentSchijf.declaratie)}</span>
+                          </div>
+                        )}
                         <div className="flex justify-between text-sm pt-2 border-t border-white/20 font-bold">
                           <span>Totaal p/vw/mnd</span>
                           <span className="text-daar-geel">
@@ -842,12 +869,13 @@ export default function Prijzen2Page() {
                     <th className="px-6 py-4 text-right font-semibold">Centraal Dossier</th>
                     <th className="px-6 py-4 text-right font-semibold">Communicatie</th>
                     <th className="px-6 py-4 text-right font-semibold">VrijwilligersCheck</th>
+                    <th className="px-6 py-4 text-right font-semibold">Declaratie</th>
                     <th className="px-6 py-4 text-right font-semibold text-daar-geel">Totaal p/vw/mnd</th>
                   </tr>
                 </thead>
                 <tbody>
                   {SCHIJVEN.map((s, i) => {
-                    const total = s.centraalDossier + s.communicatie + s.vrijwilligersCheck;
+                    const total = s.centraalDossier + s.communicatie + s.vrijwilligersCheck + s.declaratie;
                     const isActive = currentSchijf?.label === s.label;
                     return (
                       <tr
@@ -872,6 +900,7 @@ export default function Prijzen2Page() {
                         <td className="px-6 py-4 text-right text-gray-700">€{s.centraalDossier.toFixed(2)}</td>
                         <td className="px-6 py-4 text-right text-gray-700">€{s.communicatie.toFixed(2)}</td>
                         <td className="px-6 py-4 text-right text-gray-700">€{s.vrijwilligersCheck.toFixed(2)}</td>
+                        <td className="px-6 py-4 text-right text-gray-700">€{s.declaratie.toFixed(2)}</td>
                         <td className="px-6 py-4 text-right font-bold text-brandGreen text-lg">
                           €{total.toFixed(2)}
                         </td>
@@ -880,7 +909,7 @@ export default function Prijzen2Page() {
                   })}
                   <tr className="border-t-2 border-gray-200 bg-gray-50 text-gray-500">
                     <td className="px-6 py-4 italic">&gt; 2.500 vrijwilligers</td>
-                    <td colSpan={4} className="px-6 py-4 text-center italic">Op aanvraag</td>
+                    <td colSpan={5} className="px-6 py-4 text-center italic">Op aanvraag</td>
                   </tr>
                 </tbody>
               </table>
