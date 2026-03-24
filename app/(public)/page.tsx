@@ -6,7 +6,6 @@ import { LatestArticles } from '@/components/home/LatestArticles';
 import ProblemSolution from '@/components/ProblemSolution';
 import FeatureTabShowcase from '@/components/FeatureTabShowcase';
 import ImpactStats from '@/components/ImpactStats';
-import Testimonials from '@/components/Testimonials';
 
 export const metadata: Metadata = {
   title: "Grip op vrijwilligers, focus op geluk",
@@ -207,7 +206,6 @@ export default function Home() {
       <div id="producten"></div>
       <FeatureTabShowcase />
       <ImpactStats />
-      <Testimonials />
       <LatestArticles />
     </div>
   );
