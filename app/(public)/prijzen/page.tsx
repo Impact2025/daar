@@ -186,7 +186,7 @@ export default function PrijzenPage() {
                       <input
                         type="number"
                         value={numVolunteers}
-                        onChange={(e) => setNumVolunteers(Math.max(1, parseInt(e.target.value) || 1))}
+                        onChange={(e) => setNumVolunteers(Math.min(1000, Math.max(1, parseInt(e.target.value) || 1)))}
                         className="w-24 px-3 py-2 border-2 border-brandGreen rounded-xl font-bold text-daar-blue text-right focus:outline-none focus:ring-2 focus:ring-brandGreen/50"
                       />
                       <span className="text-gray-500">vrijwilligers</span>
@@ -195,15 +195,15 @@ export default function PrijzenPage() {
                   <input
                     type="range"
                     min="1"
-                    max="500"
+                    max="1000"
                     value={numVolunteers}
                     onChange={(e) => setNumVolunteers(parseInt(e.target.value))}
                     className="w-full h-3 bg-gray-200 rounded-full appearance-none cursor-pointer slider-green"
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-2">
                     <span>1</span>
-                    <span>250</span>
-                    <span>500+</span>
+                    <span>500</span>
+                    <span>1000+</span>
                   </div>
                 </div>
 
@@ -363,69 +363,93 @@ export default function PrijzenPage() {
                   Jouw investering
                 </h2>
 
-                <div className="space-y-6">
-                  {/* Per Volunteer */}
-                  <div className="pb-6 border-b border-white/20">
-                    <p className="text-white/70 text-sm mb-2">Per vrijwilliger per maand</p>
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={pricePerVolunteerPerMonth}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="text-4xl font-extrabold"
-                      >
-                        €{pricePerVolunteerPerMonth.toFixed(2)}
-                      </motion.div>
-                    </AnimatePresence>
+                {numVolunteers >= 1000 ? (
+                  <div className="space-y-6">
+                    <div className="bg-white/10 rounded-2xl p-6 text-center">
+                      <p className="text-4xl font-extrabold text-daar-geel mb-3">Maatwerk</p>
+                      <p className="text-white/80 text-sm leading-relaxed">
+                        Met 1.000+ vrijwilligers werken we met een op maat gemaakte prijs.
+                        We gaan graag met je in gesprek om het beste aanbod samen te stellen.
+                      </p>
+                    </div>
+                    <Link
+                      href="/afspraak"
+                      className="block w-full bg-brandGreen text-white text-center font-bold px-6 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg hover:shadow-xl group"
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        Plan een gesprek
+                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="block w-full bg-white/10 text-white text-center font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-all"
+                    >
+                      Stuur ons een bericht
+                    </Link>
                   </div>
+                ) : (
+                  <div className="space-y-6">
+                    {/* Per Volunteer */}
+                    <div className="pb-6 border-b border-white/20">
+                      <p className="text-white/70 text-sm mb-2">Per vrijwilliger per maand</p>
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={pricePerVolunteerPerMonth}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          className="text-4xl font-extrabold"
+                        >
+                          €{pricePerVolunteerPerMonth.toFixed(2)}
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
 
-                  {/* Total Per Month */}
-                  <div className="pb-6 border-b border-white/20">
-                    <p className="text-white/70 text-sm mb-2">Totaal per maand</p>
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={totalPricePerMonth}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.1 }}
-                        className="text-5xl font-extrabold text-daar-geel"
-                      >
-                        €{totalPricePerMonth.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
-                      </motion.div>
-                    </AnimatePresence>
-                    <p className="text-white/60 text-xs mt-2">excl. BTW</p>
+                    {/* Total Per Month */}
+                    <div className="pb-6 border-b border-white/20">
+                      <p className="text-white/70 text-sm mb-2">Totaal per maand</p>
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={totalPricePerMonth}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 1.1 }}
+                          className="text-5xl font-extrabold text-daar-geel"
+                        >
+                          €{totalPricePerMonth.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
+                        </motion.div>
+                      </AnimatePresence>
+                      <p className="text-white/60 text-xs mt-2">excl. BTW</p>
+                    </div>
+
+                    {/* Total Per Year */}
+                    <div>
+                      <p className="text-white/70 text-sm mb-2">Totaal per jaar</p>
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={totalPricePerYear}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="text-3xl font-bold"
+                        >
+                          €{totalPricePerYear.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
+
+                    <Link
+                      href="/afspraak"
+                      className="block w-full bg-brandGreen text-white text-center font-bold px-6 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg hover:shadow-xl group"
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        Vraag offerte aan
+                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </Link>
                   </div>
-
-                  {/* Total Per Year */}
-                  <div>
-                    <p className="text-white/70 text-sm mb-2">Totaal per jaar</p>
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={totalPricePerYear}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="text-3xl font-bold"
-                      >
-                        €{totalPricePerYear.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
-                </div>
-
-                <Link
-                  href="/afspraak"
-                  className="mt-8 block w-full bg-brandGreen text-white text-center font-bold px-6 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg hover:shadow-xl group"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    Vraag offerte aan
-                    <ArrowRight
-                      size={20}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
-                  </span>
-                </Link>
+                )}
               </motion.div>
 
               {/* Value & Impact */}
