@@ -13,14 +13,16 @@ import {
 
 export const metadata = {
   title: 'Abonnementen | DAAR',
-  description: 'Overzicht van DAAR abonnementen. Transparante prijzen vanaf €1,08 per vrijwilliger per maand.',
+  description: 'Overzicht van DAAR abonnementen. Transparante prijzen vanaf €1.080/maand bij 1.000 vrijwilligers.',
 }
+
+const BASE_VOLUNTEERS = 1000
 
 const plans = [
   {
     name: 'Basis',
-    tagline: 'Voor kleine organisaties die willen starten',
-    fromPrice: '1,08',
+    tagline: 'Voor organisaties die willen starten',
+    pricePerVolunteer: 1.08,
     color: 'daar-helder',
     bgColor: 'bg-white',
     borderColor: 'border-gray-200',
@@ -42,7 +44,7 @@ const plans = [
   {
     name: 'Standaard',
     tagline: 'De meest gekozen optie voor groeiende organisaties',
-    fromPrice: '1,49',
+    pricePerVolunteer: 1.49,
     color: 'brandGreen',
     bgColor: 'bg-daar-blue',
     borderColor: 'border-brandGreen',
@@ -66,7 +68,7 @@ const plans = [
   {
     name: 'Pro',
     tagline: 'Voor organisaties die maximale impact willen meten',
-    fromPrice: '1,77',
+    pricePerVolunteer: 1.77,
     color: 'daar-koraal',
     bgColor: 'bg-white',
     borderColor: 'border-gray-200',
@@ -127,7 +129,7 @@ export default function AbonnementPage() {
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Transparante prijzen op basis van je aantal vrijwilligers.
-            Vanaf <strong className="text-daar-blue">€1,08 per vrijwilliger per maand</strong>, maandelijks opzegbaar.
+            Onderstaande prijzen zijn gebaseerd op <strong className="text-daar-blue">1.000 vrijwilligers</strong> — maandelijks opzegbaar.
           </p>
         </div>
         <div className="absolute top-20 right-10 w-72 h-72 bg-brandGreen/5 rounded-full blur-3xl" />
@@ -166,18 +168,18 @@ export default function AbonnementPage() {
                   {/* Price */}
                   <div className="mb-8">
                     <span className={`text-xs font-semibold uppercase tracking-wide ${plan.featured ? 'text-white/60' : 'text-gray-400'}`}>
-                      Vanaf
+                      Vanaf 1.000 vrijwilligers
                     </span>
                     <div className="flex items-end gap-1 mt-1">
                       <span className={`text-5xl font-extrabold ${plan.featured ? 'text-daar-geel' : 'text-daar-blue'}`}>
-                        €{plan.fromPrice}
+                        €{(plan.pricePerVolunteer * BASE_VOLUNTEERS).toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
                       </span>
                       <span className={`text-sm mb-2 ${plan.featured ? 'text-white/70' : 'text-gray-500'}`}>
-                        / vrijw. / mnd
+                        / mnd
                       </span>
                     </div>
                     <p className={`text-xs mt-1 ${plan.featured ? 'text-white/50' : 'text-gray-400'}`}>
-                      excl. BTW · maandelijks opzegbaar
+                      €{plan.pricePerVolunteer.toFixed(2).replace('.', ',')} p/vrijw. · excl. BTW · maandelijks opzegbaar
                     </p>
                   </div>
 
