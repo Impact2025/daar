@@ -402,16 +402,9 @@ export default function FeatureTabShowcase() {
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 {activeFeature.title}
               </h3>
-              <p className="text-white/90 text-lg leading-relaxed mb-8">
+              <p className="text-white/90 text-lg leading-relaxed">
                 {activeFeature.description}
               </p>
-              <a
-                href={activeFeature.ctaHref}
-                className="inline-flex items-center bg-white text-daar-blue font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all group"
-              >
-                {activeFeature.ctaText}
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
             </div>
           </div>
         </div>

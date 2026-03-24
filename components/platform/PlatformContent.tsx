@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Check, Users, BarChart2, Shield, Zap, RefreshCw, Database, Sparkles, Heart, Clock } from 'lucide-react';
+import { ArrowRight, Check, Users, BarChart2, Shield, Zap, RefreshCw, Database, Sparkles, Heart, Clock, Star, CalendarDays, Bell, TrendingUp, ChevronRight } from 'lucide-react';
 import FeatureTabShowcase from '@/components/FeatureTabShowcase';
 
 export const PlatformContent = () => {
@@ -24,10 +24,6 @@ export const PlatformContent = () => {
                 Hoe werkt het <span className="text-brandGreen">Daar</span> platform?
               </h1>
 
-              <p className="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                Een complete oplossing die werving, beheer en impactmeting naadloos met elkaar verbindt.
-                Of je nu een gemeente, sportclub, museum of buurthuis bent — ontdek hoe Daar je organisatie naar een hoger niveau tilt.
-              </p>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Link
@@ -117,6 +113,111 @@ export const PlatformContent = () => {
 
       {/* Feature Tab Showcase */}
       <FeatureTabShowcase />
+
+      {/* Volunteer Dashboard Section */}
+      <section className="py-24 bg-offWhite">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+            {/* Left: text */}
+            <div>
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-brandGreen/10 text-brandGreen text-sm font-semibold mb-6">
+                <Star size={14} className="mr-2" />
+                Vrijwilligersdashboard
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                Elke vrijwilliger heeft zijn eigen plek
+              </h2>
+              <ul className="space-y-4">
+                {[
+                  { icon: <CalendarDays size={18} />, text: 'Persoonlijke agenda met geplande activiteiten en shifts' },
+                  { icon: <TrendingUp size={18} />, text: 'Eigen impact­overzicht: uren, geluksmomenten en SDG-bijdrage' },
+                  { icon: <Bell size={18} />, text: 'Slimme meldingen voor nieuwe opdrachten en berichten' },
+                  { icon: <Heart size={18} />, text: 'Geluksmonitor: check-ins en welzijnsscore in één oogopslag' },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-brandGreen/10 text-brandGreen flex items-center justify-center flex-shrink-0 mt-0.5">
+                      {item.icon}
+                    </div>
+                    <span className="text-gray-700 leading-snug pt-1.5">{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right: dashboard mockup */}
+            <div className="mt-12 lg:mt-0">
+              <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+                {/* Top bar */}
+                <div className="bg-brandGreen px-6 py-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-white/80 text-xs font-medium">Welkom terug</p>
+                    <p className="text-white font-bold text-lg">Hoi Amira 👋</p>
+                  </div>
+                  <div className="relative">
+                    <Bell className="w-6 h-6 text-white" />
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-daar-koraal rounded-full text-white text-xs font-bold flex items-center justify-center">2</span>
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-5">
+                  {/* Stats row */}
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { label: 'Uren dit jaar', value: '84' },
+                      { label: 'Activiteiten', value: '23' },
+                      { label: 'Geluksscore', value: '9.1' },
+                    ].map((stat, i) => (
+                      <div key={i} className="bg-offWhite rounded-2xl p-3 text-center">
+                        <p className="text-2xl font-extrabold text-daar-blue" style={{ fontFamily: 'Nunito, sans-serif' }}>{stat.value}</p>
+                        <p className="text-xs text-gray-500 mt-0.5">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Upcoming */}
+                  <div>
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Volgende activiteit</p>
+                    <div className="flex items-center gap-3 bg-brandGreen/5 border border-brandGreen/20 rounded-2xl p-3">
+                      <div className="w-10 h-10 rounded-xl bg-brandGreen/10 flex items-center justify-center flex-shrink-0">
+                        <CalendarDays className="w-5 h-5 text-brandGreen" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-daar-blue">Voedselbank — uitgifte</p>
+                        <p className="text-xs text-gray-500">Zaterdag 29 mrt · 09:00 – 12:00</p>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-400" />
+                    </div>
+                  </div>
+
+                  {/* Impact bar */}
+                  <div>
+                    <div className="flex justify-between text-sm mb-1.5">
+                      <span className="font-medium text-daar-blue">SDG 3 — Goede gezondheid</span>
+                      <span className="text-brandGreen font-semibold">+12%</span>
+                    </div>
+                    <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-brandGreen rounded-full" style={{ width: '72%' }}></div>
+                    </div>
+                  </div>
+
+                  {/* Mood check-in */}
+                  <div className="flex items-center justify-between bg-daar-geel/20 rounded-2xl px-4 py-3">
+                    <div>
+                      <p className="text-sm font-semibold text-daar-blue">Hoe voel je je vandaag?</p>
+                      <p className="text-xs text-gray-500">Geluksmonitor check-in</p>
+                    </div>
+                    <div className="flex gap-1.5 text-xl">
+                      {['😔','😐','🙂','😊','🤩'].map((e, i) => (
+                        <button key={i} className={`transition-transform hover:scale-125 ${i === 3 ? 'scale-125' : ''}`}>{e}</button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* How It Works - Step by Step */}
       <section className="py-24 bg-offWhite">
