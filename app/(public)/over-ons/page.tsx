@@ -346,9 +346,9 @@ export default function OverOnsPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {founders.map((founder) => (
               <div key={founder.name} className="group">
-                <div className="bg-white rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col border border-gray-100">
+                <div className="bg-white rounded-3xl p-8 h-full flex flex-col border border-gray-100">
                   {/* Avatar */}
-                  <div className={`w-20 h-20 ${founder.bgColor} rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
+                  <div className={`w-20 h-20 ${founder.bgColor} rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg`}>
                     {founder.initial}
                   </div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -12,109 +12,179 @@ import {
   Heart,
   Clock,
   Euro,
-  Zap,
   Calculator,
-  BarChart3
+  MessageSquare,
+  FileText,
+  Zap,
+  ChevronDown,
+  ChevronUp,
+  Tag,
+  Receipt,
 } from 'lucide-react';
 
-interface Module {
-  id: number;
-  name: string;
-  description: string;
-  pricePerVolunteerPerMonth: number;
-  icon: React.ReactNode;
-  color: string;
+// ─── Tariefschijven uit Excel 20260209-prijsDaar ─────────────────────────────
+interface Schijf {
+  label: string;
+  min: number;
+  max: number;
+  centraalDossier: number;
+  communicatie: number;
+  vrijwilligersCheck: number;
+  declaratie: number;
 }
 
-const modules: Module[] = [
+const SCHIJVEN: Schijf[] = [
+  { label: 'Schijf 1', min: 15,   max: 50,   centraalDossier: 1.70, communicatie: 0.75, vrijwilligersCheck: 1.00, declaratie: 2.00 },
+  { label: 'Schijf 2', min: 51,   max: 100,  centraalDossier: 1.55, communicatie: 0.75, vrijwilligersCheck: 1.00, declaratie: 1.90 },
+  { label: 'Schijf 3', min: 101,  max: 250,  centraalDossier: 1.40, communicatie: 0.75, vrijwilligersCheck: 1.00, declaratie: 1.80 },
+  { label: 'Schijf 4', min: 251,  max: 500,  centraalDossier: 1.25, communicatie: 0.60, vrijwilligersCheck: 0.90, declaratie: 1.70 },
+  { label: 'Schijf 5', min: 501,  max: 750,  centraalDossier: 1.05, communicatie: 0.60, vrijwilligersCheck: 0.90, declaratie: 1.60 },
+  { label: 'Schijf 6', min: 751,  max: 1000, centraalDossier: 0.90, communicatie: 0.60, vrijwilligersCheck: 0.90, declaratie: 1.60 },
+  { label: 'Schijf 7', min: 1001, max: 1500, centraalDossier: 0.75, communicatie: 0.45, vrijwilligersCheck: 0.80, declaratie: 1.60 },
+  { label: 'Schijf 8', min: 1501, max: 2000, centraalDossier: 0.60, communicatie: 0.45, vrijwilligersCheck: 0.80, declaratie: 1.60 },
+  { label: 'Schijf 9', min: 2001, max: 2500, centraalDossier: 0.45, communicatie: 0.45, vrijwilligersCheck: 0.80, declaratie: 1.60 },
+];
+
+const ANNUAL_DISCOUNT = 0.15; // 15% korting bij jaarcontract
+
+function getSchijf(volunteers: number): Schijf | null {
+  return SCHIJVEN.find(s => volunteers >= s.min && volunteers <= s.max) ?? null;
+}
+
+// ─── Module definities ────────────────────────────────────────────────────────
+interface ModuleDef {
+  id: 'cd' | 'comm' | 'vcheck' | 'declaratie';
+  name: string;
+  shortName: string;
+  description: string;
+  icon: React.ReactNode;
+  color: string;
+  bgColor: string;
+  includes: string[];
+  aiPowered?: boolean;
+}
+
+const MODULE_DEFS: ModuleDef[] = [
   {
-    id: 1,
-    name: 'Geluksmonitor & Matching',
-    description: 'De Geluksformule + Smart Matching voor perfecte matches',
-    pricePerVolunteerPerMonth: 1.08,
-    icon: <Heart className="w-5 h-5" />,
-    color: 'daar-koraal',
-  },
-  {
-    id: 2,
+    id: 'cd',
     name: 'Centraal Dossier',
-    description: 'AVG-proof documentbeheer voor VOG\'s, contracten en certificaten',
-    pricePerVolunteerPerMonth: 0.17,
-    icon: <Check className="w-5 h-5" />,
-    color: 'daar-mint',
+    shortName: 'Dossier',
+    description: 'Het hart van jouw vrijwilligersorganisatie. Alles op één plek.',
+    icon: <FileText className="w-5 h-5" />,
+    color: '#3BA273',
+    bgColor: 'bg-brandGreen/10',
+    includes: [
+      'Vrijwilligersdossiers & overzichten',
+      'Rooster & planning',
+      'Automatische urenregistratie',
+      'AI onboarding (basis)',
+    ],
+    aiPowered: true,
   },
   {
-    id: 3,
+    id: 'comm',
     name: 'Communicatie & Engagement',
-    description: 'Chat, nieuws delen en automatische bedankjes versturen',
-    pricePerVolunteerPerMonth: 0.24,
-    icon: <Sparkles className="w-5 h-5" />,
-    color: 'daar-geel',
+    shortName: 'Communicatie',
+    description: 'Houd vrijwilligers betrokken met slimme communicatietools.',
+    icon: <MessageSquare className="w-5 h-5" />,
+    color: '#8ECAE6',
+    bgColor: 'bg-daar-helder/10',
+    includes: [
+      'Interne chat & berichten',
+      'Geautomatiseerde nieuwsbrief (AI)',
+    ],
+    aiPowered: true,
   },
   {
-    id: 4,
-    name: 'Impact Dashboard',
-    description: 'Real-time rapporten met SDG koppeling en maatschappelijke impact',
-    pricePerVolunteerPerMonth: 0.28,
-    icon: <BarChart3 className="w-5 h-5" />,
-    color: 'daar-helder',
+    id: 'vcheck',
+    name: 'VrijwilligersCheck',
+    shortName: 'Welzijn & Impact',
+    description: 'Meet het welzijn van vrijwilligers en toon de maatschappelijke impact.',
+    icon: <Heart className="w-5 h-5" />,
+    color: '#E76F51',
+    bgColor: 'bg-daar-koraal/10',
+    includes: [
+      'Welzijnscheck (stoplicht-systeem)',
+      'Geluksmomenten registreren',
+      'Impact dashboard voor bestuur',
+      'Subsidie-rapportages',
+    ],
   },
   {
-    id: 5,
-    name: 'Premium Support',
-    description: 'Dedicated support manager en prioritaire feature requests',
-    pricePerVolunteerPerMonth: 0,
-    icon: <Zap className="w-5 h-5" />,
-    color: 'brandGreen',
+    id: 'declaratie',
+    name: 'Declaratie',
+    shortName: 'Declaratie',
+    description: 'Onkostendeclaraties eenvoudig ingediend en goedgekeurd, rechtstreeks in het platform.',
+    icon: <Receipt className="w-5 h-5" />,
+    color: '#F4A261',
+    bgColor: 'bg-orange-100',
+    includes: [
+      'Onkostendeclaraties indienen',
+      'Goedkeuringsworkflow voor coördinatoren',
+      'Overzicht per vrijwilliger & periode',
+      'Exporteren voor administratie',
+    ],
   },
 ];
 
-export default function PrijzenPage() {
+// ─── Component ────────────────────────────────────────────────────────────────
+export default function Prijzen2Page() {
   const [numVolunteers, setNumVolunteers] = useState(125);
-  const [hoursPerMonth, setHoursPerMonth] = useState(6);
-  const [selectedModules, setSelectedModules] = useState<Set<number>>(
-    new Set([1, 2, 3, 4])
+  const [selectedModules, setSelectedModules] = useState<Set<string>>(
+    new Set(['cd', 'comm', 'vcheck'])
   );
+  const [isAnnual, setIsAnnual] = useState(false);
+  const [expandedModule, setExpandedModule] = useState<string | null>(null);
+  const [hoursPerMonth, setHoursPerMonth] = useState(6);
+  const [showTiersTable, setShowTiersTable] = useState(false);
 
-  const toggleModule = (moduleId: number) => {
-    const newModules = new Set(selectedModules);
-    if (newModules.has(moduleId)) {
-      newModules.delete(moduleId);
-    } else {
-      newModules.add(moduleId);
-    }
-    setSelectedModules(newModules);
+  const isOnRequest = numVolunteers > 2500;
+  const currentSchijf = useMemo(() => getSchijf(numVolunteers), [numVolunteers]);
+
+  const toggleModule = (id: string) => {
+    setSelectedModules(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   };
 
-  // Calculations
-  const pricePerVolunteerPerMonth = Array.from(selectedModules).reduce((total, moduleId) => {
-    const module = modules.find(m => m.id === moduleId);
-    return total + (module?.pricePerVolunteerPerMonth || 0);
-  }, 0);
+  // Prijs per vrijwilliger per maand (gesommeerd over geselecteerde modules)
+  const pricePerVolunteerPerMonth = useMemo(() => {
+    if (!currentSchijf || isOnRequest) return 0;
+    let total = 0;
+    if (selectedModules.has('cd')) total += currentSchijf.centraalDossier;
+    if (selectedModules.has('comm')) total += currentSchijf.communicatie;
+    if (selectedModules.has('vcheck')) total += currentSchijf.vrijwilligersCheck;
+    if (selectedModules.has('declaratie')) total += currentSchijf.declaratie;
+    return total;
+  }, [currentSchijf, selectedModules, isOnRequest]);
 
-  const totalPricePerMonth = pricePerVolunteerPerMonth * numVolunteers;
-  const totalPricePerYear = totalPricePerMonth * 12;
+  const monthlyTotal = pricePerVolunteerPerMonth * numVolunteers;
+  const yearlyTotal = monthlyTotal * 12;
+  const yearlyTotalDiscounted = yearlyTotal * (1 - ANNUAL_DISCOUNT);
+  const monthlyEquivalentAnnual = yearlyTotalDiscounted / 12;
 
-  // Value calculations (€25.04 per hour = volunteer value)
-  const volunteerValuePerMonth = numVolunteers * hoursPerMonth * 25.04;
-  const volunteerValuePerYear = volunteerValuePerMonth * 12;
+  const displayMonthly = isAnnual ? monthlyEquivalentAnnual : monthlyTotal;
+  const displayYearly = isAnnual ? yearlyTotalDiscounted : yearlyTotal;
 
-  // Happiness moments (5 per hour)
-  const happinessMomentsPerMonth = numVolunteers * hoursPerMonth * 5;
-  const happinessMomentsPerYear = happinessMomentsPerMonth * 12;
+  // ROI / impact
+  const volunteerHourValue = 25.04;
+  const volunteerValuePerMonth = numVolunteers * hoursPerMonth * volunteerHourValue;
+  const roi = displayYearly > 0
+    ? ((volunteerValuePerMonth * 12 - displayYearly) / displayYearly) * 100
+    : 0;
 
-  // Cost per happiness moment
-  const costPerHappinessMoment = totalPricePerMonth > 0 ? totalPricePerMonth / happinessMomentsPerMonth : 0;
-
-  // Value per happiness moment
-  const valuePerHappinessMoment = happinessMomentsPerMonth > 0 ? volunteerValuePerMonth / happinessMomentsPerMonth : 0;
-
-  // ROI calculation
-  const roi = totalPricePerYear > 0 ? ((volunteerValuePerYear - totalPricePerYear) / totalPricePerYear) * 100 : 0;
+  const fmt = (n: number) =>
+    n.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtInt = (n: number) =>
+    n.toLocaleString('nl-NL', { maximumFractionDigits: 0 });
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
+
+      {/* ── Hero ──────────────────────────────────────────────────────────── */}
       <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-20 overflow-hidden bg-gradient-to-br from-offWhite via-white to-lightGreen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
@@ -125,7 +195,7 @@ export default function PrijzenPage() {
               className="inline-flex items-center px-5 py-2.5 rounded-full bg-brandGreen/10 border border-brandGreen/30 text-brandGreen text-sm font-semibold mb-8"
             >
               <Calculator size={16} className="mr-2" />
-              Bereken je investering in real-time
+              Volumetarieven &mdash; eerlijk schalen
             </motion.div>
 
             <motion.h1
@@ -142,26 +212,58 @@ export default function PrijzenPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
             >
-              Transparante prijzen op basis van jouw aantal vrijwilligers. Kies de modules die
-              je nodig hebt en zie direct de impact en ROI.
+              Betaal per vrijwilliger per maand. Hoe meer vrijwilligers, hoe lager het tarief.
+              Kies de modules die bij jouw organisatie passen.
             </motion.p>
+
+            {/* Annual toggle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="inline-flex items-center gap-4 bg-white rounded-full px-6 py-3 shadow-md border border-gray-100"
+            >
+              <span className={`text-sm font-semibold ${!isAnnual ? 'text-daar-blue' : 'text-gray-400'}`}>
+                Maandelijks
+              </span>
+              <button
+                onClick={() => setIsAnnual(!isAnnual)}
+                className={`relative w-14 h-7 rounded-full transition-colors ${
+                  isAnnual ? 'bg-brandGreen' : 'bg-gray-200'
+                }`}
+              >
+                <motion.div
+                  className="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow"
+                  animate={{ x: isAnnual ? 28 : 0 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                />
+              </button>
+              <span className={`text-sm font-semibold ${isAnnual ? 'text-brandGreen' : 'text-gray-400'}`}>
+                Jaarlijks
+              </span>
+              {isAnnual && (
+                <span className="bg-brandGreen text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                  15% korting
+                </span>
+              )}
+            </motion.div>
           </div>
         </div>
-
-        {/* Decorative elements */}
         <div className="absolute top-20 right-10 w-72 h-72 bg-brandGreen/5 rounded-full blur-3xl" />
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-daar-helder/10 rounded-full blur-3xl" />
       </section>
 
-      {/* Interactive Calculator */}
+      {/* ── Calculator ────────────────────────────────────────────────────── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Left: Input & Modules */}
+
+            {/* Left: Input & modules */}
             <div className="space-y-8">
-              {/* Input Section */}
+
+              {/* Vrijwilligers slider */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -176,39 +278,44 @@ export default function PrijzenPage() {
                   Jouw organisatie
                 </h2>
 
-                {/* Volunteers Input */}
-                <div className="mb-8">
+                <div className="mb-2">
                   <div className="flex justify-between items-center mb-3">
-                    <label className="text-daar-blue font-semibold">
-                      Aantal vrijwilligers
-                    </label>
+                    <label className="text-daar-blue font-semibold">Aantal vrijwilligers</label>
                     <div className="flex items-center gap-3">
                       <input
                         type="number"
                         value={numVolunteers}
-                        onChange={(e) => setNumVolunteers(Math.min(1000, Math.max(1, parseInt(e.target.value) || 1)))}
+                        min={15}
+                        max={2600}
+                        onChange={(e) =>
+                          setNumVolunteers(Math.max(15, Math.min(2600, parseInt(e.target.value) || 15)))
+                        }
                         className="w-24 px-3 py-2 border-2 border-brandGreen rounded-xl font-bold text-daar-blue text-right focus:outline-none focus:ring-2 focus:ring-brandGreen/50"
                       />
                       <span className="text-gray-500">vrijwilligers</span>
                     </div>
                   </div>
+
                   <input
                     type="range"
-                    min="1"
-                    max="1000"
+                    min={15}
+                    max={2600}
+                    step={5}
                     value={numVolunteers}
                     onChange={(e) => setNumVolunteers(parseInt(e.target.value))}
                     className="w-full h-3 bg-gray-200 rounded-full appearance-none cursor-pointer slider-green"
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-2">
-                    <span>1</span>
+                    <span>15 (min)</span>
                     <span>500</span>
-                    <span>1000+</span>
+                    <span>1.000</span>
+                    <span>2.000</span>
+                    <span>2.500+</span>
                   </div>
                 </div>
 
-                {/* Hours Input */}
-                <div>
+                {/* Uren per vrijwilliger */}
+                <div className="mt-8">
                   <div className="flex justify-between items-center mb-3">
                     <label className="text-daar-blue font-semibold">
                       Uren per vrijwilliger per maand
@@ -217,7 +324,11 @@ export default function PrijzenPage() {
                       <input
                         type="number"
                         value={hoursPerMonth}
-                        onChange={(e) => setHoursPerMonth(Math.max(1, parseInt(e.target.value) || 1))}
+                        min={1}
+                        max={40}
+                        onChange={(e) =>
+                          setHoursPerMonth(Math.max(1, Math.min(40, parseInt(e.target.value) || 1)))
+                        }
                         className="w-20 px-3 py-2 border-2 border-daar-helder rounded-xl font-bold text-daar-blue text-right focus:outline-none focus:ring-2 focus:ring-daar-helder/50"
                       />
                       <span className="text-gray-500">uur</span>
@@ -225,8 +336,8 @@ export default function PrijzenPage() {
                   </div>
                   <input
                     type="range"
-                    min="1"
-                    max="40"
+                    min={1}
+                    max={40}
                     value={hoursPerMonth}
                     onChange={(e) => setHoursPerMonth(parseInt(e.target.value))}
                     className="w-full h-3 bg-gray-200 rounded-full appearance-none cursor-pointer slider-blue"
@@ -238,7 +349,7 @@ export default function PrijzenPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-lightGreen rounded-2xl">
+                <div className="mt-4 p-4 bg-lightGreen rounded-2xl">
                   <p className="text-sm text-gray-600">
                     <Clock className="inline w-4 h-4 mr-1 text-brandGreen" />
                     Totaal: <span className="font-bold text-daar-blue">
@@ -246,9 +357,108 @@ export default function PrijzenPage() {
                     </span>
                   </p>
                 </div>
+
+                {/* Schijf indicator */}
+                <AnimatePresence mode="wait">
+                  {isOnRequest ? (
+                    <motion.div
+                      key="aanvraag"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="mt-5 p-4 bg-daar-geel/20 border border-daar-geel/40 rounded-2xl flex items-center gap-3"
+                    >
+                      <Tag size={18} className="text-daar-blue flex-shrink-0" />
+                      <p className="text-sm text-daar-blue font-semibold">
+                        Meer dan 2.500 vrijwilligers? Wij maken een offerte op maat voor jouw organisatie.
+                      </p>
+                    </motion.div>
+                  ) : currentSchijf ? (
+                    <motion.div
+                      key={currentSchijf.label}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="mt-5 p-4 bg-lightGreen border border-brandGreen/20 rounded-2xl flex items-center justify-between"
+                    >
+                      <div className="flex items-center gap-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-brandGreen" />
+                        <span className="text-sm font-bold text-daar-blue">{currentSchijf.label}</span>
+                        <span className="text-sm text-gray-600">
+                          ({currentSchijf.min}–{currentSchijf.max} vrijwilligers)
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => setShowTiersTable(!showTiersTable)}
+                        className="text-xs text-brandGreen font-semibold flex items-center gap-1 hover:underline"
+                      >
+                        Alle schijven
+                        {showTiersTable ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                      </button>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+
+                {/* Tariefschijven tabel */}
+                <AnimatePresence>
+                  {showTiersTable && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="mt-4 overflow-hidden"
+                    >
+                      <div className="overflow-x-auto rounded-2xl border border-gray-100">
+                        <table className="w-full text-xs">
+                          <thead>
+                            <tr className="bg-gray-50 text-gray-500 uppercase">
+                              <th className="px-3 py-2 text-left font-semibold">Vrijwilligers</th>
+                              <th className="px-3 py-2 text-right font-semibold">Dossier</th>
+                              <th className="px-3 py-2 text-right font-semibold">Comm.</th>
+                              <th className="px-3 py-2 text-right font-semibold">Check</th>
+                              <th className="px-3 py-2 text-right font-semibold">Decl.</th>
+                              <th className="px-3 py-2 text-right font-semibold text-brandGreen">Totaal</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {SCHIJVEN.map((s) => {
+                              const isActive = currentSchijf?.label === s.label;
+                              return (
+                                <tr
+                                  key={s.label}
+                                  className={`border-t border-gray-50 ${
+                                    isActive ? 'bg-lightGreen font-bold text-daar-blue' : 'text-gray-600'
+                                  }`}
+                                >
+                                  <td className="px-3 py-2">
+                                    {s.min}–{s.max}
+                                  </td>
+                                  <td className="px-3 py-2 text-right">€{s.centraalDossier.toFixed(2)}</td>
+                                  <td className="px-3 py-2 text-right">€{s.communicatie.toFixed(2)}</td>
+                                  <td className="px-3 py-2 text-right">€{s.vrijwilligersCheck.toFixed(2)}</td>
+                                  <td className="px-3 py-2 text-right">€{s.declaratie.toFixed(2)}</td>
+                                  <td className="px-3 py-2 text-right text-brandGreen">
+                                    €{(s.centraalDossier + s.communicatie + s.vrijwilligersCheck + s.declaratie).toFixed(2)}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                            <tr className="border-t border-gray-200 bg-gray-50 text-gray-500 italic">
+                              <td className="px-3 py-2">&gt; 2.500</td>
+                              <td colSpan={5} className="px-3 py-2 text-center">Op aanvraag</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="text-xs text-gray-400 mt-2 px-1">
+                        * Prijzen per vrijwilliger per maand, excl. BTW. Bij jaarcontract 15% korting.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
 
-              {/* Modules Selection */}
+              {/* Module selectie */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -264,94 +474,150 @@ export default function PrijzenPage() {
                 </h2>
 
                 <div className="space-y-4">
-                  {modules.map((module, index) => (
-                    <motion.div
-                      key={module.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                      onClick={() => toggleModule(module.id)}
-                      className={`p-5 rounded-2xl cursor-pointer transition-all border-2 ${
-                        selectedModules.has(module.id)
-                          ? 'border-brandGreen bg-lightGreen shadow-md'
-                          : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
-                      }`}
-                    >
-                      <div className="flex items-start gap-4">
-                        {/* Toggle Switch */}
-                        <div className="flex-shrink-0">
-                          <div
-                            className={`relative w-14 h-8 rounded-full transition-all ${
-                              selectedModules.has(module.id) ? 'bg-brandGreen' : 'bg-gray-300'
-                            }`}
-                          >
-                            <motion.div
-                              className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md"
-                              animate={{
-                                x: selectedModules.has(module.id) ? 24 : 0,
-                              }}
-                              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                            />
+                  {MODULE_DEFS.map((mod, index) => {
+                    const isSelected = selectedModules.has(mod.id);
+                    const isExpanded = expandedModule === mod.id;
+                    const tierPrice = currentSchijf
+                      ? mod.id === 'cd'
+                        ? currentSchijf.centraalDossier
+                        : mod.id === 'comm'
+                        ? currentSchijf.communicatie
+                        : mod.id === 'vcheck'
+                        ? currentSchijf.vrijwilligersCheck
+                        : currentSchijf.declaratie
+                      : null;
+
+                    return (
+                      <motion.div
+                        key={mod.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className={`rounded-2xl border-2 transition-all ${
+                          isSelected
+                            ? 'border-brandGreen bg-lightGreen shadow-md'
+                            : 'border-gray-200 bg-white hover:border-gray-300'
+                        }`}
+                      >
+                        {/* Module header */}
+                        <div
+                          className="p-5 cursor-pointer"
+                          onClick={() => toggleModule(mod.id)}
+                        >
+                          <div className="flex items-start gap-4">
+                            {/* Toggle */}
+                            <div className="flex-shrink-0 mt-0.5">
+                              <div
+                                className={`relative w-14 h-8 rounded-full transition-all ${
+                                  isSelected ? 'bg-brandGreen' : 'bg-gray-300'
+                                }`}
+                              >
+                                <motion.div
+                                  className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md"
+                                  animate={{ x: isSelected ? 24 : 0 }}
+                                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                                />
+                              </div>
+                            </div>
+
+                            {/* Info */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between gap-2 mb-1">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <div
+                                    className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${mod.bgColor}`}
+                                    style={{ color: mod.color }}
+                                  >
+                                    {mod.icon}
+                                  </div>
+                                  <h3 className="font-bold text-daar-blue">{mod.name}</h3>
+                                  {mod.aiPowered && (
+                                    <span className="text-xs bg-purple-100 text-purple-600 font-semibold px-2 py-0.5 rounded-full">
+                                      AI
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="text-right flex-shrink-0">
+                                  {tierPrice !== null && !isOnRequest ? (
+                                    <>
+                                      <div className="font-bold text-brandGreen">€{fmt(tierPrice)}</div>
+                                      <div className="text-xs text-gray-500">p/vw/mnd</div>
+                                    </>
+                                  ) : (
+                                    <div className="text-xs text-gray-400 italic">op aanvraag</div>
+                                  )}
+                                </div>
+                              </div>
+                              <p className="text-sm text-gray-600">{mod.description}</p>
+                            </div>
                           </div>
                         </div>
 
-                        {/* Module Info */}
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between gap-2 mb-2">
-                            <div className="flex items-center gap-2">
-                              <div
-                                className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                                  selectedModules.has(module.id)
-                                    ? `bg-${module.color}/20 text-${module.color}`
-                                    : 'bg-gray-100 text-gray-400'
-                                }`}
+                        {/* Inbegrepen uitklappen */}
+                        <div className="px-5 pb-3">
+                          <button
+                            onClick={() => setExpandedModule(isExpanded ? null : mod.id)}
+                            className="text-xs text-gray-500 hover:text-brandGreen flex items-center gap-1 transition-colors"
+                          >
+                            Wat is inbegrepen?
+                            {isExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                          </button>
+
+                          <AnimatePresence>
+                            {isExpanded && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="overflow-hidden"
                               >
-                                {module.icon}
-                              </div>
-                              <h3 className="font-bold text-daar-blue">{module.name}</h3>
-                            </div>
-                            <div className="text-right">
-                              <div className="font-bold text-brandGreen">
-                                €{module.pricePerVolunteerPerMonth.toFixed(2)}
-                              </div>
-                              <div className="text-xs text-gray-500">p/vrijw./mnd</div>
-                            </div>
-                          </div>
-                          <p className="text-sm text-gray-600">{module.description}</p>
-                          {selectedModules.has(module.id) && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="mt-3 pt-3 border-t border-gray-200"
-                            >
-                              <div className="flex justify-between text-sm">
-                                <span className="text-gray-600">Maandelijks totaal:</span>
-                                <span className="font-semibold text-daar-blue">
-                                  €{(module.pricePerVolunteerPerMonth * numVolunteers).toFixed(2)}
-                                </span>
-                              </div>
-                            </motion.div>
-                          )}
+                                <ul className="mt-3 space-y-1.5 border-t border-gray-100 pt-3">
+                                  {mod.includes.map((item) => (
+                                    <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
+                                      <Check size={14} className="text-brandGreen flex-shrink-0" />
+                                      {item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
-                      </div>
-                    </motion.div>
-                  ))}
+
+                        {/* Maandtotaal indien geselecteerd */}
+                        {isSelected && tierPrice !== null && !isOnRequest && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="mx-5 mb-4 pt-3 border-t border-brandGreen/20"
+                          >
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-600">Subtotaal ({numVolunteers} vw)</span>
+                              <span className="font-semibold text-daar-blue">
+                                €{fmtInt(tierPrice * numVolunteers)}/mnd
+                              </span>
+                            </div>
+                          </motion.div>
+                        )}
+                      </motion.div>
+                    );
+                  })}
                 </div>
 
                 {selectedModules.size === 0 && (
                   <div className="mt-6 p-4 bg-daar-geel/20 rounded-2xl border border-daar-geel/30">
                     <p className="text-sm text-daar-blue">
-                      ⚠️ Selecteer minimaal één module om te beginnen
+                      Selecteer minimaal één module om de prijs te berekenen.
                     </p>
                   </div>
                 )}
               </motion.div>
             </div>
 
-            {/* Right: Results */}
+            {/* Right: Resultaten */}
             <div className="lg:sticky lg:top-8 space-y-6" style={{ height: 'fit-content' }}>
-              {/* Price Summary */}
+
+              {/* Prijs samenvatting */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -363,85 +629,134 @@ export default function PrijzenPage() {
                   Jouw investering
                 </h2>
 
-                {numVolunteers >= 1000 ? (
+                {isOnRequest ? (
                   <div className="space-y-6">
                     <div className="bg-white/10 rounded-2xl p-6 text-center">
                       <p className="text-4xl font-extrabold text-daar-geel mb-3">Maatwerk</p>
                       <p className="text-white/80 text-sm leading-relaxed">
-                        Met 1.000+ vrijwilligers werken we met een op maat gemaakte prijs.
-                        We gaan graag met je in gesprek om het beste aanbod samen te stellen.
+                        Met meer dan 2.500 vrijwilligers werken we met een prijsvoorstel op maat.
+                        Neem contact op voor een persoonlijk gesprek.
                       </p>
                     </div>
                     <Link
                       href="/afspraak"
-                      className="block w-full bg-brandGreen text-white text-center font-bold px-6 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg hover:shadow-xl group"
+                      className="block w-full bg-brandGreen text-white text-center font-bold px-6 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg group"
                     >
                       <span className="flex items-center justify-center gap-2">
                         Plan een gesprek
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                       </span>
                     </Link>
-                    <Link
-                      href="/contact"
-                      className="block w-full bg-white/10 text-white text-center font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-all"
-                    >
-                      Stuur ons een bericht
-                    </Link>
+                  </div>
+                ) : selectedModules.size === 0 ? (
+                  <div className="bg-white/10 rounded-2xl p-6 text-center">
+                    <p className="text-white/70 text-sm">Selecteer modules om de prijs te berekenen.</p>
                   </div>
                 ) : (
-                  <div className="space-y-6">
-                    {/* Per Volunteer */}
-                    <div className="pb-6 border-b border-white/20">
-                      <p className="text-white/70 text-sm mb-2">Per vrijwilliger per maand</p>
+                  <div className="space-y-5">
+                    {/* Per vrijwilliger */}
+                    <div className="pb-5 border-b border-white/20">
+                      <p className="text-white/70 text-sm mb-1">Per vrijwilliger per maand</p>
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={pricePerVolunteerPerMonth}
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
-                          className="text-4xl font-extrabold"
+                          className="text-3xl font-extrabold"
                         >
-                          €{pricePerVolunteerPerMonth.toFixed(2)}
+                          €{fmt(isAnnual ? pricePerVolunteerPerMonth * (1 - ANNUAL_DISCOUNT) : pricePerVolunteerPerMonth)}
                         </motion.div>
                       </AnimatePresence>
+                      {isAnnual && (
+                        <p className="text-white/50 text-xs mt-1 line-through">
+                          €{fmt(pricePerVolunteerPerMonth)} normaal
+                        </p>
+                      )}
                     </div>
 
-                    {/* Total Per Month */}
-                    <div className="pb-6 border-b border-white/20">
-                      <p className="text-white/70 text-sm mb-2">Totaal per maand</p>
+                    {/* Totaal per maand */}
+                    <div className="pb-5 border-b border-white/20">
+                      <p className="text-white/70 text-sm mb-1">
+                        Totaal per maand{isAnnual ? ' (bij jaarcontract)' : ''}
+                      </p>
                       <AnimatePresence mode="wait">
                         <motion.div
-                          key={totalPricePerMonth}
-                          initial={{ opacity: 0, scale: 0.9 }}
+                          key={displayMonthly}
+                          initial={{ opacity: 0, scale: 0.95 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 1.1 }}
+                          exit={{ opacity: 0, scale: 1.05 }}
                           className="text-5xl font-extrabold text-daar-geel"
                         >
-                          €{totalPricePerMonth.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
+                          €{fmtInt(displayMonthly)}
                         </motion.div>
                       </AnimatePresence>
-                      <p className="text-white/60 text-xs mt-2">excl. BTW</p>
+                      <p className="text-white/60 text-xs mt-1">excl. BTW</p>
                     </div>
 
-                    {/* Total Per Year */}
-                    <div>
-                      <p className="text-white/70 text-sm mb-2">Totaal per jaar</p>
+                    {/* Totaal per jaar */}
+                    <div className="pb-5 border-b border-white/20">
+                      <p className="text-white/70 text-sm mb-1">Totaal per jaar</p>
                       <AnimatePresence mode="wait">
                         <motion.div
-                          key={totalPricePerYear}
+                          key={displayYearly}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           className="text-3xl font-bold"
                         >
-                          €{totalPricePerYear.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
+                          €{fmtInt(displayYearly)}
                         </motion.div>
                       </AnimatePresence>
+                      {isAnnual && (
+                        <p className="text-white/50 text-xs mt-1">
+                          Besparing: €{fmtInt(yearlyTotal - yearlyTotalDiscounted)} per jaar
+                        </p>
+                      )}
                     </div>
+
+                    {/* Prijsopbouw */}
+                    {currentSchijf && (
+                      <div className="space-y-2">
+                        <p className="text-white/70 text-xs font-semibold uppercase tracking-wide mb-3">
+                          Opbouw per vrijwilliger
+                        </p>
+                        {selectedModules.has('cd') && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-white/80">Centraal Dossier</span>
+                            <span className="font-semibold">€{fmt(currentSchijf.centraalDossier)}</span>
+                          </div>
+                        )}
+                        {selectedModules.has('comm') && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-white/80">Communicatie</span>
+                            <span className="font-semibold">€{fmt(currentSchijf.communicatie)}</span>
+                          </div>
+                        )}
+                        {selectedModules.has('vcheck') && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-white/80">VrijwilligersCheck</span>
+                            <span className="font-semibold">€{fmt(currentSchijf.vrijwilligersCheck)}</span>
+                          </div>
+                        )}
+                        {selectedModules.has('declaratie') && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-white/80">Declaratie</span>
+                            <span className="font-semibold">€{fmt(currentSchijf.declaratie)}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between text-sm pt-2 border-t border-white/20 font-bold">
+                          <span>Totaal p/vw/mnd</span>
+                          <span className="text-daar-geel">
+                            €{fmt(isAnnual ? pricePerVolunteerPerMonth * (1 - ANNUAL_DISCOUNT) : pricePerVolunteerPerMonth)}
+                          </span>
+                        </div>
+                      </div>
+                    )}
 
                     <Link
                       href="/afspraak"
-                      className="block w-full bg-brandGreen text-white text-center font-bold px-6 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg hover:shadow-xl group"
+                      className="block w-full bg-brandGreen text-white text-center font-bold px-6 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg group"
                     >
                       <span className="flex items-center justify-center gap-2">
                         Vraag offerte aan
@@ -452,105 +767,69 @@ export default function PrijzenPage() {
                 )}
               </motion.div>
 
-              {/* Value & Impact */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-gradient-to-br from-brandGreen to-daar-mint rounded-3xl p-8 text-white shadow-2xl"
-              >
-                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                  <TrendingUp size={28} />
-                  Jouw impact
-                </h2>
+              {/* Impact & ROI */}
+              {!isOnRequest && selectedModules.size > 0 && displayYearly > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="bg-gradient-to-br from-brandGreen to-daar-mint rounded-3xl p-8 text-white shadow-2xl"
+                >
+                  <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <TrendingUp size={28} />
+                    Jouw impact
+                  </h2>
 
-                <div className="space-y-6">
-                  {/* Volunteer Value */}
-                  <div className="bg-white/10 rounded-2xl p-5">
-                    <p className="text-white/80 text-sm mb-2">Waarde vrijwilligers per maand</p>
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={volunteerValuePerMonth}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="text-4xl font-extrabold"
-                      >
-                        €{volunteerValuePerMonth.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
-                      </motion.div>
-                    </AnimatePresence>
-                    <p className="text-white/60 text-xs mt-2">
-                      Gebaseerd op €25,04 per uur
-                    </p>
-                  </div>
+                  <div className="space-y-5">
+                    <div className="bg-white/10 rounded-2xl p-5">
+                      <p className="text-white/80 text-sm mb-2 flex items-center gap-2">
+                        <Clock size={14} />
+                        Waarde vrijwilligers per maand
+                      </p>
+                      <p className="text-3xl font-extrabold">
+                        €{fmtInt(volunteerValuePerMonth)}
+                      </p>
+                      <p className="text-white/60 text-xs mt-1">
+                        {numVolunteers} vw × {hoursPerMonth}u × €25,04/u (CBS)
+                      </p>
+                    </div>
 
-                  {/* Happiness Moments */}
-                  <div className="bg-white/10 rounded-2xl p-5">
-                    <p className="text-white/80 text-sm mb-2 flex items-center gap-2">
-                      <Heart size={16} />
-                      Geluksmomenten per maand
-                    </p>
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={happinessMomentsPerMonth}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.1 }}
-                        className="text-4xl font-extrabold"
-                      >
-                        {happinessMomentsPerMonth.toLocaleString('nl-NL')}
-                      </motion.div>
-                    </AnimatePresence>
-                    <p className="text-white/60 text-xs mt-2">
-                      Gemiddeld 5 geluksmomenten per uur
-                    </p>
-                  </div>
-
-                  {/* ROI */}
-                  {totalPricePerYear > 0 && (
                     <div className="bg-white/10 rounded-2xl p-5">
                       <p className="text-white/80 text-sm mb-2">Return on Investment (ROI)</p>
                       <AnimatePresence mode="wait">
-                        <motion.div
+                        <motion.p
                           key={roi}
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 1.1 }}
                           className="text-5xl font-extrabold text-daar-geel"
                         >
-                          {roi.toFixed(0)}%
-                        </motion.div>
+                          {fmtInt(roi)}%
+                        </motion.p>
                       </AnimatePresence>
-                      <p className="text-white/80 text-sm mt-3">
+                      <p className="text-white/80 text-sm mt-2">
                         Besparing per jaar:{' '}
                         <span className="font-bold">
-                          €{(volunteerValuePerYear - totalPricePerYear).toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
+                          €{fmtInt(volunteerValuePerMonth * 12 - displayYearly)}
                         </span>
                       </p>
                     </div>
-                  )}
 
-                  {/* Cost & Value per Happiness Moment */}
-                  {happinessMomentsPerMonth > 0 && totalPricePerMonth > 0 && (
-                    <div className="pt-6 border-t border-white/20 space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-white/80 text-sm">Kosten per geluksmoment</span>
-                        <span className="font-bold text-lg">
-                          €{costPerHappinessMoment.toFixed(4)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-white/80 text-sm">Waarde per geluksmoment</span>
-                        <span className="font-bold text-lg text-daar-geel">
-                          €{valuePerHappinessMoment.toFixed(2)}
-                        </span>
-                      </div>
+                    <div className="bg-white/10 rounded-2xl p-5">
+                      <p className="text-white/80 text-sm mb-2 flex items-center gap-2">
+                        <Heart size={14} />
+                        Geluksmomenten per maand
+                      </p>
+                      <p className="text-3xl font-extrabold">
+                        {fmtInt(numVolunteers * hoursPerMonth * 5)}
+                      </p>
+                      <p className="text-white/60 text-xs mt-1">Gemiddeld 5 per uur</p>
                     </div>
-                  )}
-                </div>
-              </motion.div>
+                  </div>
+                </motion.div>
+              )}
 
-              {/* Info Box */}
+              {/* Inbegrepen in alle pakketten */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -562,13 +841,32 @@ export default function PrijzenPage() {
                     <Check className="w-5 h-5 text-brandGreen" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-daar-blue mb-2">Wat is inbegrepen?</h3>
+                    <h3 className="font-bold text-daar-blue mb-3">Altijd inbegrepen</h3>
                     <ul className="space-y-2 text-sm text-gray-600">
-                      <li>✓ Gratis demo en onboarding</li>
-                      <li>✓ Maandelijks opzegbaar</li>
-                      <li>✓ Geen setup kosten</li>
-                      <li>✓ Automatische updates</li>
-                      <li>✓ Email support (Premium: dedicated)</li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-brandGreen flex-shrink-0" />
+                        Gratis demo & begeleide onboarding
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-brandGreen flex-shrink-0" />
+                        Maandelijks opzegbaar (of 15% korting op jaarbasis)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-brandGreen flex-shrink-0" />
+                        Geen setup- of implementatiekosten
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-brandGreen flex-shrink-0" />
+                        Automatische updates & nieuwe features
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-brandGreen flex-shrink-0" />
+                        AVG/GDPR-compliant platform
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Zap size={14} className="text-brandGreen flex-shrink-0" />
+                        Minimale afname: 15 vrijwilligers
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -578,8 +876,97 @@ export default function PrijzenPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-offWhite to-white">
+      {/* ── Tariefschijven overzicht ──────────────────────────────────────── */}
+      <section className="py-16 bg-gradient-to-br from-offWhite to-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <h2
+              className="text-3xl font-extrabold text-daar-blue mb-3"
+              style={{ fontFamily: 'Nunito, sans-serif' }}
+            >
+              Hoe groter, hoe voordeliger
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Onze tarieven schalen mee met jouw organisatie. Alle drie modules samen,
+              excl. BTW per vrijwilliger per maand.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
+          >
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-daar-blue text-white">
+                    <th className="px-6 py-4 text-left font-semibold">Vrijwilligers</th>
+                    <th className="px-6 py-4 text-right font-semibold">Centraal Dossier</th>
+                    <th className="px-6 py-4 text-right font-semibold">Communicatie</th>
+                    <th className="px-6 py-4 text-right font-semibold">VrijwilligersCheck</th>
+                    <th className="px-6 py-4 text-right font-semibold">Declaratie</th>
+                    <th className="px-6 py-4 text-right font-semibold text-daar-geel">Totaal p/vw/mnd</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SCHIJVEN.map((s, i) => {
+                    const total = s.centraalDossier + s.communicatie + s.vrijwilligersCheck + s.declaratie;
+                    const isActive = currentSchijf?.label === s.label;
+                    return (
+                      <tr
+                        key={s.label}
+                        className={`border-t border-gray-100 transition-colors ${
+                          isActive
+                            ? 'bg-lightGreen font-bold'
+                            : i % 2 === 0
+                            ? 'bg-white'
+                            : 'bg-gray-50/50'
+                        }`}
+                      >
+                        <td className="px-6 py-4 text-daar-blue">
+                          {isActive && (
+                            <span className="inline-flex items-center gap-1.5 text-brandGreen mr-2 text-xs font-bold">
+                              <div className="w-2 h-2 rounded-full bg-brandGreen" />
+                              Jij
+                            </span>
+                          )}
+                          {s.min}–{s.max} vrijwilligers
+                        </td>
+                        <td className="px-6 py-4 text-right text-gray-700">€{s.centraalDossier.toFixed(2)}</td>
+                        <td className="px-6 py-4 text-right text-gray-700">€{s.communicatie.toFixed(2)}</td>
+                        <td className="px-6 py-4 text-right text-gray-700">€{s.vrijwilligersCheck.toFixed(2)}</td>
+                        <td className="px-6 py-4 text-right text-gray-700">€{s.declaratie.toFixed(2)}</td>
+                        <td className="px-6 py-4 text-right font-bold text-brandGreen text-lg">
+                          €{total.toFixed(2)}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                  <tr className="border-t-2 border-gray-200 bg-gray-50 text-gray-500">
+                    <td className="px-6 py-4 italic">&gt; 2.500 vrijwilligers</td>
+                    <td colSpan={5} className="px-6 py-4 text-center italic">Op aanvraag</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 text-xs text-gray-500">
+              Alle prijzen excl. BTW • Bij jaarcontract 15% korting op bovenstaande tarieven
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── CTA ───────────────────────────────────────────────────────────── */}
+      <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -602,10 +989,7 @@ export default function PrijzenPage() {
                 className="bg-brandGreen text-white font-bold px-8 py-4 rounded-full hover:bg-brandGreenHover transition-all shadow-lg shadow-green-200/50 flex items-center justify-center group"
               >
                 Vraag een demo aan
-                <ArrowRight
-                  className="ml-2 group-hover:translate-x-1 transition-transform"
-                  size={20}
-                />
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </Link>
               <Link
                 href="/contact"
@@ -614,17 +998,11 @@ export default function PrijzenPage() {
                 Neem contact op
               </Link>
             </div>
-            <p className="text-sm text-gray-500 mt-6">
-              Vragen? Bel ons op{' '}
-              <a href="tel:+31201234567" className="text-brandGreen font-semibold hover:underline">
-                020 123 45 67
-              </a>
-            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Custom Slider Styles */}
+      {/* Slider styles */}
       <style jsx>{`
         .slider-green::-webkit-slider-thumb {
           appearance: none;
@@ -635,7 +1013,6 @@ export default function PrijzenPage() {
           cursor: pointer;
           box-shadow: 0 2px 8px rgba(59, 162, 115, 0.4);
         }
-
         .slider-green::-moz-range-thumb {
           width: 24px;
           height: 24px;
@@ -645,32 +1022,10 @@ export default function PrijzenPage() {
           border: none;
           box-shadow: 0 2px 8px rgba(59, 162, 115, 0.4);
         }
-
-        .slider-blue::-webkit-slider-thumb {
-          appearance: none;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #8ECAE6;
-          cursor: pointer;
-          box-shadow: 0 2px 8px rgba(142, 202, 230, 0.4);
-        }
-
-        .slider-blue::-moz-range-thumb {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #8ECAE6;
-          cursor: pointer;
-          border: none;
-          box-shadow: 0 2px 8px rgba(142, 202, 230, 0.4);
-        }
-
         input[type='range']::-webkit-slider-runnable-track {
           height: 12px;
           border-radius: 6px;
         }
-
         input[type='range']::-moz-range-track {
           height: 12px;
           border-radius: 6px;
