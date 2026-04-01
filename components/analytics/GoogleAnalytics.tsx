@@ -1,10 +1,15 @@
 'use client'
 
 import Script from 'next/script'
+import { useConsent } from '@/components/cookies/CookieConsentContext'
 
 const GA_MEASUREMENT_ID = 'G-K4LSJQVDFP'
 
 export function GoogleAnalytics() {
+  const { consent } = useConsent()
+
+  if (!consent?.analytics) return null
+
   return (
     <>
       <Script
@@ -16,7 +21,7 @@ export function GoogleAnalytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}');
+          gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });
         `}
       </Script>
     </>

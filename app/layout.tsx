@@ -4,6 +4,8 @@ import "./globals.css";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { OrganizationSchema, WebsiteSchema } from "@/components/seo/JsonLd";
+import { CookieConsentProvider } from "@/components/cookies/CookieConsentContext";
+import { CookieBanner } from "@/components/cookies/CookieBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -95,11 +97,14 @@ export default function RootLayout({
   return (
     <html lang="nl" className={`${inter.variable} ${nunito.variable}`}>
       <body className={inter.className}>
-        <OrganizationSchema />
-        <WebsiteSchema />
-        <GoogleAnalytics />
-        {children}
-        <ChatWidget />
+        <CookieConsentProvider>
+          <OrganizationSchema />
+          <WebsiteSchema />
+          <GoogleAnalytics />
+          {children}
+          <ChatWidget />
+          <CookieBanner />
+        </CookieConsentProvider>
       </body>
     </html>
   );
