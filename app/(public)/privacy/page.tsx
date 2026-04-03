@@ -199,7 +199,7 @@ export default function PrivacyPage() {
                 <tbody>
                   <tr className="border-b border-gray-100">
                     <td className="py-2 pr-4 align-top">Sub-verwerkers</td>
-                    <td className="py-2">Hostingprovider Vercel, e-mailplatform Resend. Verwerkersovereenkomsten zijn afgesloten met alle sub-verwerkers. Een actuele lijst is beschikbaar op verzoek.</td>
+                    <td className="py-2">Verwerkersovereenkomsten zijn afgesloten met alle sub-verwerkers. Een actuele lijst is beschikbaar op verzoek.</td>
                   </tr>
                   <tr className="border-b border-gray-100">
                     <td className="py-2 pr-4 align-top">Wettelijke verplichting</td>
