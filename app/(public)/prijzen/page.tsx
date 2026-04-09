@@ -694,26 +694,6 @@ export default function Prijzen2Page() {
                       <p className="text-white/60 text-xs mt-1">excl. BTW</p>
                     </div>
 
-                    {/* Totaal per jaar */}
-                    <div className="pb-5 border-b border-white/20">
-                      <p className="text-white/70 text-sm mb-1">Totaal per jaar</p>
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={displayYearly}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className="text-3xl font-bold"
-                        >
-                          €{fmtInt(displayYearly)}
-                        </motion.div>
-                      </AnimatePresence>
-                      {isAnnual && (
-                        <p className="text-white/50 text-xs mt-1">
-                          Besparing: €{fmtInt(yearlyTotal - yearlyTotalDiscounted)} per jaar
-                        </p>
-                      )}
-                    </div>
 
                     {/* Prijsopbouw */}
                     {currentSchijf && (

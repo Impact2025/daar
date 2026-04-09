@@ -423,22 +423,6 @@ export default function PrijzenPage() {
                       <p className="text-white/60 text-xs mt-2">excl. BTW</p>
                     </div>
 
-                    {/* Total Per Year */}
-                    <div>
-                      <p className="text-white/70 text-sm mb-2">Totaal per jaar</p>
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={totalPricePerYear}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className="text-3xl font-bold"
-                        >
-                          €{totalPricePerYear.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}
-                        </motion.div>
-                      </AnimatePresence>
-                    </div>
-
                     <Link
                       href="/afspraak"
                       className="block w-full bg-brandGreen text-white text-center font-bold px-6 py-4 rounded-xl hover:bg-brandGreenHover transition-all shadow-lg hover:shadow-xl group"
