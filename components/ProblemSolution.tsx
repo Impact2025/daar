@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { X, Check, ArrowRight } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 
 const ProblemSolution: React.FC = () => {
   return (
@@ -80,13 +80,6 @@ const ProblemSolution: React.FC = () => {
           <p className="text-gray-500 mb-4">
             Meer dan <span className="font-semibold text-daar-blue">667% ROI</span> in het eerste jaar
           </p>
-          <a
-            href="#producten"
-            className="inline-flex items-center text-brandGreen font-semibold hover:underline group"
-          >
-            Bekijk hoe het werkt
-            <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
-          </a>
         </div>
       </div>
     </section>
