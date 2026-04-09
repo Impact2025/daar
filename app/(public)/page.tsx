@@ -5,7 +5,6 @@ import { SoftwareApplicationSchema, FAQSchema } from "@/components/seo/JsonLd";
 import { LatestArticles } from '@/components/home/LatestArticles';
 import ProblemSolution from '@/components/ProblemSolution';
 import FeatureTabShowcase from '@/components/FeatureTabShowcase';
-import ImpactStats from '@/components/ImpactStats';
 
 export const metadata: Metadata = {
   title: "Grip op vrijwilligers, focus op geluk",
@@ -205,7 +204,6 @@ export default function Home() {
       <ProblemSolution />
       <div id="producten"></div>
       <FeatureTabShowcase />
-      <ImpactStats />
       <LatestArticles />
     </div>
   );
