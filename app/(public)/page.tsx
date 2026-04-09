@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from 'next/link';
 import { Sparkles, ArrowRight, Check, Heart, Clock } from 'lucide-react';
 import { SoftwareApplicationSchema, FAQSchema } from "@/components/seo/JsonLd";
-import { LatestArticles } from '@/components/home/LatestArticles';
 import ProblemSolution from '@/components/ProblemSolution';
 import FeatureTabShowcase from '@/components/FeatureTabShowcase';
 
@@ -204,7 +203,6 @@ export default function Home() {
       <ProblemSolution />
       <div id="producten"></div>
       <FeatureTabShowcase />
-      <LatestArticles />
     </div>
   );
 }
