@@ -660,10 +660,10 @@ export default function Prijzen2Page() {
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={pricePerVolunteerPerMonth}
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          className="text-3xl font-extrabold"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 1.05 }}
+                          className="text-5xl font-extrabold text-daar-geel"
                         >
                           €{fmt(isAnnual ? pricePerVolunteerPerMonth * (1 - ANNUAL_DISCOUNT) : pricePerVolunteerPerMonth)}
                         </motion.div>
@@ -673,24 +673,6 @@ export default function Prijzen2Page() {
                           €{fmt(pricePerVolunteerPerMonth)} normaal
                         </p>
                       )}
-                    </div>
-
-                    {/* Totaal per maand */}
-                    <div className="pb-5 border-b border-white/20">
-                      <p className="text-white/70 text-sm mb-1">
-                        Totaal per maand{isAnnual ? ' (bij jaarcontract)' : ''}
-                      </p>
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={displayMonthly}
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 1.05 }}
-                          className="text-5xl font-extrabold text-daar-geel"
-                        >
-                          €{fmtInt(displayMonthly)}
-                        </motion.div>
-                      </AnimatePresence>
                       <p className="text-white/60 text-xs mt-1">excl. BTW</p>
                     </div>
 
