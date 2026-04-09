@@ -200,9 +200,9 @@ export default function Home() {
       </section>
 
       {/* Content Sections */}
-      <ProblemSolution />
       <div id="producten"></div>
       <FeatureTabShowcase />
+      <ProblemSolution />
     </div>
   );
 }
