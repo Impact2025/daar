@@ -541,7 +541,7 @@ export default function Prijzen2Page() {
                                   {tierPrice !== null && !isOnRequest ? (
                                     <>
                                       <div className="font-bold text-brandGreen">€{fmt(tierPrice)}</div>
-                                      <div className="text-xs text-gray-500">p/vw/mnd</div>
+                                      <div className="text-xs text-gray-500">per vrijwilliger</div>
                                     </>
                                   ) : (
                                     <div className="text-xs text-gray-400 italic">op aanvraag</div>
@@ -708,7 +708,7 @@ export default function Prijzen2Page() {
                           </div>
                         )}
                         <div className="flex justify-between text-sm pt-2 border-t border-white/20 font-bold">
-                          <span>Totaal p/vw/mnd</span>
+                          <span>Totaal per vrijwilliger</span>
                           <span className="text-daar-geel">
                             €{fmt(isAnnual ? pricePerVolunteerPerMonth * (1 - ANNUAL_DISCOUNT) : pricePerVolunteerPerMonth)}
                           </span>
@@ -876,7 +876,7 @@ export default function Prijzen2Page() {
                     <th className="px-6 py-4 text-right font-semibold">Communicatie</th>
                     <th className="px-6 py-4 text-right font-semibold">VrijwilligersCheck</th>
                     <th className="px-6 py-4 text-right font-semibold">Declaratie</th>
-                    <th className="px-6 py-4 text-right font-semibold text-daar-geel">Totaal p/vw/mnd</th>
+                    <th className="px-6 py-4 text-right font-semibold text-daar-geel">Totaal per vrijwilliger</th>
                   </tr>
                 </thead>
                 <tbody>
