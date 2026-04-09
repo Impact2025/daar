@@ -75,12 +75,6 @@ const ProblemSolution: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-500 mb-4">
-            Meer dan <span className="font-semibold text-daar-blue">667% ROI</span> in het eerste jaar
-          </p>
-        </div>
       </div>
     </section>
   );
