@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Sparkles, Smartphone, CalendarClock, BadgeCheck } from 'lucide-react'
 import { PillarPage, PillarFAQ, PillarSection, PillarBlogLink } from '@/components/landing/PillarPage'
 
-const SITE = 'https://daar.nl'
+const SITE = 'https://www.daar.nl'
 
 export const metadata: Metadata = {
   title: 'Generatie Z en Vrijwilligerswerk | DAAR',

@@ -19,7 +19,7 @@ const nunito = Nunito({
   variable: '--font-nunito',
 });
 
-const BASE_URL = 'https://daar.nl';
+const BASE_URL = 'https://www.daar.nl';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

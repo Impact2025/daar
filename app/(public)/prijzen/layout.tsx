@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Prijzen - Transparante module-prijzen per vrijwilliger | Daar',
     description: 'Volume-tarieven per vrijwilliger. Schaalbaar van 15 tot 2500+ vrijwilligers.',
     type: 'website',
-    url: 'https://daar.nl/prijzen',
+    url: 'https://www.daar.nl/prijzen',
     siteName: 'Daar',
     locale: 'nl_NL',
   },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: 'Volume-tarieven per vrijwilliger. Schaalbaar van 15 tot 2500+ vrijwilligers.',
   },
   alternates: {
-    canonical: 'https://daar.nl/prijzen',
+    canonical: 'https://www.daar.nl/prijzen',
   },
 };
 

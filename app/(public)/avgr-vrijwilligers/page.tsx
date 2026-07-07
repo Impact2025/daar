@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Shield, FileCheck, Users, Baby, AlertTriangle } from 'lucide-react'
 import { PillarPage, PillarFAQ, PillarSection, PillarBlogLink } from '@/components/landing/PillarPage'
 
-const SITE = 'https://daar.nl'
+const SITE = 'https://www.daar.nl'
 
 export const metadata: Metadata = {
   title: 'AVG & Privacy voor Vrijwilligersorganisaties | DAAR',

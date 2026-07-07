@@ -11,8 +11,8 @@ interface OrganizationSchemaProps {
 
 export function OrganizationSchema({
   name = 'Daar B.V.',
-  url = 'https://daar.nl',
-  logo = 'https://daar.nl/logo.png',
+  url = 'https://www.daar.nl',
+  logo = 'https://www.daar.nl/logo.png',
   description = 'Daar is het complete platform voor vrijwilligersmanagement. Van werving tot impactmeting, met de unieke Geluksformule.',
   email = 'hallo@daar.nl',
   sameAs = [
@@ -67,7 +67,7 @@ interface WebsiteSchemaProps {
 
 export function WebsiteSchema({
   name = 'Daar',
-  url = 'https://daar.nl',
+  url = 'https://www.daar.nl',
   description = 'Het complete platform voor vrijwilligersmanagement',
 }: WebsiteSchemaProps) {
   const schema = {
@@ -188,7 +188,7 @@ export function ArticleSchema({
   datePublished,
   dateModified,
   author = { name: 'Daar Team' },
-  publisher = { name: 'Daar B.V.', logo: 'https://daar.nl/logo.png' },
+  publisher = { name: 'Daar B.V.', logo: 'https://www.daar.nl/logo.png' },
   url,
   keywords,
 }: ArticleSchemaProps) {
@@ -321,7 +321,7 @@ interface LocalBusinessSchemaProps {
 export function LocalBusinessSchema({
   name = 'Daar B.V.',
   description = 'Vrijwilligersplatform voor organisaties in Nederland',
-  url = 'https://daar.nl',
+  url = 'https://www.daar.nl',
   email = 'hallo@daar.nl',
   address = {
     streetAddress: 'Nederland',

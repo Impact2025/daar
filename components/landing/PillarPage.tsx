@@ -57,7 +57,7 @@ export function PillarPage({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://daar.nl/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.daar.nl/' },
       { '@type': 'ListItem', position: 2, name: eyebrow, item: canonical },
     ],
   }

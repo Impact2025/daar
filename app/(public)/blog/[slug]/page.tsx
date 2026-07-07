@@ -103,7 +103,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  const baseUrl = 'https://daar.nl'
+  const baseUrl = 'https://www.daar.nl'
 
   return {
     title: article.metaTitle || article.title,
@@ -149,7 +149,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const relatedPosts = await getRelatedPosts(article.id, article.categoryId)
 
-  const baseUrl = 'https://daar.nl'
+  const baseUrl = 'https://www.daar.nl'
 
   return (
     <>

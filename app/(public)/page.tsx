@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Daar - Grip op vrijwilligers, focus op geluk",
     description: "Het complete platform dat werving, beheer en impactmeting verbindt.",
     type: "website",
-    url: "https://daar.nl",
+    url: "https://www.daar.nl",
     siteName: "Daar",
     locale: "nl_NL",
     // OG image auto-generated via opengraph-image.tsx
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     // Twitter image auto-generated via twitter-image.tsx
   },
   alternates: {
-    canonical: "https://daar.nl",
+    canonical: "https://www.daar.nl",
   },
 };
 

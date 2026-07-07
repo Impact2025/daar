@@ -113,7 +113,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${category.name} — Blog`,
     description: category.description || `Blogposts over ${category.name.toLowerCase()}`,
     alternates: {
-      canonical: `https://daar.nl/blog/categorie/${slug}`,
+      canonical: `https://www.daar.nl/blog/categorie/${slug}`,
     },
   }
 }

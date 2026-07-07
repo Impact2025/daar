@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Contact - Daar Vrijwilligersplatform',
     description: 'Neem contact op met Daar. Stel je vraag, plan een adviesgesprek of vind antwoorden in onze FAQ.',
     type: 'website',
-    url: 'https://daar.nl/contact',
+    url: 'https://www.daar.nl/contact',
     siteName: 'Daar',
     locale: 'nl_NL',
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     'adviesgesprek vrijwilligers',
   ],
   alternates: {
-    canonical: 'https://daar.nl/contact',
+    canonical: 'https://www.daar.nl/contact',
   },
 }
 

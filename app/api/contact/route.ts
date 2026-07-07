@@ -29,7 +29,7 @@ function getContactConfirmationTemplate(data: ContactFormData): string {
   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 32px;">
-      <img src="https://daar.nl/image_c30806.png" alt="DAAR" style="width: 60px; height: 60px; margin-bottom: 16px;">
+      <img src="https://www.daar.nl/image_c30806.png" alt="DAAR" style="width: 60px; height: 60px; margin-bottom: 16px;">
       <h1 style="color: #1A2332; font-size: 24px; font-weight: bold; margin: 0;">
         Bedankt voor je bericht!
       </h1>
@@ -57,7 +57,7 @@ function getContactConfirmationTemplate(data: ContactFormData): string {
       </div>
 
       <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
-        In de tussentijd kun je alvast kijken in onze <a href="${process.env.NEXTAUTH_URL || 'https://daar.nl'}/kennisbank" style="color: #3BA273; text-decoration: none;">kennisbank</a> of direct de <a href="${process.env.NEXTAUTH_URL || 'https://daar.nl'}/quiz" style="color: #3BA273; text-decoration: none;">VrijwilligersCheck</a> doen.
+        In de tussentijd kun je alvast kijken in onze <a href="${process.env.NEXTAUTH_URL || 'https://www.daar.nl'}/kennisbank" style="color: #3BA273; text-decoration: none;">kennisbank</a> of direct de <a href="${process.env.NEXTAUTH_URL || 'https://www.daar.nl'}/quiz" style="color: #3BA273; text-decoration: none;">VrijwilligersCheck</a> doen.
       </p>
 
       <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0;">
@@ -73,7 +73,7 @@ function getContactConfirmationTemplate(data: ContactFormData): string {
         DAAR - Vrijwilligerswerk slimmer, leuker en duurzamer
       </p>
       <p style="margin: 0;">
-        <a href="${process.env.NEXTAUTH_URL || 'https://daar.nl'}" style="color: #9CA3AF;">daar.nl</a>
+        <a href="${process.env.NEXTAUTH_URL || 'https://www.daar.nl'}" style="color: #9CA3AF;">daar.nl</a>
       </p>
     </div>
   </div>

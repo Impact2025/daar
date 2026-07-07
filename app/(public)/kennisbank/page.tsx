@@ -10,13 +10,13 @@ export const metadata: Metadata = {
   title: 'Kennisbank vrijwilligersmanagement',
   description: 'Ontdek praktische artikelen over vrijwilligersbeheer, impact meten en welzijn. Geschreven door experts uit de praktijk.',
   alternates: {
-    canonical: 'https://daar.nl/kennisbank',
+    canonical: 'https://www.daar.nl/kennisbank',
   },
   openGraph: {
     title: 'Kennisbank vrijwilligersmanagement | Daar',
     description: 'Praktische kennis over vrijwilligersbeheer',
     type: 'website',
-    url: 'https://daar.nl/kennisbank',
+    url: 'https://www.daar.nl/kennisbank',
   },
 }
 

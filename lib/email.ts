@@ -32,7 +32,7 @@ function getBookingConfirmationTemplate(data: BookingEmailData): string {
   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 32px;">
-      <img src="https://daar.nl/image_c30806.png" alt="DAAR" style="width: 60px; height: 60px; margin-bottom: 16px;">
+      <img src="https://www.daar.nl/image_c30806.png" alt="DAAR" style="width: 60px; height: 60px; margin-bottom: 16px;">
       <h1 style="color: #1A2332; font-size: 24px; font-weight: bold; margin: 0;">
         Je afspraak is bevestigd!
       </h1>
@@ -378,7 +378,7 @@ function getTaskAssignmentTemplate(data: TaskAssignmentEmailData): string {
   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 32px;">
-      <img src="https://daar.nl/image_c30806.png" alt="DAAR" style="width: 60px; height: 60px; margin-bottom: 16px;">
+      <img src="https://www.daar.nl/image_c30806.png" alt="DAAR" style="width: 60px; height: 60px; margin-bottom: 16px;">
       <h1 style="color: #1A2332; font-size: 24px; font-weight: bold; margin: 0;">
         Nieuwe taak voor jou
       </h1>

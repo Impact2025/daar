@@ -10,13 +10,13 @@ export const metadata: Metadata = {
   title: 'Blog over vrijwilligersmanagement',
   description: 'Nieuws, inzichten en updates van het Daar-team over vrijwilligersbeheer en de sector.',
   alternates: {
-    canonical: 'https://daar.nl/blog',
+    canonical: 'https://www.daar.nl/blog',
   },
   openGraph: {
     title: 'Blog over vrijwilligersmanagement | Daar',
     description: 'Nieuws en inzichten van Daar',
     type: 'website',
-    url: 'https://daar.nl/blog',
+    url: 'https://www.daar.nl/blog',
   },
 }
 

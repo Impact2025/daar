@@ -347,7 +347,7 @@ export const PlatformContent = () => {
             "provider": {
               "@type": "Organization",
               "name": "DAAR",
-              "url": "https://daar.nl"
+              "url": "https://www.daar.nl"
             },
             "featureList": [
               "Smart Matching met AI",

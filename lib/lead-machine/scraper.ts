@@ -47,7 +47,7 @@ export async function scrapeContactInfo(websiteUrl: string): Promise<ContactInfo
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(8_000),
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; DaarBot/1.0; +https://daar.nl)' },
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; DaarBot/1.0; +https://www.daar.nl)' },
       redirect: 'follow',
     });
 

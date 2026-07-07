@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Megaphone, Users, Lightbulb, Smartphone } from 'lucide-react'
 import { PillarPage, PillarFAQ, PillarSection, PillarBlogLink } from '@/components/landing/PillarPage'
 
-const SITE = 'https://daar.nl'
+const SITE = 'https://www.daar.nl'
 
 export const metadata: Metadata = {
   title: 'Vrijwilligers Werven: Strategieën voor 2025 | DAAR',

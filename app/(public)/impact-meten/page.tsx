@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { BarChart3, TrendingUp, Heart, Target } from 'lucide-react'
 import { PillarPage, PillarFAQ, PillarSection, PillarBlogLink } from '@/components/landing/PillarPage'
 
-const SITE = 'https://daar.nl'
+const SITE = 'https://www.daar.nl'
 
 export const metadata: Metadata = {
   title: 'Impact Meten van Vrijwilligerswerk | DAAR',

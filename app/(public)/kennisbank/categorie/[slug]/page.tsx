@@ -113,7 +113,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${category.name} — Kennisbank`,
     description: category.description || `Artikelen over ${category.name.toLowerCase()}`,
     alternates: {
-      canonical: `https://daar.nl/kennisbank/categorie/${slug}`,
+      canonical: `https://www.daar.nl/kennisbank/categorie/${slug}`,
     },
   }
 }

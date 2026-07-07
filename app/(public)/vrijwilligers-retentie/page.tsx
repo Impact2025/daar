@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { HeartHandshake, ShieldCheck, Users, RefreshCw } from 'lucide-react'
 import { PillarPage, PillarFAQ, PillarSection, PillarBlogLink } from '@/components/landing/PillarPage'
 
-const SITE = 'https://daar.nl'
+const SITE = 'https://www.daar.nl'
 
 export const metadata: Metadata = {
   title: 'Vrijwilligers Retentie: Zo Voorkom je Uitval | DAAR',
