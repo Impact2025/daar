@@ -10,9 +10,17 @@ const navLinks = [
   { href: '/platform', label: 'Platform' },
   { href: '/prijzen', label: 'Prijzen' },
   { href: '/quiz', label: 'Geluksmonitor' },
-{ href: '/blog', label: 'Blog' },
+  { href: '/blog', label: 'Blog' },
   { href: '/over-ons', label: 'Over ons' },
   { href: '/contact', label: 'Contact' },
+]
+
+const knowledgeCenterLinks = [
+  { href: '/impact-meten', label: 'Impact Meten' },
+  { href: '/avgr-vrijwilligers', label: 'AVG & Privacy' },
+  { href: '/vrijwilligers-werven', label: 'Vrijwilligers Werven' },
+  { href: '/vrijwilligers-retentie', label: 'Retentie & Welzijn' },
+  { href: '/generatie-z-vrijwilligers', label: 'Generatie Z' },
 ]
 
 export function Header() {
@@ -48,6 +56,38 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Kenniscentrum dropdown */}
+            <div className="relative group">
+              <button
+                className={`flex items-center gap-1 transition-colors ${
+                  knowledgeCenterLinks.some((l) => isActive(l.href))
+                    ? 'text-brandGreen font-medium'
+                    : 'text-gray-600 hover:text-brandGreen'
+                }`}
+                aria-haspopup="true"
+              >
+                Kenniscentrum
+              </button>
+              <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                <div className="w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2">
+                  {knowledgeCenterLinks.map((l) => (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      className={`block px-4 py-2.5 text-sm transition-colors ${
+                        isActive(l.href)
+                          ? 'text-brandGreen font-medium bg-lightGreen'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-brandGreen'
+                      }`}
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             <Link
               href="/admin"
               className="text-gray-600 hover:text-brandGreen transition-colors font-medium"
@@ -95,6 +135,25 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+
+            <p className="px-4 pt-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
+              Kenniscentrum
+            </p>
+            {knowledgeCenterLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-4 py-2.5 rounded-lg transition-colors ${
+                  isActive(l.href)
+                    ? 'bg-lightGreen text-brandGreen font-medium'
+                    : 'text-gray-600 hover:bg-gray-50 hover:text-brandGreen'
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
+
             <div className="pt-2 mt-2 border-t border-gray-100 space-y-2">
               <Link
                 href="/afspraak"

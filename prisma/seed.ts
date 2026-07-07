@@ -6,6 +6,14 @@ import {
   ARTICLE_ROI_VRIJWILLIGERSWERK,
   ARTICLE_ONBOARDING,
 } from './articles-content'
+import {
+  BLOG_AVG,
+  BLOG_IMPACT,
+  BLOG_GENZ,
+  BLOG_GAMIFICATION,
+  BLOG_BURNOUT,
+} from './blog-content-phase1'
+import { KENNISBANK_AVG } from './kennisbank-content-phase3'
 
 const prisma = new PrismaClient()
 
@@ -637,6 +645,72 @@ Dit artikel is geschreven door Team DAAR - Vincent, Saviem en Thijs.
     return article
   }
 
+  // Helper for BLOG-type articles (distinct from KENNISBANK pillar pages)
+  async function createBlog(articleData: {
+    title: string
+    slug: string
+    content: string
+    excerpt: string
+    metaTitle: string
+    metaDescription: string
+    readingTime: number
+    categorySlug: string
+    tags: string[]
+  }) {
+    const category = await prisma.category.findUnique({
+      where: { slug: articleData.categorySlug },
+    })
+
+    const plainContent = articleData.content
+      .replace(/<[^>]*>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+
+    const article = await prisma.article.upsert({
+      where: { slug: articleData.slug },
+      update: {},
+      create: {
+        title: articleData.title,
+        slug: articleData.slug,
+        content: articleData.content,
+        contentPlain: plainContent,
+        excerpt: articleData.excerpt,
+        metaTitle: articleData.metaTitle,
+        metaDescription: articleData.metaDescription,
+        type: 'BLOG',
+        status: 'PUBLISHED',
+        publishedAt: new Date(),
+        authorId: teamDaar.id,
+        categoryId: category?.id,
+        readingTime: articleData.readingTime,
+        viewCount: 0,
+      },
+    })
+
+    for (const tagName of articleData.tags) {
+      const tag = await prisma.tag.findUnique({
+        where: { slug: tagName.toLowerCase().replace(/\s+/g, '-') },
+      })
+      if (tag) {
+        await prisma.tagsOnArticles.upsert({
+          where: {
+            articleId_tagId: {
+              articleId: article.id,
+              tagId: tag.id,
+            },
+          },
+          update: {},
+          create: {
+            articleId: article.id,
+            tagId: tag.id,
+          },
+        })
+      }
+    }
+
+    return article
+  }
+
   // Create all additional pillar pages
   const additionalArticles = [
     ARTICLE_AI_VRIJWILLIGERSBEHEER,
@@ -654,8 +728,30 @@ Dit artikel is geschreven door Team DAAR - Vincent, Saviem en Thijs.
   console.log(`Created ${additionalArticles.length} additional pillar pages`)
 
   // ===========================================
-  // BOOKING TYPES
+  // PHASE 1 BLOG ARTICELEN (type: BLOG)
+  // Onderbouwd met citaten uit DAAR Onderzoek (map "Onderzoeken")
   // ===========================================
+  const phase1Blogs = [
+    BLOG_AVG,
+    BLOG_IMPACT,
+    BLOG_GENZ,
+    BLOG_GAMIFICATION,
+    BLOG_BURNOUT,
+  ]
+
+  for (const blogData of phase1Blogs) {
+    const blog = await createBlog(blogData)
+    console.log('Created blog:', blog.title)
+  }
+
+  console.log(`Created ${phase1Blogs.length} Phase 1 blog articles`)
+
+  // ===========================================
+  // PHASE 3 KENNISBANK ARTIKEL (type: KENNISBANK)
+  // Vult de voorheen lege categorie "Organisatie & Management"
+  // ===========================================
+  const phase3Kennisbank = await createArticle(KENNISBANK_AVG)
+  console.log('Created kennisbank article:', phase3Kennisbank.title)
   const bookingTypes = [
     {
       slug: 'kennismaking',

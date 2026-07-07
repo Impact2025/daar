@@ -7,7 +7,7 @@ import FeatureTabShowcase from '@/components/FeatureTabShowcase';
 
 export const metadata: Metadata = {
   title: "Grip op vrijwilligers, focus op geluk",
-  description: "Het complete platform dat werving, beheer en impactmeting verbindt. Verhoog de betrokkenheid en maak elk uur meetbaar waardevol. 667% ROI in jaar 1.",
+  description: "Het complete platform dat werving, beheer en impactmeting verbindt. Verhoog de betrokkenheid en maak elk uur meetbaar waardevol.",
   keywords: [
     "vrijwilligers",
     "vrijwilligersmanagement",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Daar - Grip op vrijwilligers, focus op geluk",
-    description: "Het complete platform dat werving, beheer en impactmeting verbindt. 667% ROI in jaar 1.",
+    description: "Het complete platform dat werving, beheer en impactmeting verbindt.",
     type: "website",
     url: "https://daar.nl",
     siteName: "Daar",
@@ -48,7 +48,7 @@ const homepageFAQs = [
   },
   {
     question: "Wat kost Daar?",
-    answer: "Daar biedt flexibele prijsmodellen op basis van het aantal vrijwilligers. Neem contact op voor een persoonlijke offerte en ontdek hoe je 667% ROI kunt behalen.",
+    answer: "Daar biedt flexibele prijsmodellen op basis van het aantal vrijwilligers. Neem contact op voor een persoonlijke offerte, zodat we een berekening op maat kunnen maken voor jouw organisatie.",
   },
   {
     question: "Hoe werkt de Geluksformule?",
@@ -74,15 +74,11 @@ export default function Home() {
           "Real-time rapportages en dashboards",
           "Communicatie en engagement tools",
         ]}
-        aggregateRating={{
-          ratingValue: 4.8,
-          reviewCount: 50,
-        }}
       />
       <FAQSchema items={homepageFAQs} />
 
       {/* Hero Section */}
-      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-offWhite">
+      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-daar-helder">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
             {/* Left Content */}
@@ -201,6 +197,50 @@ export default function Home() {
 
       {/* Content Sections */}
       <div id="producten"></div>
+
+      {/* Kenniscentrum topic-hub */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-lightGreen text-brandGreen text-sm font-semibold mb-4">
+              Kenniscentrum
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-daar-blue" style={{ fontFamily: 'Nunito, sans-serif' }}>
+              Vrijwilligerswerk, slimmer & duurzamer
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Op basis van DAAR-onderzoek onder vrijwilligersorganisaties. Praktische gidsen over werving, retentie, impact, AVG en generaties — met meetbare Geluksmomenten.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { href: '/impact-meten', title: 'Impact Meten', desc: 'SROI, Theory of Change en de Geluksmomenten-Formule.' },
+              { href: '/vrijwilligers-werven', title: 'Vrijwilligers Werven', desc: 'Van Gen Z tot Boomers: segmenteer je werving.' },
+              { href: '/vrijwilligers-retentie', title: 'Retentie & Welzijn', desc: 'Voorkom burn-out en bouw aan blijvende betrokkenheid.' },
+              { href: '/avgr-vrijwilligers', title: 'AVG & Privacy', desc: 'Boetevrij voldoen aan de privacywetgeving.' },
+              { href: '/generatie-z-vrijwilligers', title: 'Generatie Z', desc: 'De Impact-Native generatie en snackable vrijwilligerschap.' },
+              { href: '/blog', title: 'Alle artikelen', desc: 'Lees het volledige blog en de kennisbank van DAAR.' },
+            ].map((card) => (
+              <Link
+                key={card.href}
+                href={card.href}
+                className="group block p-6 rounded-2xl border border-gray-100 bg-daar-helder hover:border-brandGreen hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-bold text-daar-blue group-hover:text-brandGreen transition-colors">
+                  {card.title}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">{card.desc}</p>
+                <span className="mt-4 inline-flex items-center text-sm font-semibold text-brandGreen">
+                  Lees meer
+                  <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <FeatureTabShowcase />
       <ProblemSolution />
     </div>
