@@ -90,9 +90,9 @@ const stats = [
 
 export default function OverOnsPage() {
   return (
-    <div className="bg-daar-helder">
+    <div className="bg-offWhite">
       {/* Hero Section - Clean & Modern */}
-      <section className="relative bg-daar-helder pt-8 pb-12 lg:pt-12 lg:pb-16 overflow-hidden">
+      <section className="relative bg-offWhite pt-8 pb-12 lg:pt-12 lg:pb-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left Content */}
@@ -181,7 +181,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Mission & Vision - Card Style */}
-      <section className="py-24 bg-daar-helder">
+      <section className="py-24 bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
@@ -240,7 +240,7 @@ export default function OverOnsPage() {
       {/* Geluksmomenten Formule */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-daar-helder rounded-3xl p-8 lg:p-12 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-sm border border-gray-100">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-brandGreen/10 rounded-full mb-6">
@@ -328,7 +328,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-24 bg-daar-helder">
+      <section className="py-24 bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-daar-blue/10 text-daar-blue text-sm font-semibold mb-4">
@@ -405,7 +405,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Experience Banner */}
-      <section className="py-24 bg-daar-helder">
+      <section className="py-24 bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-lightGreen rounded-3xl p-8 lg:p-12 border border-gray-100">
             <div className="grid lg:grid-cols-2 gap-8 items-center">

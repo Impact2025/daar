@@ -105,7 +105,7 @@ const DaarLandingPage2 = () => {
 
       {/* Hero Section - Soft & Warm */}
       <main id="main-content">
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-daar-helder">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
@@ -242,7 +242,7 @@ const DaarLandingPage2 = () => {
       <Testimonials />
 
       {/* Geluksmeter Feature Section */}
-      <section className="py-24 bg-daar-helder overflow-hidden relative">
+      <section className="py-24 bg-offWhite overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
 

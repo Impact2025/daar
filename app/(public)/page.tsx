@@ -78,7 +78,7 @@ export default function Home() {
       <FAQSchema items={homepageFAQs} />
 
       {/* Hero Section */}
-      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-daar-helder">
+      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
             {/* Left Content */}
@@ -225,7 +225,7 @@ export default function Home() {
               <Link
                 key={card.href}
                 href={card.href}
-                className="group block p-6 rounded-2xl border border-gray-100 bg-daar-helder hover:border-brandGreen hover:shadow-lg transition-all"
+                className="group block p-6 rounded-2xl border border-gray-100 bg-white hover:border-brandGreen hover:shadow-lg transition-all"
               >
                 <h3 className="text-lg font-bold text-daar-blue group-hover:text-brandGreen transition-colors">
                   {card.title}

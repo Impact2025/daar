@@ -136,7 +136,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   ])
 
   return (
-    <div className="bg-daar-helder min-h-screen">
+    <div className="bg-offWhite min-h-screen">
       {/* Hero */}
       <section
         className="py-16"

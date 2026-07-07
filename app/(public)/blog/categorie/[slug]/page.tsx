@@ -136,7 +136,7 @@ export default async function BlogCategoryPage({ params, searchParams }: PagePro
   ])
 
   return (
-    <div className="bg-daar-helder min-h-screen">
+    <div className="bg-offWhite min-h-screen">
       {/* Hero */}
       <section
         className="py-16"

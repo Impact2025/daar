@@ -86,7 +86,7 @@ export default async function QuizResultPage({ params }: PageProps) {
   }
 
   return (
-    <div className="bg-daar-helder min-h-screen py-12">
+    <div className="bg-offWhite min-h-screen py-12">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-lightGreen rounded-full mb-4">

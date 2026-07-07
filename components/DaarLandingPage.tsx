@@ -46,7 +46,7 @@ const DaarLandingPage = () => {
   };
 
   return (
-    <div className="font-sans antialiased text-daar-blue bg-daar-helder selection:bg-brandGreen selection:text-white">
+    <div className="font-sans antialiased text-daar-blue bg-offWhite selection:bg-brandGreen selection:text-white">
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,7 +109,7 @@ const DaarLandingPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-daar-helder">
+      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
@@ -250,7 +250,7 @@ const DaarLandingPage = () => {
       </section>
 
       {/* Expertise Statement */}
-      <section className="py-16 bg-daar-helder">
+      <section className="py-16 bg-offWhite">
          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-daar-blue mb-4 tracking-tight">
                Gebouwd vanuit de praktijk, voor de praktijk.
@@ -278,7 +278,7 @@ const DaarLandingPage = () => {
       </section>
 
       {/* Modules Grid */}
-      <section id="producten" className="py-24 bg-daar-helder">
+      <section id="producten" className="py-24 bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-4 tracking-tight">Alles voor je vrijwilligers.</h2>
@@ -629,7 +629,7 @@ const Card: React.FC<CardProps> = ({ title, desc, icon, accent }) => {
 
    return (
      <div className="group bg-white rounded-2xl p-8 border border-gray-200 hover:border-transparent hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col h-full relative overflow-hidden">
-        <div className={`w-14 h-14 rounded-2xl bg-daar-helder flex items-center justify-center mb-6 ${accentColor} ${bgHover} group-hover:text-white transition-colors duration-300`}>
+        <div className={`w-14 h-14 rounded-2xl bg-white flex items-center justify-center mb-6 ${accentColor} ${bgHover} group-hover:text-white transition-colors duration-300`}>
            {icon}
         </div>
         <h3 className="text-xl font-bold text-daar-blue mb-3 tracking-tight">{title}</h3>
@@ -694,7 +694,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ label, value, icon, color, bg
           <span className="font-medium text-sm">{label}</span>
           <span className="font-bold text-daar-blue">{value}%</span>
         </div>
-        <div className="h-2 bg-daar-helder rounded-full overflow-hidden">
+        <div className="h-2 bg-lightGreen rounded-full overflow-hidden">
           <div className={`h-full ${barColor} rounded-full`} style={{width: `${value}%`}}></div>
         </div>
       </div>

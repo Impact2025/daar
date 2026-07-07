@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function VoorwaardenPage() {
   return (
-    <div className="bg-daar-helder min-h-screen">
+    <div className="bg-offWhite min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <Link
           href="/"

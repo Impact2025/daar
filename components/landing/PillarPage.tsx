@@ -119,7 +119,7 @@ export function PillarPage({
       </section>
 
       {/* Related blog posts */}
-      <section className="bg-daar-helder py-16">
+      <section className="bg-offWhite py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-extrabold text-navy mb-8">
             Dieper ingaan op {eyebrow.toLowerCase()}? Lees onze blogs
