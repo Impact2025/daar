@@ -2,7 +2,17 @@ import type { NextAuthConfig } from 'next-auth'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
-import { prisma } from './prisma'
+
+// Prisma is imported lazily so that this module can be imported from an
+// edge-runtime middleware without pulling in the Node.js database driver.
+// (next-auth v5 auth() itself is edge-compatible; only the DB call below is not.)
+let prisma: typeof import('./prisma').prisma | undefined
+async function getPrisma() {
+  if (!prisma) {
+    prisma = (await import('./prisma')).prisma
+  }
+  return prisma
+}
 
 export const authConfig: NextAuthConfig = {
   providers: [
@@ -18,7 +28,8 @@ export const authConfig: NextAuthConfig = {
         }
 
         try {
-          const user = await prisma.user.findUnique({
+          const db = await getPrisma()
+          const user = await db.user.findUnique({
             where: { email: credentials.email as string },
           })
 
@@ -26,25 +37,19 @@ export const authConfig: NextAuthConfig = {
             return null
           }
 
-          // Check password
-          if (user.passwordHash) {
-            const isValid = await bcrypt.compare(
-              credentials.password as string,
-              user.passwordHash
-            )
-            if (!isValid) {
-              return null
-            }
-          } else {
-            // Fallback voor legacy admin account
-            if (
-              credentials.email === 'admin@daar.nl' &&
-              credentials.password === 'daar2024!'
-            ) {
-              // OK, laat door
-            } else {
-              return null
-            }
+          // Check password — every account must use a bcrypt-hashed passwordHash.
+          // The previous hardcoded legacy fallback (admin@daar.nl / daar2024!) has
+          // been removed: it bypassed the database and was a permanent backdoor.
+          if (!user.passwordHash) {
+            return null
+          }
+
+          const isValid = await bcrypt.compare(
+            credentials.password as string,
+            user.passwordHash
+          )
+          if (!isValid) {
+            return null
           }
 
           return {

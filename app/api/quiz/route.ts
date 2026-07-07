@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
+import { rateLimitOrJson } from '@/lib/rate-limit'
 
 // Validation schema voor quiz result
 const quizResultSchema = z.object({
@@ -30,6 +31,14 @@ const quizResultSchema = z.object({
 
 // POST /api/quiz - Sla quiz resultaat op
 export async function POST(request: NextRequest) {
+  // Anti-abuse: max 10 submissions per IP per 5 minutes
+  const limited = rateLimitOrJson(request, {
+    limit: 10,
+    windowSec: 300,
+    message: 'Te veel quiz-resultaten verstuurd. Probeer het later opnieuw.',
+  })
+  if (limited) return limited
+
   try {
     const body = await request.json()
     const validated = quizResultSchema.parse(body)

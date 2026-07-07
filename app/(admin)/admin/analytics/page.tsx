@@ -125,7 +125,7 @@ export default function AnalyticsPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-navy">Analytics</h1>
+          <h1 className="text-2xl font-bold text-daar-navy">Analytics</h1>
           <p className="text-gray-500">Inzicht in je website prestaties</p>
         </div>
 
@@ -147,7 +147,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Paginaweergaven</p>
-                <p className="text-2xl font-bold text-navy">{formatNumber(data.overview.totalPageViews)}</p>
+                <p className="text-2xl font-bold text-daar-navy">{formatNumber(data.overview.totalPageViews)}</p>
               </div>
               <div className="p-3 bg-blue-100 rounded-xl">
                 <Eye className="w-6 h-6 text-blue-600" />
@@ -161,7 +161,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Unieke bezoekers</p>
-                <p className="text-2xl font-bold text-navy">{formatNumber(data.overview.uniqueVisitors)}</p>
+                <p className="text-2xl font-bold text-daar-navy">{formatNumber(data.overview.uniqueVisitors)}</p>
               </div>
               <div className="p-3 bg-green-100 rounded-xl">
                 <Users className="w-6 h-6 text-green-600" />
@@ -175,7 +175,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Gem. tijd op pagina</p>
-                <p className="text-2xl font-bold text-navy">{formatDuration(data.overview.avgTimeOnPage)}</p>
+                <p className="text-2xl font-bold text-daar-navy">{formatDuration(data.overview.avgTimeOnPage)}</p>
               </div>
               <div className="p-3 bg-purple-100 rounded-xl">
                 <Clock className="w-6 h-6 text-purple-600" />
@@ -189,7 +189,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Quiz ingevuld</p>
-                <p className="text-2xl font-bold text-navy">{data.quizStats.total}</p>
+                <p className="text-2xl font-bold text-daar-navy">{data.quizStats.total}</p>
                 <p className="text-xs text-gray-400">Gem. score: {data.quizStats.avg_score}%</p>
               </div>
               <div className="p-3 bg-amber-100 rounded-xl">
@@ -207,7 +207,7 @@ export default function AnalyticsPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-navy">Paginaweergaven over tijd</h3>
+                <h3 className="font-semibold text-daar-navy">Paginaweergaven over tijd</h3>
                 <Badge variant="default">{data.overview.period} dagen</Badge>
               </div>
             </CardHeader>
@@ -225,7 +225,7 @@ export default function AnalyticsPage() {
                               className="w-full bg-brandGreen/80 rounded-t transition-all hover:bg-brandGreen"
                               style={{ height: `${Math.max(height, 2)}%`, minHeight: '4px' }}
                             />
-                            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-navy text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
+                            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-daar-navy text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
                               {day.views} views
                             </div>
                           </div>
@@ -251,7 +251,7 @@ export default function AnalyticsPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-navy">Populairste artikelen</h3>
+                <h3 className="font-semibold text-daar-navy">Populairste artikelen</h3>
                 <Link href="/admin/artikelen" className="text-sm text-brandGreen hover:underline">
                   Alle artikelen →
                 </Link>
@@ -266,7 +266,7 @@ export default function AnalyticsPage() {
                         {index + 1}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-navy truncate">{article.title}</h4>
+                        <h4 className="font-medium text-daar-navy truncate">{article.title}</h4>
                         <p className="text-xs text-gray-400">/kennisbank/{article.slug}</p>
                       </div>
                       <div className="flex items-center gap-1 text-gray-500">
@@ -294,7 +294,7 @@ export default function AnalyticsPage() {
           {/* Search queries */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Populaire zoekopdrachten</h3>
+              <h3 className="font-semibold text-daar-navy">Populaire zoekopdrachten</h3>
             </CardHeader>
             <CardContent>
               {data.topSearchQueries.length > 0 ? (
@@ -302,7 +302,7 @@ export default function AnalyticsPage() {
                   {data.topSearchQueries.map((query, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <Search className="w-4 h-4 text-gray-400" />
-                      <span className="flex-1 text-navy">{query.query}</span>
+                      <span className="flex-1 text-daar-navy">{query.query}</span>
                       <span className="text-sm text-gray-500">{query.count}x</span>
                       <span className="text-xs text-gray-400">
                         {query.avg_results} resultaten
@@ -324,7 +324,7 @@ export default function AnalyticsPage() {
           {/* Traffic sources */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Verkeersbronnen</h3>
+              <h3 className="font-semibold text-daar-navy">Verkeersbronnen</h3>
             </CardHeader>
             <CardContent className="space-y-3">
               {data.trafficSources.map((source, index) => {
@@ -332,7 +332,7 @@ export default function AnalyticsPage() {
                 return (
                   <div key={index}>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm text-navy">{source.source}</span>
+                      <span className="text-sm text-daar-navy">{source.source}</span>
                       <span className="text-sm text-gray-500">{Math.round(percentage)}%</span>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -353,7 +353,7 @@ export default function AnalyticsPage() {
           {/* Device breakdown */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Apparaten</h3>
+              <h3 className="font-semibold text-daar-navy">Apparaten</h3>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -367,14 +367,14 @@ export default function AnalyticsPage() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-navy capitalize">
+                          <span className="text-sm text-daar-navy capitalize">
                             {device.device.toLowerCase()}
                           </span>
                           <span className="text-sm text-gray-500">{Math.round(percentage)}%</span>
                         </div>
                         <div className="h-1.5 bg-gray-100 rounded-full mt-1 overflow-hidden">
                           <div
-                            className="h-full bg-navy rounded-full"
+                            className="h-full bg-daar-navy rounded-full"
                             style={{ width: `${percentage}%` }}
                           />
                         </div>
@@ -393,7 +393,7 @@ export default function AnalyticsPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-navy">Leads per bron</h3>
+                <h3 className="font-semibold text-daar-navy">Leads per bron</h3>
                 <Link href="/admin/crm/klanten" className="text-sm text-brandGreen hover:underline">
                   Bekijk →
                 </Link>
@@ -404,7 +404,7 @@ export default function AnalyticsPage() {
                 <div className="space-y-3">
                   {data.leadsBySource.map((source, index) => (
                     <div key={index} className="flex items-center justify-between">
-                      <span className="text-sm text-navy">
+                      <span className="text-sm text-daar-navy">
                         {sourceLabels[source.source] || source.source}
                       </span>
                       <Badge variant="default">{source.count}</Badge>
@@ -421,7 +421,7 @@ export default function AnalyticsPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-navy">Afspraken</h3>
+                <h3 className="font-semibold text-daar-navy">Afspraken</h3>
                 <Link href="/admin/crm/afspraken" className="text-sm text-brandGreen hover:underline">
                   Bekijk →
                 </Link>

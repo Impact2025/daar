@@ -293,7 +293,7 @@ export function ChatWidget() {
                       'max-w-[80%] rounded-2xl px-4 py-2',
                       message.role === 'user'
                         ? 'bg-brandGreen text-white rounded-br-md'
-                        : 'bg-gray-100 text-navy rounded-bl-md'
+                        : 'bg-gray-100 text-daar-navy rounded-bl-md'
                     )}
                   >
                     <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -310,7 +310,7 @@ export function ChatWidget() {
                             className="block p-2 bg-white rounded-lg border border-gray-200 hover:border-brandGreen transition-colors"
                           >
                             <div className="flex items-start justify-between gap-2">
-                              <span className="text-xs font-medium text-navy line-clamp-1">
+                              <span className="text-xs font-medium text-daar-navy line-clamp-1">
                                 {article.title}
                               </span>
                               <ExternalLink className="w-3 h-3 text-gray-400 flex-shrink-0" />

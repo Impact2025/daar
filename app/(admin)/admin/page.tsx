@@ -92,7 +92,7 @@ export default async function AdminDashboard() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-navy">Dashboard</h1>
+        <h1 className="text-2xl font-bold text-daar-navy">Dashboard</h1>
         <p className="text-gray-500">Welkom terug bij het DAAR admin panel</p>
       </div>
 
@@ -104,7 +104,7 @@ export default async function AdminDashboard() {
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">{stat.label}</p>
-                  <p className="text-3xl font-bold text-navy">{stat.value}</p>
+                  <p className="text-3xl font-bold text-daar-navy">{stat.value}</p>
                   <p className="text-xs text-gray-400 mt-1">{stat.subValue}</p>
                 </div>
                 <div className={`p-3 rounded-lg ${stat.color}`}>
@@ -122,7 +122,7 @@ export default async function AdminDashboard() {
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <h2 className="font-semibold text-navy">Recente artikelen</h2>
+              <h2 className="font-semibold text-daar-navy">Recente artikelen</h2>
               <Link
                 href="/admin/artikelen"
                 className="text-sm text-brandGreen hover:underline"
@@ -141,7 +141,7 @@ export default async function AdminDashboard() {
                       className="flex items-center justify-between px-6 py-3 hover:bg-gray-50 transition-colors"
                     >
                       <div className="min-w-0 flex-1">
-                        <p className="font-medium text-navy truncate">
+                        <p className="font-medium text-daar-navy truncate">
                           {article.title}
                         </p>
                         <p className="text-sm text-gray-500">
@@ -186,7 +186,7 @@ export default async function AdminDashboard() {
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <h2 className="font-semibold text-navy">Recente klanten</h2>
+              <h2 className="font-semibold text-daar-navy">Recente klanten</h2>
               <Link
                 href="/admin/crm/klanten"
                 className="text-sm text-brandGreen hover:underline"
@@ -205,7 +205,7 @@ export default async function AdminDashboard() {
                       className="flex items-center justify-between px-6 py-3 hover:bg-gray-50 transition-colors"
                     >
                       <div className="min-w-0 flex-1">
-                        <p className="font-medium text-navy truncate">
+                        <p className="font-medium text-daar-navy truncate">
                           {customer.companyName}
                         </p>
                         <p className="text-sm text-gray-500 truncate">

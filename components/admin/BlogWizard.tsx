@@ -81,7 +81,7 @@ export function BlogWizard({
             <Wand2 className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h3 className="font-semibold text-navy">AI Wizard</h3>
+            <h3 className="font-semibold text-daar-navy">AI Wizard</h3>
             <p className="text-xs text-gray-500">SEO + interne links</p>
           </div>
         </div>

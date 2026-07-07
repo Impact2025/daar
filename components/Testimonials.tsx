@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     role: "Coördinator",
     organization: "Buurtwerk Amsterdam",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
-    metric: { value: "156u", label: "bespaard/jaar" }
+    metric: { value: "Minder", label: "administratie" }
   },
   {
     id: 2,

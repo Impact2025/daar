@@ -114,7 +114,7 @@ h1, h2, h3, .font-nunito {
   display: block;
   width: 0;
 }
-.speech-bubble-navy::after {
+.speech-bubble-daar-navy::after {
   border-color: #2D334A transparent;
 }
 

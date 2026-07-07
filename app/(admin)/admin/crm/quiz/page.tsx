@@ -139,7 +139,7 @@ export default async function QuizAdminPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-navy">Quiz Resultaten</h1>
+          <h1 className="text-2xl font-bold text-daar-navy">Quiz Resultaten</h1>
           <p className="text-gray-500">VrijwilligersCheck analytics en CRM integratie</p>
         </div>
         <Link href="/quiz" target="_blank">
@@ -157,7 +157,7 @@ export default async function QuizAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Totaal ingevuld</p>
-                <p className="text-2xl font-bold text-navy">{stats.total}</p>
+                <p className="text-2xl font-bold text-daar-navy">{stats.total}</p>
               </div>
               <ClipboardCheck className="w-8 h-8 text-brandGreen/20" />
             </div>
@@ -168,7 +168,7 @@ export default async function QuizAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Deze maand</p>
-                <p className="text-2xl font-bold text-navy">{stats.thisMonth}</p>
+                <p className="text-2xl font-bold text-daar-navy">{stats.thisMonth}</p>
                 {stats.monthChange !== 0 && (
                   <p className={`text-xs ${stats.monthChange > 0 ? 'text-green-600' : 'text-red-600'}`}>
                     {stats.monthChange > 0 ? '+' : ''}{stats.monthChange}% vs vorige maand
@@ -195,7 +195,7 @@ export default async function QuizAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Met lead info</p>
-                <p className="text-2xl font-bold text-navy">{stats.withLeads}</p>
+                <p className="text-2xl font-bold text-daar-navy">{stats.withLeads}</p>
                 <p className="text-xs text-gray-400">{stats.conversionRate}% van totaal</p>
               </div>
               <Users className="w-8 h-8 text-purple-500/20" />
@@ -220,7 +220,7 @@ export default async function QuizAdminPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <Card className="lg:col-span-2">
           <CardContent className="p-6">
-            <h3 className="font-semibold text-navy mb-4">Profiel verdeling</h3>
+            <h3 className="font-semibold text-daar-navy mb-4">Profiel verdeling</h3>
             <div className="space-y-3">
               {QUIZ_PROFILES.map((profile) => {
                 const count = stats.profileDistribution[profile.id] || 0
@@ -228,7 +228,7 @@ export default async function QuizAdminPage() {
 
                 return (
                   <div key={profile.id} className="flex items-center gap-4">
-                    <div className="w-32 text-sm font-medium text-navy">{profile.title}</div>
+                    <div className="w-32 text-sm font-medium text-daar-navy">{profile.title}</div>
                     <div className="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all duration-500"
@@ -250,23 +250,23 @@ export default async function QuizAdminPage() {
 
         <Card>
           <CardContent className="p-6">
-            <h3 className="font-semibold text-navy mb-4">Quick stats</h3>
+            <h3 className="font-semibold text-daar-navy mb-4">Quick stats</h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
                 <span className="text-gray-600">Hoogste score</span>
-                <span className="font-semibold text-navy">
+                <span className="font-semibold text-daar-navy">
                   {results.length > 0 ? Math.max(...results.map((r) => r.totalScore)) : 0}%
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
                 <span className="text-gray-600">Laagste score</span>
-                <span className="font-semibold text-navy">
+                <span className="font-semibold text-daar-navy">
                   {results.length > 0 ? Math.min(...results.map((r) => r.totalScore)) : 0}%
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
                 <span className="text-gray-600">Meeste organisaties</span>
-                <span className="font-semibold text-navy">
+                <span className="font-semibold text-daar-navy">
                   {(() => {
                     const sizes = results.reduce(
                       (acc, r) => {
@@ -291,7 +291,7 @@ export default async function QuizAdminPage() {
       <Card>
         <CardContent className="p-0">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="font-semibold text-navy">Alle resultaten</h3>
+            <h3 className="font-semibold text-daar-navy">Alle resultaten</h3>
           </div>
           {results.length > 0 ? (
             <div className="overflow-x-auto">
@@ -320,7 +320,7 @@ export default async function QuizAdminPage() {
                               style={{ width: `${result.totalScore}%` }}
                             />
                           </div>
-                          <span className="font-semibold text-navy">{result.totalScore}%</span>
+                          <span className="font-semibold text-daar-navy">{result.totalScore}%</span>
                         </div>
                       </td>
                       <td className="px-6 py-4">{getProfileBadge(result.profileId)}</td>
@@ -336,7 +336,7 @@ export default async function QuizAdminPage() {
                         {result.lead ? (
                           <div className="text-sm">
                             {result.lead.name && (
-                              <p className="font-medium text-navy">{result.lead.name}</p>
+                              <p className="font-medium text-daar-navy">{result.lead.name}</p>
                             )}
                             {result.lead.email && (
                               <p className="text-gray-500 flex items-center gap-1">

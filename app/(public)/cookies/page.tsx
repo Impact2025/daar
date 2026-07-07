@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function CookiesPage() {
   return (
-    <div className="bg-offWhite min-h-screen">
+    <div className="bg-daar-helder min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <Link
           href="/"
@@ -25,7 +25,7 @@ export default function CookiesPage() {
               <Cookie className="w-7 h-7 text-amber-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-navy">Cookiebeleid</h1>
+              <h1 className="text-3xl font-bold text-daar-navy">Cookiebeleid</h1>
               <p className="text-gray-500">Transparantie over hoe wij cookies en vergelijkbare technieken gebruiken</p>
               <p className="text-gray-400 text-sm">Versie 1.2 | Ingangsdatum: 1 april 2026</p>
             </div>
@@ -42,7 +42,7 @@ export default function CookiesPage() {
               </p>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">1. Wat zijn cookies?</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">1. Wat zijn cookies?</h2>
             <p className="text-gray-600 mb-4">
               Cookies zijn kleine tekstbestanden die door een webserver worden geplaatst op het apparaat (computer, tablet, smartphone) van een websitebezoeker of platformgebruiker. Ze worden opgeslagen in de browser en kunnen bij een volgend bezoek worden uitgelezen.
             </p>
@@ -51,8 +51,8 @@ export default function CookiesPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Techniek</th>
-                    <th className="py-2 text-left font-semibold text-navy">Uitleg</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Techniek</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Uitleg</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,7 +84,7 @@ export default function CookiesPage() {
               </table>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">2. Waarom gebruikt DAAR cookies?</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">2. Waarom gebruikt DAAR cookies?</h2>
             <p className="text-gray-600 mb-2">DAAR gebruikt cookies en vergelijkbare technieken voor de volgende doeleinden:</p>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-1">
               <li>Het functioneren van de website en het platform (technisch noodzakelijk)</li>
@@ -96,7 +96,7 @@ export default function CookiesPage() {
               DAAR plaatst geen marketingcookies, profileert geen individuele gebruikers en verkoopt geen data aan derden.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">3. Welke cookies gebruikt DAAR?</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">3. Welke cookies gebruikt DAAR?</h2>
             <p className="text-gray-600 mb-6">
               DAAR onderscheidt drie categorieën cookies, gebaseerd op de richtlijnen van de AP en de ICC-cookie-categorisering.
             </p>
@@ -110,11 +110,11 @@ export default function CookiesPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Naam</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Type</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Partij</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Looptijd</th>
-                    <th className="py-2 text-left font-semibold text-navy">Doel</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Naam</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Type</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Partij</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Looptijd</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Doel</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -159,11 +159,11 @@ export default function CookiesPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Naam</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Type</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Partij</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Looptijd</th>
-                    <th className="py-2 text-left font-semibold text-navy">Doel</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Naam</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Type</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Partij</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Looptijd</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Doel</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -201,11 +201,11 @@ export default function CookiesPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Naam</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Type</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Partij</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Looptijd</th>
-                    <th className="py-2 text-left font-semibold text-navy">Doel</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Naam</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Type</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Partij</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Looptijd</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Doel</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -228,21 +228,21 @@ export default function CookiesPage() {
             </div>
 
             {/* Platform-notitie */}
-            <div className="bg-navy/5 border border-navy/10 rounded-xl p-5 mb-8">
-              <h3 className="text-base font-semibold text-navy mb-2">Cookies in het DAAR-platform</h3>
+            <div className="bg-daar-navy/5 border border-daar-navy/10 rounded-xl p-5 mb-8">
+              <h3 className="text-base font-semibold text-daar-navy mb-2">Cookies in het DAAR-platform</h3>
               <p className="text-sm text-gray-600 m-0">
                 In het DAAR-platform (na inloggen) worden uitsluitend strikt noodzakelijke en functionele cookies gebruikt. Analytische cookies worden nooit in het platform geplaatst. DAAR gebruikt momenteel geen marketingcookies.
               </p>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">4. Rechtsgrondslag voor cookieplacement</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">4. Rechtsgrondslag voor cookieplacement</h2>
             <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Categorie</th>
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Rechtsgrondslag</th>
-                    <th className="py-2 text-left font-semibold text-navy">Toelichting</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Categorie</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Rechtsgrondslag</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Toelichting</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -270,9 +270,9 @@ export default function CookiesPage() {
               </p>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">5. Cookiebanner en toestemmingsbeheer</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">5. Cookiebanner en toestemmingsbeheer</h2>
 
-            <h3 className="text-lg font-semibold text-navy mt-6 mb-3">5.1 Eerste bezoek</h3>
+            <h3 className="text-lg font-semibold text-daar-navy mt-6 mb-3">5.1 Eerste bezoek</h3>
             <p className="text-gray-600 mb-2">Bij het eerste bezoek aan www.daar.nl verschijnt een cookiebanner. De banner voldoet aan de volgende vereisten:</p>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-1">
               <li>Toestemming per categorie (granulaire keuze) via de knop &apos;Aanpassen&apos;</li>
@@ -282,14 +282,14 @@ export default function CookiesPage() {
               <li>Toestemming wordt geregistreerd met tijdstempel en versienummer</li>
             </ul>
 
-            <h3 className="text-lg font-semibold text-navy mt-6 mb-3">5.2 Toestemming intrekken of aanpassen</h3>
+            <h3 className="text-lg font-semibold text-daar-navy mt-6 mb-3">5.2 Toestemming intrekken of aanpassen</h3>
             <p className="text-gray-600 mb-3">U kunt uw cookievoorkeuren op elk moment wijzigen via:</p>
             <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Methode</th>
-                    <th className="py-2 text-left font-semibold text-navy">Hoe</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Methode</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Hoe</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -312,12 +312,12 @@ export default function CookiesPage() {
               Intrekking van toestemming heeft geen terugwerkende kracht maar treedt onmiddellijk in werking.
             </p>
 
-            <h3 className="text-lg font-semibold text-navy mt-6 mb-3">5.3 Toestemming voor minderjarigen</h3>
+            <h3 className="text-lg font-semibold text-daar-navy mt-6 mb-3">5.3 Toestemming voor minderjarigen</h3>
             <p className="text-gray-600 mb-4">
               Het DAAR-platform en de website zijn niet gericht op personen jonger dan 16 jaar. Indien DAAR vaststelt dat cookies zijn geplaatst op basis van toestemming van een minderjarige, worden de betreffende cookies onmiddellijk verwijderd.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">6. Cookies beheren via uw browser</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">6. Cookies beheren via uw browser</h2>
             <p className="text-gray-600 mb-3">
               Naast de cookiebanner kunt u cookies beheren via de instellingen van uw browser. Houd er rekening mee dat het verwijderen of blokkeren van strikt noodzakelijke cookies de werking van het platform verstoort.
             </p>
@@ -325,8 +325,8 @@ export default function CookiesPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Browser</th>
-                    <th className="py-2 text-left font-semibold text-navy">Pad naar cookie-instellingen</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Browser</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Pad naar cookie-instellingen</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -350,12 +350,12 @@ export default function CookiesPage() {
               Voor opt-out van Google Analytics: <span className="font-mono text-xs">tools.google.com/dlpage/gaoptout</span>
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">7. Bewaartermijnen</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">7. Bewaartermijnen</h2>
             <p className="text-gray-600 mb-4">
               Cookies worden bewaard conform de looptijden in sectie 3. Persoonsgegevens verzameld via analytische cookies worden maximaal 26 maanden bewaard bij Google Analytics. Na het verstrijken van de looptijd worden cookies automatisch verwijderd door de browser. Toestemmingsregistraties (consent logs) worden 3 jaar bewaard als bewijs van rechtmatige verwerking.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">8. Sub-verwerkers</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">8. Sub-verwerkers</h2>
             <p className="text-gray-600 mb-3">
               De volgende derde partijen kunnen via de DAAR-website cookies plaatsen. Met alle verwerkers zijn verwerkersovereenkomsten gesloten:
             </p>
@@ -363,10 +363,10 @@ export default function CookiesPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Sub-verwerker</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">Doel</th>
-                    <th className="py-2 pr-3 text-left font-semibold text-navy">DPA</th>
-                    <th className="py-2 text-left font-semibold text-navy">Doorgifte</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Sub-verwerker</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">Doel</th>
+                    <th className="py-2 pr-3 text-left font-semibold text-daar-navy">DPA</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Doorgifte</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -385,7 +385,7 @@ export default function CookiesPage() {
               </p>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">9. Uw rechten</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">9. Uw rechten</h2>
             <p className="text-gray-600 mb-3">
               Als betrokkene heeft u de volgende rechten met betrekking tot persoonsgegevens verwerkt via cookies:
             </p>
@@ -393,8 +393,8 @@ export default function CookiesPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Recht</th>
-                    <th className="py-2 text-left font-semibold text-navy">Inhoud</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Recht</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Inhoud</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -426,7 +426,7 @@ export default function CookiesPage() {
               Verzoeken kunt u indienen via <a href="mailto:hallo@daar.nl" className="text-brandGreen hover:underline">hallo@daar.nl</a>. DAAR reageert binnen 30 dagen.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">10. Wijzigingen in dit cookiebeleid</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">10. Wijzigingen in dit cookiebeleid</h2>
             <p className="text-gray-600 mb-2">DAAR past dit cookiebeleid aan wanneer:</p>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-1">
               <li>Nieuwe cookies of technieken worden ingezet</li>
@@ -439,7 +439,7 @@ export default function CookiesPage() {
             </p>
 
             {/* Bijlage */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Bijlage — Volledige Cookiematrix</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Bijlage — Volledige Cookiematrix</h2>
             <p className="text-gray-600 mb-4">
               Volledig overzicht van alle cookies die DAAR actief plaatst, inclusief juridische grondslag en toestemmingsvereiste.
             </p>
@@ -447,13 +447,13 @@ export default function CookiesPage() {
               <table className="w-full text-xs text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200 bg-gray-50">
-                    <th className="py-2 pr-2 text-left font-semibold text-navy">Naam</th>
-                    <th className="py-2 pr-2 text-left font-semibold text-navy">Type</th>
-                    <th className="py-2 pr-2 text-left font-semibold text-navy">Partij</th>
-                    <th className="py-2 pr-2 text-left font-semibold text-navy">Looptijd</th>
-                    <th className="py-2 pr-2 text-left font-semibold text-navy">Categorie</th>
-                    <th className="py-2 pr-2 text-left font-semibold text-navy">Grondslag</th>
-                    <th className="py-2 text-left font-semibold text-navy">Toest.</th>
+                    <th className="py-2 pr-2 text-left font-semibold text-daar-navy">Naam</th>
+                    <th className="py-2 pr-2 text-left font-semibold text-daar-navy">Type</th>
+                    <th className="py-2 pr-2 text-left font-semibold text-daar-navy">Partij</th>
+                    <th className="py-2 pr-2 text-left font-semibold text-daar-navy">Looptijd</th>
+                    <th className="py-2 pr-2 text-left font-semibold text-daar-navy">Categorie</th>
+                    <th className="py-2 pr-2 text-left font-semibold text-daar-navy">Grondslag</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Toest.</th>
                   </tr>
                 </thead>
                 <tbody>

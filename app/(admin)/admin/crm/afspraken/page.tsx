@@ -59,7 +59,7 @@ export default async function AfsprakenPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-navy">Afspraken</h1>
+          <h1 className="text-2xl font-bold text-daar-navy">Afspraken</h1>
           <p className="text-gray-500">Beheer afspraken en koppel aan CRM</p>
         </div>
         <div className="flex items-center gap-3">
@@ -83,13 +83,13 @@ export default async function AfsprakenPage() {
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-gray-500">Totaal</p>
-            <p className="text-2xl font-bold text-navy">{stats.total}</p>
+            <p className="text-2xl font-bold text-daar-navy">{stats.total}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-gray-500">Deze maand</p>
-            <p className="text-2xl font-bold text-navy">{stats.thisMonth}</p>
+            <p className="text-2xl font-bold text-daar-navy">{stats.thisMonth}</p>
           </CardContent>
         </Card>
         <Card>

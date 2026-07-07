@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function VoorwaardenPage() {
   return (
-    <div className="bg-offWhite min-h-screen">
+    <div className="bg-daar-helder min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <Link
           href="/"
@@ -21,11 +21,11 @@ export default function VoorwaardenPage() {
 
         <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-sm border border-gray-100">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-14 h-14 bg-navy/10 rounded-xl flex items-center justify-center">
-              <FileText className="w-7 h-7 text-navy" />
+            <div className="w-14 h-14 bg-daar-navy/10 rounded-xl flex items-center justify-center">
+              <FileText className="w-7 h-7 text-daar-navy" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-navy">Algemene Voorwaarden</h1>
+              <h1 className="text-3xl font-bold text-daar-navy">Algemene Voorwaarden</h1>
               <p className="text-gray-500">Versie 1.3 &nbsp;|&nbsp; Ingangsdatum: 1 maart 2026</p>
               <p className="text-gray-400 text-sm">Gedeponeerd bij de KvK te Amsterdam onder nummer 99576759</p>
             </div>
@@ -43,13 +43,13 @@ export default function VoorwaardenPage() {
             </p>
 
             {/* Artikel 1 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 1 — Definities</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 1 — Definities</h2>
             <div className="overflow-x-auto mb-6">
               <table className="w-full text-sm border-collapse">
                 <thead>
                   <tr className="bg-gray-50">
-                    <th className="text-left font-semibold text-navy px-4 py-2 border border-gray-200 w-1/4">Begrip</th>
-                    <th className="text-left font-semibold text-navy px-4 py-2 border border-gray-200">Definitie</th>
+                    <th className="text-left font-semibold text-daar-navy px-4 py-2 border border-gray-200 w-1/4">Begrip</th>
+                    <th className="text-left font-semibold text-daar-navy px-4 py-2 border border-gray-200">Definitie</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,7 +72,7 @@ export default function VoorwaardenPage() {
                     ['SLA', 'Service Level Agreement — de garanties voor beschikbaarheid, reactietijden en ondersteuning zoals opgenomen in Bijlage 1.'],
                   ].map(([term, def]) => (
                     <tr key={term} className="border-b border-gray-100">
-                      <td className="px-4 py-2 border border-gray-200 font-medium text-navy align-top">{term}</td>
+                      <td className="px-4 py-2 border border-gray-200 font-medium text-daar-navy align-top">{term}</td>
                       <td className="px-4 py-2 border border-gray-200 align-top">{def}</td>
                     </tr>
                   ))}
@@ -81,7 +81,7 @@ export default function VoorwaardenPage() {
             </div>
 
             {/* Artikel 2 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 2 — Toepasselijkheid</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 2 — Toepasselijkheid</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes, Overeenkomsten en dienstverlening van DAAR, tenzij schriftelijk uitdrukkelijk anders is overeengekomen.</li>
               <li>De toepasselijkheid van inkoop- of andere algemene voorwaarden van de Klant wordt uitdrukkelijk van de hand gewezen, tenzij DAAR deze Schriftelijk en uitdrukkelijk heeft aanvaard.</li>
@@ -91,7 +91,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 3 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 3 — Totstandkoming van de Overeenkomst</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 3 — Totstandkoming van de Overeenkomst</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Een Overeenkomst komt tot stand door: (a) ondertekening van een Orderformulier door beide partijen, of (b) schriftelijke aanvaarding door de Klant van een offerte van DAAR, of (c) elektronische acceptatie door de Klant via het online registratieproces op de website van DAAR.</li>
               <li>Offertes van DAAR zijn vrijblijvend en geldig gedurende 30 dagen, tenzij anders aangegeven.</li>
@@ -100,7 +100,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 4 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 4 — Licentie en toegang tot het Platform</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 4 — Licentie en toegang tot het Platform</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>DAAR verleent de Klant gedurende de Looptijd een niet-exclusief, niet-overdraagbaar, niet-sublicentieerbaar gebruiksrecht op het Platform, uitsluitend ten behoeve van de interne bedrijfsvoering van de Klant.</li>
               <li>Het gebruiksrecht is beperkt tot de Modules die zijn opgenomen in het Orderformulier.</li>
@@ -110,7 +110,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 5 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 5 — Gebruikersaccounts en toegang</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 5 — Gebruikersaccounts en toegang</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>De Klant is verantwoordelijk voor het aanmaken, beheren en intrekken van Gebruikersaccounts. Het aantal accounts kan gebonden zijn aan de limieten van het gekozen Abonnement.</li>
               <li>Inloggegevens zijn persoonlijk en mogen niet worden gedeeld. De Klant is aansprakelijk voor alle handelingen die worden verricht via zijn accounts, ook bij ongeautoriseerd gebruik, tenzij de Klant DAAR onmiddellijk na ontdekking hiervan op de hoogte stelt.</li>
@@ -120,7 +120,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 6 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 6 — Verplichtingen van de Klant</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 6 — Verplichtingen van de Klant</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>De Klant zorgt voor een adequate technische omgeving (waaronder een actuele browser en betrouwbare internetverbinding) voor het gebruik van het Platform.</li>
               <li>De Klant is verantwoordelijk voor de juistheid, volledigheid en rechtmatigheid van alle data die hij in het Platform invoert, waaronder persoonsgegevens van Geluksmakers.</li>
@@ -131,7 +131,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 7 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 7 — Abonnement, modules en pakketten</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 7 — Abonnement, modules en pakketten</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>De Klant kiest bij het sluiten van de Overeenkomst één van de beschikbare (abonnements)pakketten. De kenmerken, limieten en prijs van elk pakket zijn vastgelegd in het Orderformulier en de op dat moment geldende prijslijst van DAAR. Dan wel zijn de prijzen, limieten en kenmerken conform de met de klant gemaakte individuele afspraken (offertes).</li>
               <li>De Klant kan tijdens de Looptijd aanvullende Modules activeren. Uitbreiding gaat in op de eerste dag van de volgende factureringsperiode, tenzij partijen anders overeenkomen.</li>
@@ -140,7 +140,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 8 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 8 — Implementatie en onboarding</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 8 — Implementatie en onboarding</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>DAAR biedt standaard onboarding aan.</li>
               <li>De Klant wijst een intern projectcontact aan dat gedurende de implementatie aanspreekpunt is voor DAAR.</li>
@@ -149,7 +149,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 9 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 9 — Beschikbaarheid, onderhoud en SLA</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 9 — Beschikbaarheid, onderhoud en SLA</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>DAAR streeft naar een maandelijkse beschikbaarheid van het Platform van minimaal 99,5% (gemeten exclusief gepland onderhoud), conform de SLA in Bijlage 1.</li>
               <li>Gepland onderhoud wordt minimaal 48 uur van tevoren aangekondigd via e-mail en/of het statusdashboard van DAAR, en vindt bij voorkeur buiten kantooruren (maandag t/m vrijdag, 08:00–18:00 uur) plaats.</li>
@@ -160,7 +160,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 10 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 10 — Vergoedingen en betaling</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 10 — Vergoedingen en betaling</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>De Klant betaalt de vergoeding zoals vastgelegd in het Orderformulier. Alle bedragen zijn in euro&rsquo;s en exclusief BTW, tenzij uitdrukkelijk anders vermeld.</li>
               <li>Facturering vindt maandelijks, per kwartaal of jaarlijks vooraf plaats, afhankelijk van de keuze in het Orderformulier. Jaarlijkse facturen worden bij aanvang van het abonnementsjaar verstuurd.</li>
@@ -172,7 +172,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 11 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 11 — Looptijd</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 11 — Looptijd</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>De Overeenkomst gaat in op de datum van ondertekening of elektronische acceptatie en heeft de looptijd zoals vermeld in het Orderformulier.</li>
               <li>Maandabonnementen worden bij gebreke van tijdige opzegging automatisch verlengd met één maand.</li>
@@ -181,7 +181,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 12 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 12 — Opzegging en beëindiging</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 12 — Opzegging en beëindiging</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Maandabonnementen kunnen worden opgezegd met inachtneming van een opzegtermijn van één kalendermaand, ingaande op de eerste dag van de volgende maand na ontvangst van de opzegging.</li>
               <li>Jaarabonnementen kunnen worden opgezegd met inachtneming van een opzegtermijn van twee kalendermaanden voor het einde van de lopende Looptijd.</li>
@@ -192,7 +192,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 13 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 13 — Intellectueel eigendom</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 13 — Intellectueel eigendom</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Alle Intellectuele Eigendomsrechten op het Platform, de Geluksformule-methodologie, de software, databases, ontwerpen, documentatie en aanverwante materialen berusten uitsluitend bij DAAR of haar licentiegevers.</li>
               <li>De Klant verkrijgt uitsluitend het gebruiksrecht als omschreven in Artikel 4. Geen enkele bepaling in deze voorwaarden impliceert een overdracht of ruimere licentie van Intellectuele Eigendomsrechten.</li>
@@ -203,7 +203,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 14 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 14 — Vertrouwelijkheid</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 14 — Vertrouwelijkheid</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Beide partijen behandelen Vertrouwelijke Informatie van de andere partij strikt vertrouwelijk en verstrekken deze niet aan derden zonder Schriftelijke toestemming, tenzij wettelijk verplicht.</li>
               <li>Partijen beperken de toegang tot Vertrouwelijke Informatie tot medewerkers, adviseurs en sub-verwerkers die een &lsquo;need-to-know&rsquo; hebben en die zijn gebonden aan gelijkwaardige geheimhoudingsverplichtingen.</li>
@@ -213,7 +213,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 15 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 15 — Persoonsgegevens en AVG</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 15 — Persoonsgegevens en AVG</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>De Klant treedt op als verwerkingsverantwoordelijke (controller) voor de persoonsgegevens van Geluksmakers die via het Platform worden verwerkt. DAAR treedt op als verwerker (processor).</li>
               <li>De rechten en verplichtingen van partijen ten aanzien van de verwerking van persoonsgegevens zijn uitsluitend geregeld in de Verwerkersovereenkomst, die onlosmakelijk deel uitmaakt van de Overeenkomst en als Bijlage 2 is bijgevoegd.</li>
@@ -221,25 +221,25 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 16 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 16 — Aansprakelijkheid</h2>
-            <h3 className="text-base font-semibold text-navy mt-6 mb-3">16.1 Aansprakelijkheid van DAAR</h3>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 16 — Aansprakelijkheid</h2>
+            <h3 className="text-base font-semibold text-daar-navy mt-6 mb-3">16.1 Aansprakelijkheid van DAAR</h3>
             <ol className="list-decimal pl-6 space-y-2 mb-4">
               <li>DAAR is uitsluitend aansprakelijk voor directe schade die het rechtstreekse gevolg is van een toerekenbare tekortkoming in de nakoming van de Overeenkomst of onrechtmatige daad.</li>
               <li>De totale aansprakelijkheid van DAAR is beperkt tot het bedrag dat de Klant in de 12 maanden voorafgaand aan de schadeveroorzakende gebeurtenis aan DAAR heeft betaald op grond van de Overeenkomst, met een absoluut maximum van &euro; 50.000,&mdash; per gebeurtenis.</li>
               <li>DAAR is niet aansprakelijk voor: (a) indirecte schade, gevolgschade, gederfde winst, gemiste besparingen, verlies van data of reputatieschade, (b) schade veroorzaakt door onjuist of onrechtmatig gebruik van het Platform door de Klant of zijn Gebruikers, (c) schade veroorzaakt door instructies van de Klant, (d) schade die het gevolg is van overmacht als bedoeld in Artikel 18.</li>
               <li>De beperkingen in lid 2 en lid 3 gelden niet voor schade veroorzaakt door opzet of bewuste roekeloosheid van DAAR of haar leidinggevenden.</li>
             </ol>
-            <h3 className="text-base font-semibold text-navy mt-6 mb-3">16.2 Meldplicht</h3>
+            <h3 className="text-base font-semibold text-daar-navy mt-6 mb-3">16.2 Meldplicht</h3>
             <ol className="list-decimal pl-6 space-y-2 mb-4" start={5}>
               <li>De Klant meldt schade die mogelijk voor vergoeding in aanmerking komt zo spoedig mogelijk, doch uiterlijk binnen 30 dagen na ontdekking, Schriftelijk aan DAAR. Bij niet-tijdige melding vervalt het recht op schadevergoeding.</li>
             </ol>
-            <h3 className="text-base font-semibold text-navy mt-6 mb-3">16.3 Productaansprakelijkheid</h3>
+            <h3 className="text-base font-semibold text-daar-navy mt-6 mb-3">16.3 Productaansprakelijkheid</h3>
             <ol className="list-decimal pl-6 space-y-2 mb-6" start={6}>
               <li>Niets in deze voorwaarden beperkt of sluit de wettelijke aansprakelijkheid van DAAR uit die niet contractueel mag worden beperkt, waaronder aansprakelijkheid voor dood of persoonlijk letsel veroorzaakt door nalatigheid.</li>
             </ol>
 
             {/* Artikel 17 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 17 — Acceptable use — verboden gebruik</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 17 — Acceptable use — verboden gebruik</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>
                 Het is de Klant en zijn Gebruikers verboden het Platform te gebruiken voor:
@@ -256,7 +256,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 18 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 18 — Overmacht</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 18 — Overmacht</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Geen van de partijen is aansprakelijk voor een tekortkoming die het gevolg is van omstandigheden buiten haar redelijke invloedsfeer (&lsquo;overmacht&rsquo;). Overmacht omvat in ieder geval: (a) uitval van elektriciteits- of internetinfrastructuur buiten de invloedssfeer van de partij, (b) overheidsmaatregelen, embargo&rsquo;s of sancties, (c) oorlog, terrorisme, pandemie of nationale noodtoestand, (d) DDoS-aanvallen of cyberaanvallen ondanks passende beveiligingsmaatregelen.</li>
               <li>De partij die zich op overmacht beroept, informeert de andere partij zo spoedig mogelijk, doch uiterlijk binnen 5 Werkdagen na optreden van de overmacht, Schriftelijk.</li>
@@ -264,7 +264,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 19 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 19 — Referentie en publiciteit</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 19 — Referentie en publiciteit</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>DAAR mag de Klant vermelden als referentieklant in haar commerciële communicatie (website, pitch-materiaal, persberichten), tenzij de Klant hier Schriftelijk bezwaar tegen maakt binnen 30 dagen na het aangaan van de Overeenkomst.</li>
               <li>DAAR mag het logo van de Klant gebruiken in bovengenoemde communicatie, tenzij de Klant dit Schriftelijk weigert.</li>
@@ -272,7 +272,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 20 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 20 — Cessie en overdracht</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 20 — Cessie en overdracht</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>De Klant mag zijn rechten en verplichtingen uit de Overeenkomst niet zonder voorafgaande Schriftelijke toestemming van DAAR overdragen aan een derde, waaronder bij fusie, overname of splitsing.</li>
               <li>DAAR mag haar rechten en verplichtingen overdragen in het kader van een herstructurering, fusie of overname van (een deel van) haar onderneming, mits: (a) de Klant hier minimaal 30 dagen vooraf Schriftelijk over wordt geïnformeerd, en (b) de overnemende partij schriftelijk dezelfde verplichtingen aanvaardt als die van DAAR.</li>
@@ -280,7 +280,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 21 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 21 — Audit en compliance</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 21 — Audit en compliance</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>DAAR stelt de Klant op verzoek relevante beveiligingscertificeringen, auditrapportages of samenvattingen van penetratietestresultaten beschikbaar, voor zover deze de Klant betreffen.</li>
               <li>De Klant heeft het recht DAAR eenmaal per jaar te auditeren op de naleving van deze voorwaarden en de Verwerkersovereenkomst, met een aankondigingstermijn van minimaal 20 Werkdagen. De kosten van de audit zijn voor rekening van de Klant, tenzij de audit een materiële overtreding door DAAR aan het licht brengt.</li>
@@ -288,7 +288,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 22 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 22 — Wijziging van de voorwaarden</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 22 — Wijziging van de voorwaarden</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>DAAR behoudt het recht deze algemene voorwaarden te wijzigen.</li>
               <li>Wijzigingen die de rechten van de Klant niet of positief beïnvloeden worden direct van kracht en gecommuniceerd via e-mail en het Platform.</li>
@@ -297,7 +297,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 23 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 23 — Toepasselijk recht en geschillen</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 23 — Toepasselijk recht en geschillen</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Op alle Overeenkomsten en rechtsverhoudingen tussen DAAR en de Klant is uitsluitend Nederlands recht van toepassing. De toepasselijkheid van het Weens Koopverdrag (CISG) is uitdrukkelijk uitgesloten.</li>
               <li>Partijen streven ernaar geschillen in de eerste plaats op te lossen door middel van overleg. Hiertoe stelt de meest gerede partij de andere partij Schriftelijk in kennis van het geschil, waarna partijen zich binnen 15 Werkdagen inspannen om in goed overleg tot een oplossing te komen.</li>
@@ -307,7 +307,7 @@ export default function VoorwaardenPage() {
             </ol>
 
             {/* Artikel 24 */}
-            <h2 className="text-xl font-semibold text-navy mt-10 mb-4">Artikel 24 — Overige bepalingen</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-10 mb-4">Artikel 24 — Overige bepalingen</h2>
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Indien een bepaling van deze voorwaarden nietig, vernietigbaar of anderszins niet-afdwingbaar blijkt, laat dit de geldigheid van de overige bepalingen onverlet. Partijen vervangen de ongeldige bepaling door een geldige bepaling die de bedoeling van de oorspronkelijke bepaling zo nauw mogelijk benadert.</li>
               <li>Het niet of vertraagd uitoefenen van een recht door een partij geldt niet als afstand van dat recht.</li>
@@ -317,14 +317,14 @@ export default function VoorwaardenPage() {
 
             {/* Bijlage 1 — SLA */}
             <div className="border-t border-gray-200 mt-12 pt-10">
-              <h2 className="text-xl font-semibold text-navy mb-6">Bijlage 1 — Service Level Agreement (SLA)</h2>
+              <h2 className="text-xl font-semibold text-daar-navy mb-6">Bijlage 1 — Service Level Agreement (SLA)</h2>
 
               <div className="overflow-x-auto mb-8">
                 <table className="w-full text-sm border-collapse">
                   <thead>
                     <tr className="bg-gray-50">
-                      <th className="text-left font-semibold text-navy px-4 py-2 border border-gray-200 w-1/3">SLA-parameter</th>
-                      <th className="text-left font-semibold text-navy px-4 py-2 border border-gray-200">Specificatie</th>
+                      <th className="text-left font-semibold text-daar-navy px-4 py-2 border border-gray-200 w-1/3">SLA-parameter</th>
+                      <th className="text-left font-semibold text-daar-navy px-4 py-2 border border-gray-200">Specificatie</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -339,7 +339,7 @@ export default function VoorwaardenPage() {
                       ['Statusdashboard', 'Beschikbaar via status.daarvrijwilligers.nl met realtime status en incidenthistorie'],
                     ].map(([param, spec]) => (
                       <tr key={param} className="border-b border-gray-100">
-                        <td className="px-4 py-2 border border-gray-200 font-medium text-navy align-top">{param}</td>
+                        <td className="px-4 py-2 border border-gray-200 font-medium text-daar-navy align-top">{param}</td>
                         <td className="px-4 py-2 border border-gray-200 align-top">{spec}</td>
                       </tr>
                     ))}
@@ -347,13 +347,13 @@ export default function VoorwaardenPage() {
                 </table>
               </div>
 
-              <h3 className="text-base font-semibold text-navy mb-4">SLA-credits bij overschrijding beschikbaarheidsgarantie</h3>
+              <h3 className="text-base font-semibold text-daar-navy mb-4">SLA-credits bij overschrijding beschikbaarheidsgarantie</h3>
               <div className="overflow-x-auto mb-6">
                 <table className="w-full text-sm border-collapse">
                   <thead>
                     <tr className="bg-gray-50">
-                      <th className="text-left font-semibold text-navy px-4 py-2 border border-gray-200">Beschikbaarheid</th>
-                      <th className="text-left font-semibold text-navy px-4 py-2 border border-gray-200">SLA-credit</th>
+                      <th className="text-left font-semibold text-daar-navy px-4 py-2 border border-gray-200">Beschikbaarheid</th>
+                      <th className="text-left font-semibold text-daar-navy px-4 py-2 border border-gray-200">SLA-credit</th>
                     </tr>
                   </thead>
                   <tbody>

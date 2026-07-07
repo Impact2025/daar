@@ -185,7 +185,7 @@ export default function Prijzen2Page() {
     <div className="bg-white">
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-20 overflow-hidden bg-gradient-to-br from-offWhite via-white to-lightGreen">
+      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-20 overflow-hidden bg-gradient-to-br from-daar-helder via-white to-lightGreen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
@@ -839,7 +839,7 @@ export default function Prijzen2Page() {
       </section>
 
       {/* ── Tariefschijven overzicht ──────────────────────────────────────── */}
-      <section className="py-16 bg-gradient-to-br from-offWhite to-white">
+      <section className="py-16 bg-gradient-to-br from-daar-helder to-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

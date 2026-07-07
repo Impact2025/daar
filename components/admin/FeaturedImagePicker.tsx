@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { cn } from '@/lib/utils'
 
-export type HeaderStyle = 'image' | 'gradient-green' | 'gradient-yellow' | 'gradient-coral' | 'gradient-blue' | 'gradient-teal' | 'gradient-navy' | 'none'
+export type HeaderStyle = 'image' | 'gradient-green' | 'gradient-yellow' | 'gradient-coral' | 'gradient-blue' | 'gradient-teal' | 'gradient-daar-navy' | 'none'
 
 interface FeaturedImagePickerProps {
   value: string
@@ -129,7 +129,7 @@ export function FeaturedImagePicker({
     { id: 'gradient-coral', label: 'Koraal', color: 'from-[#E07856] to-[#D96B4A]', bgPreview: 'bg-[#E07856]' },
     { id: 'gradient-blue', label: 'Blauw', color: 'from-[#5B9BD5] to-[#4A8BC2]', bgPreview: 'bg-[#5B9BD5]' },
     { id: 'gradient-teal', label: 'Teal', color: 'from-[#4DB8A8] to-[#3FA799]', bgPreview: 'bg-[#4DB8A8]' },
-    { id: 'gradient-navy', label: 'Navy', color: 'from-[#2D334A] to-[#1F2537]', bgPreview: 'bg-[#2D334A]' },
+    { id: 'gradient-daar-navy', label: 'Navy', color: 'from-[#2D334A] to-[#1F2537]', bgPreview: 'bg-[#2D334A]' },
   ]
 
   const styleOptions = [
@@ -147,7 +147,7 @@ export function FeaturedImagePicker({
     <div className={cn('space-y-4', className)}>
       {/* Style Selection */}
       <div className="space-y-3">
-        <label className="text-sm font-medium text-navy">Header stijl</label>
+        <label className="text-sm font-medium text-daar-navy">Header stijl</label>
 
         {/* Image option */}
         <button
@@ -173,7 +173,7 @@ export function FeaturedImagePicker({
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <span className="font-medium text-navy">Afbeelding</span>
+                <span className="font-medium text-daar-navy">Afbeelding</span>
                 {headerStyle === 'image' && (
                   <Check className="w-4 h-4 text-brandGreen" />
                 )}
@@ -203,7 +203,7 @@ export function FeaturedImagePicker({
                 )}
               >
                 <div className={cn('w-8 h-8 rounded-lg mx-auto mb-1.5', option.bgPreview)} />
-                <span className="text-xs font-medium text-navy">{option.label}</span>
+                <span className="text-xs font-medium text-daar-navy">{option.label}</span>
               </button>
             ))}
           </div>

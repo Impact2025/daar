@@ -90,6 +90,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       metaDescription: true,
       featuredImage: true,
       publishedAt: true,
+      updatedAt: true,
       author: {
         select: { name: true },
       },
@@ -115,6 +116,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: 'Daar',
       locale: 'nl_NL',
       publishedTime: article.publishedAt?.toISOString(),
+      modifiedTime: article.updatedAt.toISOString(),
       authors: article.author?.name ? [article.author.name] : ['Daar Team'],
       images: article.featuredImage ? [
         {
@@ -171,7 +173,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           { name: article.title, url: `${baseUrl}/blog/${article.slug}` },
         ]}
       />
-      <div className="bg-offWhite min-h-screen py-12">
+      <div className="bg-daar-helder min-h-screen py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Article */}
           <ArticleContent article={article as any} basePath="/blog" />

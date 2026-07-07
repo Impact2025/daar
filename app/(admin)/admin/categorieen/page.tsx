@@ -173,7 +173,7 @@ export default function CategoriesPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-navy">Categorieën</h1>
+          <h1 className="text-2xl font-bold text-daar-navy">Categorieën</h1>
           <p className="text-gray-500">Beheer de categorieën voor je kennisbank</p>
         </div>
         <Button onClick={() => setShowForm(true)} className="gap-2">
@@ -216,7 +216,7 @@ export default function CategoriesPage() {
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <h3 className="font-medium text-navy">{category.name}</h3>
+                          <h3 className="font-medium text-daar-navy">{category.name}</h3>
                           <Badge variant="default" className="text-xs">
                             {category._count.articles} artikelen
                           </Badge>
@@ -266,7 +266,7 @@ export default function CategoriesPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-navy">
+                  <h3 className="font-semibold text-daar-navy">
                     {editingId ? 'Categorie bewerken' : 'Nieuwe categorie'}
                   </h3>
                   <button
@@ -296,7 +296,7 @@ export default function CategoriesPage() {
                   />
 
                   <div>
-                    <label className="block text-sm font-medium text-navy mb-1">
+                    <label className="block text-sm font-medium text-daar-navy mb-1">
                       Beschrijving
                     </label>
                     <textarea
@@ -309,7 +309,7 @@ export default function CategoriesPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-navy mb-2">
+                    <label className="block text-sm font-medium text-daar-navy mb-2">
                       Kleur
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -319,7 +319,7 @@ export default function CategoriesPage() {
                           type="button"
                           onClick={() => setFormData(prev => ({ ...prev, color }))}
                           className={`w-8 h-8 rounded-lg transition-transform ${
-                            formData.color === color ? 'ring-2 ring-offset-2 ring-navy scale-110' : ''
+                            formData.color === color ? 'ring-2 ring-offset-2 ring-daar-navy scale-110' : ''
                           }`}
                           style={{ backgroundColor: color }}
                         />

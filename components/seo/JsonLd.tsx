@@ -197,6 +197,7 @@ export function ArticleSchema({
     '@type': 'Article',
     headline,
     description,
+    inLanguage: 'nl-NL',
     datePublished,
     dateModified: dateModified || datePublished,
     author: {

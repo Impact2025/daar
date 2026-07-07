@@ -106,12 +106,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const category = await getCategory(slug)
 
   if (!category) {
-    return { title: 'Categorie niet gevonden | DAAR' }
+    return { title: 'Categorie niet gevonden' }
   }
 
   return {
-    title: `${category.name} | DAAR Kennisbank`,
+    title: `${category.name} — Kennisbank`,
     description: category.description || `Artikelen over ${category.name.toLowerCase()}`,
+    alternates: {
+      canonical: `https://daar.nl/kennisbank/categorie/${slug}`,
+    },
   }
 }
 
@@ -133,7 +136,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   ])
 
   return (
-    <div className="bg-offWhite min-h-screen">
+    <div className="bg-daar-helder min-h-screen">
       {/* Hero */}
       <section
         className="py-16"
@@ -152,7 +155,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
             Alle artikelen
           </Link>
 
-          <h1 className="text-4xl font-bold text-navy mb-4">
+          <h1 className="text-4xl font-bold text-daar-navy mb-4">
             {category.name}
           </h1>
 

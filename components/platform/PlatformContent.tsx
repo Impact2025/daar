@@ -7,10 +7,10 @@ import FeatureTabShowcase from '@/components/FeatureTabShowcase';
 
 export const PlatformContent = () => {
   return (
-    <div className="font-sans antialiased text-daar-blue bg-offWhite">
+    <div className="font-sans antialiased text-daar-blue bg-daar-helder">
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-daar-helder">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
             {/* Left Content */}
@@ -115,7 +115,7 @@ export const PlatformContent = () => {
       <FeatureTabShowcase />
 
       {/* Volunteer Dashboard Section */}
-      <section className="py-24 bg-offWhite">
+      <section className="py-24 bg-daar-helder">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             {/* Left: text */}
@@ -167,7 +167,7 @@ export const PlatformContent = () => {
                       { label: 'Activiteiten', value: '23' },
                       { label: 'Geluksscore', value: '9.1' },
                     ].map((stat, i) => (
-                      <div key={i} className="bg-offWhite rounded-2xl p-3 text-center">
+                      <div key={i} className="bg-daar-helder rounded-2xl p-3 text-center">
                         <p className="text-2xl font-extrabold text-daar-blue" style={{ fontFamily: 'Nunito, sans-serif' }}>{stat.value}</p>
                         <p className="text-xs text-gray-500 mt-0.5">{stat.label}</p>
                       </div>
@@ -220,7 +220,7 @@ export const PlatformContent = () => {
       </section>
 
       {/* How It Works - Step by Step */}
-      <section className="py-24 bg-offWhite">
+      <section className="py-24 bg-daar-helder">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>

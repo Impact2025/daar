@@ -46,7 +46,7 @@ export default function LoginPage() {
             <div className="flex justify-center mb-4">
               <Logo className="h-10" color="#1A2332" />
             </div>
-            <h1 className="text-2xl font-bold text-navy">Admin Panel</h1>
+            <h1 className="text-2xl font-bold text-daar-navy">Admin Panel</h1>
             <p className="text-gray-500 mt-1">Log in om verder te gaan</p>
           </div>
 

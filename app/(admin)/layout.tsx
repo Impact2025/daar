@@ -36,6 +36,7 @@ const sidebarItems = [
   { href: '/admin/artikelen?type=blog', label: 'Blog', icon: Newspaper },
   { href: '/admin/categorieen', label: 'Categorieën', icon: FolderOpen },
   { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
+  { href: '/admin/lead-machine', label: 'Lead Machine', icon: Activity, dividerBefore: true },
 ] as const
 
 export default async function AdminLayout({
@@ -58,7 +59,7 @@ export default async function AdminLayout({
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-navy text-white fixed inset-y-0 left-0 z-50">
+      <aside className="w-64 bg-daar-navy text-white fixed inset-y-0 left-0 z-50">
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-6 border-b border-white/10">

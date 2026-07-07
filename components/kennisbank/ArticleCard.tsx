@@ -16,7 +16,7 @@ const gradientMap: Record<string, string> = {
   'gradient-coral': 'from-[#E07856] to-[#D96B4A]',
   'gradient-blue': 'from-[#5B9BD5] to-[#4A8BC2]',
   'gradient-teal': 'from-[#4DB8A8] to-[#3FA799]',
-  'gradient-navy': 'from-[#2D334A] to-[#1F2537]',
+  'gradient-daar-navy': 'from-[#2D334A] to-[#1F2537]',
 }
 
 export function ArticleCard({ article, basePath = '/kennisbank' }: ArticleCardProps) {

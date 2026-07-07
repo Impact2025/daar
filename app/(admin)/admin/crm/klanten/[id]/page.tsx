@@ -355,7 +355,7 @@ export default function CustomerDetailPage({ params }: { params: Promise<{ id: s
                             style={{ width: `${quiz.totalScore}%` }}
                           />
                         </div>
-                        <span className="font-semibold text-navy">{quiz.totalScore}%</span>
+                        <span className="font-semibold text-daar-navy">{quiz.totalScore}%</span>
                       </div>
                       <Badge
                         className="capitalize"
@@ -418,7 +418,7 @@ export default function CustomerDetailPage({ params }: { params: Promise<{ id: s
                     >
                       <div className="flex items-center gap-4">
                         <div>
-                          <p className="font-medium text-navy">
+                          <p className="font-medium text-daar-navy">
                             {format(new Date(booking.startTime), 'EEE d MMM yyyy', { locale: nl })}
                           </p>
                           <p className="text-sm text-gray-500">

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { DAAR_WRITING_PROMPTS } from '@/constants/prompts'
+import { rateLimitOrJson } from '@/lib/rate-limit'
 
 type PromptType = 'outline' | 'voice' | 'meta' | 'tags' | 'expand' | 'intro'
 
@@ -14,6 +15,14 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       )
     }
+
+    // Anti-abuse: max 20 AI calls per IP per minute (cost protection)
+    const limited = rateLimitOrJson(request, {
+      limit: 20,
+      windowSec: 60,
+      message: 'Te veel AI-verzoeken. Wacht even en probeer opnieuw.',
+    })
+    if (limited) return limited
 
     const { type, data } = await request.json() as {
       type: PromptType

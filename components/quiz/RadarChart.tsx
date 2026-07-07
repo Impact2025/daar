@@ -175,7 +175,7 @@ export function RadarChart({
                   x={x}
                   y={y - 8}
                   textAnchor={textAnchor}
-                  className="fill-navy text-xs font-medium"
+                  className="fill-daar-navy text-xs font-medium"
                   style={{ fontSize: '11px' }}
                 >
                   {dimension.name.split(' ')[0]}

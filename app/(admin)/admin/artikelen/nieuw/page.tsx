@@ -175,7 +175,7 @@ export default function NewArticlePage() {
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-navy">Nieuw artikel</h1>
+            <h1 className="text-2xl font-bold text-daar-navy">Nieuw artikel</h1>
             <p className="text-gray-500">Schrijf een nieuw kennisbank artikel</p>
           </div>
         </div>
@@ -230,7 +230,7 @@ export default function NewArticlePage() {
               />
 
               <div>
-                <label className="block text-sm font-medium text-navy mb-2">
+                <label className="block text-sm font-medium text-daar-navy mb-2">
                   Inhoud
                 </label>
                 <WYSIWYGEditor
@@ -248,7 +248,7 @@ export default function NewArticlePage() {
           {/* Type */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Type artikel</h3>
+              <h3 className="font-semibold text-daar-navy">Type artikel</h3>
             </CardHeader>
             <CardContent>
               <div className="flex gap-2">
@@ -286,7 +286,7 @@ export default function NewArticlePage() {
           {/* Categorie */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Categorie</h3>
+              <h3 className="font-semibold text-daar-navy">Categorie</h3>
             </CardHeader>
             <CardContent>
               <select
@@ -307,7 +307,7 @@ export default function NewArticlePage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-brandGreen" />
-                <h3 className="font-semibold text-navy">AI Schrijfhulp</h3>
+                <h3 className="font-semibold text-daar-navy">AI Schrijfhulp</h3>
               </div>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -380,7 +380,7 @@ export default function NewArticlePage() {
           {/* SEO */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">SEO</h3>
+              <h3 className="font-semibold text-daar-navy">SEO</h3>
             </CardHeader>
             <CardContent className="space-y-4">
               <Input
@@ -392,7 +392,7 @@ export default function NewArticlePage() {
               />
 
               <div>
-                <label className="block text-sm font-medium text-navy mb-1">
+                <label className="block text-sm font-medium text-daar-navy mb-1">
                   Meta beschrijving
                 </label>
                 <textarea
@@ -412,7 +412,7 @@ export default function NewArticlePage() {
           {/* Excerpt */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Excerpt</h3>
+              <h3 className="font-semibold text-daar-navy">Excerpt</h3>
             </CardHeader>
             <CardContent>
               <textarea
@@ -428,7 +428,7 @@ export default function NewArticlePage() {
           {/* Featured Image */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Header afbeelding</h3>
+              <h3 className="font-semibold text-daar-navy">Header afbeelding</h3>
             </CardHeader>
             <CardContent>
               <FeaturedImagePicker

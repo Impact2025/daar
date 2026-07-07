@@ -73,7 +73,7 @@ export function BookingRow({ booking }: BookingRowProps) {
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-gray-400" />
           <div>
-            <p className="font-medium text-navy">
+            <p className="font-medium text-daar-navy">
               {formatBookingDate(booking.startTime)}
             </p>
             <p className="text-sm text-gray-500">
@@ -99,7 +99,7 @@ export function BookingRow({ booking }: BookingRowProps) {
       </td>
       <td className="px-6 py-4">
         <div>
-          <p className="font-medium text-navy flex items-center gap-1">
+          <p className="font-medium text-daar-navy flex items-center gap-1">
             <User className="w-3 h-3" />
             {booking.name}
           </p>

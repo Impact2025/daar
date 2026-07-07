@@ -97,10 +97,10 @@ export default async function Image() {
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', gap: '32px' }}>
               <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18 }}>
-                667% ROI
+                AVG-proof
               </span>
               <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18 }}>
-                156u bespaard/jaar
+                Minder administratie
               </span>
             </div>
             <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 20 }}>

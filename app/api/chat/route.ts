@@ -1,9 +1,18 @@
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { DAAR_CHAT_SYSTEM_PROMPT } from '@/constants/prompts'
+import { rateLimitOrJson } from '@/lib/rate-limit'
 
 // POST /api/chat - Streaming chat response
 export async function POST(request: NextRequest) {
+  // Anti-abuse: max 15 chat messages per IP per minute (LLM cost protection)
+  const limited = rateLimitOrJson(request, {
+    limit: 15,
+    windowSec: 60,
+    message: 'Je stelt te veel vragen achter elkaar. Wacht even en probeer opnieuw.',
+  })
+  if (limited) return limited
+
   try {
     const { sessionId, message, visitorId } = await request.json()
 

@@ -57,7 +57,7 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-navy">Artikelen</h1>
+          <h1 className="text-2xl font-bold text-daar-navy">Artikelen</h1>
           <p className="text-gray-500">Beheer kennisbank artikelen en blogposts</p>
         </div>
         <Link href="/admin/artikelen/nieuw">
@@ -76,8 +76,8 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
             href={tab.key === 'alle' ? '/admin/artikelen' : `/admin/artikelen?type=${tab.key}`}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeType === tab.key
-                ? 'bg-white text-navy shadow-sm'
-                : 'text-gray-600 hover:text-navy'
+                ? 'bg-white text-daar-navy shadow-sm'
+                : 'text-gray-600 hover:text-daar-navy'
             }`}
           >
             {tab.label}
@@ -119,7 +119,7 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
                   <tr key={article.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
                       <div>
-                        <p className="font-medium text-navy">{article.title}</p>
+                        <p className="font-medium text-daar-navy">{article.title}</p>
                         <p className="text-sm text-gray-500">{article.author.name}</p>
                       </div>
                     </td>

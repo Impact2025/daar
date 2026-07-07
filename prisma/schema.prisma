@@ -802,6 +802,7 @@ model Customer {
   folders         DriveFolder[]
   quizResults     QuizResult[]
   bookings        Booking[]
+  prospectLeads   ProspectLead[]
 
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
@@ -1114,4 +1115,62 @@ model DriveFile {
   @@index([mimeType])
   @@index([name])
   @@index([tags])
+}
+
+// ============================================
+// LEAD MACHINE (AI lead generatie voor welzijns/sociaal domein)
+// ============================================
+
+enum ProspectStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CONVERTED
+  ARCHIVED
+}
+
+model ProspectLead {
+  id            String         @id @default(cuid())
+
+  // Organisatie
+  name          String
+  tradeName     String?
+  kvkNumber     String?        @unique
+  website       String?
+  email         String?
+  phone         String?
+  contactPerson String?
+
+  // Classificatie
+  sbiCode       String?
+  sbiDescription String?       @db.Text
+  city          String?
+  postalCode    String?
+  address       String?
+
+  // AI scoring
+  aiScore       Int?           // 0-10
+  aiRationale   String?        @db.Text
+
+  // Workflow
+  status        ProspectStatus @default(NEW)
+  starred       Boolean        @default(false)
+  notes         String?        @db.Text
+
+  // Link naar CRM (optioneel, handmatig push)
+  customerId    String?        @unique
+  customer      Customer?      @relation(fields: [customerId], references: [id], onDelete: SetNull)
+
+  // Timestamps
+  scrapedAt     DateTime?
+  scoredAt      DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([status])
+  @@index([aiScore])
+  @@index([starred])
+  @@index([website])
+  @@index([city])
+  @@index([email])
 }

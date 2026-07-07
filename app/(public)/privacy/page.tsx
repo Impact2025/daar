@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="bg-offWhite min-h-screen">
+    <div className="bg-daar-helder min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <Link
           href="/"
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
               <Shield className="w-7 h-7 text-brandGreen" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-navy">Privacyverklaring</h1>
+              <h1 className="text-3xl font-bold text-daar-navy">Privacyverklaring</h1>
               <p className="text-gray-500">Voor gebruikers van onze website en klanten van ons platform</p>
               <p className="text-gray-400 text-sm">Versie 1.3 | Ingangsdatum: 1 maart 2026</p>
             </div>
@@ -33,12 +33,12 @@ export default function PrivacyPage() {
 
           <div className="prose prose-gray max-w-none">
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">Reikwijdte van deze verklaring</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">Reikwijdte van deze verklaring</h2>
             <p className="text-gray-600 mb-4">
               Deze privacyverklaring beschrijft hoe DAAR B.V. omgaat met persoonsgegevens van (a) bezoekers van onze website, (b) klanten en prospects die direct contact met ons opnemen, en (c) contactpersonen bij organisaties die ons platform gebruiken. DAAR treedt voor deze verwerkingen op als verwerkingsverantwoordelijke (controller). De persoonsgegevens van vrijwilligers die via het platform worden verwerkt, vallen onder de verantwoordelijkheid van de betreffende organisatie. DAAR treedt daarvoor op als verwerker. Die relatie is geregeld in de Verwerkersovereenkomst.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">1. Wie zijn wij?</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">1. Wie zijn wij?</h2>
             <p className="text-gray-600 mb-4">
               DAAR B.V. is een sociale onderneming die een modulair platform aanbiedt voor vrijwilligersmanagement, met als kern het meten en vergroten van Geluksmomenten bij vrijwilligers.
             </p>
@@ -46,42 +46,42 @@ export default function PrivacyPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <tbody>
                   <tr className="border-b border-gray-100">
-                    <td className="py-2 pr-4 font-medium text-navy w-64">Bedrijfsnaam</td>
+                    <td className="py-2 pr-4 font-medium text-daar-navy w-64">Bedrijfsnaam</td>
                     <td className="py-2">DAAR B.V.</td>
                   </tr>
                   <tr className="border-b border-gray-100">
-                    <td className="py-2 pr-4 font-medium text-navy">KVK-nummer</td>
+                    <td className="py-2 pr-4 font-medium text-daar-navy">KVK-nummer</td>
                     <td className="py-2">99576759</td>
                   </tr>
                   <tr className="border-b border-gray-100">
-                    <td className="py-2 pr-4 font-medium text-navy">Functionaris Gegevensbescherming (FG)</td>
+                    <td className="py-2 pr-4 font-medium text-daar-navy">Functionaris Gegevensbescherming (FG)</td>
                     <td className="py-2">mail naar: <a href="mailto:hallo@daar.nl" className="text-brandGreen hover:underline">hallo@daar.nl</a></td>
                   </tr>
                   <tr className="border-b border-gray-100">
-                    <td className="py-2 pr-4 font-medium text-navy">E-mail privacy</td>
+                    <td className="py-2 pr-4 font-medium text-daar-navy">E-mail privacy</td>
                     <td className="py-2"><a href="mailto:hallo@daar.nl" className="text-brandGreen hover:underline">hallo@daar.nl</a></td>
                   </tr>
                   <tr>
-                    <td className="py-2 pr-4 font-medium text-navy">Website</td>
+                    <td className="py-2 pr-4 font-medium text-daar-navy">Website</td>
                     <td className="py-2">www.daar.nl</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">2. Welke persoonsgegevens verwerkt DAAR als controller?</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">2. Welke persoonsgegevens verwerkt DAAR als controller?</h2>
             <p className="text-gray-600 mb-4">
               DAAR verwerkt als verwerkingsverantwoordelijke uitsluitend gegevens van de volgende categorieën betrokkenen:
             </p>
 
-            <h3 className="text-lg font-semibold text-navy mt-6 mb-3">2a. Websitebezoekers</h3>
+            <h3 className="text-lg font-semibold text-daar-navy mt-6 mb-3">2a. Websitebezoekers</h3>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-1">
               <li>IP-adres (geanonimiseerd na 24 uur)</li>
               <li>Bezochte pagina&apos;s en klikgedrag (via analytische cookies — alleen met toestemming)</li>
               <li>Browsertype en apparaattype</li>
             </ul>
 
-            <h3 className="text-lg font-semibold text-navy mt-6 mb-3">2b. Klanten, prospects en contactpersonen</h3>
+            <h3 className="text-lg font-semibold text-daar-navy mt-6 mb-3">2b. Klanten, prospects en contactpersonen</h3>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-1">
               <li>Naam en zakelijk e-mailadres</li>
               <li>Organisatienaam en functietitel</li>
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
               DAAR verwerkt geen bijzondere persoonsgegevens (zoals gezondheids- of strafrechtelijke gegevens) van bovengenoemde groepen.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">3. Grondslagen voor verwerking</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">3. Grondslagen voor verwerking</h2>
             <p className="text-gray-600 mb-4">
               Elke verwerking is gebaseerd op een van de volgende wettelijke grondslagen conform AVG artikel 6:
             </p>
@@ -101,9 +101,9 @@ export default function PrivacyPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Grondslag</th>
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">AVG-artikel</th>
-                    <th className="py-2 text-left font-semibold text-navy">Toepassing bij DAAR</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Grondslag</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">AVG-artikel</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Toepassing bij DAAR</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -134,14 +134,14 @@ export default function PrivacyPage() {
               <strong>Afweging gerechtvaardigd belang:</strong> DAAR heeft voor de grondslag &apos;gerechtvaardigd belang&apos; een balancing test uitgevoerd en gedocumenteerd in het intern verwerkersregister. Deze afweging toont aan dat het belang van DAAR bij productontwikkeling en fraudepreventie niet zwaarder weegt dan de privacybelangen van betrokkenen, mits de verwerking beperkt blijft tot geanonimiseerde of geaggregeerde gegevens.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">4. Bewaartermijnen</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">4. Bewaartermijnen</h2>
             <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Categorie</th>
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Termijn</th>
-                    <th className="py-2 text-left font-semibold text-navy">Grondslag</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Categorie</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Termijn</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Grondslag</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -184,7 +184,7 @@ export default function PrivacyPage() {
               </table>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">5. Delen van persoonsgegevens</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">5. Delen van persoonsgegevens</h2>
             <p className="text-gray-600 mb-4">
               DAAR verkoopt nooit persoonsgegevens. Wij delen gegevens uitsluitend in de volgende situaties:
             </p>
@@ -192,8 +192,8 @@ export default function PrivacyPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Situatie</th>
-                    <th className="py-2 text-left font-semibold text-navy">Toelichting</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Situatie</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Toelichting</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -213,12 +213,12 @@ export default function PrivacyPage() {
               </table>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">6. Internationale gegevensoverdracht</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">6. Internationale gegevensoverdracht</h2>
             <p className="text-gray-600 mb-4">
               DAAR verwerkt gegevens bij voorkeur binnen de Europese Economische Ruimte (EER). Indien een sub-verwerker gegevens buiten de EER verwerkt, waarborgt DAAR de rechtmatigheid door: (a) adequaatheidsbesluiten van de Europese Commissie, of (b) Standard Contractual Clauses (SCCs), aangevuld met een Transfer Impact Assessment waar nodig.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">7. Beveiliging</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">7. Beveiliging</h2>
             <p className="text-gray-600 mb-4">
               DAAR hanteert de volgende technische en organisatorische beveiligingsmaatregelen:
             </p>
@@ -226,8 +226,8 @@ export default function PrivacyPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Maatregel</th>
-                    <th className="py-2 text-left font-semibold text-navy">Uitwerking</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Maatregel</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Uitwerking</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -267,7 +267,7 @@ export default function PrivacyPage() {
               </table>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">8. Uw rechten als betrokkene</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">8. Uw rechten als betrokkene</h2>
             <p className="text-gray-600 mb-4">
               Op grond van de AVG heeft u de volgende rechten. U kunt deze uitoefenen via{' '}
               <a href="mailto:hallo@daar.nl" className="text-brandGreen hover:underline">hallo@daar.nl</a>.
@@ -277,8 +277,8 @@ export default function PrivacyPage() {
               <table className="w-full text-sm text-gray-600 border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-2 pr-4 text-left font-semibold text-navy">Recht</th>
-                    <th className="py-2 text-left font-semibold text-navy">Inhoud</th>
+                    <th className="py-2 pr-4 text-left font-semibold text-daar-navy">Recht</th>
+                    <th className="py-2 text-left font-semibold text-daar-navy">Inhoud</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -324,14 +324,14 @@ export default function PrivacyPage() {
               </table>
             </div>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">9. Cookies</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">9. Cookies</h2>
             <p className="text-gray-600 mb-4">
               Voor het cookiebeleid verwijzen wij naar onze afzonderlijke{' '}
               <Link href="/cookies" className="text-brandGreen hover:underline">Cookieverklaring</Link>.
               Cookiebeheer is mogelijk via de cookiebanner bij uw eerste bezoek of via de instellingen in de footer van onze website.
             </p>
 
-            <h2 className="text-xl font-semibold text-navy mt-8 mb-4">10. Wijzigingen</h2>
+            <h2 className="text-xl font-semibold text-daar-navy mt-8 mb-4">10. Wijzigingen</h2>
             <p className="text-gray-600 mb-4">
               DAAR behoudt het recht deze privacyverklaring te wijzigen. Materiële wijzigingen worden minimaal 30 dagen voor ingang gecommuniceerd via e-mail aan klanten en via een banner op de website. De actuele versie is altijd beschikbaar via www.daar.nl/privacy. De versiegeschiedenis is op verzoek beschikbaar.
             </p>

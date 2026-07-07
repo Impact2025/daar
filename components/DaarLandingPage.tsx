@@ -46,7 +46,7 @@ const DaarLandingPage = () => {
   };
 
   return (
-    <div className="font-sans antialiased text-daar-blue bg-offWhite selection:bg-brandGreen selection:text-white">
+    <div className="font-sans antialiased text-daar-blue bg-daar-helder selection:bg-brandGreen selection:text-white">
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,7 +109,7 @@ const DaarLandingPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-offWhite">
+      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-daar-helder">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
@@ -224,7 +224,7 @@ const DaarLandingPage = () => {
       </section>
 
       {/* Voor Iedereen Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-offWhite">
+      <section className="py-16 bg-gradient-to-b from-white to-daar-helder">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
                <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-4 tracking-tight">
@@ -250,7 +250,7 @@ const DaarLandingPage = () => {
       </section>
 
       {/* Expertise Statement */}
-      <section className="py-16 bg-offWhite">
+      <section className="py-16 bg-daar-helder">
          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-daar-blue mb-4 tracking-tight">
                Gebouwd vanuit de praktijk, voor de praktijk.
@@ -278,7 +278,7 @@ const DaarLandingPage = () => {
       </section>
 
       {/* Modules Grid */}
-      <section id="producten" className="py-24 bg-offWhite">
+      <section id="producten" className="py-24 bg-daar-helder">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-daar-blue mb-4 tracking-tight">Alles voor je vrijwilligers.</h2>
@@ -296,7 +296,7 @@ const DaarLandingPage = () => {
                title="Smart Matching"
                desc="Een Tinder-achtige ervaring om de perfecte vrijwilliger te vinden voor elke klus."
                icon={<Users size={28} />}
-               accent="navy"
+               accent="daar-navy"
             />
             <Card
                title="Planning & Projecten"
@@ -314,13 +314,13 @@ const DaarLandingPage = () => {
                title="Centraal Dossier"
                desc="Alle VOG's, contracten en notities veilig opgeslagen in één AVG-proof omgeving."
                icon={<Shield size={28} />}
-               accent="navy"
+               accent="daar-navy"
             />
             <Card
                title="Communicatie"
                desc="Chat met projectgroepen en teams. 'Willem is ziek, Achmed krijgt vandaag de leiding'. Deel direct nieuws en updates."
                icon={<MessageCircle size={28} />}
-               accent="navy"
+               accent="daar-navy"
             />
             <Card
                title="Declaratie App"
@@ -347,7 +347,7 @@ const DaarLandingPage = () => {
 
                      <div className="space-y-6">
                         <ProgressBar label="Plezier in werk" value={92} icon={<Smile size={24} strokeWidth={2} />} color="brandGreen" />
-                        <ProgressBar label="Betrokkenheid" value={88} icon={<Users size={24} strokeWidth={2} />} color="navy" />
+                        <ProgressBar label="Betrokkenheid" value={88} icon={<Users size={24} strokeWidth={2} />} color="daar-navy" />
                         <ProgressBar label="Waardering" value={95} icon={<Heart size={24} strokeWidth={2} />} color="brandGreen" bgColor="lightGreen" />
                      </div>
                   </div>
@@ -384,7 +384,7 @@ const DaarLandingPage = () => {
                               />
                            </div>
                         </div>
-                        <div className="speech-bubble speech-bubble-navy bg-daar-blue text-white p-4 rounded-2xl rounded-bl-none shadow-md">
+                        <div className="speech-bubble speech-bubble-daar-navy bg-daar-blue text-white p-4 rounded-2xl rounded-bl-none shadow-md">
                            <p className="text-sm italic">"Eindelijk hebben we harde cijfers voor onze subsidieaanvraag, zonder dat het menselijke aspect verloren gaat."</p>
                            <p className="text-xs font-bold mt-2 text-brandGreen">- Marieke, Coördinator Buurtwerk</p>
                         </div>
@@ -620,16 +620,16 @@ interface CardProps {
   title: string;
   desc: string;
   icon: React.ReactNode;
-  accent: 'navy' | 'green';
+  accent: 'daar-navy' | 'green';
 }
 
 const Card: React.FC<CardProps> = ({ title, desc, icon, accent }) => {
-   const accentColor = accent === 'navy' ? 'text-daar-blue' : 'text-brandGreen';
-   const bgHover = accent === 'navy' ? 'group-hover:bg-daar-blue' : 'group-hover:bg-brandGreen';
+   const accentColor = accent === 'daar-navy' ? 'text-daar-blue' : 'text-brandGreen';
+   const bgHover = accent === 'daar-navy' ? 'group-hover:bg-daar-blue' : 'group-hover:bg-brandGreen';
 
    return (
      <div className="group bg-white rounded-2xl p-8 border border-gray-200 hover:border-transparent hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col h-full relative overflow-hidden">
-        <div className={`w-14 h-14 rounded-2xl bg-offWhite flex items-center justify-center mb-6 ${accentColor} ${bgHover} group-hover:text-white transition-colors duration-300`}>
+        <div className={`w-14 h-14 rounded-2xl bg-daar-helder flex items-center justify-center mb-6 ${accentColor} ${bgHover} group-hover:text-white transition-colors duration-300`}>
            {icon}
         </div>
         <h3 className="text-xl font-bold text-daar-blue mb-3 tracking-tight">{title}</h3>
@@ -675,7 +675,7 @@ interface ProgressBarProps {
   label: string;
   value: number;
   icon: React.ReactNode;
-  color: 'brandGreen' | 'navy';
+  color: 'brandGreen' | 'daar-navy';
   bgColor?: string;
 }
 
@@ -694,7 +694,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ label, value, icon, color, bg
           <span className="font-medium text-sm">{label}</span>
           <span className="font-bold text-daar-blue">{value}%</span>
         </div>
-        <div className="h-2 bg-offWhite rounded-full overflow-hidden">
+        <div className="h-2 bg-daar-helder rounded-full overflow-hidden">
           <div className={`h-full ${barColor} rounded-full`} style={{width: `${value}%`}}></div>
         </div>
       </div>

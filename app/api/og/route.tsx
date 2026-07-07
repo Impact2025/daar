@@ -202,7 +202,7 @@ export async function GET(request: NextRequest) {
                   }}
                 />
                 <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18 }}>
-                  667% ROI
+                  AVG-proof
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -215,7 +215,7 @@ export async function GET(request: NextRequest) {
                   }}
                 />
                 <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18 }}>
-                  156u bespaard/jaar
+                  Minder administratie
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

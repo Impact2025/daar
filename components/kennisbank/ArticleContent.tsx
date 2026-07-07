@@ -26,7 +26,7 @@ const gradientColors: Record<string, string> = {
   'gradient-coral': 'from-[#E07856] to-[#D96B4A]',
   'gradient-blue': 'from-[#5B9BD5] to-[#4A8BC2]',
   'gradient-teal': 'from-[#4DB8A8] to-[#3FA799]',
-  'gradient-navy': 'from-[#2D334A] to-[#1F2537]',
+  'gradient-daar-navy': 'from-[#2D334A] to-[#1F2537]',
 }
 
 export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleContentProps) {
@@ -239,9 +239,9 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
                 <div className="absolute top-4 right-4 w-32 h-32 bg-white rounded-full blur-2xl" />
                 <div className="absolute bottom-4 left-4 w-48 h-48 bg-white rounded-full blur-3xl" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white text-center relative z-10 leading-tight max-w-3xl mx-auto">
+              <h1 className="text-3xl md:text-4xl font-bold text-white text-center relative z-10 leading-tight max-w-3xl mx-auto">
                 {article.title}
-              </h2>
+              </h1>
             </div>
           ) : null}
 
@@ -296,7 +296,7 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
           )}
 
           {/* CTA Section */}
-          <div className="mt-12 p-8 bg-navy rounded-2xl text-white text-center">
+          <div className="mt-12 p-8 bg-daar-navy rounded-2xl text-white text-center">
             <h3 className="text-2xl font-bold mb-3">Klaar om je vrijwilligersbeheer te verbeteren?</h3>
             <p className="text-white/80 mb-6 max-w-xl mx-auto">
               Ontdek waar jouw organisatie staat met de gratis VrijwilligersCheck en ontvang direct praktische verbeterpunten.

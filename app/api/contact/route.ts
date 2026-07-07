@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { prisma } from '@/lib/prisma'
+import { rateLimitOrJson } from '@/lib/rate-limit'
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@daar.nl'
@@ -171,6 +172,14 @@ ${data.message}
 }
 
 export async function POST(request: NextRequest) {
+  // Anti-abuse: max 5 submissions per IP per 10 minutes (spam / cost protection)
+  const limited = rateLimitOrJson(request, {
+    limit: 5,
+    windowSec: 600,
+    message: 'Te veel berichten verstuurd. Probeer het over een paar minuten opnieuw.',
+  })
+  if (limited) return limited
+
   try {
     const body: ContactFormData = await request.json()
 

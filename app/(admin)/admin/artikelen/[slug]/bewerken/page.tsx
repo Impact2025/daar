@@ -233,7 +233,7 @@ export default function EditArticlePage() {
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-navy">Artikel bewerken</h1>
+            <h1 className="text-2xl font-bold text-daar-navy">Artikel bewerken</h1>
             <p className="text-gray-500">Pas het artikel aan</p>
           </div>
         </div>
@@ -295,7 +295,7 @@ export default function EditArticlePage() {
               />
 
               <div>
-                <label className="block text-sm font-medium text-navy mb-2">
+                <label className="block text-sm font-medium text-daar-navy mb-2">
                   Inhoud
                 </label>
                 <WYSIWYGEditor
@@ -325,7 +325,7 @@ export default function EditArticlePage() {
           {/* Status & Publicatie */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Status & Publicatie</h3>
+              <h3 className="font-semibold text-daar-navy">Status & Publicatie</h3>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
@@ -341,7 +341,7 @@ export default function EditArticlePage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-navy mb-1">
+                <label className="block text-sm font-medium text-daar-navy mb-1">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-4 h-4" />
                     Publicatiedatum
@@ -363,7 +363,7 @@ export default function EditArticlePage() {
           {/* Type */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Type artikel</h3>
+              <h3 className="font-semibold text-daar-navy">Type artikel</h3>
             </CardHeader>
             <CardContent>
               <div className="flex gap-2">
@@ -401,7 +401,7 @@ export default function EditArticlePage() {
           {/* Categorie */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Categorie</h3>
+              <h3 className="font-semibold text-daar-navy">Categorie</h3>
             </CardHeader>
             <CardContent>
               <select
@@ -422,7 +422,7 @@ export default function EditArticlePage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-brandGreen" />
-                <h3 className="font-semibold text-navy">AI Schrijfhulp</h3>
+                <h3 className="font-semibold text-daar-navy">AI Schrijfhulp</h3>
               </div>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -495,7 +495,7 @@ export default function EditArticlePage() {
           {/* SEO */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">SEO</h3>
+              <h3 className="font-semibold text-daar-navy">SEO</h3>
             </CardHeader>
             <CardContent className="space-y-4">
               <Input
@@ -507,7 +507,7 @@ export default function EditArticlePage() {
               />
 
               <div>
-                <label className="block text-sm font-medium text-navy mb-1">
+                <label className="block text-sm font-medium text-daar-navy mb-1">
                   Meta beschrijving
                 </label>
                 <textarea
@@ -527,7 +527,7 @@ export default function EditArticlePage() {
           {/* Excerpt */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Excerpt</h3>
+              <h3 className="font-semibold text-daar-navy">Excerpt</h3>
             </CardHeader>
             <CardContent>
               <textarea
@@ -543,7 +543,7 @@ export default function EditArticlePage() {
           {/* Featured Image */}
           <Card>
             <CardHeader>
-              <h3 className="font-semibold text-navy">Header afbeelding</h3>
+              <h3 className="font-semibold text-daar-navy">Header afbeelding</h3>
             </CardHeader>
             <CardContent>
               <FeaturedImagePicker

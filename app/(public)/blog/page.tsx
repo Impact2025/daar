@@ -7,12 +7,16 @@ import { CategoryFilter } from '@/components/kennisbank/CategoryFilter'
 import { Newspaper } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Blog | DAAR',
-  description: 'Nieuws, inzichten en updates van het DAAR team over vrijwilligersbeheer en de sector.',
+  title: 'Blog over vrijwilligersmanagement',
+  description: 'Nieuws, inzichten en updates van het Daar-team over vrijwilligersbeheer en de sector.',
+  alternates: {
+    canonical: 'https://daar.nl/blog',
+  },
   openGraph: {
-    title: 'Blog | DAAR',
-    description: 'Nieuws en inzichten van DAAR',
+    title: 'Blog over vrijwilligersmanagement | Daar',
+    description: 'Nieuws en inzichten van Daar',
     type: 'website',
+    url: 'https://daar.nl/blog',
   },
 }
 
@@ -108,9 +112,9 @@ export default async function BlogPage({ searchParams }: PageProps) {
   const categoriesWithPosts = categories.filter((c) => c._count.articles > 0)
 
   return (
-    <div className="bg-offWhite min-h-screen">
+    <div className="bg-daar-helder min-h-screen">
       {/* Hero */}
-      <section className="relative bg-offWhite py-20 lg:py-24 overflow-hidden">
+      <section className="relative bg-daar-helder py-20 lg:py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-brandGreen/10 rounded-full mb-6 shadow-sm">
             <Newspaper className="w-8 h-8 text-brandGreen" />
