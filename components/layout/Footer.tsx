@@ -49,7 +49,7 @@ export async function Footer() {
   return (
     <footer className="bg-daar-blue text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-1">
             <Link href="/" className="flex items-center mb-4">
@@ -145,6 +145,23 @@ export async function Footer() {
                 <Link href="/afspraak" className="hover:text-white transition-colors">
                   Plan een gesprek
                 </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Van Vincent */}
+          <div>
+            <h3 className="font-semibold mb-4">Van Vincent</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li>
+                <a
+                  href="https://weareimpact.nl/ai-welzijn-expert"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  WeAreImpact — AI voor welzijn
+                </a>
               </li>
             </ul>
           </div>
