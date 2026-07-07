@@ -185,7 +185,7 @@ export default function Prijzen2Page() {
     <div className="bg-white">
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-20 overflow-hidden bg-gradient-to-br from-daar-helder via-white to-lightGreen">
+      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-20 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
@@ -268,7 +268,7 @@ export default function Prijzen2Page() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-xl border border-gray-100"
+                className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100"
               >
                 <h2
                   className="text-2xl font-bold text-daar-blue mb-6 flex items-center gap-3"
@@ -463,7 +463,7 @@ export default function Prijzen2Page() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-xl border border-gray-100"
+                className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100"
               >
                 <h2
                   className="text-2xl font-bold text-daar-blue mb-6 flex items-center gap-3"
@@ -622,7 +622,7 @@ export default function Prijzen2Page() {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="bg-gradient-to-br from-daar-blue to-daar-blue/90 rounded-3xl p-8 text-white shadow-2xl"
+                className="bg-daar-blue rounded-3xl p-8 text-white shadow-2xl"
               >
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <Euro size={28} />
@@ -735,7 +735,7 @@ export default function Prijzen2Page() {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="bg-gradient-to-br from-brandGreen to-daar-mint rounded-3xl p-8 text-white shadow-2xl"
+                  className="bg-brandGreen rounded-3xl p-8 text-white shadow-2xl"
                 >
                   <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                     <TrendingUp size={28} />
@@ -839,7 +839,7 @@ export default function Prijzen2Page() {
       </section>
 
       {/* ── Tariefschijven overzicht ──────────────────────────────────────── */}
-      <section className="py-16 bg-gradient-to-br from-daar-helder to-white">
+      <section className="py-16 bg-offWhite">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

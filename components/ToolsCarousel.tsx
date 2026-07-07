@@ -233,7 +233,7 @@ const ToolsCarousel: React.FC = () => {
   const activeTool = tools[activeIndex];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-daar-helder/5 to-daar-mint/10 overflow-hidden">
+    <section className="py-24 bg-offWhite overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -275,7 +275,7 @@ const ToolsCarousel: React.FC = () => {
               >
                 {/* Card */}
                 <div
-                  className={`relative rounded-[2rem] overflow-hidden shadow-2xl bg-gradient-to-br ${tool.bgGradient} p-1`}
+                  className={`relative rounded-[2rem] overflow-hidden shadow-2xl bg-white p-1`}
                   style={{
                     boxShadow: index === activeIndex
                       ? `0 25px 60px -15px ${tool.accentColor}66, 0 10px 30px -10px ${tool.accentColor}44`

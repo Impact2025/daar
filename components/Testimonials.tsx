@@ -106,7 +106,7 @@ const Testimonials: React.FC = () => {
             {/* Metric highlight */}
             {active.metric && (
               <div className="lg:col-span-4">
-                <div className="bg-gradient-to-br from-brandGreen/10 to-daar-mint/10 rounded-2xl p-6 text-center border border-brandGreen/20">
+                <div className="bg-brandGreen/10 rounded-2xl p-6 text-center border border-brandGreen/20">
                   <p className="text-4xl lg:text-5xl font-extrabold text-brandGreen mb-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
                     {active.metric.value}
                   </p>

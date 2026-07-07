@@ -45,7 +45,7 @@ const ProblemSolution: React.FC = () => {
           </div>
 
           {/* Solution Column */}
-          <div className="bg-gradient-to-br from-brandGreen/5 to-daar-mint/10 rounded-3xl p-8 lg:p-10 border border-brandGreen/20 relative overflow-hidden">
+          <div className="bg-brandGreen/5 rounded-3xl p-8 lg:p-10 border border-brandGreen/20 relative overflow-hidden">
             {/* Decorative element */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-brandGreen/10 rounded-full blur-3xl" />
 

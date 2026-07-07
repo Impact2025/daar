@@ -384,7 +384,7 @@ const ToolsCarouselPremium: React.FC = () => {
                     <div
                       className="w-[260px] lg:w-[280px] rounded-[3rem] p-2 shadow-2xl"
                       style={{
-                        background: `linear-gradient(145deg, ${tool.accentColor}, ${tool.accentColor}dd)`,
+                        background: tool.accentColor,
                         boxShadow: index === activeIndex
                           ? `0 30px 60px -15px ${tool.accentColor}66, 0 20px 40px -20px rgba(0,0,0,0.3)`
                           : '0 15px 40px -15px rgba(0,0,0,0.2)'

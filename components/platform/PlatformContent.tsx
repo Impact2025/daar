@@ -233,7 +233,7 @@ export const PlatformContent = () => {
 
           <div className="relative">
             {/* Connecting Line */}
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brandGreen via-daar-blue to-brandGreen transform -translate-x-1/2"></div>
+            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-daar-blue/30 transform -translate-x-1/2"></div>
 
             <div className="space-y-12">
               <WorkflowStep
