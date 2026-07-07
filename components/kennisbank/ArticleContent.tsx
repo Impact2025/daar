@@ -19,16 +19,6 @@ interface TOCItem {
   level: number
 }
 
-const gradientColors: Record<string, string> = {
-  'gradient': 'from-brandGreen to-brandGreenHover', // Backward compatibility
-  'gradient-green': 'from-brandGreen to-brandGreenHover',
-  'gradient-yellow': 'from-[#D4A574] to-[#C99A64]',
-  'gradient-coral': 'from-[#E07856] to-[#D96B4A]',
-  'gradient-blue': 'from-[#5B9BD5] to-[#4A8BC2]',
-  'gradient-teal': 'from-[#4DB8A8] to-[#3FA799]',
-  'gradient-daar-navy': 'from-[#2D334A] to-[#1F2537]',
-}
-
 export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleContentProps) {
   const isBlog = basePath === '/blog'
   const backLabel = isBlog ? 'Terug naar blog' : 'Terug naar kennisbank'
@@ -37,8 +27,6 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
   const contentRef = useRef<HTMLDivElement>(null)
 
   const headerStyle = (article as any).headerStyle || 'image'
-  const gradientClass = gradientColors[headerStyle] || gradientColors['gradient-green']
-  const hasGradientHeader = !article.featuredImage && headerStyle.startsWith('gradient-')
 
   // Voeg IDs toe aan headings en fix interne ankerlinks
   useEffect(() => {
@@ -157,21 +145,19 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
               </Link>
             )}
 
-            {/* Title + Excerpt — verborgen als gradient header de titel al toont */}
-            {!hasGradientHeader && (
-              <>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-daar-blue mb-6 leading-tight">
-                  {article.title}
-                </h1>
+            {/* Title + Excerpt */}
+            <>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-daar-blue mb-6 leading-tight">
+                {article.title}
+              </h1>
                 {article.excerpt && (
                   <p className="text-xl text-gray-600 mb-6 leading-relaxed">
                     {article.excerpt}
                   </p>
                 )}
               </>
-            )}
 
-            {/* Meta */}
+              {/* Meta */}
             <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
               {article.publishedAt && (
                 <span className="flex items-center gap-1.5">
@@ -234,7 +220,7 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
               />
             </div>
           ) : headerStyle.startsWith('gradient-') ? (
-            <div className={`relative rounded-xl overflow-hidden mb-10 shadow-lg bg-gradient-to-br ${gradientClass} py-16 px-8`}>
+            <div className="relative rounded-xl overflow-hidden mb-10 shadow-lg bg-daar-blue py-16 px-8">
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-4 right-4 w-32 h-32 bg-white rounded-full blur-2xl" />
                 <div className="absolute bottom-4 left-4 w-48 h-48 bg-white rounded-full blur-3xl" />
@@ -272,7 +258,7 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
 
           {/* Author Bio */}
           {article.author.bio && (
-            <div className="mt-12 p-8 bg-gradient-to-br from-lightGreen to-white rounded-2xl border border-brandGreen/10">
+            <div className="mt-12 p-8 bg-brandGreen/5 rounded-2xl border border-brandGreen/10">
               <div className="flex items-start gap-5">
                 {article.author.avatar ? (
                   <Image

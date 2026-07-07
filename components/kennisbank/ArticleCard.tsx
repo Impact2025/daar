@@ -10,19 +10,8 @@ interface ArticleCardProps {
   basePath?: string
 }
 
-const gradientMap: Record<string, string> = {
-  'gradient-green': 'from-brandGreen to-brandGreenHover',
-  'gradient-yellow': 'from-[#D4A574] to-[#C99A64]',
-  'gradient-coral': 'from-[#E07856] to-[#D96B4A]',
-  'gradient-blue': 'from-[#5B9BD5] to-[#4A8BC2]',
-  'gradient-teal': 'from-[#4DB8A8] to-[#3FA799]',
-  'gradient-daar-navy': 'from-[#2D334A] to-[#1F2537]',
-}
-
 export function ArticleCard({ article, basePath = '/kennisbank' }: ArticleCardProps) {
-  const gradientClass = !article.featuredImage && article.headerStyle?.startsWith('gradient-')
-    ? (gradientMap[article.headerStyle] ?? gradientMap['gradient-green'])
-    : null
+  const isGradientHeader = !article.featuredImage && !!article.headerStyle?.startsWith('gradient-')
 
   return (
     <Link href={`${basePath}/${article.slug}`}>
@@ -48,15 +37,15 @@ export function ArticleCard({ article, basePath = '/kennisbank' }: ArticleCardPr
               </div>
             )}
           </div>
-        ) : gradientClass ? (
-          <div className={`relative h-48 overflow-hidden bg-gradient-to-br ${gradientClass} flex items-center justify-center p-6`}>
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-2 right-2 w-20 h-20 bg-white rounded-full blur-xl" />
-              <div className="absolute bottom-2 left-2 w-28 h-28 bg-white rounded-full blur-2xl" />
-            </div>
-            <h3 className="text-lg font-bold text-white text-center relative z-10 line-clamp-3 group-hover:scale-105 transition-transform">
-              {article.title}
-            </h3>
+        ) : isGradientHeader ? (
+        <div className={`relative h-48 overflow-hidden bg-daar-blue flex items-center justify-center p-6`}>
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-2 right-2 w-20 h-20 bg-white rounded-full blur-xl" />
+            <div className="absolute bottom-2 left-2 w-28 h-28 bg-white rounded-full blur-2xl" />
+          </div>
+          <h3 className="text-lg font-bold text-white text-center relative z-10 line-clamp-3 group-hover:scale-105 transition-transform">
+            {article.title}
+          </h3>
             {article.category && (
               <div className="absolute top-3 left-3">
                 <Badge
@@ -73,7 +62,7 @@ export function ArticleCard({ article, basePath = '/kennisbank' }: ArticleCardPr
 
         <div className="p-5">
           {/* Category (if no image and no gradient header) */}
-          {!article.featuredImage && !gradientClass && article.category && (
+          {!article.featuredImage && !isGradientHeader && article.category && (
             <div className="mb-2">
               <Badge
                 variant="default"

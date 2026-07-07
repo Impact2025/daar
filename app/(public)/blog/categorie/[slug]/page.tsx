@@ -139,12 +139,7 @@ export default async function BlogCategoryPage({ params, searchParams }: PagePro
     <div className="bg-offWhite min-h-screen">
       {/* Hero */}
       <section
-        className="py-16"
-        style={{
-          background: category.color
-            ? `linear-gradient(135deg, ${category.color}15, white)`
-            : 'linear-gradient(135deg, #EBF7F215, white)',
-        }}
+        className="py-16 bg-offWhite"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
