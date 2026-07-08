@@ -96,7 +96,7 @@ const blogs: PillarBlogLink[] = [
     desc: 'Wat werkt (en wat manipulatief is) volgens gedragspsychologie.',
   },
   {
-    href: '/kennisbank/vrijwilligersretentie',
+    href: '/kennisbank/categorie/vrijwilligersretentie',
     title: 'Kennisbank: Vrijwilligersretentie',
     desc: 'De complete gids en aanverwante artikelen over behoud.',
   },
@@ -110,7 +110,7 @@ export default function RetentiePillarPage() {
       subtitle="Een derde van de vrijwilligers verliest jaarlijks zijn betrokkenheid. Op basis van DAAR-onderzoek naar gedragspsychologie en welzijn bouw je retentie die werkt — niet via trucjes, maar via identiteit en Geluksmomenten."
       heroIcon={<HeartHandshake className="w-4 h-4" />}
       cta={{ href: '/vrijwilligerscheck', label: 'Check jouw retentie' }}
-      ctaSecondary={{ href: '/kennisbank/vrijwilligersretentie', label: 'Bekijk de kennisbank' }}
+      ctaSecondary={{ href: '/kennisbank/categorie/vrijwilligersretentie', label: 'Bekijk de kennisbank' }}
       sections={sections}
       blogs={blogs}
       faqs={faqs}

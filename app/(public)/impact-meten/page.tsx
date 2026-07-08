@@ -96,7 +96,7 @@ const blogs: PillarBlogLink[] = [
     desc: 'Hoe je motivatie en betrokkenheid meetbaar én gezond houdt.',
   },
   {
-    href: '/kennisbank/impact-meten',
+    href: '/kennisbank/categorie/impact-meten',
     title: 'Kennisbank: Impact Meten',
     desc: 'Aanverwante artikelen over ROI en maatschappelijke waarde.',
   },
@@ -110,7 +110,7 @@ export default function ImpactPillarPage() {
       subtitle="Hoe overtuig je gemeenten, fondsen en bestuur van de waarde van vrijwilligerswerk? Op basis van DAAR-onderzoek zetten we de methodieken op een rij: van SROI tot welzijnsmetrics."
       heroIcon={<BarChart3 className="w-4 h-4" />}
       cta={{ href: '/vrijwilligerscheck', label: 'Meet jouw impact' }}
-      ctaSecondary={{ href: '/kennisbank/impact-meten', label: 'Bekijk de kennisbank' }}
+      ctaSecondary={{ href: '/kennisbank/categorie/impact-meten', label: 'Bekijk de kennisbank' }}
       sections={sections}
       blogs={blogs}
       faqs={faqs}

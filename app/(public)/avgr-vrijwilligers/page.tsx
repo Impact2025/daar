@@ -98,7 +98,7 @@ const blogs: PillarBlogLink[] = [
     desc: 'Het volledige stappenplan: DPA, rechtsgronden, jeugd-protocols en de 72-uur meldplicht.',
   },
   {
-    href: '/kennisbank/organisatie-management',
+    href: '/kennisbank/categorie/organisatie-management',
     title: 'Kennisbank: Organisatie & Management',
     desc: 'Beknopte gids en aanverwante artikelen over governance en compliance.',
   },
@@ -117,7 +117,7 @@ export default function AvgPillarPage() {
       subtitle="Vrijwilligersorganisaties verwerken meer persoonsgegevens dan ze beseffen. Op basis van DAAR-onderzoek zetten we de regels helder op een rij — van verwerkersovereenkomst tot de 72-uur meldplicht."
       heroIcon={<Shield className="w-4 h-4" />}
       cta={{ href: '/vrijwilligerscheck', label: 'Doe de VrijwilligersCheck' }}
-      ctaSecondary={{ href: '/kennisbank/organisatie-management', label: 'Bekijk de kennisbank' }}
+      ctaSecondary={{ href: '/kennisbank/categorie/organisatie-management', label: 'Bekijk de kennisbank' }}
       sections={sections}
       blogs={blogs}
       faqs={faqs}

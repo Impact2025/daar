@@ -96,7 +96,7 @@ const blogs: PillarBlogLink[] = [
     desc: 'Badges en milestones die wél werken — zonder extrinsieke valkuilen.',
   },
   {
-    href: '/kennisbank/werving-onboarding',
+    href: '/kennisbank/categorie/werving-onboarding',
     title: 'Kennisbank: Werving & Onboarding',
     desc: 'Aanverwante artikelen over 12 bewezen wervingsstrategieën.',
   },
@@ -110,7 +110,7 @@ export default function WervenPillarPage() {
       subtitle="De totale participatie blijft hoog (~50%), maar de beschikbaarheid versnippert. Op basis van DAAR-onderzoek naar generaties leer je werven zónder bureaucratie — per doelgroep."
       heroIcon={<Megaphone className="w-4 h-4" />}
       cta={{ href: '/vrijwilligerscheck', label: 'Scan jouw werving' }}
-      ctaSecondary={{ href: '/kennisbank/werving-onboarding', label: 'Bekijk de kennisbank' }}
+      ctaSecondary={{ href: '/kennisbank/categorie/werving-onboarding', label: 'Bekijk de kennisbank' }}
       sections={sections}
       blogs={blogs}
       faqs={faqs}

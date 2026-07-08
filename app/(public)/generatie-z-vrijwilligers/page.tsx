@@ -94,7 +94,7 @@ const blogs: PillarBlogLink[] = [
     desc: 'Meer over segmentatie en de 4-generaties vergelijking.',
   },
   {
-    href: '/kennisbank/werving-onboarding',
+    href: '/kennisbank/categorie/werving-onboarding',
     title: 'Kennisbank: Werving & Onboarding',
     desc: 'Aanverwante artikelen over moderne werving.',
   },
@@ -108,7 +108,7 @@ export default function GeneratieZPillarPage() {
       subtitle="De Nederlandse vrijwilligersmarkt verschuift van trouw aan een zuil naar trouw aan een doel. Op basis van DAAR-onderzoek naar generaties leer je de grootste, meest bereidwillige maar minst bureaucratie-tolerante groep te winnen."
       heroIcon={<Sparkles className="w-4 h-4" />}
       cta={{ href: '/vrijwilligerscheck', label: 'Moderniseer jouw werving' }}
-      ctaSecondary={{ href: '/kennisbank/werving-onboarding', label: 'Bekijk de kennisbank' }}
+      ctaSecondary={{ href: '/kennisbank/categorie/werving-onboarding', label: 'Bekijk de kennisbank' }}
       sections={sections}
       blogs={blogs}
       faqs={faqs}
