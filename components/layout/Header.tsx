@@ -89,7 +89,9 @@ export function Header() {
             </div>
 
             <Link
-              href="/admin"
+              href="https://app.daar.nl/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-600 hover:text-brandGreen transition-colors font-medium"
             >
               Inloggen
@@ -163,7 +165,9 @@ export function Header() {
                 Plan gesprek
               </Link>
               <Link
-                href="/admin"
+                href="https://app.daar.nl/"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg text-center font-medium transition-colors"
               >
