@@ -91,7 +91,7 @@ async function getCategories() {
     include: {
       _count: {
         select: {
-          articles: { where: { status: 'PUBLISHED' } },
+          articles: { where: { status: 'PUBLISHED', type: 'KENNISBANK' } },
         },
       },
     },

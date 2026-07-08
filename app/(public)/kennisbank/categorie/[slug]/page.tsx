@@ -19,7 +19,7 @@ async function getCategory(slug: string) {
     include: {
       _count: {
         select: {
-          articles: { where: { status: 'PUBLISHED' } },
+          articles: { where: { status: 'PUBLISHED', type: 'KENNISBANK' } },
         },
       },
     },

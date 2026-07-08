@@ -14,6 +14,16 @@ import {
   BLOG_BURNOUT,
 } from './blog-content-phase1'
 import { KENNISBANK_AVG } from './kennisbank-content-phase3'
+import {
+  KB_RETENTIE_COMMUNITY,
+  KB_RETENTIE_WAARDERING,
+  KB_IMPACT_CHECK,
+  KB_IMPACT_METRICS,
+  KB_TECH_CHATBOT,
+  KB_TECH_ETHICS,
+  KB_ORG_HANDBOEK,
+  KB_ORG_COORDINATOR,
+} from './kennisbank-content-phase4'
 
 const prisma = new PrismaClient()
 
@@ -752,6 +762,28 @@ Dit artikel is geschreven door Team DAAR - Vincent, Saviem en Thijs.
   // ===========================================
   const phase3Kennisbank = await createArticle(KENNISBANK_AVG)
   console.log('Created kennisbank article:', phase3Kennisbank.title)
+
+  // ===========================================
+  // PHASE 4 KENNISBANK ARTIKELEN (type: KENNISBANK)
+  // Verdieping van de dunne categorieën zodat elke categorie 3 artikelen heeft.
+  // ===========================================
+  const phase4Kennisbank = [
+    KB_RETENTIE_COMMUNITY,
+    KB_RETENTIE_WAARDERING,
+    KB_IMPACT_CHECK,
+    KB_IMPACT_METRICS,
+    KB_TECH_CHATBOT,
+    KB_TECH_ETHICS,
+    KB_ORG_HANDBOEK,
+    KB_ORG_COORDINATOR,
+  ]
+
+  for (const articleData of phase4Kennisbank) {
+    const article = await createArticle(articleData)
+    console.log('Created kennisbank article:', article.title)
+  }
+
+  console.log(`Created ${phase4Kennisbank.length} Phase 4 kennisbank articles`)
   const bookingTypes = [
     {
       slug: 'kennismaking',
