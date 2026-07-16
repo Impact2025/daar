@@ -3,10 +3,25 @@ import { prisma } from '@/lib/prisma'
 import { auth } from '@/lib/auth'
 import { z } from 'zod'
 import {
-  sendBookingConfirmation,
-  sendAdminNotification,
+  sendBookingEmails,
   formatBookingDateTime,
 } from '@/lib/email'
+
+// Mail versturen vereist de Node-runtime (niet Edge) en genoeg tijd.
+export const runtime = 'nodejs'
+export const maxDuration = 15
+
+/**
+ * Bepaal de videogesprek-link voor een online afspraak.
+ * - Als er expliciet een link is meegegeven, gebruik die.
+ * - Anders een vaste teamruimte via DEFAULT_MEETING_LINK, indien gezet.
+ * - Anders een per-afspraak Jitsi-ruimte (werkt zonder account).
+ */
+function resolveMeetingLink(bookingId: string, provided?: string | null): string {
+  if (provided) return provided
+  if (process.env.DEFAULT_MEETING_LINK) return process.env.DEFAULT_MEETING_LINK
+  return `https://meet.jit.si/DAAR-${bookingId}`
+}
 
 // Validation schema voor booking
 const bookingSchema = z.object({
@@ -196,7 +211,25 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Send confirmation emails (non-blocking)
+    // Zorg dat online afspraken altijd een werkende videolink hebben
+    let meetingLink = booking.meetingLink
+    if (validated.meetingType === 'ONLINE' && !meetingLink) {
+      meetingLink = resolveMeetingLink(booking.id, validated.meetingLink)
+      await prisma.booking.update({
+        where: { id: booking.id },
+        data: { meetingLink },
+      })
+    }
+
+    // Bepaal de locatie voor de agenda-uitnodiging
+    const location =
+      validated.meetingType === 'ONLINE'
+        ? meetingLink || 'Online videogesprek'
+        : validated.meetingType === 'BELAFSPRAAK'
+          ? `Telefonisch${validated.phone ? ` (${validated.phone})` : ''}`
+          : validated.organization || 'Op locatie'
+
+    // Verstuur bevestiging (klant) + notificatie (team) — betrouwbaar afgewacht
     const { date, time } = formatBookingDateTime(startTime)
     const emailData = {
       name: validated.name,
@@ -206,22 +239,33 @@ export async function POST(request: NextRequest) {
       duration: bookingType.duration,
       date,
       time,
-      meetingLink: booking.meetingLink || undefined,
+      meetingLink: meetingLink || undefined,
       notes: validated.notes,
+      bookingId: booking.id,
+      startTime,
+      endTime,
+      location,
     }
 
-    // Send emails in background (don't await)
-    Promise.all([
-      sendBookingConfirmation(emailData),
-      sendAdminNotification(emailData),
-    ]).catch((err) => console.error('Error sending booking emails:', err))
+    const emailResults = await sendBookingEmails(emailData)
 
-    // TODO: Create Google Calendar event
+    // Leg vast of de klant een bevestiging heeft ontvangen
+    if (emailResults.confirmation.success) {
+      await prisma.booking.update({
+        where: { id: booking.id },
+        data: { confirmationSent: true },
+      })
+    }
+
+    // TODO: Google Calendar event via API aanmaken (nu: .ics-uitnodiging bijgevoegd)
 
     return NextResponse.json({
       success: true,
-      data: booking,
-      message: 'Afspraak succesvol geboekt!',
+      data: { ...booking, meetingLink },
+      confirmationEmailSent: emailResults.confirmation.success,
+      message: emailResults.confirmation.success
+        ? 'Afspraak succesvol geboekt! Je ontvangt een bevestiging per e-mail.'
+        : 'Afspraak succesvol geboekt! We nemen zo snel mogelijk contact met je op.',
     })
   } catch (error) {
     if (error instanceof z.ZodError) {

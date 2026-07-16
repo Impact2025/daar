@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Calendar, Clock, User, Building2, Mail, Phone, ChevronLeft, ChevronRight, Check, Loader2 } from 'lucide-react'
+import { Calendar, Clock, User, Building2, Mail, Phone, ChevronLeft, ChevronRight, Check, Loader2, Video } from 'lucide-react'
 import { Button, Input, Card, CardContent, CardHeader } from '@/components/ui'
 import { cn } from '@/lib/utils'
 
@@ -35,6 +35,8 @@ export function BookingWidget({
   const [step, setStep] = useState<Step>('type')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [confirmedBooking, setConfirmedBooking] = useState<{ meetingLink?: string | null } | null>(null)
+  const [emailSent, setEmailSent] = useState(true)
 
   // Booking types
   const [bookingTypes, setBookingTypes] = useState<BookingType[]>([])
@@ -148,6 +150,8 @@ export function BookingWidget({
         return
       }
 
+      setConfirmedBooking(data.data)
+      setEmailSent(data.confirmationEmailSent !== false)
       setStep('confirm')
       onSuccess?.(data.data)
     } catch (err) {
@@ -459,9 +463,17 @@ export function BookingWidget({
             <h3 className="text-xl font-semibold text-daar-blue mb-2">
               Afspraak bevestigd!
             </h3>
-            <p className="text-gray-600 mb-4">
-              Je ontvangt een bevestiging per e-mail op {formData.email}
-            </p>
+            {emailSent ? (
+              <p className="text-gray-600 mb-4">
+                Je ontvangt een bevestiging met agenda-uitnodiging per e-mail op{' '}
+                <span className="font-medium">{formData.email}</span>
+              </p>
+            ) : (
+              <p className="text-gray-600 mb-4">
+                Je afspraak staat genoteerd. We nemen zo snel mogelijk contact met je op via{' '}
+                <span className="font-medium">{formData.email}</span>.
+              </p>
+            )}
 
             <div className="bg-gray-50 rounded-lg p-4 text-left mb-6">
               <p className="font-medium text-daar-blue">{selectedType?.name}</p>
@@ -469,6 +481,18 @@ export function BookingWidget({
                 {selectedDate && formatDate(selectedDate)} om {selectedSlot && formatTime(selectedSlot)}
               </p>
               <p className="text-sm text-gray-600">{selectedType?.duration} minuten</p>
+
+              {confirmedBooking?.meetingLink && (
+                <a
+                  href={confirmedBooking.meetingLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-3 text-sm font-medium text-brandGreen hover:underline"
+                >
+                  <Video className="w-4 h-4" />
+                  Deelnemen aan videogesprek
+                </a>
+              )}
             </div>
 
             {onCancel && (
