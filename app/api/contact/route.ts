@@ -3,6 +3,9 @@ import { Resend } from 'resend'
 import { prisma } from '@/lib/prisma'
 import { rateLimitOrJson } from '@/lib/rate-limit'
 
+export const runtime = 'nodejs'
+export const maxDuration = 15
+
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@daar.nl'
 const FROM_NAME = 'DAAR'
@@ -231,30 +234,43 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Send emails
+    // Send emails — mailfouten mogen het opslaan van de lead niet blokkeren.
     if (resend) {
-      const adminEmails = process.env.ADMIN_NOTIFICATION_EMAILS?.split(',') || ['hallo@daar.nl']
+      const adminEmails = process.env.ADMIN_NOTIFICATION_EMAILS?.split(',').map((e) => e.trim()).filter(Boolean) || ['hallo@daar.nl']
 
-      // Send confirmation to user
-      await resend.emails.send({
-        from: `${FROM_NAME} <${FROM_EMAIL}>`,
-        to: body.email,
-        subject: `Bedankt voor je bericht - ${body.subject}`,
-        html: getContactConfirmationTemplate(body),
+      // Beide onafhankelijk versturen zodat één fout de ander niet meesleept.
+      const results = await Promise.allSettled([
+        // Bevestiging naar de afzender
+        resend.emails.send({
+          from: `${FROM_NAME} <${FROM_EMAIL}>`,
+          to: body.email,
+          replyTo: adminEmails[0],
+          subject: `Bedankt voor je bericht - ${body.subject}`,
+          html: getContactConfirmationTemplate(body),
+        }),
+        // Notificatie naar het team
+        resend.emails.send({
+          from: `${FROM_NAME} <${FROM_EMAIL}>`,
+          to: adminEmails,
+          subject: `Nieuw contactformulier: ${body.subject} - ${body.name}`,
+          html: getAdminContactNotificationTemplate(body),
+          replyTo: body.email,
+        }),
+      ])
+
+      results.forEach((r, i) => {
+        const label = i === 0 ? 'bevestiging' : 'admin-notificatie'
+        if (r.status === 'rejected') {
+          console.error(`[Contact] Verzenden ${label} mislukt:`, r.reason)
+        } else if (r.value.error) {
+          console.error(`[Contact] Resend weigerde ${label}:`, r.value.error)
+        }
       })
-
-      // Send notification to admin
-      await resend.emails.send({
-        from: `${FROM_NAME} <${FROM_EMAIL}>`,
-        to: adminEmails,
-        subject: `Nieuw contactformulier: ${body.subject} - ${body.name}`,
-        html: getAdminContactNotificationTemplate(body),
-        replyTo: body.email,
-      })
-
-      console.log(`[Contact] Emails sent for ${body.email}`)
+      console.log(`[Contact] E-mailverwerking afgerond voor ${body.email}`)
     } else {
-      console.log('[Contact] Resend not configured - skipping emails')
+      const msg = '[Contact] Resend NIET geconfigureerd — contactmails worden NIET verzonden. Zet RESEND_API_KEY.'
+      if (process.env.NODE_ENV === 'production') console.error(msg)
+      else console.warn(msg)
     }
 
     return NextResponse.json({ success: true })

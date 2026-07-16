@@ -1,10 +1,40 @@
 import { Resend } from 'resend'
+import { generateICS } from './calendar'
 
 // Initialize Resend - will gracefully handle missing API key
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@daar.nl'
 const FROM_NAME = 'DAAR'
+// Antwoorden op automatische mails komen bij het team terecht
+const REPLY_TO_EMAIL = process.env.REPLY_TO_EMAIL || 'hallo@daar.nl'
+const ORGANIZER_NAME = 'Team DAAR'
+
+/** Is de mailprovider (Resend) geconfigureerd? */
+export function isEmailConfigured(): boolean {
+  return resend !== null
+}
+
+/**
+ * Waarschuw luid als mail niet geconfigureerd is. In productie is dit een
+ * echt probleem (klanten krijgen geen bevestiging); lokaal is het normaal.
+ */
+function warnNotConfigured(context: string): void {
+  const msg = `[Email] Resend NIET geconfigureerd — ${context} wordt NIET verzonden. Zet RESEND_API_KEY (+ RESEND_FROM_EMAIL) in de omgeving.`
+  if (process.env.NODE_ENV === 'production') {
+    console.error(msg)
+  } else {
+    console.warn(msg)
+  }
+}
+
+export interface EmailResult {
+  success: boolean
+  /** True als er bewust niets verzonden is (mail niet geconfigureerd) */
+  skipped?: boolean
+  id?: string
+  error?: string
+}
 
 interface BookingEmailData {
   name: string
@@ -16,6 +46,54 @@ interface BookingEmailData {
   time: string
   meetingLink?: string
   notes?: string
+  // Velden voor de agenda-uitnodiging (.ics)
+  bookingId?: string
+  startTime?: Date
+  endTime?: Date
+  /** Meeting-link of fysiek adres, voor LOCATION in de agenda */
+  location?: string
+  /** Volgnummer voor invite-updates (default 0) */
+  sequence?: number
+}
+
+/** Bouw een agenda-uitnodiging (.ics) als bijlage, indien tijden bekend zijn. */
+function buildBookingAttachment(
+  data: BookingEmailData,
+  variant: 'REQUEST' | 'CANCEL' = 'REQUEST'
+): { filename: string; content: string; contentType?: string }[] | undefined {
+  if (!data.bookingId || !data.startTime || !data.endTime) return undefined
+
+  const descriptionParts = [
+    `${data.bookingType} met Team DAAR.`,
+    data.meetingLink ? `Videogesprek: ${data.meetingLink}` : '',
+    data.notes ? `Opmerkingen: ${data.notes}` : '',
+    'Vragen? Mail hallo@daar.nl',
+  ].filter(Boolean)
+
+  const ics = generateICS({
+    uid: data.bookingId,
+    sequence: data.sequence ?? (variant === 'CANCEL' ? 1 : 0),
+    title: `${data.bookingType} — DAAR`,
+    description: descriptionParts.join('\n'),
+    start: data.startTime,
+    end: data.endTime,
+    location: data.location || data.meetingLink || 'Online videogesprek',
+    organizerName: ORGANIZER_NAME,
+    organizerEmail: REPLY_TO_EMAIL,
+    attendeeName: data.name,
+    attendeeEmail: data.email,
+    method: variant,
+    status: variant === 'CANCEL' ? 'CANCELLED' : 'CONFIRMED',
+    url: data.meetingLink,
+  })
+
+  return [
+    {
+      filename: variant === 'CANCEL' ? 'annulering.ics' : 'afspraak.ics',
+      content: Buffer.from(ics).toString('base64'),
+      contentType: `text/calendar; charset=utf-8; method=${variant}`,
+    },
+  ]
 }
 
 // Email template for booking confirmation to the customer
@@ -84,6 +162,10 @@ function getBookingConfirmationTemplate(data: BookingEmailData): string {
         <p style="color: #374151; font-size: 14px; margin: 0; font-style: italic;">"${data.notes}"</p>
       </div>
       ` : ''}
+
+      <p style="color: #6B7280; font-size: 14px; line-height: 1.6; margin: 0 0 24px 0;">
+        📎 We hebben een agenda-uitnodiging bijgevoegd (<strong>afspraak.ics</strong>). Open die om de afspraak direct in je agenda te zetten.
+      </p>
 
       <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
         Heb je vragen of moet je de afspraak wijzigen? Neem gerust contact met ons op via
@@ -244,71 +326,111 @@ function getCancellationTemplate(data: BookingEmailData): string {
 `
 }
 
-export async function sendBookingConfirmation(data: BookingEmailData): Promise<{ success: boolean; error?: string }> {
+export async function sendBookingConfirmation(data: BookingEmailData): Promise<EmailResult> {
   if (!resend) {
-    console.log('[Email] Resend not configured - skipping booking confirmation email')
-    return { success: true }
+    warnNotConfigured('bevestiging afspraak')
+    return { success: false, skipped: true }
   }
 
   try {
-    await resend.emails.send({
+    const { data: sent, error } = await resend.emails.send({
       from: `${FROM_NAME} <${FROM_EMAIL}>`,
       to: data.email,
+      replyTo: REPLY_TO_EMAIL,
       subject: `Bevestiging: ${data.bookingType} op ${data.date}`,
       html: getBookingConfirmationTemplate(data),
+      attachments: buildBookingAttachment(data, 'REQUEST'),
     })
 
-    console.log(`[Email] Booking confirmation sent to ${data.email}`)
-    return { success: true }
+    if (error) {
+      console.error('[Email] Resend weigerde bevestiging:', error)
+      return { success: false, error: error.message }
+    }
+
+    console.log(`[Email] Booking confirmation sent to ${data.email} (id: ${sent?.id})`)
+    return { success: true, id: sent?.id }
   } catch (error) {
     console.error('[Email] Failed to send booking confirmation:', error)
-    return { success: false, error: 'Failed to send confirmation email' }
+    return { success: false, error: error instanceof Error ? error.message : 'Failed to send confirmation email' }
   }
 }
 
-export async function sendAdminNotification(data: BookingEmailData): Promise<{ success: boolean; error?: string }> {
+export async function sendAdminNotification(data: BookingEmailData): Promise<EmailResult> {
   if (!resend) {
-    console.log('[Email] Resend not configured - skipping admin notification email')
-    return { success: true }
+    warnNotConfigured('admin-notificatie afspraak')
+    return { success: false, skipped: true }
   }
 
-  const adminEmails = process.env.ADMIN_NOTIFICATION_EMAILS?.split(',') || ['hallo@daar.nl']
+  const adminEmails = process.env.ADMIN_NOTIFICATION_EMAILS?.split(',').map((e) => e.trim()).filter(Boolean) || ['hallo@daar.nl']
 
   try {
-    await resend.emails.send({
+    const { data: sent, error } = await resend.emails.send({
       from: `${FROM_NAME} <${FROM_EMAIL}>`,
       to: adminEmails,
+      replyTo: data.email,
       subject: `Nieuwe afspraak: ${data.bookingType} met ${data.name}`,
       html: getAdminNotificationTemplate(data),
+      attachments: buildBookingAttachment(data, 'REQUEST'),
     })
 
-    console.log(`[Email] Admin notification sent to ${adminEmails.join(', ')}`)
-    return { success: true }
+    if (error) {
+      console.error('[Email] Resend weigerde admin-notificatie:', error)
+      return { success: false, error: error.message }
+    }
+
+    console.log(`[Email] Admin notification sent to ${adminEmails.join(', ')} (id: ${sent?.id})`)
+    return { success: true, id: sent?.id }
   } catch (error) {
     console.error('[Email] Failed to send admin notification:', error)
-    return { success: false, error: 'Failed to send admin notification' }
+    return { success: false, error: error instanceof Error ? error.message : 'Failed to send admin notification' }
   }
 }
 
-export async function sendCancellationEmail(data: BookingEmailData): Promise<{ success: boolean; error?: string }> {
+/**
+ * Verstuur bevestiging (klant) én notificatie (team) betrouwbaar.
+ * Wacht beide af (Promise.allSettled) zodat op serverless niets wordt afgekapt.
+ */
+export async function sendBookingEmails(data: BookingEmailData): Promise<{
+  confirmation: EmailResult
+  admin: EmailResult
+}> {
+  const [confirmation, admin] = await Promise.allSettled([
+    sendBookingConfirmation(data),
+    sendAdminNotification(data),
+  ])
+
+  const unwrap = (r: PromiseSettledResult<EmailResult>): EmailResult =>
+    r.status === 'fulfilled' ? r.value : { success: false, error: String(r.reason) }
+
+  return { confirmation: unwrap(confirmation), admin: unwrap(admin) }
+}
+
+export async function sendCancellationEmail(data: BookingEmailData): Promise<EmailResult> {
   if (!resend) {
-    console.log('[Email] Resend not configured - skipping cancellation email')
-    return { success: true }
+    warnNotConfigured('annulering afspraak')
+    return { success: false, skipped: true }
   }
 
   try {
-    await resend.emails.send({
+    const { data: sent, error } = await resend.emails.send({
       from: `${FROM_NAME} <${FROM_EMAIL}>`,
       to: data.email,
+      replyTo: REPLY_TO_EMAIL,
       subject: `Afspraak geannuleerd: ${data.bookingType} op ${data.date}`,
       html: getCancellationTemplate(data),
+      attachments: buildBookingAttachment(data, 'CANCEL'),
     })
 
-    console.log(`[Email] Cancellation email sent to ${data.email}`)
-    return { success: true }
+    if (error) {
+      console.error('[Email] Resend weigerde annulering:', error)
+      return { success: false, error: error.message }
+    }
+
+    console.log(`[Email] Cancellation email sent to ${data.email} (id: ${sent?.id})`)
+    return { success: true, id: sent?.id }
   } catch (error) {
     console.error('[Email] Failed to send cancellation email:', error)
-    return { success: false, error: 'Failed to send cancellation email' }
+    return { success: false, error: error instanceof Error ? error.message : 'Failed to send cancellation email' }
   }
 }
 
