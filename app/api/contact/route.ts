@@ -3,7 +3,6 @@ import { Resend } from 'resend'
 import { prisma } from '@/lib/prisma'
 import { rateLimitOrJson } from '@/lib/rate-limit'
 import { detectContactSpam } from '@/lib/contact-spam'
-import { verifyTurnstileToken, isTurnstileEnabled } from '@/lib/turnstile'
 
 export const runtime = 'nodejs'
 export const maxDuration = 15
@@ -21,8 +20,6 @@ interface ContactFormData {
   message: string
   // Honeypot field — must be empty. Hidden from humans, filled by bots.
   company?: string
-  // Cloudflare Turnstile token (only present/required when Turnstile is enabled).
-  turnstileToken?: string
 }
 
 function getContactConfirmationTemplate(data: ContactFormData): string {
@@ -199,18 +196,6 @@ export async function POST(request: NextRequest) {
     if (spamError) {
       // 400 (not 429) so the client shows a normal "fill it in properly" error.
       return NextResponse.json({ error: spamError }, { status: 400 })
-    }
-
-    // --- Cloudflare Turnstile (only when enabled via env) ---
-    if (isTurnstileEnabled()) {
-      const result = await verifyTurnstileToken(body.turnstileToken)
-      if (!result.success) {
-        console.warn('[Contact] Turnstile verificatie mislukt:', result.reason)
-        return NextResponse.json(
-          { error: 'Beveiligingscontrole mislukt. Laad de pagina opnieuw en probeer het nog eens.' },
-          { status: 400 }
-        )
-      }
     }
 
     // Validate required fields

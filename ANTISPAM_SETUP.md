@@ -15,29 +15,17 @@ met willekeurige alfanumerieke strings in naam/organisatie/bericht (bijv.
      Nederlandse woorden gaan gewoon door.
    - Unit-test: `lib/contact-spam.test.ts` (`npx tsx lib/contact-spam.test.ts`).
 
-2. **Cloudflare Turnstile** (optioneel, aanbevolen) — `lib/turnstile.ts` + widget in `app/(public)/contact/page.tsx`
-   - Onzichtbare bot-check. Pas actief als BEIDE keys gezet zijn; zonder keys blijft het formulier
-     gewoon werken (de heuristiek hierboven blijft actief).
-   - Verificatie server-side tegen `https://challenges.cloudflare.com/turnstile/v0/siteverify`.
+2. **Rate-limit** — bestaand: max 5 submissies per IP per 10 min (spam/costbescherming).
 
-3. **Rate-limit** — bestaand: max 5 submissies per IP per 10 min (spam/costbescherming).
+Deze aanpak stopt de waargenomen spam (pure random strings) volledig, zonder externe
+dienst, zonder captcha en zonder extra configuratie.
 
-## Turnstile aanzetten (eenmalig)
+## Limiet van deze aanpak
 
-1. Ga naar https://dash.cloudflare.com/ → **Turnstile** → **Add site**.
-   - Modus: *Managed* (of *Invisible*).
-   - Domein: `daar.nl` (+ evt. `www.daar.nl`, en je preview-domein op Vercel).
-2. Kopieer **Site key** en **Secret key**.
-3. Zet ze in `.env.local` (lokaal) én in Vercel (Production + Preview):
-   ```
-   NEXT_PUBLIC_TURNSTILE_SITE_KEY="<site key>"
-   TURNSTILE_SECRET_KEY="<secret key>"
-   ```
-4. Redeploy. Het widget (`cf-turnstile`) verschijnt dan automatisch in het formulier en de
-   server dwingt een geldige token af.
-
-Zonder deze stappen is het formulier beveiligd via laag 1 + 3 (voldoende om de waargenomen
-spam te stoppen); Turnstile is de industriële extra laag.
+Een mens-achtige bot die (a) het honeypot leeg laat, (b) leesbare neptekst tikt in
+naam/bericht, en (c) een geldig e-mailadres gebruikt, glipt door. Voor die categorie
+zou een extra laag nodig zijn (bijv. een eenvoudige vraag/quiz-veld of een captcha-dienst).
+Zolang de inkomende spam uit random strings bestaat, is dat niet nodig.
 
 ## Testen
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import {
   Mail,
@@ -22,12 +22,6 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
-
-// Cloudflare Turnstile — invisible bot protection. The site key comes from env
-// and is only set when Turnstile is configured; without it the widget never
-// renders and the server skips verification (see lib/turnstile.ts).
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
-const TURNSTILE_ENABLED = Boolean(TURNSTILE_SITE_KEY)
 
 // FAQ data
 const faqCategories = [
@@ -156,30 +150,9 @@ export default function ContactPage() {
     // Honeypot — must stay empty. Visually hidden; bots fill it, humans don't.
     company: '',
   })
-  const [turnstileToken, setTurnstileToken] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState('')
-
-  // Load Turnstile only when configured (avoids a console error / network call
-  // on every page load in environments without keys).
-  useEffect(() => {
-    if (!TURNSTILE_ENABLED || (window as any).turnstile) return
-    const script = document.createElement('script')
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
-    script.async = true
-    script.defer = true
-    document.body.appendChild(script)
-  }, [])
-
-  // Turnstile invokes this global when the invisible check passes.
-  useEffect(() => {
-    if (!TURNSTILE_ENABLED) return
-    ;(window as any).__onTurnstileSuccess = (token: string) => setTurnstileToken(token)
-    return () => {
-      delete (window as any).__onTurnstileSuccess
-    }
-  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -190,7 +163,7 @@ export default function ContactPage() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, turnstileToken: TURNSTILE_ENABLED ? turnstileToken : undefined }),
+        body: JSON.stringify(formData),
       })
 
       if (!response.ok) {
@@ -208,7 +181,6 @@ export default function ContactPage() {
         message: '',
         company: '',
       })
-      setTurnstileToken('')
     } catch (err) {
       setError(
         err instanceof Error && err.message
@@ -421,15 +393,6 @@ export default function ContactPage() {
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       />
                     </div>
-
-                    {/* Cloudflare Turnstile — invisible bot check (only when configured) */}
-                    {TURNSTILE_ENABLED && (
-                      <div
-                        className="cf-turnstile"
-                        data-sitekey={TURNSTILE_SITE_KEY}
-                        data-callback="__onTurnstileSuccess"
-                      />
-                    )}
 
                     {error && (
                       <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
