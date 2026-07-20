@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
   Mail,
@@ -22,6 +22,12 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+
+// Cloudflare Turnstile — invisible bot protection. The site key comes from env
+// and is only set when Turnstile is configured; without it the widget never
+// renders and the server skips verification (see lib/turnstile.ts).
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
+const TURNSTILE_ENABLED = Boolean(TURNSTILE_SITE_KEY)
 
 // FAQ data
 const faqCategories = [
@@ -147,10 +153,33 @@ export default function ContactPage() {
     phone: '',
     subject: '',
     message: '',
+    // Honeypot — must stay empty. Visually hidden; bots fill it, humans don't.
+    company: '',
   })
+  const [turnstileToken, setTurnstileToken] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState('')
+
+  // Load Turnstile only when configured (avoids a console error / network call
+  // on every page load in environments without keys).
+  useEffect(() => {
+    if (!TURNSTILE_ENABLED || (window as any).turnstile) return
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    script.async = true
+    script.defer = true
+    document.body.appendChild(script)
+  }, [])
+
+  // Turnstile invokes this global when the invisible check passes.
+  useEffect(() => {
+    if (!TURNSTILE_ENABLED) return
+    ;(window as any).__onTurnstileSuccess = (token: string) => setTurnstileToken(token)
+    return () => {
+      delete (window as any).__onTurnstileSuccess
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -161,11 +190,12 @@ export default function ContactPage() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken: TURNSTILE_ENABLED ? turnstileToken : undefined }),
       })
 
       if (!response.ok) {
-        throw new Error('Er is iets misgegaan')
+        const data = await response.json().catch(() => ({}))
+        throw new Error(data.error || 'Er is iets misgegaan')
       }
 
       setIsSubmitted(true)
@@ -176,9 +206,15 @@ export default function ContactPage() {
         phone: '',
         subject: '',
         message: '',
+        company: '',
       })
-    } catch {
-      setError('Er is iets misgegaan bij het versturen. Probeer het opnieuw of mail ons direct.')
+      setTurnstileToken('')
+    } catch (err) {
+      setError(
+        err instanceof Error && err.message
+          ? err.message
+          : 'Er is iets misgegaan bij het versturen. Probeer het opnieuw of mail ons direct.'
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -370,6 +406,30 @@ export default function ContactPage() {
                         className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent hover:border-gray-300 resize-none"
                       />
                     </div>
+
+                    {/* Honeypot — hidden from humans, auto-filled by spam bots.
+                        Left empty by real users; server rejects any non-empty value. */}
+                    <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+                      <label htmlFor="company">Organisatie (niet invullen)</label>
+                      <input
+                        id="company"
+                        name="company"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={formData.company}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      />
+                    </div>
+
+                    {/* Cloudflare Turnstile — invisible bot check (only when configured) */}
+                    {TURNSTILE_ENABLED && (
+                      <div
+                        className="cf-turnstile"
+                        data-sitekey={TURNSTILE_SITE_KEY}
+                        data-callback="__onTurnstileSuccess"
+                      />
+                    )}
 
                     {error && (
                       <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
