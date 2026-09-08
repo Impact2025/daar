@@ -60,6 +60,16 @@ export function BookingWidget({
     notes: '',
   })
 
+  // Extra context voor demo/strategiesessie, zodat het team zich kan voorbereiden
+  const [prepData, setPrepData] = useState({
+    volunteerCount: '',
+    currentTool: '',
+    role: '',
+  })
+
+  const showPrepQuestions =
+    selectedType?.slug === 'demo' || selectedType?.slug === 'strategie-sessie'
+
   // Load booking types
   useEffect(() => {
     async function loadTypes() {
@@ -128,6 +138,16 @@ export function BookingWidget({
     setError('')
 
     try {
+      const prepLines = [
+        prepData.volunteerCount && `Aantal vrijwilligers: ${prepData.volunteerCount}`,
+        prepData.currentTool && `Huidige werkwijze: ${prepData.currentTool}`,
+        prepData.role && `Rol aanvrager: ${prepData.role}`,
+      ].filter(Boolean)
+
+      const combinedNotes = [prepLines.join('\n'), formData.notes]
+        .filter(Boolean)
+        .join('\n\n')
+
       const res = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -138,7 +158,7 @@ export function BookingWidget({
           email: formData.email,
           phone: formData.phone,
           organization: formData.organization,
-          notes: formData.notes,
+          notes: combinedNotes || undefined,
           source,
         }),
       })
@@ -430,14 +450,70 @@ export function BookingWidget({
               placeholder="Naam van je organisatie"
             />
 
+            {showPrepQuestions && (
+              <div className="space-y-4 p-4 bg-lightGreen/20 rounded-lg border border-brandGreen/20">
+                <p className="text-sm font-medium text-daar-blue">
+                  Zodat we ons goed kunnen voorbereiden:
+                </p>
+
+                <div>
+                  <label className="block text-sm font-medium text-daar-blue mb-1">
+                    Aantal vrijwilligers
+                  </label>
+                  <select
+                    value={prepData.volunteerCount}
+                    onChange={(e) =>
+                      setPrepData({ ...prepData, volunteerCount: e.target.value })
+                    }
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent"
+                  >
+                    <option value="">Selecteer...</option>
+                    <option value="Minder dan 25">Minder dan 25</option>
+                    <option value="25-100">25-100</option>
+                    <option value="100-500">100-500</option>
+                    <option value="Meer dan 500">Meer dan 500</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-daar-blue mb-1">
+                    Huidige werkwijze
+                  </label>
+                  <select
+                    value={prepData.currentTool}
+                    onChange={(e) =>
+                      setPrepData({ ...prepData, currentTool: e.target.value })
+                    }
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent"
+                  >
+                    <option value="">Selecteer...</option>
+                    <option value="Excel / spreadsheet">Excel / spreadsheet</option>
+                    <option value="Ander systeem">Ander systeem</option>
+                    <option value="Geen systeem">Geen systeem</option>
+                  </select>
+                </div>
+
+                <Input
+                  label="Jouw rol"
+                  value={prepData.role}
+                  onChange={(e) => setPrepData({ ...prepData, role: e.target.value })}
+                  placeholder="Bijv. coördinator, bestuur, directie"
+                />
+              </div>
+            )}
+
             <div>
               <label className="block text-sm font-medium text-daar-blue mb-1">
-                Opmerkingen (optioneel)
+                {showPrepQuestions ? 'Grootste uitdaging (optioneel)' : 'Opmerkingen (optioneel)'}
               </label>
               <textarea
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                placeholder="Waar wil je het over hebben?"
+                placeholder={
+                  showPrepQuestions
+                    ? 'Wat is jullie grootste uitdaging in vrijwilligersbeheer?'
+                    : 'Waar wil je het over hebben?'
+                }
                 rows={3}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent"
               />
