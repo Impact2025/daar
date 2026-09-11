@@ -42,63 +42,76 @@ async function getArticles(categoryId: string, query?: string, page: number = 1)
     ]
   }
 
-  const [articles, total] = await Promise.all([
-    prisma.article.findMany({
-      where,
-      select: {
-        id: true,
-        title: true,
-        slug: true,
-        excerpt: true,
-        featuredImage: true,
-        headerStyle: true,
-        publishedAt: true,
-        readingTime: true,
-        viewCount: true,
-        author: {
-          select: {
-            name: true,
-            avatar: true,
+  try {
+    const [articles, total] = await Promise.all([
+      prisma.article.findMany({
+        where,
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          excerpt: true,
+          featuredImage: true,
+          headerStyle: true,
+          publishedAt: true,
+          readingTime: true,
+          viewCount: true,
+          author: {
+            select: {
+              name: true,
+              avatar: true,
+            },
+          },
+          category: {
+            select: {
+              name: true,
+              slug: true,
+              color: true,
+            },
           },
         },
-        category: {
-          select: {
-            name: true,
-            slug: true,
-            color: true,
-          },
-        },
-      },
-      orderBy: { publishedAt: 'desc' },
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-    }),
-    prisma.article.count({ where }),
-  ])
+        orderBy: { publishedAt: 'desc' },
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+      }),
+      prisma.article.count({ where }),
+    ])
 
-  return {
-    articles,
-    pagination: {
-      page,
-      pageSize,
-      total,
-      totalPages: Math.ceil(total / pageSize),
-    },
+    return {
+      articles,
+      pagination: {
+        page,
+        pageSize,
+        total,
+        totalPages: Math.ceil(total / pageSize),
+      },
+    }
+  } catch (error) {
+    console.error('Error fetching kennisbank category articles:', error)
+    return {
+      articles: [],
+      pagination: { page, pageSize, total: 0, totalPages: 0 },
+    }
   }
 }
 
 async function getCategories() {
-  return prisma.category.findMany({
-    where: { parentId: null },
-    include: {
-      _count: {
-        select: {
-          articles: { where: { status: 'PUBLISHED' } },
+  try {
+    return await prisma.category.findMany({
+      where: { parentId: null },
+      include: {
+        _count: {
+          select: {
+            articles: { where: { status: 'PUBLISHED' } },
+          },
         },
       },
-    },
-    orderBy: { sortOrder: 'asc' },
-  })
+      orderBy: { sortOrder: 'asc' },
+    })
+  } catch (error) {
+    console.error('Error fetching kennisbank categories:', error)
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

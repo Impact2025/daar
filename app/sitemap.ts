@@ -3,108 +3,118 @@ import prisma from '@/lib/prisma';
 
 const BASE_URL = 'https://www.daar.nl';
 
+// Ververs de sitemap elk uur, zodat nieuw gepubliceerde artikelen verschijnen
+// zonder dat er een nieuwe deploy nodig is.
+export const revalidate = 3600;
+
+// Stabiele datum voor statische marketingpagina's. Gebruik hier bewust GEEN
+// `new Date()`: dat zou bij elke crawl "gewijzigd zojuist" signaleren (valse
+// versheid) en het vertrouwen in <lastmod> ondermijnen. Bump deze datum
+// handmatig wanneer je de statische content daadwerkelijk herziet.
+const STATIC_LAST_MODIFIED = new Date('2026-07-24');
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages with their priorities and change frequencies
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/platform`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/kennisbank`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/blog`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/prijzen`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/vrijwilligers-werven`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/vrijwilligers-retentie`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/impact-meten`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/generatie-z-vrijwilligers`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/avgr-vrijwilligers`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/quiz`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/over-ons`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/afspraak`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/privacy`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${BASE_URL}/voorwaarden`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${BASE_URL}/cookies`,
-      lastModified: new Date(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: 'yearly',
       priority: 0.3,
     },

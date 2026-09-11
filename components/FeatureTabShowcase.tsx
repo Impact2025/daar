@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Smile, Users, BarChart2, Shield, MessageCircle, ArrowRight, Check, Play, Heart, TrendingUp, Clock, Calendar, UserCheck } from 'lucide-react';
+import { Smile, Meh, Frown, Users, BarChart2, Shield, MessageCircle, ArrowRight, Check, List, X, Heart, TrendingUp, Clock, Calendar, BadgePercent, Banknote, Download, Filter, Sparkles } from 'lucide-react';
 
 interface Feature {
   id: string;
@@ -28,7 +28,7 @@ const features: Feature[] = [
     visual: (
       <div className="relative">
         {/* Chat conversation mockup */}
-        <div className="bg-white rounded-3xl p-6 shadow-lg max-w-sm">
+        <div className="bg-white rounded-3xl p-6 pb-10 shadow-lg max-w-sm">
           <div className="flex items-start gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-daar-helder flex items-center justify-center text-daar-blue text-xs font-bold">MK</div>
             <div>
@@ -45,15 +45,52 @@ const features: Feature[] = [
               <p className="text-gray-600 text-sm">Bedankt voor je eerlijkheid. Laten we samen kijken wat er speelt.</p>
             </div>
           </div>
-          <div className="bg-gray-50 rounded-2xl p-4 flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-daar-geel/30 flex items-center justify-center">
-              <Smile className="w-6 h-6 text-daar-blue" />
-            </div>
-            <div className="flex-1">
-              <p className="font-semibold text-daar-blue text-sm">Welzijns-check</p>
-              <p className="text-gray-500 text-xs">5 minuten</p>
-            </div>
-            <Play className="w-5 h-5 text-daar-blue" />
+          <div className="bg-gray-50 rounded-2xl p-4 space-y-3">
+            {(['goed', 'twijfel', 'niet-goed'] as const).map((activeKey, i) => (
+              <div key={i} className="flex items-center justify-around">
+                {(
+                  [
+                    {
+                      key: 'goed' as const,
+                      label: 'Goed',
+                      icon: Smile,
+                      activeClasses: 'border-brandGreen bg-brandGreen text-white',
+                      inactiveClasses: 'border-brandGreen bg-white text-brandGreen',
+                    },
+                    {
+                      key: 'twijfel' as const,
+                      label: 'Twijfel',
+                      icon: Meh,
+                      activeClasses: 'border-daar-geel bg-daar-geel text-white',
+                      inactiveClasses: 'border-daar-geel bg-white text-daar-geel',
+                    },
+                    {
+                      key: 'niet-goed' as const,
+                      label: 'Niet goed',
+                      icon: Frown,
+                      activeClasses: 'border-daar-koraal bg-daar-koraal text-white',
+                      inactiveClasses: 'border-daar-koraal bg-white text-daar-koraal',
+                    },
+                  ]
+                ).map(({ key, label, icon: Icon, activeClasses, inactiveClasses }) => {
+                  const isActive = activeKey === key;
+                  return (
+                    <div key={key} className="flex flex-col items-center gap-1">
+                      <div
+                        className={`w-9 h-9 rounded-full flex items-center justify-center border-2 ${
+                          isActive ? activeClasses : inactiveClasses
+                        }`}
+                      >
+                        <Icon className="w-4 h-4" strokeWidth={2.5} />
+                      </div>
+                      <span className={`text-[10px] ${isActive ? 'font-bold text-daar-blue' : 'text-gray-500'}`}>
+                        {label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
         {/* Floating emoji */}
@@ -66,53 +103,67 @@ const features: Feature[] = [
   {
     id: 'matching',
     label: 'Smart Matching',
-    title: 'De perfecte match in seconden',
-    description: 'Een Tinder-achtige ervaring voor vrijwilligerswerk. Swipe door profielen en vind de ideale vrijwilliger voor elke klus op basis van skills, beschikbaarheid en persoonlijkheid.',
+    title: 'De perfecte match, automatisch gesuggereerd',
+    description: 'Onze Smart Matching kijkt naar vaardigheden, beschikbaarheid en werkgeschiedenis en stelt direct de beste vrijwilliger voor elke klus voor. Geen eindeloos rondbellen meer.',
     bgColor: '#E07A5A',
     accentColor: '#FFFFFF',
     ctaText: 'Bekijk matching',
     ctaHref: '/platform',
     visual: (
-      <div className="relative">
-        {/* Match cards stack */}
-        <div className="relative w-72">
-          {/* Back card */}
-          <div className="absolute top-4 left-4 w-full bg-white rounded-3xl p-6 shadow-md opacity-60 transform rotate-3">
-            <div className="h-32 bg-gray-100 rounded-2xl mb-4"></div>
-          </div>
-          {/* Front card */}
-          <div className="relative bg-white rounded-3xl p-6 shadow-xl">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 rounded-2xl bg-daar-mint flex items-center justify-center text-white text-xl font-bold">
-                SJ
-              </div>
-              <div>
-                <p className="font-bold text-daar-blue">Sanne Jansen</p>
-                <p className="text-gray-500 text-sm">Ervaren begeleider</p>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 bg-daar-mint/20 text-daar-blue text-xs font-medium rounded-full">Ouderenzorg</span>
-              <span className="px-3 py-1 bg-daar-geel/30 text-daar-blue text-xs font-medium rounded-full">Flexibel</span>
-              <span className="px-3 py-1 bg-daar-helder/30 text-daar-blue text-xs font-medium rounded-full">Rijbewijs</span>
-            </div>
+      <div className="bg-white rounded-3xl p-6 shadow-xl max-w-sm">
+        <p className="text-xs font-bold text-gray-500 tracking-wide mb-3">VEREISTE VAARDIGHEDEN</p>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {['Hout hakken', 'Technisch inzicht', 'Natuurvrijwilligerswerk', 'Bos'].map((skill) => (
+            <span key={skill} className="px-3 py-1.5 bg-gray-100 text-daar-blue text-sm rounded-full">
+              {skill}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-between mb-2">
+          <p className="font-bold text-daar-blue">Bezetting</p>
+          <p className="text-sm text-gray-500">6/8 ingevuld · 2 plekken over</p>
+        </div>
+        <div className="h-2 bg-gray-100 rounded-full overflow-hidden mb-6">
+          <div className="h-full bg-brandGreen rounded-full" style={{ width: '75%' }}></div>
+        </div>
+
+        <div className="bg-daar-koraal-light rounded-xl p-4 flex items-start gap-2">
+          <Sparkles className="w-4 h-4 text-daar-koraal flex-shrink-0 mt-0.5" />
+          <p className="text-sm text-daar-koraal italic leading-relaxed">
+            <span className="font-semibold">AI-suggestie:</span> Dylan Aydin Beschikbaar 09:00 – 13:00 · Heeft eerder op Vrijdag gewerkt.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'declaraties',
+    label: 'Declaraties',
+    title: 'Declaraties in één oogopslag beheren',
+    description: 'Van indienen tot uitbetalen. Zie in real-time hoeveel declaraties wachten op goedkeuring, klaarstaan voor de batch of uitbetaald gaan worden — zonder gedoe met losse bonnetjes.',
+    bgColor: '#3E3D5C',
+    accentColor: '#FFFFFF',
+    ctaText: 'Bekijk declaraties',
+    ctaHref: '/platform',
+    visual: (
+      <div className="space-y-3 w-72">
+        {[
+          { border: 'border-daar-geel', icon: BadgePercent, label: '14 wachten op goedkeuring', amount: '€ 565,20' },
+          { border: 'border-brandGreen', icon: Banknote, label: '15 wachten op batch', amount: '€ 882,97' },
+          { border: 'border-daar-helder', icon: Download, label: '3 klaar voor betaling', amount: '€ 57,90' },
+        ].map(({ border, icon: Icon, label, amount }) => (
+          <div key={label} className={`bg-white rounded-2xl shadow-md border-l-4 ${border} p-4`}>
+            <p className="text-daar-blue font-semibold text-sm mb-3">{label}</p>
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <div className="flex">
-                  {[1,2,3,4,5].map((i) => (
-                    <Heart key={i} className={`w-4 h-4 ${i <= 4 ? 'text-daar-koraal fill-daar-koraal' : 'text-gray-300'}`} />
-                  ))}
-                </div>
-                <span className="text-sm text-gray-600 ml-1">98% match</span>
+              <div className="flex items-center gap-3">
+                <Icon className="w-5 h-5 text-daar-blue" />
+                <span className="text-xl font-bold text-daar-blue">{amount}</span>
               </div>
+              <Filter className="w-5 h-5 text-gray-400" />
             </div>
           </div>
-        </div>
-        {/* Match indicator */}
-        <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 bg-brandGreen text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
-          <Check className="w-5 h-5" />
-          <span className="font-semibold text-sm">Match!</span>
-        </div>
+        ))}
       </div>
     ),
   },
@@ -126,72 +177,47 @@ const features: Feature[] = [
     ctaText: 'Ontdek planning',
     ctaHref: '/platform',
     visual: (
-      <div className="bg-white rounded-3xl p-6 shadow-xl max-w-sm">
+      <div className="relative bg-white rounded-3xl p-6 shadow-xl max-w-sm">
+        {/* Unread indicator */}
+        <div className="absolute top-4 right-4 w-2.5 h-2.5 bg-daar-koraal rounded-full"></div>
+
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-daar-mint/10 flex items-center justify-center">
-              <Calendar className="w-6 h-6 text-daar-mint" />
+          <p className="font-bold text-daar-blue text-lg">Notificaties</p>
+          <div className="flex items-center gap-3 text-gray-400">
+            <Check className="w-5 h-5" />
+            <List className="w-5 h-5" />
+            <X className="w-5 h-5" />
+          </div>
+        </div>
+
+        <div className="border-t border-gray-100 pt-4">
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center flex-shrink-0">
+              <Calendar className="w-4 h-4 text-daar-blue" />
             </div>
-            <div>
-              <p className="font-bold text-daar-blue">Zomerfestival 2025</p>
-              <p className="text-sm text-gray-500">25 juni - 2 juli</p>
-            </div>
-          </div>
-          <span className="px-3 py-1 bg-brandGreen/10 text-brandGreen text-xs font-medium rounded-full">Actief</span>
-        </div>
-
-        <div className="mb-4">
-          <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-600">Deelnemers</span>
-            <span className="font-semibold text-daar-blue">24 / 30</span>
-          </div>
-          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-            <div className="h-full bg-daar-mint rounded-full" style={{ width: '80%' }}></div>
-          </div>
-        </div>
-
-        <div className="space-y-2 mb-4">
-          <div className="flex items-center gap-2 p-2 bg-lightGreen rounded-lg">
-            <UserCheck className="w-4 h-4 text-brandGreen" />
-            <span className="text-sm text-daar-blue flex-1">15 bevestigd</span>
-            <span className="text-xs text-gray-500">✓</span>
-          </div>
-          <div className="flex items-center gap-2 p-2 bg-daar-geel/20 rounded-lg">
-            <Clock className="w-4 h-4 text-daar-koraal" />
-            <span className="text-sm text-daar-blue flex-1">9 uitgenodigd</span>
-            <span className="text-xs text-gray-500">⏳</span>
-          </div>
-        </div>
-
-        {/* Project groepschat preview */}
-        <div className="bg-gray-50 rounded-2xl p-4 mb-3">
-          <div className="flex items-center gap-2 mb-3">
-            <MessageCircle className="w-4 h-4 text-daar-mint" />
-            <span className="text-sm font-semibold text-daar-blue">Projectgroep chat</span>
-            <span className="ml-auto w-5 h-5 bg-daar-koraal text-white text-xs font-bold rounded-full flex items-center justify-center">2</span>
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-start gap-2">
-              <div className="w-6 h-6 rounded-full bg-daar-helder flex items-center justify-center text-white text-xs font-bold flex-shrink-0">M</div>
-              <div className="bg-white rounded-lg rounded-tl-none p-2 flex-1">
-                <p className="text-xs text-gray-700">Wie neemt de ballen mee naar het veld?</p>
-                <p className="text-xs text-gray-400 mt-1">10:24</p>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start justify-between gap-2">
+                <p className="font-bold text-daar-blue text-sm">Je bent ingepland voor een activiteit</p>
+                <Check className="w-4 h-4 text-gray-300 flex-shrink-0 mt-0.5" />
               </div>
-            </div>
-            <div className="flex items-start gap-2">
-              <div className="w-6 h-6 rounded-full bg-brandGreen flex items-center justify-center text-white text-xs font-bold flex-shrink-0">A</div>
-              <div className="bg-white rounded-lg rounded-tl-none p-2 flex-1">
-                <p className="text-xs text-gray-700">Regel ik! Tot zo 👍</p>
-                <p className="text-xs text-gray-400 mt-1">10:26</p>
+              <p className="text-gray-600 text-sm mt-1">
+                Je bent toegevoegd aan de activiteit &quot;Wandeling strand&quot;.
+              </p>
+              <p className="text-gray-400 text-xs mt-2">8 minuten geleden</p>
+
+              <div className="mt-4 space-y-2">
+                <button className="w-full bg-brandGreen text-white font-semibold text-sm py-2.5 px-4 rounded-xl flex items-center gap-2 hover:bg-brandGreen/90 transition-colors">
+                  <Calendar className="w-4 h-4 flex-shrink-0" />
+                  Bekijk activiteit
+                </button>
+                <button className="w-full bg-brandGreen text-white font-semibold text-sm py-2.5 px-4 rounded-xl flex items-center gap-2 hover:bg-brandGreen/90 transition-colors">
+                  <Calendar className="w-4 h-4 flex-shrink-0" />
+                  Wandeling strand · 20-09-2026 09:00
+                </button>
               </div>
             </div>
           </div>
         </div>
-
-        <button className="w-full bg-daar-mint text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-daar-mint/90 transition-colors">
-          <MessageCircle size={18} />
-          Open groepschat
-        </button>
       </div>
     ),
   },

@@ -33,9 +33,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { id } = await params
   const result = await getQuizResult(id)
 
+  // Persoonlijke quizresultaten (per shareToken/id) horen nooit in de Google-index.
+  const noIndex = { robots: { index: false, follow: false } }
+
   if (!result) {
     return {
       title: 'Resultaat niet gevonden | DAAR',
+      ...noIndex,
     }
   }
 
@@ -46,6 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
+    ...noIndex,
     openGraph: {
       title,
       description,

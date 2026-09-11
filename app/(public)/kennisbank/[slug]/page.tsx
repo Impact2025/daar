@@ -4,13 +4,35 @@ import { prisma } from '@/lib/prisma'
 import { ArticleContent } from '@/components/kennisbank/ArticleContent'
 import { ArticleCard } from '@/components/kennisbank/ArticleCard'
 import { ArticleSchema, BreadcrumbSchema } from '@/components/seo/JsonLd'
+import { ViewTracker } from '@/components/kennisbank/ViewTracker'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
+// Statisch genereren + elk uur op de achtergrond verversen (ISR). Hierdoor is
+// de pagina kant-en-klare HTML: supersnel, goedkoop te crawlen en immuun voor
+// transient Neon-fouten (Google blijft de laatste goede versie serveren).
+export const revalidate = 3600
+export const dynamicParams = true
+
+export async function generateStaticParams() {
+  try {
+    const articles = await prisma.article.findMany({
+      where: { status: 'PUBLISHED', type: 'KENNISBANK' },
+      select: { slug: true },
+    })
+    return articles.map((a) => ({ slug: a.slug }))
+  } catch {
+    // Bij een build-time DB-hik: geen pre-render, pagina's renderen on-demand.
+    return []
+  }
+}
+
 async function getArticle(slug: string) {
-  const article = await prisma.article.findUnique({
+  // Geen viewCount-write meer hier: dat gebeurt client-side via <ViewTracker>,
+  // zodat deze render puur read-only en dus cachebaar blijft.
+  return prisma.article.findUnique({
     where: { slug, status: 'PUBLISHED', type: 'KENNISBANK' },
     include: {
       author: {
@@ -30,16 +52,6 @@ async function getArticle(slug: string) {
       },
     },
   })
-
-  if (article) {
-    // Increment view count
-    await prisma.article.update({
-      where: { id: article.id },
-      data: { viewCount: { increment: 1 } },
-    })
-  }
-
-  return article
 }
 
 async function getRelatedArticles(articleId: string, categoryId: string | null) {
@@ -154,6 +166,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <>
+      <ViewTracker articleId={article.id} />
       <ArticleSchema
         headline={article.title}
         description={article.excerpt || ''}
