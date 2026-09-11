@@ -248,7 +248,7 @@ export const PlatformContent = () => {
               <WorkflowStep
                 stepNumber={2}
                 title="Smart Matching"
-                description="Zodra er een nieuwe opdracht binnenkomt, zoekt het platform automatisch naar geschikte kandidaten. De vrijwilliger krijgt een notificatie met een Tinder-achtige interface om te accepteren of door te swipen."
+                description="Zodra er een nieuwe opdracht binnenkomt, zoekt het platform automatisch naar geschikte kandidaten. De vrijwilliger krijgt een notificatie om de opdracht te accepteren."
                 icon={<Zap size={28} />}
                 highlight="AI-matching binnen 3 seconden"
                 side="right"
