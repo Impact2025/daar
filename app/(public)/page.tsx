@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from 'next/link';
-import { Sparkles, ArrowRight, Check, Heart, Clock } from 'lucide-react';
+import { Sparkles, ArrowRight, Check, Clock } from 'lucide-react';
 import { SoftwareApplicationSchema, FAQSchema } from "@/components/seo/JsonLd";
 import ProblemSolution from '@/components/ProblemSolution';
 import FeatureTabShowcase from '@/components/FeatureTabShowcase';
@@ -83,11 +83,6 @@ export default function Home() {
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
             {/* Left Content */}
             <div className="lg:col-span-6 text-center lg:text-left mb-12 lg:mb-0">
-              <div className="inline-flex items-center px-5 py-2.5 rounded-full bg-daar-geel/20 border border-daar-geel/30 text-daar-blue text-sm font-semibold mb-8 animate-fade-in-up">
-                <Sparkles size={16} className="mr-2 text-brandGreen" />
-                Nieuw: Impact Dashboard 2.0 live
-              </div>
-
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-daar-blue leading-[1.1] mb-6" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 Grip op vrijwilligers,<br/>
                 focus op <span className="text-brandGreen">geluk.</span>
@@ -182,11 +177,6 @@ export default function Home() {
                     <div className="flex-1 bg-daar-geel rounded-lg" style={{height: '100%'}}></div>
                   </div>
                 </div>
-
-                <button className="w-full bg-daar-blue text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-daar-blue/90 transition-colors">
-                  <Heart size={18} />
-                  Stuur een bedankje
-                </button>
               </div>
 
               <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full bg-brandGreen/10 rounded-3xl"></div>

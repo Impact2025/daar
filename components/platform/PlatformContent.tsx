@@ -10,7 +10,7 @@ export const PlatformContent = () => {
     <div className="font-sans antialiased text-daar-blue bg-offWhite">
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-offWhite">
+      <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden bg-offWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
             {/* Left Content */}
@@ -319,10 +319,10 @@ export const PlatformContent = () => {
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Link>
             <Link
-              href="https://samen.daar.nl/register"
+              href="/contact"
               className="bg-transparent border-2 border-white/30 text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-white/10 transition-colors text-center"
             >
-              Start gratis
+              Neem contact op
             </Link>
           </div>
         </div>

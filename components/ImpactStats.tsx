@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { TrendingUp, Heart, Users, Clock, PiggyBank, Sparkles, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { TrendingUp, Heart, Users, Clock, PiggyBank, Sparkles } from 'lucide-react';
 
 interface StatCard {
   id: number;
@@ -282,20 +281,10 @@ const ImpactStats: React.FC = () => {
           ))}
         </div>
 
-        {/* Footnote & CTA */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-xs text-gray-500 max-w-xl">
-            *Bronnen: Better Impact case studies, NCVO (2023), VSI-framework, Oxford-onderzoek, DAAR Geluksformule, VolunteerHub/BetterImpact ROI-analyse
-          </p>
-
-          <Link
-            href="/afspraak"
-            className="inline-flex items-center gap-2 bg-daar-navy text-white font-bold px-6 py-3 rounded-full hover:bg-daar-navy/90 transition-all shadow-lg group whitespace-nowrap"
-          >
-            Bereken jouw ROI
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
+        {/* Footnote */}
+        <p className="mt-12 text-xs text-gray-500 max-w-xl">
+          *Bronnen: Better Impact case studies, NCVO (2023), VSI-framework, Oxford-onderzoek, DAAR Geluksformule, VolunteerHub/BetterImpact ROI-analyse
+        </p>
       </div>
     </section>
   );

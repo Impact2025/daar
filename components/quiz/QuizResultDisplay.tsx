@@ -2,6 +2,7 @@
 
 import { Share2, Calendar, RotateCcw, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useShare } from '@/lib/use-share'
 import { Button, Card, CardContent } from '@/components/ui'
 import { RadarChart } from './RadarChart'
 import {
@@ -59,22 +60,16 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
   const lowestDimensionScore = sortedDimensions[0][1]
   const recommendedModules = MODULE_RECOMMENDATIONS[lowestDimensionId]
 
+  const { share, copied } = useShare()
+
   const handleShare = async () => {
     const shareUrl = `${window.location.origin}/quiz/resultaat/${data.id}`
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Mijn Geluksmonitor score',
-          text: `Ik scoorde ${data.totalScore}% op de DAAR Geluksmonitor. Hoe scoort jouw organisatie?`,
-          url: shareUrl,
-        })
-      } catch {
-        // User cancelled or share failed
-      }
-    } else {
-      navigator.clipboard.writeText(shareUrl)
-    }
+    await share({
+      title: 'Mijn Geluksmonitor score',
+      text: `Ik scoorde ${data.totalScore}% op de DAAR Geluksmonitor. Hoe scoort jouw organisatie?`,
+      url: shareUrl,
+    })
   }
 
   return (
@@ -202,8 +197,8 @@ export function QuizResultDisplay({ data, className }: QuizResultDisplayProps) {
           Plan een gesprek
         </Button>
         <Button variant="outline" className="gap-2" onClick={handleShare}>
-          <Share2 className="w-4 h-4" />
-          Delen
+          {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
+          {copied ? 'Link gekopieerd' : 'Delen'}
         </Button>
         <Button variant="outline" className="gap-2" onClick={() => window.location.href = '/quiz'}>
           <RotateCcw className="w-4 h-4" />

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Prijzen - Transparante module-prijzen per vrijwilliger | Daar',
-  description: 'Bereken direct wat Daar kost voor jouw organisatie. Volume-tarieven per vrijwilliger, vanaf 15 vrijwilligers. Centraal Dossier, Communicatie en VrijwilligersCheck.',
+  title: 'Prijzen - Prijsopgave op maat voor jouw organisatie | Daar',
+  description: 'Bereken de waarde van jouw vrijwilligers en vraag een prijsopgave op maat aan. Daar past zich aan op het aantal vrijwilligers in jouw organisatie.',
   keywords: [
     'prijzen',
     'tarieven',
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     'volumetarief',
   ],
   openGraph: {
-    title: 'Prijzen - Transparante module-prijzen per vrijwilliger | Daar',
-    description: 'Volume-tarieven per vrijwilliger. Schaalbaar van 15 tot 2500+ vrijwilligers.',
+    title: 'Prijzen - Prijsopgave op maat voor jouw organisatie | Daar',
+    description: 'Bereken de waarde van jouw vrijwilligers en vraag een prijsopgave op maat aan.',
     type: 'website',
     url: 'https://www.daar.nl/prijzen',
     siteName: 'Daar',
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Prijzen - Transparante module-prijzen per vrijwilliger | Daar',
-    description: 'Volume-tarieven per vrijwilliger. Schaalbaar van 15 tot 2500+ vrijwilligers.',
+    title: 'Prijzen - Prijsopgave op maat voor jouw organisatie | Daar',
+    description: 'Bereken de waarde van jouw vrijwilligers en vraag een prijsopgave op maat aan.',
   },
   alternates: {
     canonical: 'https://www.daar.nl/prijzen',

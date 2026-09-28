@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react'
 import { ArrowRight, ArrowLeft, Check, Download, Share2, Calendar, RotateCcw } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useShare } from '@/lib/use-share'
 import { Button, Card, CardContent, Input } from '@/components/ui'
 import { RadarChart } from './RadarChart'
 import {
@@ -33,6 +34,7 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
   const [isAnimating, setIsAnimating] = useState(false)
   const [leadData, setLeadData] = useState({ name: '', email: '', organization: '' })
   const [resultId, setResultId] = useState<string | null>(null)
+  const { share, copied } = useShare()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [visitorId] = useState(() => `quiz_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`)
 
@@ -147,19 +149,11 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
       ? `${window.location.origin}/quiz/resultaat/${resultId}`
       : window.location.href
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Mijn Geluksmonitor score',
-          text: `Ik scoorde ${totalScore}% op de DAAR Geluksmonitor. Hoe scoort jouw organisatie?`,
-          url: shareUrl,
-        })
-      } catch {
-        // User cancelled or share failed
-      }
-    } else {
-      navigator.clipboard.writeText(shareUrl)
-    }
+    await share({
+      title: 'Mijn Geluksmonitor score',
+      text: `Ik scoorde ${totalScore}% op de DAAR Geluksmonitor. Hoe scoort jouw organisatie?`,
+      url: shareUrl,
+    })
   }
 
   // Get lowest scoring dimension for recommendation
@@ -474,8 +468,8 @@ export function QuizWidget({ onComplete, className }: QuizWidgetProps) {
               Plan een gesprek
             </Button>
             <Button variant="outline" className="gap-2" onClick={handleShare}>
-              <Share2 className="w-4 h-4" />
-              Delen
+              {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
+              {copied ? 'Link gekopieerd' : 'Delen'}
             </Button>
             <Button variant="outline" className="gap-2" onClick={handleRestart}>
               <RotateCcw className="w-4 h-4" />

@@ -3,9 +3,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { Clock, Eye, Calendar, ArrowLeft, Share2, List } from 'lucide-react'
+import { Clock, Eye, Calendar, ArrowLeft, Share2, List, Check } from 'lucide-react'
 import { Badge, Button } from '@/components/ui'
 import { formatDate } from '@/lib/utils'
+import { useShare } from '@/lib/use-share'
 import type { ArticleWithRelations } from '@/types'
 
 interface ArticleContentProps {
@@ -24,6 +25,7 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
   const backLabel = isBlog ? 'Terug naar blog' : 'Terug naar kennisbank'
   const [tocItems, setTocItems] = useState<TOCItem[]>([])
   const [activeId, setActiveId] = useState<string>('')
+  const { share, copied } = useShare()
   const contentRef = useRef<HTMLDivElement>(null)
 
   const headerStyle = (article as any).headerStyle || 'image'
@@ -201,9 +203,14 @@ export function ArticleContent({ article, basePath = '/kennisbank' }: ArticleCon
                 </div>
               </div>
 
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Share2 className="w-4 h-4" />
-                Delen
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2"
+                onClick={() => share({ title: article.title, url: window.location.href })}
+              >
+                {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
+                {copied ? 'Link gekopieerd' : 'Delen'}
               </Button>
             </div>
           </header>
