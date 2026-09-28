@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { QuizWidget } from '@/components/quiz/QuizWidget'
-import ImpactStats from '@/components/ImpactStats'
 import { BarChart3, Clock, Target, TrendingUp, Users, Sparkles, ArrowRight, Check, Shield } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -250,7 +249,6 @@ export default function QuizPage() {
           </div>
         </div>
       </section>
-      <ImpactStats />
     </div>
   )
 }
