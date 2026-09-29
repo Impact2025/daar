@@ -59,16 +59,17 @@ export function Header() {
 
             {/* Kenniscentrum dropdown */}
             <div className="relative group">
-              <button
+              <Link
+                href="/kennisbank"
                 className={`flex items-center gap-1 transition-colors ${
-                  knowledgeCenterLinks.some((l) => isActive(l.href))
+                  isActive('/kennisbank') || knowledgeCenterLinks.some((l) => isActive(l.href))
                     ? 'text-brandGreen font-medium'
                     : 'text-gray-600 hover:text-brandGreen'
                 }`}
                 aria-haspopup="true"
               >
                 Kenniscentrum
-              </button>
+              </Link>
               <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
                 <div className="w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2">
                   {knowledgeCenterLinks.map((l) => (
